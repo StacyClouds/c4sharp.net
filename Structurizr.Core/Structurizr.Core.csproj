@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/structurizr/dotnet</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
