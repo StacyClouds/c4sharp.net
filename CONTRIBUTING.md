@@ -12,7 +12,7 @@ All contributors, maintainers, and participants in this project are required to 
 
 This project is dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion (or lack thereof), or technology choices. We do not tolerate harassment of project participants in any form. Sexual language and imagery is not appropriate for any project space, including code comments, issues, pull requests, discussions, or other online media. Project participants violating these rules may be sanctioned or removed from the project at the discretion of the project maintainers.
 
-### Expected Behavior
+### Unacceptable Behavior
 
 Harassment includes offensive verbal comments related to gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion, technology choices, sexual images in public spaces, deliberate intimidation, stalking, following, harassing photography or recording, sustained disruption of discussions or other events, inappropriate contact, and unwelcome sexual attention.
 
