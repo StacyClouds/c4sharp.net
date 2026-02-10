@@ -8,8 +8,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <Description>The core library that can used to create software architecture models using C4 notation.</Description>
-    <Authors>Stacy Cashmore</Authors>
-    <Copyright>Copyright 2017-2026</Copyright>
+    <Authors>Structurizr Limited, Stacy Cashmore</Authors>
+    <Copyright>Copyright 2026</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://c4sharp.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/StacyClouds/c4sharp.net</RepositoryUrl>
