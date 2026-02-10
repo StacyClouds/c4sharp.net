@@ -4,7 +4,33 @@ Thank you for your interest in contributing to C4Sharp.NET! This document provid
 
 ## Code of Conduct
 
-Please review and follow our [Code of Conduct](https://swetugg.se/codeofconduct).
+### The Quick Version
+
+All contributors, maintainers, and participants in this project are required to agree with the following code of conduct. Maintainers will enforce this code throughout the project. We expect cooperation from all participants to help ensure a safe and welcoming environment for everybody.
+
+### Our Standards
+
+This project is dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion (or lack thereof), or technology choices. We do not tolerate harassment of project participants in any form. Sexual language and imagery is not appropriate for any project space, including code comments, issues, pull requests, discussions, or other online media. Project participants violating these rules may be sanctioned or removed from the project at the discretion of the project maintainers.
+
+### Expected Behavior
+
+Harassment includes offensive verbal comments related to gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion, technology choices, sexual images in public spaces, deliberate intimidation, stalking, following, harassing photography or recording, sustained disruption of discussions or other events, inappropriate contact, and unwelcome sexual attention.
+
+Participants asked to stop any harassing behavior are expected to comply immediately.
+
+If a participant engages in harassing behavior, the project maintainers may take any action they deem appropriate, including warning the offender or removal from the project.
+
+### Reporting
+
+If you are being harassed, notice that someone else is being harassed, or have any other concerns, please contact the project maintainers immediately by opening a private issue or emailing the maintainers directly.
+
+Project maintainers will investigate all complaints and respond in a way that they deem appropriate to the circumstances. Maintainers are obligated to maintain confidentiality with regard to the reporter of an incident.
+
+We value your participation and want to ensure everyone feels welcome and safe in our community.
+
+### Scope
+
+We expect all project participants to follow these rules in all project spaces, including GitHub repositories, issue trackers, pull requests, discussions, and any project-related communication channels.
 
 ## Getting Started
 
