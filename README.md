@@ -1,8 +1,21 @@
-# Structurizr for .NET
+# C4Sharp.NET
 
-This repo is a port of the [Structurizr for Java library](https://github.com/structurizr/java) but has drifted out of sync, and some newer features are missing. I will continue to support the Java-based Structurizr tooling but, due to time constraints, I will no longer be making updates to this codebase or releases via NuGet. The code remains open source, so you are welcome to fork the repo and make your own releases.
+C4Sharp.NET is a .NET library for creating C4 architecture models and diagrams. This library is a modernized fork of [Structurizr for .NET](https://github.com/structurizr/dotnet), updated to support .NET 8, 9, and 10, with ongoing maintenance and improvements by [StacyClouds](https://github.com/StacyClouds).
 
-Unless you are planning to use .NET code to generate parts of your software architecture model, the [Structurizr DSL](https://docs.structurizr.com/dsl) is the recommended tooling for authoring Structurizr workspaces.
+## What is C4?
+
+The [C4 model](https://c4model.com) is a lean graphical notation technique for modeling the architecture of software systems. It consists of a hierarchical set of software architecture diagrams for context, containers, components, and code.
+
+## Features
+
+- ✅ Supports .NET 8, 9, and 10
+- ✅ Create software architecture models using C# code
+- ✅ Export models to JSON for visualization
+- ✅ Compatible with Structurizr cloud service and on-premises installations
+- ✅ Supports all C4 diagram types (Context, Container, Component, Dynamic, Deployment)
+- ✅ Comprehensive styling and theming support
+
+> **Note:** For simple use cases, the [Structurizr DSL](https://docs.structurizr.com/dsl) may be more convenient. Use C4Sharp.NET when you need to generate architecture models programmatically from .NET code.
 
 ## A quick example
 
@@ -26,7 +39,31 @@ styles.Add(new ElementStyle(Tags.SoftwareSystem) { Background = "#1168bd", Color
 styles.Add(new ElementStyle(Tags.Person) { Background = "#08427b", Color = "#ffffff", Shape = Shape.Person });
 ```
 
-The view can then be exported to be visualised using the Structurizr cloud service or an on-premises installation.
+The view can then be exported to be visualized using the Structurizr cloud service or an on-premises installation.
+
+## Installation
+
+Install via NuGet Package Manager:
+
+```bash
+dotnet add package Structurizr.Core
+dotnet add package Structurizr.Client
+```
+
+Or via the NuGet Package Manager Console:
+
+```powershell
+Install-Package Structurizr.Core
+Install-Package Structurizr.Client
+```
+
+## Links
+
+- 📦 [NuGet Packages](https://www.nuget.org/profiles/StacyClouds)
+- 📖 [Documentation](docs/)
+- 🐛 [Issues](https://github.com/StacyClouds/c4sharp.net/issues)
+- 🌐 [C4 Model](https://c4model.com)
+- 🔗 [Structurizr](https://structurizr.com)
 
 ## Table of contents
 
