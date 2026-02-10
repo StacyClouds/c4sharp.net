@@ -8,24 +8,26 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Description>The API client for publishing models on the Structurizr cloud service and on-premises installation.</Description>
-    <Authors>Structurizr Limited</Authors>
-    <Copyright>Copyright 2017-2023</Copyright>
-    <PackageLicenseUrl>https://opensource.org/licenses/Apache-2.0</PackageLicenseUrl>
-    <PackageProjectUrl>https://structurizr.com</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/structurizr/dotnet</RepositoryUrl>
+    <Description>The API client for publishing C4 models to the Structurizr cloud service and on-premises installation.</Description>
+    <PackageId>StacyClouds.C4Sharp.Client</PackageId>
+    <Authors>Structurizr Limited, Stacy Cashmore</Authors>
+    <Copyright>Copyright 2026</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://c4sharp.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/StacyClouds/c4sharp.net</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <ProjectReference Include="..\Structurizr.Core\Structurizr.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Structurizr.Core\Structurizr.Core.csproj" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

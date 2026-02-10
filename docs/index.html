@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4Sharp.NET - C4 Architecture Models for .NET</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1168bd 0%, #08427b 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card h3 {
+            color: #1168bd;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section {
+            background: white;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: #1168bd;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f8;
+            padding: 2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+        
+        .code-example pre {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>C4Sharp.NET</h1>
+        <p>Create C4 Architecture Models with .NET</p>
+    </div>
+    
+    <div class="container">
+        <div class="cta-section">
+            <h2>Get Started with C4Sharp.NET</h2>
+            <p>A modern .NET library for creating C4 architecture diagrams programmatically</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/StacyClouds/c4sharp.net" class="btn btn-primary">View on GitHub</a>
+                <a href="https://www.nuget.org/profiles/StacyClouds" class="btn btn-secondary">NuGet Packages</a>
+                <a href="getting-started.html" class="btn btn-secondary">Documentation</a>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>✨ Modern .NET Support</h3>
+                <p>Fully supports .NET 8, 9, and 10 with multi-targeting for maximum compatibility.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📊 Complete C4 Support</h3>
+                <p>Create Context, Container, Component, Dynamic, and Deployment diagrams with ease.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🎨 Rich Styling</h3>
+                <p>Comprehensive styling and theming options to make your diagrams look professional.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🔄 Structurizr Compatible</h3>
+                <p>Export to Structurizr format for visualization in the cloud or on-premises.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📝 Code-First Approach</h3>
+                <p>Define your architecture in C# code, with full IntelliSense and type safety.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🚀 Easy to Use</h3>
+                <p>Simple, intuitive API that makes creating architecture diagrams straightforward.</p>
+            </div>
+        </div>
+        
+        <h2>Quick Example</h2>
+        <div class="code-example">
+            <pre>
+using Structurizr;
+
+// Create a workspace
+Workspace workspace = new Workspace("Getting Started", 
+    "This is a model of my software system.");
+Model model = workspace.Model;
+
+// Define the model
+Person user = model.AddPerson("User", "A user of my software system.");
+SoftwareSystem softwareSystem = model.AddSoftwareSystem("Software System", 
+    "My software system.");
+user.Uses(softwareSystem, "Uses");
+
+// Create a view
+ViewSet viewSet = workspace.Views;
+SystemContextView contextView = viewSet.CreateSystemContextView(
+    softwareSystem, "SystemContext", "An example of a System Context diagram.");
+contextView.AddAllSoftwareSystems();
+contextView.AddAllPeople();
+
+// Apply styling
+Styles styles = viewSet.Configuration.Styles;
+styles.Add(new ElementStyle(Tags.SoftwareSystem) { 
+    Background = "#1168bd", Color = "#ffffff" 
+});
+styles.Add(new ElementStyle(Tags.Person) { 
+    Background = "#08427b", Color = "#ffffff", Shape = Shape.Person 
+});
+            </pre>
+        </div>
+        
+        <h2>Installation</h2>
+        <p>Install via NuGet Package Manager:</p>
+        <div class="code-example">
+            <pre>
+dotnet add package Structurizr.Core
+dotnet add package Structurizr.Client
+            </pre>
+        </div>
+        
+        <h2>Documentation</h2>
+        <ul style="list-style-position: inside; margin: 1rem 0;">
+            <li><a href="getting-started.html">Getting Started</a></li>
+            <li><a href="api-client.html">API Client</a></li>
+            <li><a href="system-context-diagram.html">System Context Diagrams</a></li>
+            <li><a href="container-diagram.html">Container Diagrams</a></li>
+            <li><a href="component-diagram.html">Component Diagrams</a></li>
+            <li><a href="dynamic-diagram.html">Dynamic Diagrams</a></li>
+            <li><a href="deployment-diagram.html">Deployment Diagrams</a></li>
+        </ul>
+    </div>
+    
+    <footer>
+        <p>&copy; 2017-2026 StacyClouds | <a href="https://github.com/StacyClouds/c4sharp.net" style="color: #fff;">GitHub</a> | <a href="https://c4model.com" style="color: #fff;">C4 Model</a></p>
+    </footer>
+</body>
+</html>
