@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Structurizr.Core.Tests.View
+namespace StacyClouds.C4Sharp.Core.Tests.View
 {
 
     public class FilteredViewTests : AbstractTestBase

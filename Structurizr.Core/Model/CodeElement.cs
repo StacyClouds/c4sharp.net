@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
 
     /// <summary>

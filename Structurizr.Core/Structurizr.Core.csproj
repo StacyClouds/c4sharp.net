@@ -8,12 +8,15 @@
     <MinVerMinimumMajorMinor>1.1</MinVerMinimumMajorMinor>
   </PropertyGroup>
   <PropertyGroup>
-    <Description>The core library that can used to create software architecture models.</Description>
-    <Authors>Structurizr Limited</Authors>
-    <Copyright>Copyright 2017-2023</Copyright>
+    <PackageId>StacyClouds.C4Sharp.Core</PackageId>
+    <AssemblyName>StacyClouds.C4Sharp.Core</AssemblyName>
+    <RootNamespace>StacyClouds.C4Sharp</RootNamespace>
+    <Description>The core library that can used to create software architecture models using the C4 model.</Description>
+    <Authors>StacyClouds</Authors>
+    <Copyright>Copyright 2017-2026</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://structurizr.com</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/structurizr/dotnet</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/StacyClouds/c4sharp.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/StacyClouds/c4sharp.net</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>

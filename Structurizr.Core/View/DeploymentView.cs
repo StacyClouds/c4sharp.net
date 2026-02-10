@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
 
     /// <summary>

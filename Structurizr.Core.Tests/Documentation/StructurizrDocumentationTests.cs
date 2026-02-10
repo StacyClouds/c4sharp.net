@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using Structurizr.Documentation;
+using StacyClouds.C4Sharp.Documentation;
 using Xunit;
 
-namespace Structurizr.Core.Tests.Documentation
+namespace StacyClouds.C4Sharp.Core.Tests.Documentation
 {
     public class StructurizrDocumentationTests : AbstractTestBase
     {

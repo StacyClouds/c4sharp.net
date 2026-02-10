@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using System.Linq;
-using Structurizr.Config;
-using Structurizr.Encryption;
-using Structurizr.IO.Json;
+using StacyClouds.C4Sharp.Config;
+using StacyClouds.C4Sharp.Encryption;
+using StacyClouds.C4Sharp.IO.Json;
 using Xunit;
 
-namespace Structurizr.Api.Encryption.Tests
+namespace StacyClouds.C4Sharp.Api.Encryption.Tests
 {
     public class EncryptedWorkspaceTests
     {

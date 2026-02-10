@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using Structurizr.IO.Json;
+using StacyClouds.C4Sharp.IO.Json;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
 
     public class WorkspaceUtils

@@ -2,7 +2,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
-    <StartupObject>Structurizr.Examples.GettingStarted</StartupObject>
+    <AssemblyName>StacyClouds.C4Sharp.Examples</AssemblyName>
+    <RootNamespace>StacyClouds.C4Sharp.Examples</RootNamespace>
+    <StartupObject>StacyClouds.C4Sharp.Examples.GettingStarted</StartupObject>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using Xunit;
 
-namespace Structurizr.Core.Tests.Util
+namespace StacyClouds.C4Sharp.Core.Tests.Util
 {
     public class ImageUtilTests
     {

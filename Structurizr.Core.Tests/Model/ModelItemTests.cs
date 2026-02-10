@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace Structurizr.Core.Tests
+namespace StacyClouds.C4Sharp.Core.Tests
 {
     public class ModelItemTests : AbstractTestBase
     {

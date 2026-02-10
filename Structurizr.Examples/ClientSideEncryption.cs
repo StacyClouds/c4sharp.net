@@ -1,7 +1,7 @@
 ﻿using Structurizr.Api;
-using Structurizr.Encryption;
+using StacyClouds.C4Sharp.Encryption;
 
-namespace Structurizr.Examples
+namespace StacyClouds.C4Sharp.Examples
 {
     
     /// <summary>

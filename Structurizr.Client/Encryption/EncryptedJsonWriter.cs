@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
-using Structurizr.IO.Json;
+using StacyClouds.C4Sharp.IO.Json;
 using System.IO;
 
-namespace Structurizr.Encryption
+namespace StacyClouds.C4Sharp.Encryption
 {
     public class EncryptedJsonWriter
     {

@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>StacyClouds.C4Sharp.Core.Tests</AssemblyName>
+    <RootNamespace>StacyClouds.C4Sharp.Core.Tests</RootNamespace>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>

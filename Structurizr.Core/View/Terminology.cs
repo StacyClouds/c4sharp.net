@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Structurizr.Core.View
+namespace StacyClouds.C4Sharp.Core.View
 {
 
     /// <summary>

@@ -1,7 +1,7 @@
 ﻿using System;
-using Structurizr.Encryption;
+using StacyClouds.C4Sharp.Encryption;
 
-namespace Structurizr.Api.Encryption.Tests
+namespace StacyClouds.C4Sharp.Api.Encryption.Tests
 {
     internal class MockEncryptionStrategy : EncryptionStrategy
     {

@@ -1,8 +1,8 @@
 ﻿using System;
-using Structurizr.Core.Util;
+using StacyClouds.C4Sharp.Core.Util;
 using Xunit;
 
-namespace Structurizr.Core.Tests
+namespace StacyClouds.C4Sharp.Core.Tests
 {
     
     public class DeploymentNodeTests : AbstractTestBase

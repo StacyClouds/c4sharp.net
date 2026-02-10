@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Structurizr.Util
+namespace StacyClouds.C4Sharp.Util
 {
 
     public class Url

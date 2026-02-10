@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using Structurizr.Util;
+using StacyClouds.C4Sharp.Util;
 
-namespace Structurizr.Core.Tests
+namespace StacyClouds.C4Sharp.Core.Tests
 {
 
     

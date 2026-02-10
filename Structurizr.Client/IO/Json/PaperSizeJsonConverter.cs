@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace Structurizr.IO.Json
+namespace StacyClouds.C4Sharp.IO.Json
 {
     internal class PaperSizeJsonConverter : JsonConverter
     {

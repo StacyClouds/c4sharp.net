@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Structurizr.Api.Tests
+namespace StacyClouds.C4Sharp.Api.Tests
 {
     public class TestFailedException : Exception
     {

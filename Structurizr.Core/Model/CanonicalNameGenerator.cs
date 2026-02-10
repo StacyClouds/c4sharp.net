@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
     internal class CanonicalNameGenerator
     {

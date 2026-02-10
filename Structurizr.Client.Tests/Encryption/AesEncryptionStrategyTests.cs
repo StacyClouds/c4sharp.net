@@ -1,9 +1,9 @@
 ﻿using Xunit;
-using Structurizr.Encryption;
+using StacyClouds.C4Sharp.Encryption;
 using System.Security.Cryptography;
-using Structurizr.Api.Tests;
+using StacyClouds.C4Sharp.Api.Tests;
 
-namespace Structurizr.Api.Encryption.Tests
+namespace StacyClouds.C4Sharp.Api.Encryption.Tests
 {
     
     public class AesEncryptionStrategyTests

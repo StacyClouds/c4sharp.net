@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Structurizr.Encryption
+namespace StacyClouds.C4Sharp.Encryption
 {
     [DataContract]
     public class AesEncryptionStrategy : EncryptionStrategy

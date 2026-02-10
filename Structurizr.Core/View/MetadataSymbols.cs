@@ -1,4 +1,4 @@
-namespace Structurizr.Core.View
+namespace StacyClouds.C4Sharp.Core.View
 {
 
     /// <summary>

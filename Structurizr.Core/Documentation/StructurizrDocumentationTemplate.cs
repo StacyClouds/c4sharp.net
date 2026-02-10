@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Structurizr.Documentation
+namespace StacyClouds.C4Sharp.Documentation
 {
     
     /// <summary>

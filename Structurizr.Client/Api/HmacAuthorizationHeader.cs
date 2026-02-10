@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Structurizr.Api
+namespace StacyClouds.C4Sharp.Api
 {
     internal class HmacAuthorizationHeader
     {

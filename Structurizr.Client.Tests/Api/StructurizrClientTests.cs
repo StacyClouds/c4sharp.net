@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace Structurizr.Api.Tests
+namespace StacyClouds.C4Sharp.Api.Tests
 {
     public class StructurizrClientTests
     {

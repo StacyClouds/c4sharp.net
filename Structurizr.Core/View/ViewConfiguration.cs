@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Structurizr.Core.View;
-using Structurizr.Util;
+using StacyClouds.C4Sharp.Core.View;
+using StacyClouds.C4Sharp.Util;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
 
     /// <summary>

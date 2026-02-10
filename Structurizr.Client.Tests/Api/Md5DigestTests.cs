@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Structurizr.Api.Tests
+namespace StacyClouds.C4Sharp.Api.Tests
 {
     
     public class Md5DigestTests

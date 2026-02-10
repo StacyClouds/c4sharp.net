@@ -1,6 +1,6 @@
 ﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Structurizr.Client.Tests")]
 
-namespace Structurizr.Api
+namespace StacyClouds.C4Sharp.Api
 {
     public class AssemblyInfo
     {

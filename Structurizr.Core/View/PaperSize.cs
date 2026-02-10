@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
     public class PaperSize
     {

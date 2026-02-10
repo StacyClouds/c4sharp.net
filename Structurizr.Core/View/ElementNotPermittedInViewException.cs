@@ -1,6 +1,6 @@
 using System;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
     
     public sealed class ElementNotPermittedInViewException : Exception

@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
     /// <summary>
     /// Represents a view on top of a view, which can be used to include or exclude specific elements. 

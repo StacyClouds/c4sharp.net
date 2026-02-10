@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace Structurizr.Core.Tests
+namespace StacyClouds.C4Sharp.Core.Tests
 {
     
     public class DynamicViewTests : AbstractTestBase

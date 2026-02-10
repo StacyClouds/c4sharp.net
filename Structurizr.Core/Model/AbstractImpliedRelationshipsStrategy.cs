@@ -1,4 +1,4 @@
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
     
     public abstract class AbstractImpliedRelationshipsStrategy : IImpliedRelationshipsStrategy

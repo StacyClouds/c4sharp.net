@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Structurizr.Util
+namespace StacyClouds.C4Sharp.Util
 {
     public class ImageUtils
     {

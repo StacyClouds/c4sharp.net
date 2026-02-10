@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Structurizr.Documentation;
+using StacyClouds.C4Sharp.Documentation;
 
-namespace Structurizr.Examples
+namespace StacyClouds.C4Sharp.Examples
 {
 
     /// <summary>

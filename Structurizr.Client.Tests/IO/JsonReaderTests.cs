@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using Structurizr.IO.Json;
+using StacyClouds.C4Sharp.IO.Json;
 using Xunit;
 
-namespace Structurizr.Api.Tests.IO
+namespace StacyClouds.C4Sharp.Api.Tests.IO
 {
     public class JsonReaderTests
     {

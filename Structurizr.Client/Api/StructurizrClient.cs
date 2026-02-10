@@ -1,5 +1,5 @@
 ﻿using Structurizr.Encryption;
-using Structurizr.IO.Json;
+using StacyClouds.C4Sharp.IO.Json;
 using System;
 using System.IO;
 using System.Net;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Structurizr.Api
+namespace StacyClouds.C4Sharp.Api
 {
 
     /// <summary>

@@ -1,8 +1,8 @@
 using System;
 using System.Runtime.Serialization;
-using Structurizr.Util;
+using StacyClouds.C4Sharp.Util;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
 
     /// <summary>

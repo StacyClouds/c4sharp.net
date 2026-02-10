@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Structurizr.Documentation
+namespace StacyClouds.C4Sharp.Documentation
 {
 
     [DataContract]

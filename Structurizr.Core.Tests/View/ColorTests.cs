@@ -1,7 +1,7 @@
 ﻿
 using Xunit;
 
-namespace Structurizr.Core.Tests
+namespace StacyClouds.C4Sharp.Core.Tests
 {
 
     

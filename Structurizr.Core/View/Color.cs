@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
     public class Color
     {

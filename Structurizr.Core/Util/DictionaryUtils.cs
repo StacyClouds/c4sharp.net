@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Structurizr.Core.Util
+namespace StacyClouds.C4Sharp.Core.Util
 {
     
     public class DictionaryUtils

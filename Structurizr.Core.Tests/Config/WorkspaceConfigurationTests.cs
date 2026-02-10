@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Structurizr.Config;
+using StacyClouds.C4Sharp.Config;
 using Xunit;
 
-namespace Structurizr.Core.Tests.Configuration
+namespace StacyClouds.C4Sharp.Core.Tests.Configuration
 {
     public class ConfigurationTests
     {

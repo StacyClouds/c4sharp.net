@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Structurizr.Documentation.Tests
+namespace StacyClouds.C4Sharp.Documentation.Tests
 {
     public class SectionTests
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
     
     /// <summary>

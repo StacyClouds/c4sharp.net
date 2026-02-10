@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Structurizr
+namespace StacyClouds.C4Sharp
 {
     
     public abstract class GroupableElement : Element

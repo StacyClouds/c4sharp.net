@@ -9,12 +9,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Description>The API client for publishing models on the Structurizr cloud service and on-premises installation.</Description>
-    <Authors>Structurizr Limited</Authors>
-    <Copyright>Copyright 2017-2023</Copyright>
+    <PackageId>StacyClouds.C4Sharp.Client</PackageId>
+    <AssemblyName>StacyClouds.C4Sharp.Client</AssemblyName>
+    <RootNamespace>StacyClouds.C4Sharp.Api</RootNamespace>
+    <Description>The API client for publishing C4 architecture models to the Structurizr cloud service and on-premises installation.</Description>
+    <Authors>StacyClouds</Authors>
+    <Copyright>Copyright 2017-2026</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://structurizr.com</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/structurizr/dotnet</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/StacyClouds/c4sharp.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/StacyClouds/c4sharp.net</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup>

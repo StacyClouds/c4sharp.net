@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Structurizr.Documentation;
+using StacyClouds.C4Sharp.Documentation;
 using Xunit;
 
-namespace Structurizr.Core.Tests.Documentation
+namespace StacyClouds.C4Sharp.Core.Tests.Documentation
 {
 
     public class DocumentationTemplateTests : AbstractTestBase

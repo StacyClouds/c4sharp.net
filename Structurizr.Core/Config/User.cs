@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Structurizr.Config
+namespace StacyClouds.C4Sharp.Config
 {
     
     [DataContract]

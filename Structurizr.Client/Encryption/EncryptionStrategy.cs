@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Structurizr.Encryption
+namespace StacyClouds.C4Sharp.Encryption
 {
 
     [DataContract]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace Structurizr.Config
+namespace StacyClouds.C4Sharp.Config
 {
     
     [DataContract]

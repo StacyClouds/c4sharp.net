@@ -1,6 +1,6 @@
 ﻿using Structurizr.Api;
 
-namespace Structurizr.Examples
+namespace StacyClouds.C4Sharp.Examples
 {
     
     /// <summary>

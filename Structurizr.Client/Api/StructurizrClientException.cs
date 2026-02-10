@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Structurizr.Api
+namespace StacyClouds.C4Sharp.Api
 {
     public class StructurizrClientException : Exception
     {

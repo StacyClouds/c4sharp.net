@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Structurizr.Api
+namespace StacyClouds.C4Sharp.Api
 {
     internal class HashBasedMessageAuthenticationCode
     {

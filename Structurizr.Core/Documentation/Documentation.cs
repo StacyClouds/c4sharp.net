@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace Structurizr.Documentation
+namespace StacyClouds.C4Sharp.Documentation
 {
 
     /// <summary>

@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Structurizr.Encryption;
+using StacyClouds.C4Sharp.Encryption;
 using System;
 using System.Reflection;
 
-namespace Structurizr.IO.Json
+namespace StacyClouds.C4Sharp.IO.Json
 {
     internal class EncryptionStrategyJsonConverter : JsonConverter
     {

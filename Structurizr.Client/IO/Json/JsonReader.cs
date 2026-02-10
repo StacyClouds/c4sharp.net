@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json.Converters;
 
-namespace Structurizr.IO.Json
+namespace StacyClouds.C4Sharp.IO.Json
 {
     public class JsonReader
     {
