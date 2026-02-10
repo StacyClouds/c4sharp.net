@@ -63,7 +63,7 @@
 
 ### Structurizr.Core Package
 - ✅ Multi-targeting: net8.0, net9.0, net10.0
-- ✅ Author: StacyClouds
+- ✅ Author: Stacy Cashmore
 - ✅ License: Apache-2.0 (expression)
 - ✅ Project URL: https://c4sharp.net
 - ✅ Repository: https://github.com/StacyClouds/c4sharp.net
@@ -72,7 +72,7 @@
 
 ### Structurizr.Client Package
 - ✅ Multi-targeting: net8.0, net9.0, net10.0
-- ✅ Author: StacyClouds
+- ✅ Author: Stacy Cashmore
 - ✅ License: Apache-2.0 (expression)
 - ✅ Project URL: https://c4sharp.net
 - ✅ Repository: https://github.com/StacyClouds/c4sharp.net

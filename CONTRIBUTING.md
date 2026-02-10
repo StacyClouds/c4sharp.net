@@ -4,7 +4,7 @@ Thank you for your interest in contributing to C4Sharp.NET! This document provid
 
 ## Code of Conduct
 
-Please be respectful and constructive in all interactions. We want to maintain a welcoming environment for all contributors.
+Please review and follow our [Code of Conduct](https://swetugg.se/codeofconduct).
 
 ## Getting Started
 
@@ -94,7 +94,7 @@ Feature suggestions are welcome! Please create an issue with:
 ### Style
 
 - Follow standard C# naming conventions
-- Use 4 spaces for indentation (not tabs)
+- Use tabs for indentation (not spaces)
 - Use meaningful variable and method names
 - Keep methods focused and concise
 - Add XML documentation comments for public APIs
@@ -194,7 +194,6 @@ c4sharp.net/
 
 - Check existing [issues](https://github.com/StacyClouds/c4sharp.net/issues)
 - Create a new issue for questions
-- Review the [C4 Model](https://c4model.com) documentation
 
 ## License
 

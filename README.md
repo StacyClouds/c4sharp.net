@@ -1,6 +1,6 @@
 # C4Sharp.NET
 
-C4Sharp.NET is a .NET library for creating C4 architecture models and diagrams. This library is a modernized fork of [Structurizr for .NET](https://github.com/structurizr/dotnet), updated to support .NET 8, 9, and 10, with ongoing maintenance and improvements by [StacyClouds](https://github.com/StacyClouds).
+C4Sharp.NET is a .NET library for creating C4 architecture models and diagrams. This library is a modernized fork of [Structurizr for .NET](https://github.com/structurizr/dotnet), updated to support .NET 8, 9, and 10, with ongoing maintenance and improvements by [Stacy Cashmore](https://github.com/StacyCash).
 
 ## What is C4?
 
@@ -46,15 +46,15 @@ The view can then be exported to be visualized using the Structurizr cloud servi
 Install via NuGet Package Manager:
 
 ```bash
-dotnet add package Structurizr.Core
-dotnet add package Structurizr.Client
+dotnet add package StacyClouds.C4Sharp.Core
+dotnet add package StacyClouds.C4Sharp.Client
 ```
 
 Or via the NuGet Package Manager Console:
 
 ```powershell
-Install-Package Structurizr.Core
-Install-Package Structurizr.Client
+Install-Package StacyClouds.C4Sharp.Core
+Install-Package StacyClouds.C4Sharp.Client
 ```
 
 ## Links
