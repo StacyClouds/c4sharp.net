@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ReleaseNotes></ReleaseNotes>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <!-- Version is automatically calculated by MinVer based on git tags -->
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+    <MinVerMinimumMajorMinor>1.1</MinVerMinimumMajorMinor>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>StacyClouds.C4Sharp.Client</PackageId>
+    <AssemblyName>StacyClouds.C4Sharp.Client</AssemblyName>
+    <RootNamespace>StacyClouds.C4Sharp.Api</RootNamespace>
+    <Description>The API client for publishing C4 architecture models to the Structurizr cloud service and on-premises installation.</Description>
+    <Authors>StacyClouds</Authors>
+    <Copyright>Copyright 2017-2026</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/StacyClouds/c4sharp.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/StacyClouds/c4sharp.net</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\C4Sharp.Core\C4Sharp.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MinVer" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
