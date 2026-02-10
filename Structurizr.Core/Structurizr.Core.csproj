@@ -10,14 +10,14 @@
     <Description>The core library that can used to create software architecture models.</Description>
     <Authors>Structurizr Limited</Authors>
     <Copyright>Copyright 2017-2023</Copyright>
-    <PackageLicenseUrl>https://opensource.org/licenses/Apache-2.0</PackageLicenseUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://structurizr.com</PackageProjectUrl>
     <RepositoryUrl>https://github.com/structurizr/dotnet</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>
