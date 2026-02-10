@@ -173,8 +173,8 @@ dotnet test --filter "FullyQualifiedName~TestName"
 dotnet build --configuration Release
 
 # Find packages in:
-# StacyClouds.C4Sharp.Core/bin/Release/
-# StacyClouds.C4Sharp.Client/bin/Release/
+# Structurizr.Core/bin/Release/StacyClouds.C4Sharp.Core.*.nupkg
+# Structurizr.Client/bin/Release/StacyClouds.C4Sharp.Client.*.nupkg
 ```
 
 ## Project Structure
