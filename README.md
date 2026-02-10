@@ -4,6 +4,10 @@ This repo is a port of the [Structurizr for Java library](https://github.com/str
 
 Unless you are planning to use .NET code to generate parts of your software architecture model, the [Structurizr DSL](https://docs.structurizr.com/dsl) is the recommended tooling for authoring Structurizr workspaces.
 
+## Versioning
+
+This repository uses automated semantic versioning with [MinVer](https://github.com/adamralph/minver). Package versions are automatically calculated from Git tags. See [VERSIONING.md](VERSIONING.md) for details on how to create releases.
+
 ## A quick example
 
 As an example, the following C# code can be used to create a software architecture model that describes a user using a software system.
