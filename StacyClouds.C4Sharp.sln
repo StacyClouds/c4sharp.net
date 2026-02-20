@@ -1,0 +1,162 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{4ED0E8DB-8A5B-4DF0-9CB1-995D97A04B88}"
+	ProjectSection(SolutionItems) = preProject
+		docs\api-client.md = docs\api-client.md
+		docs\binaries.md = docs\binaries.md
+		docs\changelog.md = docs\changelog.md
+		docs\client-side-encryption.md = docs\client-side-encryption.md
+		docs\component-diagram.md = docs\component-diagram.md
+		docs\container-diagram.md = docs\container-diagram.md
+		docs\corporate-branding.md = docs\corporate-branding.md
+		docs\deployment-diagram.md = docs\deployment-diagram.md
+		docs\documentation-arc42.md = docs\documentation-arc42.md
+		docs\documentation-structurizr.md = docs\documentation-structurizr.md
+		docs\documentation-viewpoints-and-perspectives.md = docs\documentation-viewpoints-and-perspectives.md
+		docs\documentation.md = docs\documentation.md
+		docs\dynamic-diagram.md = docs\dynamic-diagram.md
+		docs\filtered-views.md = docs\filtered-views.md
+		docs\getting-started.md = docs\getting-started.md
+		docs\health-checks.md = docs\health-checks.md
+		docs\nuget.md = docs\nuget.md
+		README.md = README.md
+		docs\styling-elements.md = docs\styling-elements.md
+		docs\styling-relationships.md = docs\styling-relationships.md
+		docs\system-context-diagram.md = docs\system-context-diagram.md
+		docs\system-landscape-diagram.md = docs\system-landscape-diagram.md
+		docs\implied-relationships.md = docs\implied-relationships.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StacyClouds.C4Sharp.Core", "StacyClouds.C4Sharp.Core\StacyClouds.C4Sharp.Core.csproj", "{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StacyClouds.C4Sharp.Core.Tests", "StacyClouds.C4Sharp.Core.Tests\StacyClouds.C4Sharp.Core.Tests.csproj", "{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StacyClouds.C4Sharp.Examples", "StacyClouds.C4Sharp.Examples\StacyClouds.C4Sharp.Examples.csproj", "{9BE0761B-F666-4691-9CF7-15CF6E911E17}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StacyClouds.C4Sharp.Client", "StacyClouds.C4Sharp.Client\StacyClouds.C4Sharp.Client.csproj", "{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StacyClouds.C4Sharp.Client.Tests", "StacyClouds.C4Sharp.Client.Tests\StacyClouds.C4Sharp.Client.Tests.csproj", "{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{4FBA617C-1ED8-411B-AE3D-3723BD77A7A2}"
+	ProjectSection(SolutionItems) = preProject
+		docs\images\basic-concepts.png = docs\images\basic-concepts.png
+		docs\images\component-diagram-1.png = docs\images\component-diagram-1.png
+		docs\images\container-diagram-1.png = docs\images\container-diagram-1.png
+		docs\images\corporate-branding-1.png = docs\images\corporate-branding-1.png
+		docs\images\corporate-branding-2.png = docs\images\corporate-branding-2.png
+		docs\images\corporate-branding-3.png = docs\images\corporate-branding-3.png
+		docs\images\corporate-branding-4.png = docs\images\corporate-branding-4.png
+		docs\images\deployment-diagram-1.png = docs\images\deployment-diagram-1.png
+		docs\images\documentation-1.png = docs\images\documentation-1.png
+		docs\images\documentation-2.png = docs\images\documentation-2.png
+		docs\images\documentation-3.png = docs\images\documentation-3.png
+		docs\images\dynamic-diagram-1.png = docs\images\dynamic-diagram-1.png
+		docs\images\enterprise-context-diagram-1.png = docs\images\enterprise-context-diagram-1.png
+		docs\images\filtered-views-1.png = docs\images\filtered-views-1.png
+		docs\images\filtered-views-2.png = docs\images\filtered-views-2.png
+		docs\images\getting-started-diagram-key.png = docs\images\getting-started-diagram-key.png
+		docs\images\getting-started.png = docs\images\getting-started.png
+		docs\images\structurizr-banner.png = docs\images\structurizr-banner.png
+		docs\images\structurizr-overview.png = docs\images\structurizr-overview.png
+		docs\images\styling-elements-1.png = docs\images\styling-elements-1.png
+		docs\images\styling-elements-2.png = docs\images\styling-elements-2.png
+		docs\images\styling-elements-3.png = docs\images\styling-elements-3.png
+		docs\images\styling-elements-4.png = docs\images\styling-elements-4.png
+		docs\images\styling-elements-5.png = docs\images\styling-elements-5.png
+		docs\images\styling-elements-6.png = docs\images\styling-elements-6.png
+		docs\images\styling-relationships-1.png = docs\images\styling-relationships-1.png
+		docs\images\styling-relationships-2.png = docs\images\styling-relationships-2.png
+		docs\images\styling-relationships-3.png = docs\images\styling-relationships-3.png
+		docs\images\styling-relationships-4.png = docs\images\styling-relationships-4.png
+		docs\images\system-context-diagram-1.png = docs\images\system-context-diagram-1.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "etc", "etc", "{043B24B2-2120-48D9-91B1-8BB426C1C369}"
+ProjectSection(SolutionItems) = preProject
+	appveyor.yml = appveyor.yml
+EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Debug|x64.Build.0 = Debug|Any CPU
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Debug|x86.Build.0 = Debug|Any CPU
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Release|x64.ActiveCfg = Release|Any CPU
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Release|x64.Build.0 = Release|Any CPU
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Release|x86.ActiveCfg = Release|Any CPU
+		{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}.Release|x86.Build.0 = Release|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Debug|x64.Build.0 = Debug|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Debug|x86.Build.0 = Debug|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Release|x64.ActiveCfg = Release|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Release|x64.Build.0 = Release|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Release|x86.ActiveCfg = Release|Any CPU
+		{349666B0-A760-4F3D-9D10-BE5E90C4A5E7}.Release|x86.Build.0 = Release|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Debug|x64.Build.0 = Debug|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Debug|x86.Build.0 = Debug|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Release|x64.ActiveCfg = Release|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Release|x64.Build.0 = Release|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Release|x86.ActiveCfg = Release|Any CPU
+		{9BE0761B-F666-4691-9CF7-15CF6E911E17}.Release|x86.Build.0 = Release|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Debug|x64.Build.0 = Debug|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Debug|x86.Build.0 = Debug|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Release|x64.ActiveCfg = Release|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Release|x64.Build.0 = Release|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Release|x86.ActiveCfg = Release|Any CPU
+		{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}.Release|x86.Build.0 = Release|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Debug|x64.Build.0 = Debug|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Debug|x86.Build.0 = Debug|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Release|x64.ActiveCfg = Release|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Release|x64.Build.0 = Release|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Release|x86.ActiveCfg = Release|Any CPU
+		{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4FBA617C-1ED8-411B-AE3D-3723BD77A7A2} = {4ED0E8DB-8A5B-4DF0-9CB1-995D97A04B88}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C22C0C2-3375-4503-8953-C7E7AF271C25}
+	EndGlobalSection
+EndGlobal
