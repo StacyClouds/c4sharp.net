@@ -108,7 +108,7 @@ namespace Structurizr.Core.Tests
             ViewConfiguration configuration = new ViewConfiguration();
             Should.Throw<ArgumentException>(() =>
                 configuration.Themes = new[] { "notaurl" }
-            );
+            ).Message.ShouldContain("not a valid URL");
         }
 
         [Fact]
