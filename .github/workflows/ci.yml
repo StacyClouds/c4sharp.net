@@ -51,20 +51,13 @@ jobs:
       - name: Install dotnet-stryker
         run: dotnet tool install --global dotnet-stryker
 
-      - name: Run Stryker on Core
-        run: dotnet stryker --config-file stryker-config.json
-        working-directory: StacyClouds.C4Sharp.Core.Tests
-
-      - name: Run Stryker on Client
-        run: dotnet stryker --config-file stryker-config.json
-        working-directory: StacyClouds.C4Sharp.Client.Tests
+      - name: Run Stryker
+        run: dotnet stryker
 
       - name: Upload Stryker reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: stryker-reports
-          path: |
-            StacyClouds.C4Sharp.Core.Tests/StrykerOutput
-            StacyClouds.C4Sharp.Client.Tests/StrykerOutput
+          path: StrykerOutput
           retention-days: 7

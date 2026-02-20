@@ -90,6 +90,23 @@ namespace StacyClouds.C4Sharp.Core.Tests.View
             }
         }
        
+        [Fact]
+        public void Test_AddAnimationStep_WithMultipleElementsInSameStep_IncludesRelationshipBetweenThem()
+        {
+            SoftwareSystem element1 = Model.AddSoftwareSystem("Software System 1", "");
+            SoftwareSystem element2 = Model.AddSoftwareSystem("Software System 2", "");
+            Relationship relationship1_2 = element1.Uses(element2, "uses");
+
+            SystemLandscapeView view = Workspace.Views.CreateSystemLandscapeView("key", "Description");
+            view.AddAllElements();
+
+            view.AddAnimation(element1, element2);
+
+            Animation step1 = view.Animations.First(step => step.Order == 1);
+            Assert.Equal(2, step1.Elements.Count);
+            Assert.Equal(1, step1.Relationships.Count);
+            Assert.True(step1.Relationships.Contains(relationship1_2.Id));
+        }
     }
     
 }

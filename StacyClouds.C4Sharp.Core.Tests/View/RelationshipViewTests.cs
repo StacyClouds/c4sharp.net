@@ -200,5 +200,13 @@ namespace StacyClouds.C4Sharp.Core.Tests
 
             view1.GetHashCode().ShouldNotBe(view2.GetHashCode());
         }
+
+        [Fact]
+        public void Test_Equals_ReturnsTrue_WhenBothViewsHaveNullDescriptionAndNullOrder()
+        {
+            RelationshipView view1 = new RelationshipView(relationship);
+            RelationshipView view2 = new RelationshipView(relationship);
+            view1.Equals(view2).ShouldBeTrue();
+        }
     }
 }
