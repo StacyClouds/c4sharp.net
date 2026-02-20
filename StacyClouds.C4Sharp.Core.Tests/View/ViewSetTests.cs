@@ -264,12 +264,135 @@ namespace StacyClouds.C4Sharp.Core.Tests
             SoftwareSystem sourceSoftwareSystem = source.Model.AddSoftwareSystem("Software System", "Description");
             SystemContextView sourceView = source.Views.CreateSystemContextView(sourceSoftwareSystem, "key", "Description");
             sourceView.AddAllElements();
+            foreach (ElementView ev in sourceView.Elements) { ev.X = 100; ev.Y = 200; }
 
             SoftwareSystem destSoftwareSystem = Model.AddSoftwareSystem("Software System", "Description");
             SystemContextView destView = Views.CreateSystemContextView(destSoftwareSystem, "key", "Description");
             destView.AddAllElements();
 
             Views.CopyLayoutInformationFrom(source.Views);
+
+            destView.Elements.Count.ShouldBeGreaterThan(0);
+            foreach (ElementView ev in destView.Elements) { ev.X.ShouldBe(100); ev.Y.ShouldBe(200); }
+        }
+
+        [Fact]
+        public void Test_GetViewWithKey_ReturnsScopedDeploymentView()
+        {
+            SoftwareSystem softwareSystem = Model.AddSoftwareSystem("Software System", "Description");
+            DeploymentView view = Views.CreateDeploymentView(softwareSystem, "key", "Description");
+            Views.GetViewWithKey("key").ShouldBeSameAs(view);
+        }
+
+        [Fact]
+        public void Test_CopyLayoutInformationFrom_CopiesLayoutForContainerViews()
+        {
+            Workspace source = new Workspace("Source", "Description");
+            SoftwareSystem sourceSoftwareSystem = source.Model.AddSoftwareSystem("Software System", "Description");
+            sourceSoftwareSystem.AddContainer("Container", "Description", "Technology");
+            ContainerView sourceView = source.Views.CreateContainerView(sourceSoftwareSystem, "key", "Description");
+            sourceView.AddAllContainers();
+            foreach (ElementView ev in sourceView.Elements) { ev.X = 100; ev.Y = 200; }
+
+            SoftwareSystem destSoftwareSystem = Model.AddSoftwareSystem("Software System", "Description");
+            destSoftwareSystem.AddContainer("Container", "Description", "Technology");
+            ContainerView destView = Views.CreateContainerView(destSoftwareSystem, "key", "Description");
+            destView.AddAllContainers();
+
+            Views.CopyLayoutInformationFrom(source.Views);
+
+            destView.Elements.Count.ShouldBeGreaterThan(0);
+            foreach (ElementView ev in destView.Elements) { ev.X.ShouldBe(100); ev.Y.ShouldBe(200); }
+        }
+
+        [Fact]
+        public void Test_CopyLayoutInformationFrom_CopiesLayoutForComponentViews()
+        {
+            Workspace source = new Workspace("Source", "Description");
+            SoftwareSystem sourceSoftwareSystem = source.Model.AddSoftwareSystem("Software System", "Description");
+            Container sourceContainer = sourceSoftwareSystem.AddContainer("Container", "Description", "Technology");
+            sourceContainer.AddComponent("Component", "Description", "Technology");
+            ComponentView sourceView = source.Views.CreateComponentView(sourceContainer, "key", "Description");
+            sourceView.AddAllComponents();
+            foreach (ElementView ev in sourceView.Elements) { ev.X = 100; ev.Y = 200; }
+
+            SoftwareSystem destSoftwareSystem = Model.AddSoftwareSystem("Software System", "Description");
+            Container destContainer = destSoftwareSystem.AddContainer("Container", "Description", "Technology");
+            destContainer.AddComponent("Component", "Description", "Technology");
+            ComponentView destView = Views.CreateComponentView(destContainer, "key", "Description");
+            destView.AddAllComponents();
+
+            Views.CopyLayoutInformationFrom(source.Views);
+
+            destView.Elements.Count.ShouldBeGreaterThan(0);
+            foreach (ElementView ev in destView.Elements) { ev.X.ShouldBe(100); ev.Y.ShouldBe(200); }
+        }
+
+        [Fact]
+        public void Test_CopyLayoutInformationFrom_CopiesLayoutForDynamicViews()
+        {
+            Workspace source = new Workspace("Source", "Description");
+            SoftwareSystem sourceSystemA = source.Model.AddSoftwareSystem("System A", "Description");
+            SoftwareSystem sourceSystemB = source.Model.AddSoftwareSystem("System B", "Description");
+            sourceSystemA.Uses(sourceSystemB, "uses");
+            DynamicView sourceView = source.Views.CreateDynamicView("key", "Description");
+            sourceView.Add(sourceSystemA, sourceSystemB);
+            foreach (ElementView ev in sourceView.Elements) { ev.X = 100; ev.Y = 200; }
+
+            SoftwareSystem destSystemA = Model.AddSoftwareSystem("System A", "Description");
+            SoftwareSystem destSystemB = Model.AddSoftwareSystem("System B", "Description");
+            destSystemA.Uses(destSystemB, "uses");
+            DynamicView destView = Views.CreateDynamicView("key", "Description");
+            destView.Add(destSystemA, destSystemB);
+
+            Views.CopyLayoutInformationFrom(source.Views);
+
+            destView.Elements.Count.ShouldBe(2);
+            foreach (ElementView ev in destView.Elements) { ev.X.ShouldBe(100); ev.Y.ShouldBe(200); }
+        }
+
+        [Fact]
+        public void Test_CopyLayoutInformationFrom_CopiesLayoutForDeploymentViews()
+        {
+            Workspace source = new Workspace("Source", "Description");
+            SoftwareSystem sourceSoftwareSystem = source.Model.AddSoftwareSystem("Software System", "Description");
+            Container sourceContainer = sourceSoftwareSystem.AddContainer("Container", "Description", "Technology");
+            DeploymentNode sourceDeploymentNode = source.Model.AddDeploymentNode("Deployment Node", "Description", "Technology");
+            sourceDeploymentNode.Add(sourceContainer);
+            DeploymentView sourceView = source.Views.CreateDeploymentView("key", "Description");
+            sourceView.Add(sourceDeploymentNode);
+            foreach (ElementView ev in sourceView.Elements) { ev.X = 100; ev.Y = 200; }
+
+            SoftwareSystem destSoftwareSystem = Model.AddSoftwareSystem("Software System", "Description");
+            Container destContainer = destSoftwareSystem.AddContainer("Container", "Description", "Technology");
+            DeploymentNode destDeploymentNode = Model.AddDeploymentNode("Deployment Node", "Description", "Technology");
+            destDeploymentNode.Add(destContainer);
+            DeploymentView destView = Views.CreateDeploymentView("key", "Description");
+            destView.Add(destDeploymentNode);
+
+            Views.CopyLayoutInformationFrom(source.Views);
+
+            destView.Elements.Count.ShouldBeGreaterThan(0);
+            foreach (ElementView ev in destView.Elements) { ev.X.ShouldBe(100); ev.Y.ShouldBe(200); }
+        }
+
+        [Fact]
+        public void Test_CopyLayoutInformationFrom_CopiesLayoutForSystemLandscapeViews()
+        {
+            Workspace source = new Workspace("Source", "Description");
+            SystemLandscapeView sourceView = source.Views.CreateSystemLandscapeView("key", "Description");
+            source.Model.AddSoftwareSystem("Software System", "Description");
+            sourceView.AddAllElements();
+            foreach (ElementView ev in sourceView.Elements) { ev.X = 50; ev.Y = 75; }
+
+            Model.AddSoftwareSystem("Software System", "Description");
+            SystemLandscapeView destView = Views.CreateSystemLandscapeView("key", "Description");
+            destView.AddAllElements();
+
+            Views.CopyLayoutInformationFrom(source.Views);
+
+            destView.Elements.Count.ShouldBeGreaterThan(0);
+            foreach (ElementView ev in destView.Elements) { ev.X.ShouldBe(50); ev.Y.ShouldBe(75); }
         }
     }
 }

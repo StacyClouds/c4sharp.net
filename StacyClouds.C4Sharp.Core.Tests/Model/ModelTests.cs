@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 using Shouldly;
@@ -531,6 +532,97 @@ namespace StacyClouds.C4Sharp.Core.Tests
         {
             DeploymentNode node = Model.AddDeploymentNode("Live", "Node", "Description", "Technology");
             Model.GetDeploymentNodeWithName("Node", "Live").ShouldBeSameAs(node);
+        }
+
+        [Fact]
+        public void Test_AddDeploymentNode_ThrowsAnException_WhenNameIsNull()
+        {
+            Should.Throw<ArgumentException>(() =>
+                Model.AddDeploymentNode(null, "Description", "Technology")
+            ).Message.ShouldBe("A name must be specified.");
+        }
+
+        [Fact]
+        public void Test_AddDeploymentNode_ThrowsAnException_WhenNameIsEmpty()
+        {
+            Should.Throw<ArgumentException>(() =>
+                Model.AddDeploymentNode("  ", "Description", "Technology")
+            ).Message.ShouldBe("A name must be specified.");
+        }
+
+        [Fact]
+        public void Test_AddInfrastructureNode_ThrowsAnException_WhenNameIsNull()
+        {
+            DeploymentNode deploymentNode = Model.AddDeploymentNode("Live", "Node", "Description", "Technology");
+            Should.Throw<ArgumentException>(() =>
+                deploymentNode.AddInfrastructureNode(null)
+            ).Message.ShouldBe("A name must be specified.");
+        }
+
+        [Fact]
+        public void Test_AddInfrastructureNode_ThrowsAnException_WhenNameIsEmpty()
+        {
+            DeploymentNode deploymentNode = Model.AddDeploymentNode("Live", "Node", "Description", "Technology");
+            Should.Throw<ArgumentException>(() =>
+                deploymentNode.AddInfrastructureNode("  ")
+            ).Message.ShouldBe("A name must be specified.");
+        }
+
+        [Fact]
+        public void Test_AddImplicitRelationships_ReturnsTheImplicitRelationships()
+        {
+            Person user = Model.AddPerson("Person", "Description");
+            SoftwareSystem softwareSystem = Model.AddSoftwareSystem("Software System", "Description");
+            Container webApplication = softwareSystem.AddContainer("Web Application", "Description", "Technology");
+
+            user.Uses(webApplication, "Uses", "");
+            ISet<Relationship> implicitRelationships = Model.AddImplicitRelationships();
+
+            implicitRelationships.ShouldNotBeNull();
+            implicitRelationships.Count.ShouldBe(1);
+        }
+
+        [Fact]
+        public void Test_AddSoftwareSystem_WithLocation_SetsLocation()
+        {
+            SoftwareSystem ss = Model.AddSoftwareSystem(Location.External, "External System", "Description");
+            ss.ShouldNotBeNull();
+            ss.Location.ShouldBe(Location.External);
+        }
+
+        [Fact]
+        public void Test_AddPerson_WithLocation_SetsLocation()
+        {
+            Person person = Model.AddPerson(Location.External, "External User", "Description");
+            person.ShouldNotBeNull();
+            person.Location.ShouldBe(Location.External);
+        }
+
+        [Fact]
+        public void Test_AddDeploymentNode_WithInstances_SetsInstances()
+        {
+            DeploymentNode node = Model.AddDeploymentNode("Live", "Node", "Description", "Technology", 3);
+            node.ShouldNotBeNull();
+            node.Instances.ShouldBe(3);
+        }
+
+        [Fact]
+        public void Test_AddDeploymentNode_WithProperties_SetsProperties()
+        {
+            var props = new System.Collections.Generic.Dictionary<string, string> { { "region", "us-east-1" } };
+            DeploymentNode node = Model.AddDeploymentNode("Live", "Node", "Description", "Technology", 1, props);
+            node.ShouldNotBeNull();
+            node.Properties["region"].ShouldBe("us-east-1");
+        }
+
+        [Fact]
+        public void Test_AddInfrastructureNode_WithProperties_SetsProperties()
+        {
+            DeploymentNode deploymentNode = Model.AddDeploymentNode("Live", "Node", "Description", "Technology");
+            var props = new System.Collections.Generic.Dictionary<string, string> { { "key", "value" } };
+            InfrastructureNode infraNode = deploymentNode.AddInfrastructureNode("Infra", "Description", "Technology", props);
+            infraNode.ShouldNotBeNull();
+            infraNode.Properties["key"].ShouldBe("value");
         }
 
     }

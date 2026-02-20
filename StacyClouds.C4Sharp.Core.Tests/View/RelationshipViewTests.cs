@@ -112,5 +112,93 @@ namespace StacyClouds.C4Sharp.Core.Tests
             destination.Routing.ShouldBe(Routing.Orthogonal);
             destination.Position.ShouldBe(75);
         }
+
+        [Fact]
+        public void Test_Position_IsSetToZero_WhenValueIsExactlyZero()
+        {
+            RelationshipView view = new RelationshipView(relationship);
+            view.Position = 0;
+            view.Position.ShouldBe(0);
+        }
+
+        [Fact]
+        public void Test_Position_IsSetTo100_WhenValueIsExactly100()
+        {
+            RelationshipView view = new RelationshipView(relationship);
+            view.Position = 100;
+            view.Position.ShouldBe(100);
+        }
+
+        [Fact]
+        public void Test_Equals_ReturnsFalse_WhenDescriptionIsNullInSourceButNotDestination()
+        {
+            RelationshipView view1 = new RelationshipView(relationship);
+            view1.Description = "desc";
+
+            RelationshipView view2 = new RelationshipView(relationship);
+            // view2.Description is null
+
+            view1.Equals(view2).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void Test_Equals_ReturnsFalse_WhenOrderIsNullInSourceButNotDestination()
+        {
+            RelationshipView view1 = new RelationshipView(relationship);
+            view1.Order = "1";
+
+            RelationshipView view2 = new RelationshipView(relationship);
+            // view2.Order is null
+
+            view1.Equals(view2).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void Test_Equals_ReturnsFalse_WhenIdsAreDifferent()
+        {
+            SoftwareSystem softwareSystem3 = Model.AddSoftwareSystem("Software System 3", "Description");
+            Relationship relationship2 = softwareSystem1.Uses(softwareSystem3, "Uses");
+
+            RelationshipView view1 = new RelationshipView(relationship);
+            RelationshipView view2 = new RelationshipView(relationship2);
+
+            view1.Equals(view2).ShouldBeFalse();
+        }
+
+        [Fact]
+        public void Test_GetHashCode_IsConsistentForSameObject()
+        {
+            RelationshipView view = new RelationshipView(relationship);
+            view.Order = "1";
+            view.Description = "desc";
+
+            view.GetHashCode().ShouldBe(view.GetHashCode());
+        }
+
+        [Fact]
+        public void Test_GetHashCode_DifferentForDifferentDescriptions()
+        {
+            RelationshipView view1 = new RelationshipView(relationship);
+            view1.Order = "1";
+            view1.Description = "desc1";
+
+            RelationshipView view2 = new RelationshipView(relationship);
+            view2.Order = "1";
+            view2.Description = "desc2";
+
+            view1.GetHashCode().ShouldNotBe(view2.GetHashCode());
+        }
+
+        [Fact]
+        public void Test_GetHashCode_DifferentForDifferentOrders()
+        {
+            RelationshipView view1 = new RelationshipView(relationship);
+            view1.Order = "1";
+
+            RelationshipView view2 = new RelationshipView(relationship);
+            view2.Order = "2";
+
+            view1.GetHashCode().ShouldNotBe(view2.GetHashCode());
+        }
     }
 }
