@@ -2,11 +2,6 @@ name: Deploy
 
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Package version (semantic versioning, e.g. 0.9.0)'
-        required: true
-        default: '0.9.0'
 
 jobs:
   publish:
@@ -18,13 +13,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Validate version
-        run: |
-          if ! echo "${{ github.event.inputs.version }}" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$'; then
-            echo "Error: Version '${{ github.event.inputs.version }}' is not valid semantic versioning (e.g. 0.9.0)"
-            exit 1
-          fi
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v3
+        with:
+          versionSpec: '6.x'
+
+      - name: Determine version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v3
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -41,7 +40,7 @@ jobs:
           dotnet msbuild
           "/t:Restore;Rebuild;Pack"
           /p:Configuration=Release
-          /p:Version=${{ github.event.inputs.version }}
+          /p:Version=${{ steps.gitversion.outputs.semVer }}
           Structurizr.Core/Structurizr.Core.csproj
 
       - name: Build and pack Client
@@ -49,13 +48,13 @@ jobs:
           dotnet msbuild
           "/t:Restore;Rebuild;Pack"
           /p:Configuration=Release
-          /p:Version=${{ github.event.inputs.version }}
+          /p:Version=${{ steps.gitversion.outputs.semVer }}
           Structurizr.Client/Structurizr.Client.csproj
 
       - name: Upload packages as artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: nuget-packages-${{ github.event.inputs.version }}
+          name: nuget-packages-${{ steps.gitversion.outputs.semVer }}
           path: |
             Structurizr.Core/bin/Release/*.nupkg
             Structurizr.Client/bin/Release/*.nupkg
