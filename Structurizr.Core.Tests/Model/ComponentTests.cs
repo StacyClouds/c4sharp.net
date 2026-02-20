@@ -1,4 +1,5 @@
 ﻿using Xunit;
+using Shouldly;
 
 namespace Structurizr.Core.Tests
 {
@@ -67,6 +68,47 @@ namespace Structurizr.Core.Tests
 
             Assert.True(component.Tags.Contains(Tags.Element));
             Assert.True(component.Tags.Contains(Tags.Component));
+        }
+
+        [Fact]
+        public void Test_Type_ReturnsNull_WhenNoTypeHasBeenSet()
+        {
+            Component component = container.AddComponent("Component", "Description");
+            component.Type.ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_Type_CanBeSet()
+        {
+            Component component = container.AddComponent("Component", "Description");
+            component.Type = "com.example.MyClass, MyAssembly";
+            component.Type.ShouldBe("com.example.MyClass, MyAssembly");
+        }
+
+        [Fact]
+        public void Test_Type_IsNotSet_WhenValueIsNull()
+        {
+            Component component = container.AddComponent("Component", "Description");
+            component.Type = null;
+            component.Type.ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_Type_IsNotSet_WhenValueIsWhitespace()
+        {
+            Component component = container.AddComponent("Component", "Description");
+            component.Type = "  ";
+            component.Type.ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_AddSupportingType_AddsACodeElement()
+        {
+            Component component = container.AddComponent("Component", "Description");
+            CodeElement codeElement = component.AddSupportingType("com.example.SupportingClass, MyAssembly");
+            codeElement.ShouldNotBeNull();
+            codeElement.Role.ShouldBe(CodeElementRole.Supporting);
+            component.CodeElements.ShouldContain(codeElement);
         }
 
     }

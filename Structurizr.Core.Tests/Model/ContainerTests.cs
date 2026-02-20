@@ -1,4 +1,5 @@
 ﻿using Xunit;
+using Shouldly;
 
 namespace Structurizr.Core.Tests
 {
@@ -55,6 +56,64 @@ namespace Structurizr.Core.Tests
 
             Assert.True(container.Tags.Contains(Tags.Element));
             Assert.True(container.Tags.Contains(Tags.Container));
+        }
+
+        [Fact]
+        public void Test_AddComponent_WithNameOnly_AddsComponentWithEmptyDescriptionAndTechnology()
+        {
+            Component component = container.AddComponent("Component");
+            component.ShouldNotBeNull();
+            component.Name.ShouldBe("Component");
+            component.Description.ShouldBe("");
+            component.Technology.ShouldBe("");
+        }
+
+        [Fact]
+        public void Test_AddComponent_WithNameAndDescription_AddsComponentWithEmptyTechnology()
+        {
+            Component component = container.AddComponent("Component", "Description");
+            component.ShouldNotBeNull();
+            component.Name.ShouldBe("Component");
+            component.Description.ShouldBe("Description");
+            component.Technology.ShouldBe("");
+        }
+
+        [Fact]
+        public void Test_GetComponentWithName_ReturnsNull_WhenNameIsNull()
+        {
+            container.GetComponentWithName(null).ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_GetComponentWithName_ReturnsNull_WhenComponentDoesNotExist()
+        {
+            container.GetComponentWithName("Nonexistent").ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_GetComponentWithName_ReturnsComponent_WhenComponentExists()
+        {
+            Component component = container.AddComponent("MyComponent", "Description");
+            container.GetComponentWithName("MyComponent").ShouldBeSameAs(component);
+        }
+
+        [Fact]
+        public void Test_GetComponentOfType_ReturnsNull_WhenTypeIsNull()
+        {
+            container.GetComponentOfType(null).ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_GetComponentOfType_ReturnsNull_WhenNoComponentWithTypeExists()
+        {
+            container.GetComponentOfType("com.example.SomeType").ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_GetComponentOfType_ReturnsComponent_WhenComponentWithTypeExists()
+        {
+            Component component = container.AddComponent("Component", "com.example.MyClass, MyAssembly", "Description", "Technology");
+            container.GetComponentOfType("com.example.MyClass, MyAssembly").ShouldBeSameAs(component);
         }
 
     }
