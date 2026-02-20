@@ -38,26 +38,26 @@ jobs:
             9.x
 
       - name: Restore dependencies
-        run: dotnet restore Structurizr.sln
+        run: dotnet restore StacyClouds.C4Sharp.sln
 
       - name: Build
-        run: dotnet build Structurizr.sln --no-restore --configuration Release
+        run: dotnet build StacyClouds.C4Sharp.sln --no-restore --configuration Release
 
       - name: Run tests
         run: |
-          dotnet test Structurizr.Core.Tests/Structurizr.Core.Tests.csproj --no-build --configuration Release
-          dotnet test Structurizr.Client.Tests/Structurizr.Client.Tests.csproj --no-build --configuration Release
+          dotnet test StacyClouds.C4Sharp.Core.Tests/StacyClouds.C4Sharp.Core.Tests.csproj --no-build --configuration Release
+          dotnet test StacyClouds.C4Sharp.Client.Tests/StacyClouds.C4Sharp.Client.Tests.csproj --no-build --configuration Release
 
       - name: Install dotnet-stryker
         run: dotnet tool install --global dotnet-stryker
 
       - name: Run Stryker on Core
         run: dotnet stryker --config-file stryker-config.json
-        working-directory: Structurizr.Core.Tests
+        working-directory: StacyClouds.C4Sharp.Core.Tests
 
       - name: Run Stryker on Client
         run: dotnet stryker --config-file stryker-config.json
-        working-directory: Structurizr.Client.Tests
+        working-directory: StacyClouds.C4Sharp.Client.Tests
 
       - name: Upload Stryker reports
         if: always()
@@ -65,6 +65,6 @@ jobs:
         with:
           name: stryker-reports
           path: |
-            Structurizr.Core.Tests/StrykerOutput
-            Structurizr.Client.Tests/StrykerOutput
+            StacyClouds.C4Sharp.Core.Tests/StrykerOutput
+            StacyClouds.C4Sharp.Client.Tests/StrykerOutput
           retention-days: 7

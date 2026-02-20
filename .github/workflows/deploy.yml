@@ -33,7 +33,7 @@ jobs:
             9.x
 
       - name: Restore dependencies
-        run: dotnet restore Structurizr.sln
+        run: dotnet restore StacyClouds.C4Sharp.sln
 
       - name: Build and pack Core
         run: >
@@ -41,7 +41,7 @@ jobs:
           "/t:Restore;Rebuild;Pack"
           /p:Configuration=Release
           /p:Version=${{ steps.gitversion.outputs.semVer }}
-          Structurizr.Core/Structurizr.Core.csproj
+          StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj
 
       - name: Build and pack Client
         run: >
@@ -49,24 +49,24 @@ jobs:
           "/t:Restore;Rebuild;Pack"
           /p:Configuration=Release
           /p:Version=${{ steps.gitversion.outputs.semVer }}
-          Structurizr.Client/Structurizr.Client.csproj
+          StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj
 
       - name: Upload packages as artifacts
         uses: actions/upload-artifact@v4
         with:
           name: nuget-packages-${{ steps.gitversion.outputs.semVer }}
           path: |
-            Structurizr.Core/bin/Release/*.nupkg
-            Structurizr.Client/bin/Release/*.nupkg
+            StacyClouds.C4Sharp.Core/bin/Release/*.nupkg
+            StacyClouds.C4Sharp.Client/bin/Release/*.nupkg
           retention-days: 30
 
       - name: Publish to NuGet
         run: |
-          dotnet nuget push Structurizr.Core/bin/Release/*.nupkg \
+          dotnet nuget push StacyClouds.C4Sharp.Core/bin/Release/*.nupkg \
             --api-key ${{ secrets.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate
-          dotnet nuget push Structurizr.Client/bin/Release/*.nupkg \
+          dotnet nuget push StacyClouds.C4Sharp.Client/bin/Release/*.nupkg \
             --api-key ${{ secrets.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate
