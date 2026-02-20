@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.x
+            9.x
+
+      - name: Restore dependencies
+        run: dotnet restore Structurizr.sln
+
+      - name: Build
+        run: dotnet build Structurizr.sln --no-restore --configuration Release
+
+      - name: Run tests
+        run: |
+          dotnet test Structurizr.Core.Tests/Structurizr.Core.Tests.csproj --no-build --configuration Release
+          dotnet test Structurizr.Client.Tests/Structurizr.Client.Tests.csproj --no-build --configuration Release
+
+      - name: Install dotnet-stryker
+        run: dotnet tool install --global dotnet-stryker
+
+      - name: Run Stryker on Core
+        run: dotnet stryker --config-file stryker-config.json
+        working-directory: Structurizr.Core.Tests
+
+      - name: Run Stryker on Client
+        run: dotnet stryker --config-file stryker-config.json
+        working-directory: Structurizr.Client.Tests
+
+      - name: Upload Stryker reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stryker-reports
+          path: |
+            Structurizr.Core.Tests/StrykerOutput
+            Structurizr.Client.Tests/StrykerOutput
+          retention-days: 7
