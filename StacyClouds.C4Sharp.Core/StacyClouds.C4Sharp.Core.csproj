@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Update this property group for every regular release -->
+  <PropertyGroup>
+    <ReleaseNotes>
+    </ReleaseNotes>
+    <Version>1.1.1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Description>The core library that can used to create software architecture models using C4 notation.</Description>
+    <PackageId>StacyClouds.C4Sharp.Core</PackageId>
+    <Authors>Structurizr Limited, Stacy Cashmore</Authors>
+    <Copyright>Copyright 2026</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://c4sharp.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/StacyClouds/c4sharp.net</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
