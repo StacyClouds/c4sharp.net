@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Xunit;
+using Shouldly;
 
 namespace Structurizr.Core.Tests
 {
@@ -453,6 +454,84 @@ namespace Structurizr.Core.Tests
             Assert.Equal("Uses", relationship.Description);
         }
 
+
+        [Fact]
+        public void Test_AddSoftwareSystem_WithNameOnly_ReturnsSystemWithEmptyDescription()
+        {
+            SoftwareSystem ss = Model.AddSoftwareSystem("My System");
+            ss.ShouldNotBeNull();
+            ss.Name.ShouldBe("My System");
+            ss.Description.ShouldBe("");
+        }
+
+        [Fact]
+        public void Test_AddPerson_WithNameOnly_ReturnsPersonWithEmptyDescription()
+        {
+            Person person = Model.AddPerson("My Person");
+            person.ShouldNotBeNull();
+            person.Name.ShouldBe("My Person");
+            person.Description.ShouldBe("");
+        }
+
+        [Fact]
+        public void Test_AddSoftwareSystem_ReturnsNull_WhenSoftwareSystemWithSameNameAlreadyExists()
+        {
+            Model.AddSoftwareSystem("Existing System", "Description");
+            Model.AddSoftwareSystem("Existing System", "Description 2").ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_AddPerson_ReturnsNull_WhenPersonWithSameNameAlreadyExists()
+        {
+            Model.AddPerson("Existing Person", "Description");
+            Model.AddPerson("Existing Person", "Description 2").ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_GetSoftwareSystemWithName_ReturnsNull_WhenNotFound()
+        {
+            Model.GetSoftwareSystemWithName("Nonexistent").ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_GetSoftwareSystemWithName_ReturnsSystem_WhenFound()
+        {
+            SoftwareSystem ss = Model.AddSoftwareSystem("My System", "Description");
+            Model.GetSoftwareSystemWithName("My System").ShouldBeSameAs(ss);
+        }
+
+        [Fact]
+        public void Test_GetPersonWithName_ReturnsNull_WhenNotFound()
+        {
+            Model.GetPersonWithName("Nonexistent").ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_GetPersonWithName_ReturnsPerson_WhenFound()
+        {
+            Person person = Model.AddPerson("My Person", "Description");
+            Model.GetPersonWithName("My Person").ShouldBeSameAs(person);
+        }
+
+        [Fact]
+        public void Test_Contains_ReturnsTrue_WhenElementIsInModel()
+        {
+            SoftwareSystem ss = Model.AddSoftwareSystem("Software System", "Description");
+            Model.Contains(ss).ShouldBeTrue();
+        }
+
+        [Fact]
+        public void Test_GetDeploymentNodeWithName_ReturnsNull_WhenNotFound()
+        {
+            Model.GetDeploymentNodeWithName("Nonexistent", "Live").ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_GetDeploymentNodeWithName_ReturnsNode_WhenFound()
+        {
+            DeploymentNode node = Model.AddDeploymentNode("Live", "Node", "Description", "Technology");
+            Model.GetDeploymentNodeWithName("Node", "Live").ShouldBeSameAs(node);
+        }
 
     }
 }

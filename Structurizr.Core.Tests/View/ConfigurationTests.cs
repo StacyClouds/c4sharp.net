@@ -1,5 +1,6 @@
 ﻿using System;
 using Xunit;
+using Shouldly;
 
 namespace Structurizr.Core.Tests
 {
@@ -75,6 +76,47 @@ namespace Structurizr.Core.Tests
             ViewConfiguration configuration = new ViewConfiguration();
             configuration.Theme = " ";
             Assert.Null(configuration.Theme);
+        }
+
+        [Fact]
+        public void Test_Theme_ReturnsNull_WhenNoThemesAreSet()
+        {
+            ViewConfiguration configuration = new ViewConfiguration();
+            configuration.Theme.ShouldBeNull();
+        }
+
+        [Fact]
+        public void Test_SetThemes_WithValidUrls_StoresThemes()
+        {
+            ViewConfiguration configuration = new ViewConfiguration();
+            configuration.Themes = new[] { "https://example.com/theme1.json", "https://example.com/theme2.json" };
+            configuration.Themes.Length.ShouldBe(2);
+            configuration.Theme.ShouldBe("https://example.com/theme1.json");
+        }
+
+        [Fact]
+        public void Test_SetThemes_WithNull_SetsEmptyArray()
+        {
+            ViewConfiguration configuration = new ViewConfiguration();
+            configuration.Themes = null;
+            configuration.Themes.Length.ShouldBe(0);
+        }
+
+        [Fact]
+        public void Test_SetThemes_ThrowsAnException_WhenInvalidUrlIsIncluded()
+        {
+            ViewConfiguration configuration = new ViewConfiguration();
+            Should.Throw<ArgumentException>(() =>
+                configuration.Themes = new[] { "notaurl" }
+            ).Message.ShouldContain("not a valid URL");
+        }
+
+        [Fact]
+        public void Test_SetThemes_IgnoresEmptyStrings()
+        {
+            ViewConfiguration configuration = new ViewConfiguration();
+            configuration.Themes = new[] { "  ", "https://example.com/theme.json" };
+            configuration.Themes.Length.ShouldBe(1);
         }
 
     }
