@@ -2,28 +2,29 @@ name: Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'CI run ID to deploy (from a push-to-main build). Find it in the Actions tab.'
+        required: true
+        type: string
 
 jobs:
   publish:
-    name: Build and Publish NuGet Packages
+    name: Publish NuGet Packages
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      actions: read
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Download NuGet packages from CI run
+        uses: actions/download-artifact@v4
         with:
-          fetch-depth: 0
-
-      - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v3
-        with:
-          versionSpec: '5.x'
-
-      - name: Determine version
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v3
+          pattern: nuget-packages-*
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          merge-multiple: true
+          path: packages
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -31,42 +32,11 @@ jobs:
           dotnet-version: |
             8.x
             9.x
-
-      - name: Restore dependencies
-        run: dotnet restore StacyClouds.C4Sharp.sln
-
-      - name: Build and pack Core
-        run: >
-          dotnet msbuild
-          "/t:Restore;Rebuild;Pack"
-          /p:Configuration=Release
-          /p:Version=${{ steps.gitversion.outputs.semVer }}
-          StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj
-
-      - name: Build and pack Client
-        run: >
-          dotnet msbuild
-          "/t:Restore;Rebuild;Pack"
-          /p:Configuration=Release
-          /p:Version=${{ steps.gitversion.outputs.semVer }}
-          StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj
-
-      - name: Upload packages as artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: nuget-packages-${{ steps.gitversion.outputs.semVer }}
-          path: |
-            StacyClouds.C4Sharp.Core/bin/Release/*.nupkg
-            StacyClouds.C4Sharp.Client/bin/Release/*.nupkg
-          retention-days: 30
+            10.x
 
       - name: Publish to NuGet
         run: |
-          dotnet nuget push StacyClouds.C4Sharp.Core/bin/Release/*.nupkg \
-            --api-key ${{ secrets.NUGET_API_KEY }} \
-            --source https://api.nuget.org/v3/index.json \
-            --skip-duplicate
-          dotnet nuget push StacyClouds.C4Sharp.Client/bin/Release/*.nupkg \
+          dotnet nuget push packages/*.nupkg \
             --api-key ${{ secrets.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate

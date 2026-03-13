@@ -36,12 +36,35 @@ jobs:
           dotnet-version: |
             8.x
             9.x
+            10.x
 
       - name: Restore dependencies
         run: dotnet restore StacyClouds.C4Sharp.sln
 
       - name: Build
         run: dotnet build StacyClouds.C4Sharp.sln --no-restore --configuration Release
+
+      - name: Pack NuGet packages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          dotnet msbuild "/t:Pack" /p:Configuration=Release \
+            /p:Version=${{ steps.gitversion.outputs.semVer }} \
+            /p:NoBuild=true \
+            StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj
+          dotnet msbuild "/t:Pack" /p:Configuration=Release \
+            /p:Version=${{ steps.gitversion.outputs.semVer }} \
+            /p:NoBuild=true \
+            StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj
+
+      - name: Upload NuGet packages as artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-packages-${{ github.run_number }}
+          path: |
+            StacyClouds.C4Sharp.Core/bin/Release/*.nupkg
+            StacyClouds.C4Sharp.Client/bin/Release/*.nupkg
+          retention-days: 90
 
       - name: Run tests
         run: |
