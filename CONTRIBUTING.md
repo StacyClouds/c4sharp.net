@@ -36,7 +36,7 @@ We expect all project participants to follow these rules in all project spaces, 
 
 ### Prerequisites
 
-- .NET 8, 9, or 10 SDK
+- .NET 8, 9, 10, or 11 SDK
 - Visual Studio 2022, VS Code, or Rider
 - Git
 
@@ -173,7 +173,7 @@ dotnet build
 dotnet build --configuration Release
 
 # Build specific project
-dotnet build Structurizr.Core/Structurizr.Core.csproj
+dotnet build StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj
 ```
 
 ### Testing
@@ -183,7 +183,7 @@ dotnet build Structurizr.Core/Structurizr.Core.csproj
 dotnet test
 
 # Run tests for specific framework
-dotnet test --framework net10.0
+dotnet test --framework net11.0
 
 # Run tests with coverage
 dotnet test --collect:"XPlat Code Coverage"
@@ -192,6 +192,19 @@ dotnet test --collect:"XPlat Code Coverage"
 dotnet test --filter "FullyQualifiedName~TestName"
 ```
 
+### Mutation Testing (Stryker)
+
+```bash
+# Install the Stryker .NET global tool (one-time)
+dotnet tool install --global dotnet-stryker
+
+# Run mutation testing with repository config
+dotnet stryker --config-file stryker-config.json
+```
+
+Current baseline scope is business-logic encryption code under
+`StacyClouds.C4Sharp.Client/Encryption/**/*.cs` with a break threshold of 80%.
+
 ### Creating NuGet Packages
 
 ```bash
@@ -199,21 +212,31 @@ dotnet test --filter "FullyQualifiedName~TestName"
 dotnet build --configuration Release
 
 # Find packages in:
-# Structurizr.Core/bin/Release/StacyClouds.C4Sharp.Core.*.nupkg
-# Structurizr.Client/bin/Release/StacyClouds.C4Sharp.Client.*.nupkg
+# StacyClouds.C4Sharp.Core/bin/Release/StacyClouds.C4Sharp.Core.*.nupkg
+# StacyClouds.C4Sharp.Client/bin/Release/StacyClouds.C4Sharp.Client.*.nupkg
 ```
 
 ## Project Structure
 
 ```
 c4sharp.net/
-├── Structurizr.Core/          # Core model library
-├── Structurizr.Core.Tests/    # Core library tests
-├── Structurizr.Client/         # API client library
-├── Structurizr.Client.Tests/   # Client library tests
-├── Structurizr.Examples/       # Example applications
+├── StacyClouds.C4Sharp.Core/           # Core model library
+├── StacyClouds.C4Sharp.Core.Tests/     # Core library tests
+├── StacyClouds.C4Sharp.Client/         # API client library
+├── StacyClouds.C4Sharp.Client.Tests/   # Client library tests
+├── StacyClouds.C4Sharp.Examples/       # Example applications
 ├── docs/                       # Documentation and website
 └── README.md                   # Project readme
+```
+
+## .NET 11 readiness validation
+
+Use this command set to validate the .NET 11 support gate for the maintained C4Sharp solution:
+
+```bash
+dotnet restore StacyClouds.C4Sharp.sln -p:TargetFramework=net11.0
+dotnet build StacyClouds.C4Sharp.sln -p:TargetFramework=net11.0
+dotnet test StacyClouds.C4Sharp.sln -p:TargetFramework=net11.0
 ```
 
 ## Questions?

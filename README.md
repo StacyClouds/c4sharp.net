@@ -1,6 +1,6 @@
 # C4Sharp.NET
 
-C4Sharp.NET is a .NET library for creating C4 architecture models and diagrams. This library is a modernized fork of [Structurizr for .NET](https://github.com/structurizr/dotnet), updated to support .NET 8, 9, and 10, with ongoing maintenance and improvements by [Stacy Cashmore](https://github.com/StacyCash).
+C4Sharp.NET is a .NET library for creating C4 architecture models and diagrams. This library is a modernized fork of [Structurizr for .NET](https://github.com/structurizr/dotnet), updated to support .NET 8, 9, 10, and 11, with ongoing maintenance and improvements by [Stacy Cashmore](https://github.com/StacyCash).
 
 ## What is C4?
 
@@ -8,7 +8,7 @@ The [C4 model](https://c4model.com) is a lean graphical notation technique for m
 
 ## Features
 
-- ✅ Supports .NET 8, 9, and 10
+- ✅ Supports .NET 8, 9, 10, and 11
 - ✅ Create software architecture models using C# code
 - ✅ Export models to JSON for visualization
 - ✅ Compatible with Structurizr cloud service and on-premises installations

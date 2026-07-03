@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [net8.0, net9.0, net10.0, net11.0]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 11.0.x
+
+      - name: Restore
+        run: dotnet restore StacyClouds.C4Sharp.sln -p:TargetFramework=${{ matrix.framework }}
+
+      - name: Build
+        run: dotnet build StacyClouds.C4Sharp.sln --no-restore -c Release -p:TargetFramework=${{ matrix.framework }}
+
+      - name: Test
+        run: dotnet test StacyClouds.C4Sharp.sln --no-build -c Release -p:TargetFramework=${{ matrix.framework }}
+
+  mutation-test:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 11.0.x
+
+      - name: Install Stryker
+        run: dotnet tool install --tool-path ./.dotnet-tools dotnet-stryker
+
+      - name: Run Stryker (informational)
+        run: ./.dotnet-tools/dotnet-stryker --config-file stryker-config.json

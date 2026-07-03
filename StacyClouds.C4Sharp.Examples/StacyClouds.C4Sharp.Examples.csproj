@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0;net10.0;net11.0</TargetFrameworks>
     <StartupObject>StacyClouds.C4Sharp.Examples.GettingStarted</StartupObject>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
