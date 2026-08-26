@@ -58,13 +58,19 @@ namespace StacyClouds.C4Sharp.Renderer
 				List<(int X, int Y)> connectorPoints = new List<(int X, int Y)> { (sourceX, sourceY) };
 				connectorPoints.AddRange(relationshipView.Vertices.Where(vertex => vertex.X.HasValue && vertex.Y.HasValue).Select(vertex => (vertex.X.Value, vertex.Y.Value)));
 				connectorPoints.Add((destinationX, destinationY));
-				string points = string.Join(" ", connectorPoints.Select(point => point.X + "," + point.Y));
 				RelationshipStyle relationshipStyle = ResolveRelationshipStyle(relationshipView.Relationship, styles);
+				List<(int X, int Y)> visibleConnectorPoints = new List<(int X, int Y)>(connectorPoints);
+				visibleConnectorPoints[0] = EdgeOf(sourceX, sourceY, connectorPoints[1], ResolveElementStyle(source.Element, styles));
+				visibleConnectorPoints[visibleConnectorPoints.Count - 1] = EdgeOf(destinationX, destinationY, connectorPoints[connectorPoints.Count - 2], ResolveElementStyle(destination.Element, styles));
+				string points = string.Join(" ", connectorPoints.Select(point => point.X + "," + point.Y));
+				string visiblePoints = string.Join(" ", visibleConnectorPoints.Select(point => point.X + "," + point.Y));
 				string relationshipColor = relationshipStyle == null || relationshipStyle.Color == null ? "#707070" : relationshipStyle.Color;
-				svg.Append("<polyline data-c4-relationship-id=\"").Append(Escape(relationshipView.Id)).Append("\" data-c4-relationship-source-id=\"").Append(Escape(relationshipView.Relationship.Source.Id)).Append("\" data-c4-relationship-destination-id=\"").Append(Escape(relationshipView.Relationship.Destination.Id)).Append("\" points=\"").Append(points).Append("\" fill=\"none\" stroke=\"").Append(relationshipColor).Append("\"");
+				string relationshipData = "data-c4-relationship-id=\"" + Escape(relationshipView.Id) + "\" data-c4-relationship-source-id=\"" + Escape(relationshipView.Relationship.Source.Id) + "\" data-c4-relationship-destination-id=\"" + Escape(relationshipView.Relationship.Destination.Id) + "\"";
+				svg.Append("<polyline ").Append(relationshipData).Append(" data-c4-relationship-visible=\"true\" points=\"").Append(visiblePoints).Append("\" fill=\"none\" stroke=\"").Append(relationshipColor).Append("\"");
 				svg.Append(" stroke-width=\"").Append(relationshipStyle != null && relationshipStyle.Thickness.HasValue ? relationshipStyle.Thickness.Value : 2).Append("\"");
 				if (relationshipStyle != null && relationshipStyle.Dashed == true) svg.Append(" stroke-dasharray=\"5,5\"");
 				svg.Append(" marker-end=\"url(#arrow)\" />");
+				svg.Append("<polyline ").Append(relationshipData).Append(" data-c4-relationship-interaction=\"true\" points=\"").Append(points).Append("\" fill=\"none\" stroke=\"transparent\" stroke-width=\"12\" />");
 				int vertexIndex = 0;
 				foreach (Vertex vertex in relationshipView.Vertices.Where(vertex => vertex.X.HasValue && vertex.Y.HasValue))
 				{
@@ -169,6 +175,17 @@ namespace StacyClouds.C4Sharp.Renderer
 				remaining -= length;
 			}
 			return points[points.Count - 1];
+		}
+
+		private static (int X, int Y) EdgeOf(int centerX, int centerY, (int X, int Y) toward, ElementStyle style)
+		{
+			double dx = toward.X - centerX;
+			double dy = toward.Y - centerY;
+			if (dx == 0 && dy == 0) return (centerX, centerY);
+			double scale = style != null && style.Shape == Shape.Circle
+				? 35 / Math.Sqrt(dx * dx + dy * dy)
+				: 1 / Math.Max(Math.Abs(dx) / 75, Math.Abs(dy) / 35);
+			return ((int)Math.Round(centerX + dx * scale), (int)Math.Round(centerY + dy * scale));
 		}
 
 		private static string Escape(string value)

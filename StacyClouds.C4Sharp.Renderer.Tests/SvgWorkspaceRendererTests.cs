@@ -216,6 +216,26 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
         }
 
         [Fact]
+        public void Render_ClipsVisibleRelationshipEndpointsButKeepsCentreInteractionGeometry()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem source = workspace.Model.AddSoftwareSystem("Source", "Description");
+            SoftwareSystem destination = workspace.Model.AddSoftwareSystem("Destination", "Description");
+            source.Uses(destination, "Calls");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            view.AddAllSoftwareSystems();
+            view.GetElementView(source).X = 100;
+            view.GetElementView(source).Y = 100;
+            view.GetElementView(destination).X = 500;
+            view.GetElementView(destination).Y = 100;
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape"];
+
+            svg.ShouldContain("data-c4-relationship-visible=\"true\" points=\"175,100 425,100\"");
+            svg.ShouldContain("data-c4-relationship-interaction=\"true\" points=\"100,100 500,100\"");
+        }
+
+        [Fact]
         public void Render_ExpandsItsViewportAndRendersConnectorVertexHandles()
         {
             Workspace workspace = new Workspace("Test", "Description");

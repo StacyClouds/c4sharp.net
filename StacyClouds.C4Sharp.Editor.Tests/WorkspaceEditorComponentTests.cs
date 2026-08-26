@@ -90,6 +90,9 @@ namespace StacyClouds.C4Sharp.Editor.Tests
 			script.ShouldContain("updateRelationshipLabel");
 			script.ShouldContain("MoveRelationshipLabel");
 			script.ShouldContain("closestPointOnConnector");
+			script.ShouldContain("data-c4-relationship-interaction");
+			script.ShouldContain("updateVisibleConnector");
+			script.ShouldContain("edgeOfElement(source, points[0], points[1])");
 		}
 	}
 }
