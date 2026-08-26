@@ -55,7 +55,10 @@ namespace StacyClouds.C4Sharp.Renderer
 				int sourceY = Y(source, elements.IndexOf(source));
 				int destinationX = X(destination, elements.IndexOf(destination));
 				int destinationY = Y(destination, elements.IndexOf(destination));
-				string points = sourceX + "," + sourceY + " " + string.Join(" ", relationshipView.Vertices.Where(vertex => vertex.X.HasValue && vertex.Y.HasValue).Select(vertex => vertex.X.Value + "," + vertex.Y.Value)) + " " + destinationX + "," + destinationY;
+				List<(int X, int Y)> connectorPoints = new List<(int X, int Y)> { (sourceX, sourceY) };
+				connectorPoints.AddRange(relationshipView.Vertices.Where(vertex => vertex.X.HasValue && vertex.Y.HasValue).Select(vertex => (vertex.X.Value, vertex.Y.Value)));
+				connectorPoints.Add((destinationX, destinationY));
+				string points = string.Join(" ", connectorPoints.Select(point => point.X + "," + point.Y));
 				RelationshipStyle relationshipStyle = ResolveRelationshipStyle(relationshipView.Relationship, styles);
 				string relationshipColor = relationshipStyle == null || relationshipStyle.Color == null ? "#707070" : relationshipStyle.Color;
 				svg.Append("<polyline data-c4-relationship-id=\"").Append(Escape(relationshipView.Id)).Append("\" data-c4-relationship-source-id=\"").Append(Escape(relationshipView.Relationship.Source.Id)).Append("\" data-c4-relationship-destination-id=\"").Append(Escape(relationshipView.Relationship.Destination.Id)).Append("\" points=\"").Append(points).Append("\" fill=\"none\" stroke=\"").Append(relationshipColor).Append("\"");
@@ -73,9 +76,8 @@ namespace StacyClouds.C4Sharp.Renderer
 				{
 					if (view is DynamicView && !string.IsNullOrEmpty(relationshipView.Order)) label = relationshipView.Order + ": " + label;
 					int labelPosition = relationshipView.Position ?? 50;
-					int labelX = sourceX + (destinationX - sourceX) * labelPosition / 100;
-					int labelY = sourceY + (destinationY - sourceY) * labelPosition / 100 - 8;
-					svg.Append("<text x=\"").Append(labelX).Append("\" y=\"").Append(labelY).Append("\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"12\" fill=\"").Append(relationshipColor).Append("\">").Append(Escape(label)).Append("</text>");
+					(int labelX, int labelY) = PointOnPolyline(connectorPoints, labelPosition);
+					svg.Append("<text data-c4-relationship-label-id=\"").Append(Escape(relationshipView.Id)).Append("\" data-c4-relationship-label-position=\"").Append(labelPosition).Append("\" x=\"").Append(labelX).Append("\" y=\"").Append(labelY - 8).Append("\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"12\" fill=\"").Append(relationshipColor).Append("\">").Append(Escape(label)).Append("</text>");
 				}
 			}
 
@@ -150,6 +152,22 @@ namespace StacyClouds.C4Sharp.Renderer
 				maxY = Math.Max(maxY, vertex.Y.Value + 100);
 			}
 			return (minX, minY, maxX - minX, maxY - minY);
+		}
+
+		private static (int X, int Y) PointOnPolyline(List<(int X, int Y)> points, int position)
+		{
+			double totalLength = Enumerable.Range(0, points.Count - 1).Sum(index => Math.Sqrt(Math.Pow(points[index + 1].X - points[index].X, 2) + Math.Pow(points[index + 1].Y - points[index].Y, 2)));
+			if (totalLength == 0) return points[0];
+			double remaining = totalLength * position / 100d;
+			for (int index = 0; index < points.Count - 1; index++)
+			{
+				double dx = points[index + 1].X - points[index].X;
+				double dy = points[index + 1].Y - points[index].Y;
+				double length = Math.Sqrt(dx * dx + dy * dy);
+				if (remaining <= length) return ((int)(points[index].X + dx * remaining / length), (int)(points[index].Y + dy * remaining / length));
+				remaining -= length;
+			}
+			return points[points.Count - 1];
 		}
 
 		private static string Escape(string value)

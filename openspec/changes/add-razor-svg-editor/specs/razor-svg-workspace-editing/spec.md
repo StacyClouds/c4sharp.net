@@ -31,7 +31,7 @@ The editor component SHALL update the matching `ElementView.X` and `ElementView.
 
 #### Scenario: User drags an element with connectors
 - **WHEN** a user drags an element connected by one or more relationships
-- **THEN** each connected relationship endpoint moves with the element before the drag completes
+- **THEN** each connected relationship endpoint and its label move with the element before the drag completes
 
 ### Requirement: Insert connector vertices from double-clicks
 The editor component SHALL add a `Vertex` to the relationship view that a user double-clicks. It SHALL insert the vertex at the location that preserves the order of the existing connector path and SHALL raise its layout-changed callback.

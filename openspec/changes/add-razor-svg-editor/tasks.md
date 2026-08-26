@@ -45,3 +45,9 @@
 - [x] 8.2 Render adaptive SVG bounds and connector handles.
 - [x] 8.3 Implement handle drag and removal interactions.
 - [x] 8.4 Run focused renderer and editor tests.
+
+## 9. Live relationship-label feedback
+
+- [x] 9.1 Add failing renderer and editor asset checks for movable relationship labels.
+- [x] 9.2 Identify labels and update their positions during connector edits.
+- [x] 9.3 Run focused renderer and editor tests.
