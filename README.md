@@ -49,6 +49,8 @@ Install via NuGet Package Manager:
 ```bash
 dotnet add package StacyClouds.C4Sharp.Core
 dotnet add package StacyClouds.C4Sharp.Client
+dotnet add package StacyClouds.C4Sharp.Renderer
+dotnet add package StacyClouds.C4Sharp.Editor
 ```
 
 Or via the NuGet Package Manager Console:
@@ -56,6 +58,8 @@ Or via the NuGet Package Manager Console:
 ```powershell
 Install-Package StacyClouds.C4Sharp.Core
 Install-Package StacyClouds.C4Sharp.Client
+Install-Package StacyClouds.C4Sharp.Renderer
+Install-Package StacyClouds.C4Sharp.Editor
 ```
 
 ## Links

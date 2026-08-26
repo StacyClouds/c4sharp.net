@@ -266,6 +266,41 @@ namespace StacyClouds.C4Sharp.Core.Tests
             }
         }
 
+        [Fact]
+        public void Test_SetTags_ClearsPreviousTags()
+        {
+            Element element = Model.AddSoftwareSystem("Name", "Description");
+            element.AddTags("old-tag");
+            element.Tags = "new-tag";
+            Assert.Equal("Element,Software System,new-tag", element.Tags);
+        }
+
+        [Fact]
+        public void Test_SetTags_SetsTagsFromCommaSeparatedString()
+        {
+            Element element = Model.AddSoftwareSystem("Name", "Description");
+            element.Tags = "tag1,tag2";
+            Assert.Contains("tag1", element.Tags.Split(','));
+            Assert.Contains("tag2", element.Tags.Split(','));
+        }
+
+        [Fact]
+        public void Test_RemoveTag_RemovesExistingTag()
+        {
+            Element element = Model.AddSoftwareSystem("Name", "Description");
+            element.AddTags("tag1");
+            element.RemoveTag("tag1");
+            Assert.DoesNotContain("tag1", element.Tags);
+        }
+
+        [Fact]
+        public void Test_RemoveTag_DoesNotThrow_WhenTagIsNull()
+        {
+            Element element = Model.AddSoftwareSystem("Name", "Description");
+            element.RemoveTag(null);
+            Assert.Equal("Element,Software System", element.Tags);
+        }
+
 
     }
 }

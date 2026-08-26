@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
+using Shouldly;
 
 namespace StacyClouds.C4Sharp.Core.Tests
 {
@@ -350,6 +351,42 @@ namespace StacyClouds.C4Sharp.Core.Tests
             Assert.Equal("1h", relationships[7].Order);
             Assert.Equal("1i", relationships[8].Order);
             Assert.Equal("1j", relationships[9].Order);
+        }
+
+        [Fact]
+        public void Test_Add_AddsOneRelationshipToView()
+        {
+            DynamicView dynamicView = Workspace.Views.CreateDynamicView(softwareSystemA, "key", "Description");
+            dynamicView.Add(containerA1, containerA2);
+            dynamicView.Relationships.Count.ShouldBe(1);
+        }
+
+        [Fact]
+        public void Test_Add_WithDescription_AddsRelationshipWithDescription()
+        {
+            DynamicView dynamicView = Workspace.Views.CreateDynamicView(softwareSystemA, "key", "Description");
+            RelationshipView rv = dynamicView.Add(containerA1, "custom desc", containerA2);
+            rv.ShouldNotBeNull();
+            rv.Description.ShouldBe("custom desc");
+            dynamicView.Relationships.Count.ShouldBe(1);
+        }
+
+        [Fact]
+        public void Test_Add_Relationship_AddsOneRelationshipToView()
+        {
+            DynamicView dynamicView = Workspace.Views.CreateDynamicView(softwareSystemA, "key", "Description");
+            dynamicView.Add(relationship);
+            dynamicView.Relationships.Count.ShouldBe(1);
+        }
+
+        [Fact]
+        public void Test_Add_RelationshipWithDescription_SetsDescription()
+        {
+            DynamicView dynamicView = Workspace.Views.CreateDynamicView(softwareSystemA, "key", "Description");
+            RelationshipView rv = dynamicView.Add(relationship, "overridden");
+            rv.ShouldNotBeNull();
+            rv.Description.ShouldBe("overridden");
+            dynamicView.Relationships.Count.ShouldBe(1);
         }
 
     }

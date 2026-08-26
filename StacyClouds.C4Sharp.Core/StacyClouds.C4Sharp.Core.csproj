@@ -4,7 +4,6 @@
     <ReleaseNotes>
     </ReleaseNotes>
     <Version>1.1.1</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup>
     <Description>The core library that can used to create software architecture models using C4 notation.</Description>
