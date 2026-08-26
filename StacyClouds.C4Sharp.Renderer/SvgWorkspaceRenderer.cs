@@ -101,7 +101,12 @@ namespace StacyClouds.C4Sharp.Renderer
 					svg.Append("<circle cx=\"").Append(x).Append("\" cy=\"").Append(y).Append("\" r=\"35\" fill=\"").Append(background).Append("\" stroke=\"").Append(stroke).Append("\" />");
 				else
 					svg.Append("<rect x=\"").Append(x - 75).Append("\" y=\"").Append(y - 35).Append("\" width=\"150\" height=\"70\" rx=\"8\" fill=\"").Append(background).Append("\" stroke=\"").Append(stroke).Append("\" />");
-				svg.Append("<text x=\"").Append(x).Append("\" y=\"").Append(y).Append("\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"14\" fill=\"").Append(textColor).Append("\">").Append(Escape(element.Element == null ? element.Id : element.Element.Name)).Append("</text>");
+				List<string> labelLines = WrapElementLabel(element.Element == null ? element.Id : element.Element.Name);
+				int firstLabelY = y - (labelLines.Count - 1) * 8;
+				svg.Append("<text text-anchor=\"middle\" font-family=\"Arial\" font-size=\"14\" fill=\"").Append(textColor).Append("\">");
+				for (int lineIndex = 0; lineIndex < labelLines.Count; lineIndex++)
+					svg.Append("<tspan x=\"").Append(x).Append("\" y=\"").Append(firstLabelY + lineIndex * 16).Append("\">").Append(Escape(labelLines[lineIndex])).Append("</tspan>");
+				svg.Append("</text>");
 				svg.Append("</g>");
 			}
 
@@ -186,6 +191,33 @@ namespace StacyClouds.C4Sharp.Renderer
 				? 35 / Math.Sqrt(dx * dx + dy * dy)
 				: 1 / Math.Max(Math.Abs(dx) / 75, Math.Abs(dy) / 35);
 			return ((int)Math.Round(centerX + dx * scale), (int)Math.Round(centerY + dy * scale));
+		}
+
+		private static List<string> WrapElementLabel(string label)
+		{
+			const int maximumLineLength = 20;
+			const int maximumLines = 3;
+			List<string> lines = new List<string>();
+			string current = string.Empty;
+			foreach (string originalWord in (label ?? string.Empty).Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+			{
+				string word = originalWord;
+				while (word.Length > maximumLineLength)
+				{
+					if (current.Length > 0) { lines.Add(current); current = string.Empty; }
+					lines.Add(word.Substring(0, maximumLineLength));
+					word = word.Substring(maximumLineLength);
+				}
+				if (current.Length == 0) current = word;
+				else if (current.Length + 1 + word.Length <= maximumLineLength) current += " " + word;
+				else { lines.Add(current); current = word; }
+			}
+			if (current.Length > 0) lines.Add(current);
+			if (lines.Count == 0) lines.Add(string.Empty);
+			if (lines.Count <= maximumLines) return lines;
+			List<string> boundedLines = lines.Take(maximumLines).ToList();
+			boundedLines[maximumLines - 1] = boundedLines[maximumLines - 1].Substring(0, maximumLineLength - 1) + "…";
+			return boundedLines;
 		}
 
 		private static string Escape(string value)

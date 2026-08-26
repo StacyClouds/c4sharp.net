@@ -236,6 +236,22 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
         }
 
         [Fact]
+        public void Render_WrapsLongElementNamesInsideBoundedTextLines()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem spaced = workspace.Model.AddSoftwareSystem("A deliberately long software system name for wrapping", "Description");
+            SoftwareSystem unbroken = workspace.Model.AddSoftwareSystem("AnExceptionallyLongUnbrokenSystemName", "Description");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            view.AddAllSoftwareSystems();
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape"];
+
+            svg.ShouldContain("<tspan");
+            svg.ShouldContain("A deliberately long");
+            svg.ShouldContain("AnExceptionallyLong");
+        }
+
+        [Fact]
         public void Render_ExpandsItsViewportAndRendersConnectorVertexHandles()
         {
             Workspace workspace = new Workspace("Test", "Description");
