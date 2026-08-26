@@ -1,0 +1,16 @@
+.c4sharp-workspace-editor { display: flex; min-height: 650px; border: 1px solid #ccd3dd; background: #fff; }
+.c4sharp-workspace-editor__navigator { width: 220px; overflow: auto; border-right: 1px solid #ccd3dd; padding: .5rem; }
+.c4sharp-workspace-editor__navigator.is-collapsed { width: auto; }
+.c4sharp-workspace-editor__toggle, .c4sharp-workspace-editor__thumbnail { display: block; width: 100%; margin-bottom: .5rem; }
+.c4sharp-workspace-editor__thumbnail { text-align: left; padding: .4rem; border: 1px solid #ccd3dd; background: #fff; }
+.c4sharp-workspace-editor__thumbnail.is-selected { border-color: #1168bd; box-shadow: 0 0 0 2px #b8d8f5; }
+.c4sharp-workspace-editor__thumbnail-svg { display: block; height: 100px; overflow: hidden; pointer-events: none; }
+.c4sharp-workspace-editor__thumbnail-svg svg { width: 100%; height: 100%; }
+.c4sharp-workspace-editor__surface { flex: 1; min-width: 0; }
+.c4sharp-workspace-editor__surface > header { display: flex; justify-content: space-between; padding: .75rem 1rem; border-bottom: 1px solid #ccd3dd; }
+.c4sharp-view-editor { overflow: auto; }
+.c4sharp-view-editor svg { display: block; min-width: 100%; touch-action: none; }
+.c4sharp-view-editor [data-c4-element-id] { cursor: grab; }
+.c4sharp-view-editor [data-c4-relationship-id] { cursor: crosshair; pointer-events: stroke; }
+.c4sharp-view-editor [data-c4-relationship-vertex-index] { cursor: move; pointer-events: all; }
+.c4sharp-view-editor [data-c4-relationship-label-id] { cursor: move; pointer-events: all; }

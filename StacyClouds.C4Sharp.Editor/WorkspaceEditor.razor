@@ -1,0 +1,54 @@
+@namespace StacyClouds.C4Sharp.Editor
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@using StacyClouds.C4Sharp
+@using StacyClouds.C4Sharp.Renderer
+
+<section class="c4sharp-workspace-editor">
+	<aside class="c4sharp-workspace-editor__navigator @(navigatorOpen ? "" : "is-collapsed")">
+		<button type="button" class="c4sharp-workspace-editor__toggle" @onclick="ToggleNavigator">@(navigatorOpen ? "Hide views" : "Show views")</button>
+		@if (navigatorOpen)
+		{
+			@foreach (string key in diagrams.Keys)
+			{
+				<ViewThumbnail ViewKey="@key" Thumbnail="@((MarkupString)diagrams[key])" Selected="@(key == selectedViewKey)" SelectedChanged="SelectViewAsync" />
+			}
+		}
+	</aside>
+	<div class="c4sharp-workspace-editor__surface">
+		<header><strong>@selectedViewKey</strong><button type="button" @onclick="RequestSave">Save</button></header>
+		@if (!string.IsNullOrWhiteSpace(selectedViewKey))
+		{
+			<ViewEditor @key="selectedViewKey" Workspace="Workspace" ViewKey="@selectedViewKey" LayoutChanged="LayoutChanged" />
+		}
+	</div>
+</section>
+
+@code {
+	private readonly SvgWorkspaceRenderer renderer = new();
+	private IReadOnlyDictionary<string, string> diagrams = new Dictionary<string, string>();
+	private string? selectedViewKey;
+	private bool navigatorOpen = true;
+
+	[Parameter, EditorRequired] public Workspace? Workspace { get; set; }
+	[Parameter] public string? InitialViewKey { get; set; }
+	[Parameter] public string? SelectedViewKey { get; set; }
+	[Parameter] public EventCallback<string> SelectedViewKeyChanged { get; set; }
+	[Parameter] public EventCallback<Workspace> LayoutChanged { get; set; }
+	[Parameter] public EventCallback<Workspace> SaveRequested { get; set; }
+
+	protected override void OnParametersSet()
+	{
+		if (Workspace is null) return;
+		diagrams = renderer.Render(Workspace);
+		selectedViewKey = diagrams.ContainsKey(SelectedViewKey ?? string.Empty) ? SelectedViewKey : diagrams.ContainsKey(InitialViewKey ?? string.Empty) ? InitialViewKey : selectedViewKey ?? diagrams.Keys.FirstOrDefault();
+	}
+
+	private async Task SelectViewAsync(string key)
+	{
+		selectedViewKey = key;
+		await SelectedViewKeyChanged.InvokeAsync(key);
+	}
+	private void ToggleNavigator() => navigatorOpen = !navigatorOpen;
+	private Task RequestSave() => Workspace is null ? Task.CompletedTask : SaveRequested.InvokeAsync(Workspace);
+}

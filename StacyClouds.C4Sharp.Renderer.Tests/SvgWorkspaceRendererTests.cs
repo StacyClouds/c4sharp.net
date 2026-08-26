@@ -95,6 +95,23 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
         }
 
         [Fact]
+        public void Render_PreservesDeterministicPositionsForUntouchedElementsAfterAMove()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem first = workspace.Model.AddSoftwareSystem("One", "Description");
+            workspace.Model.AddSoftwareSystem("Two", "Description");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            view.AddAllSoftwareSystems();
+            view.GetElementView(first).X = 400;
+            view.GetElementView(first).Y = 300;
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape"];
+
+            svg.ShouldContain("x=\"325\" y=\"265\"");
+            svg.ShouldContain("x=\"285\" y=\"65\"");
+        }
+
+        [Fact]
         public void Render_EscapesLabelsAndRoutesRelationshipsThroughConnectorVertices()
         {
             Workspace workspace = new Workspace("Test", "Description");
@@ -115,6 +132,28 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
             svg.ShouldContain("Calls &lt;service&gt;");
             svg.ShouldContain("100,100 300,100 300,300 500,300");
             svg.ShouldContain("marker-end=\"url(#arrow)\"");
+        }
+
+        [Fact]
+        public void Render_IdentifiesWorkspaceObjectsForOptionalInteractiveConsumers()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem source = workspace.Model.AddSoftwareSystem("Source", "Description");
+            SoftwareSystem destination = workspace.Model.AddSoftwareSystem("Destination", "Description");
+            Relationship relationship = source.Uses(destination, "Calls");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape & view", "Landscape");
+            view.AddAllSoftwareSystems();
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape & view"];
+
+            svg.ShouldContain("data-c4-view-key=\"landscape &amp; view\"");
+            svg.ShouldContain("data-c4-element-id=\"" + source.Id + "\"");
+            svg.ShouldContain("data-c4-element-id=\"" + destination.Id + "\"");
+            svg.ShouldContain("data-c4-relationship-id=\"" + relationship.Id + "\"");
+            svg.ShouldContain("data-c4-relationship-source-id=\"" + source.Id + "\"");
+            svg.ShouldContain("data-c4-relationship-destination-id=\"" + destination.Id + "\"");
+			svg.ShouldContain("data-c4-relationship-label-id=\"" + relationship.Id + "\"");
+			svg.ShouldContain("data-c4-relationship-label-position=\"50\"");
         }
 
         [Fact]
@@ -158,6 +197,81 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
 
             svg.IndexOf("1: First").ShouldBeLessThan(svg.IndexOf("2: Second"));
             svg.ShouldContain("x=\"120\" y=\"92\"");
+        }
+
+        [Fact]
+        public void Render_UsesATwoPixelDefaultRelationshipStroke()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem source = workspace.Model.AddSoftwareSystem("Source", "Description");
+            SoftwareSystem destination = workspace.Model.AddSoftwareSystem("Destination", "Description");
+            source.Uses(destination, "Calls");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            view.AddAllSoftwareSystems();
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape"];
+
+            svg.ShouldContain("<polyline");
+            svg.ShouldContain("stroke-width=\"2\"");
+        }
+
+        [Fact]
+        public void Render_ClipsVisibleRelationshipEndpointsButKeepsCentreInteractionGeometry()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem source = workspace.Model.AddSoftwareSystem("Source", "Description");
+            SoftwareSystem destination = workspace.Model.AddSoftwareSystem("Destination", "Description");
+            source.Uses(destination, "Calls");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            view.AddAllSoftwareSystems();
+            view.GetElementView(source).X = 100;
+            view.GetElementView(source).Y = 100;
+            view.GetElementView(destination).X = 500;
+            view.GetElementView(destination).Y = 100;
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape"];
+
+            svg.ShouldContain("data-c4-relationship-visible=\"true\" points=\"175,100 425,100\"");
+            svg.ShouldContain("data-c4-relationship-interaction=\"true\" points=\"100,100 500,100\"");
+        }
+
+        [Fact]
+        public void Render_WrapsLongElementNamesInsideBoundedTextLines()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem spaced = workspace.Model.AddSoftwareSystem("A deliberately long software system name for wrapping", "Description");
+            SoftwareSystem unbroken = workspace.Model.AddSoftwareSystem("AnExceptionallyLongUnbrokenSystemName", "Description");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            view.AddAllSoftwareSystems();
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape"];
+
+            svg.ShouldContain("<tspan");
+            svg.ShouldContain("A deliberately long");
+            svg.ShouldContain("AnExceptionallyLong");
+        }
+
+        [Fact]
+        public void Render_ExpandsItsViewportAndRendersConnectorVertexHandles()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem source = workspace.Model.AddSoftwareSystem("Source", "Description");
+            SoftwareSystem destination = workspace.Model.AddSoftwareSystem("Destination", "Description");
+            Relationship relationship = source.Uses(destination, "Calls");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            view.AddAllSoftwareSystems();
+            view.GetElementView(source).X = 100;
+            view.GetElementView(source).Y = 100;
+            view.GetElementView(destination).X = 1200;
+            view.GetElementView(destination).Y = 900;
+            view.GetRelationshipView(relationship).SetVertices(new[] { new Vertex(1400, 1100) });
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape"];
+
+            svg.ShouldContain("width=\"1500\"");
+            svg.ShouldContain("height=\"1200\"");
+            svg.ShouldContain("data-c4-relationship-vertex-index=\"0\"");
+            svg.ShouldContain("cx=\"1400\" cy=\"1100\"");
         }
 
         [Fact]
