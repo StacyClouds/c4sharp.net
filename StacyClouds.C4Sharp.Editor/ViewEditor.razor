@@ -38,12 +38,23 @@
 
 	[JSInvokable] public async Task MoveElement(string id, int x, int y)
 	{
-		state!.MoveElement(id, x, y); await LayoutChanged.InvokeAsync(Workspace!); await InvokeAsync(StateHasChanged);
+		state!.MoveElement(id, x, y);
+		RefreshSvg();
+		await LayoutChanged.InvokeAsync(Workspace!);
+		await InvokeAsync(StateHasChanged);
 	}
 
 	[JSInvokable] public async Task AddRelationshipVertex(string id, int x, int y)
 	{
-		state!.AddRelationshipVertex(id, x, y); await LayoutChanged.InvokeAsync(Workspace!); await InvokeAsync(StateHasChanged);
+		state!.AddRelationshipVertex(id, x, y);
+		RefreshSvg();
+		await LayoutChanged.InvokeAsync(Workspace!);
+		await InvokeAsync(StateHasChanged);
+	}
+
+	private void RefreshSvg()
+	{
+		svg = renderer.Render(Workspace!).GetValueOrDefault(ViewKey);
 	}
 
 	public async ValueTask DisposeAsync()

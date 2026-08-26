@@ -9,6 +9,6 @@
 .c4sharp-workspace-editor__surface { flex: 1; min-width: 0; }
 .c4sharp-workspace-editor__surface > header { display: flex; justify-content: space-between; padding: .75rem 1rem; border-bottom: 1px solid #ccd3dd; }
 .c4sharp-view-editor { overflow: auto; }
-.c4sharp-view-editor svg { display: block; min-width: 100%; }
+.c4sharp-view-editor svg { display: block; min-width: 100%; touch-action: none; }
 .c4sharp-view-editor [data-c4-element-id] { cursor: grab; }
 .c4sharp-view-editor [data-c4-relationship-id] { cursor: crosshair; pointer-events: stroke; }

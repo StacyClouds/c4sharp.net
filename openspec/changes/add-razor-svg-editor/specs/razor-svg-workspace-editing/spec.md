@@ -19,11 +19,15 @@ The workspace editor component SHALL accept a workspace and SHALL provide a coll
 - **THEN** the component displays the renderer's SVG document for that view without a workspace navigator
 
 ### Requirement: Persist element drag positions
-The editor component SHALL update the matching `ElementView.X` and `ElementView.Y` values in the supplied workspace after an element drag completes, and SHALL raise its layout-changed callback.
+The editor component SHALL update the matching `ElementView.X` and `ElementView.Y` values in the supplied workspace after an element drag completes, and SHALL raise its layout-changed callback. It SHALL visually move the element during the drag before persisting the final position.
 
 #### Scenario: User moves an element
 - **WHEN** a user drags an element to a new SVG coordinate and releases it
 - **THEN** the element view in the supplied workspace stores that coordinate and the component rerenders the SVG
+
+#### Scenario: User drags an initially auto-laid-out view
+- **WHEN** a user moves one element in a view whose elements use the renderer's deterministic layout
+- **THEN** every untouched element remains at its deterministic layout position
 
 ### Requirement: Insert connector vertices from double-clicks
 The editor component SHALL add a `Vertex` to the relationship view that a user double-clicks. It SHALL insert the vertex at the location that preserves the order of the existing connector path and SHALL raise its layout-changed callback.

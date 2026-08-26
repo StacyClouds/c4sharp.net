@@ -95,6 +95,23 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
         }
 
         [Fact]
+        public void Render_PreservesDeterministicPositionsForUntouchedElementsAfterAMove()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem first = workspace.Model.AddSoftwareSystem("One", "Description");
+            workspace.Model.AddSoftwareSystem("Two", "Description");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            view.AddAllSoftwareSystems();
+            view.GetElementView(first).X = 400;
+            view.GetElementView(first).Y = 300;
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape"];
+
+            svg.ShouldContain("x=\"325\" y=\"265\"");
+            svg.ShouldContain("x=\"285\" y=\"65\"");
+        }
+
+        [Fact]
         public void Render_EscapesLabelsAndRoutesRelationshipsThroughConnectorVertices()
         {
             Workspace workspace = new Workspace("Test", "Description");
@@ -176,6 +193,22 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
 
             svg.IndexOf("1: First").ShouldBeLessThan(svg.IndexOf("2: Second"));
             svg.ShouldContain("x=\"120\" y=\"92\"");
+        }
+
+        [Fact]
+        public void Render_UsesATwoPixelDefaultRelationshipStroke()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem source = workspace.Model.AddSoftwareSystem("Source", "Description");
+            SoftwareSystem destination = workspace.Model.AddSoftwareSystem("Destination", "Description");
+            source.Uses(destination, "Calls");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            view.AddAllSoftwareSystems();
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape"];
+
+            svg.ShouldContain("<polyline");
+            svg.ShouldContain("stroke-width=\"2\"");
         }
 
         [Fact]

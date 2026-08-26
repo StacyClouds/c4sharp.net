@@ -41,12 +41,11 @@ namespace StacyClouds.C4Sharp.Renderer
 		{
 			List<ElementView> elements = view.Elements.Where(element => IsIncluded(element, filtered)).OrderBy(element => element.Id, StringComparer.Ordinal).ToList();
 			Dictionary<string, ElementView> positioned = elements.ToDictionary(element => element.Id);
-			bool needsLayout = elements.Count > 1 && elements.All(element => element.X == 0 && element.Y == 0);
 			int width = view.Dimensions == null
-				? Math.Max(800, elements.Select((element, index) => X(element, index, needsLayout) + 175).DefaultIfEmpty(800).Max())
+				? Math.Max(800, elements.Select((element, index) => X(element, index) + 175).DefaultIfEmpty(800).Max())
 				: view.Dimensions.Width;
 			int height = view.Dimensions == null
-				? Math.Max(600, elements.Select((element, index) => Y(element, index, needsLayout) + 135).DefaultIfEmpty(600).Max())
+				? Math.Max(600, elements.Select((element, index) => Y(element, index) + 135).DefaultIfEmpty(600).Max())
 				: view.Dimensions.Height;
 			StringBuilder svg = new StringBuilder();
 			svg.Append("<svg xmlns=\"http://www.w3.org/2000/svg\" data-c4-view-key=\"").Append(Escape(key)).Append("\" width=\"").Append(width).Append("\" height=\"").Append(height).Append("\" viewBox=\"0 0 ").Append(width).Append(' ').Append(height).Append("\">");
@@ -57,15 +56,15 @@ namespace StacyClouds.C4Sharp.Renderer
 			{
 				ElementView source = positioned[relationshipView.Relationship.Source.Id];
 				ElementView destination = positioned[relationshipView.Relationship.Destination.Id];
-				int sourceX = X(source, elements.IndexOf(source), needsLayout);
-				int sourceY = Y(source, elements.IndexOf(source), needsLayout);
-				int destinationX = X(destination, elements.IndexOf(destination), needsLayout);
-				int destinationY = Y(destination, elements.IndexOf(destination), needsLayout);
+				int sourceX = X(source, elements.IndexOf(source));
+				int sourceY = Y(source, elements.IndexOf(source));
+				int destinationX = X(destination, elements.IndexOf(destination));
+				int destinationY = Y(destination, elements.IndexOf(destination));
 				string points = sourceX + "," + sourceY + " " + string.Join(" ", relationshipView.Vertices.Where(vertex => vertex.X.HasValue && vertex.Y.HasValue).Select(vertex => vertex.X.Value + "," + vertex.Y.Value)) + " " + destinationX + "," + destinationY;
 				RelationshipStyle relationshipStyle = ResolveRelationshipStyle(relationshipView.Relationship, styles);
 				string relationshipColor = relationshipStyle == null || relationshipStyle.Color == null ? "#707070" : relationshipStyle.Color;
 				svg.Append("<polyline data-c4-relationship-id=\"").Append(Escape(relationshipView.Id)).Append("\" points=\"").Append(points).Append("\" fill=\"none\" stroke=\"").Append(relationshipColor).Append("\"");
-				if (relationshipStyle != null && relationshipStyle.Thickness.HasValue) svg.Append(" stroke-width=\"").Append(relationshipStyle.Thickness.Value).Append("\"");
+				svg.Append(" stroke-width=\"").Append(relationshipStyle != null && relationshipStyle.Thickness.HasValue ? relationshipStyle.Thickness.Value : 2).Append("\"");
 				if (relationshipStyle != null && relationshipStyle.Dashed == true) svg.Append(" stroke-dasharray=\"5,5\"");
 				svg.Append(" marker-end=\"url(#arrow)\" />");
 
@@ -83,8 +82,8 @@ namespace StacyClouds.C4Sharp.Renderer
 			foreach (ElementView element in elements)
 			{
 				int index = elements.IndexOf(element);
-				int x = X(element, index, needsLayout);
-				int y = Y(element, index, needsLayout);
+				int x = X(element, index);
+				int y = Y(element, index);
 				ElementStyle elementStyle = ResolveElementStyle(element.Element, styles);
 				string background = elementStyle == null || elementStyle.Background == null ? "#dddddd" : elementStyle.Background;
 				string stroke = elementStyle == null || elementStyle.Stroke == null ? "#707070" : elementStyle.Stroke;
@@ -118,14 +117,14 @@ namespace StacyClouds.C4Sharp.Renderer
 			return relationship == null ? null : styles.Relationships.LastOrDefault(style => relationship.GetTagsAsSet().Contains(style.Tag));
 		}
 
-		private static int X(ElementView element, int index, bool fallback)
+		private static int X(ElementView element, int index)
 		{
-			return fallback ? 120 + (index % 3) * 240 : element.X;
+			return element.X == 0 && element.Y == 0 ? 120 + (index % 3) * 240 : element.X;
 		}
 
-		private static int Y(ElementView element, int index, bool fallback)
+		private static int Y(ElementView element, int index)
 		{
-			return fallback ? 100 + (index / 3) * 180 : element.Y;
+			return element.X == 0 && element.Y == 0 ? 100 + (index / 3) * 180 : element.Y;
 		}
 
 		private static string Escape(string value)

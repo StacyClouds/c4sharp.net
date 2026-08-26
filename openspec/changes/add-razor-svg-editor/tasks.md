@@ -26,3 +26,9 @@
 - [x] 5.1 Run focused renderer and editor tests across supported targets.
 - [x] 5.2 Pack the Razor library and verify the renderer remains independently buildable.
 - [x] 5.3 Run solution restore, build, and tests.
+
+## 6. Follow-up interaction fixes
+
+- [x] 6.1 Add a failing renderer test for preserving deterministic positions after one element is moved.
+- [x] 6.2 Preserve per-element deterministic fallback positions and add live drag feedback.
+- [x] 6.3 Run focused renderer and editor tests.
