@@ -1,0 +1,28 @@
+@page "/editor"
+@using StacyClouds.C4Sharp.Examples
+@using StacyClouds.C4Sharp.Editor
+
+<PageTitle>Big Bank workspace editor</PageTitle>
+
+<main class="editor-page">
+	<p class="eyebrow">C4Sharp.NET</p>
+	<h1>Big Bank workspace editor</h1>
+	<p>Drag elements to organise a view. Double-click a connector to add a routing vertex.</p>
+	<WorkspaceEditor Workspace="workspace" @bind-SelectedViewKey="selectedViewKey" SaveRequested="SaveRequested" />
+	@if (saved)
+	{
+		<p class="save-confirmation">Save requested. The host now owns persistence of the updated workspace.</p>
+	}
+</main>
+
+@code {
+	private Workspace workspace = BigBankPlc.Create();
+	private string? selectedViewKey;
+	private bool saved;
+
+	private Task SaveRequested(Workspace editedWorkspace)
+	{
+		saved = true;
+		return Task.CompletedTask;
+	}
+}

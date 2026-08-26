@@ -1,0 +1,53 @@
+@namespace StacyClouds.C4Sharp.Editor
+@using Microsoft.AspNetCore.Components
+@using Microsoft.JSInterop
+@using StacyClouds.C4Sharp
+@using StacyClouds.C4Sharp.Renderer
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<div class="c4sharp-view-editor" @ref="host">
+	@if (svg is not null)
+	{
+		@((MarkupString)svg)
+	}
+</div>
+
+@code {
+	private readonly SvgWorkspaceRenderer renderer = new();
+	private ElementReference host;
+	private DotNetObjectReference<ViewEditor>? reference;
+	private string? svg;
+	private WorkspaceEditorState? state;
+
+	[Parameter, EditorRequired] public Workspace? Workspace { get; set; }
+	[Parameter, EditorRequired] public string? ViewKey { get; set; }
+	[Parameter] public EventCallback<Workspace> LayoutChanged { get; set; }
+
+	protected override void OnParametersSet()
+	{
+		if (Workspace is null || string.IsNullOrWhiteSpace(ViewKey)) return;
+		state = new WorkspaceEditorState(Workspace, ViewKey);
+		svg = renderer.Render(Workspace).GetValueOrDefault(ViewKey);
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender) { reference = DotNetObjectReference.Create(this); await JS.InvokeVoidAsync("c4sharpEditor.initialize", host, reference); }
+	}
+
+	[JSInvokable] public async Task MoveElement(string id, int x, int y)
+	{
+		state!.MoveElement(id, x, y); await LayoutChanged.InvokeAsync(Workspace!); await InvokeAsync(StateHasChanged);
+	}
+
+	[JSInvokable] public async Task AddRelationshipVertex(string id, int x, int y)
+	{
+		state!.AddRelationshipVertex(id, x, y); await LayoutChanged.InvokeAsync(Workspace!); await InvokeAsync(StateHasChanged);
+	}
+
+	public async ValueTask DisposeAsync()
+	{
+		if (reference is not null) { await JS.InvokeVoidAsync("c4sharpEditor.dispose", host); reference.Dispose(); }
+	}
+}

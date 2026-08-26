@@ -118,6 +118,24 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
         }
 
         [Fact]
+        public void Render_IdentifiesWorkspaceObjectsForOptionalInteractiveConsumers()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem source = workspace.Model.AddSoftwareSystem("Source", "Description");
+            SoftwareSystem destination = workspace.Model.AddSoftwareSystem("Destination", "Description");
+            Relationship relationship = source.Uses(destination, "Calls");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape & view", "Landscape");
+            view.AddAllSoftwareSystems();
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape & view"];
+
+            svg.ShouldContain("data-c4-view-key=\"landscape &amp; view\"");
+            svg.ShouldContain("data-c4-element-id=\"" + source.Id + "\"");
+            svg.ShouldContain("data-c4-element-id=\"" + destination.Id + "\"");
+            svg.ShouldContain("data-c4-relationship-id=\"" + relationship.Id + "\"");
+        }
+
+        [Fact]
         public void Render_AppliesConfiguredElementAndRelationshipStyles()
         {
             Workspace workspace = new Workspace("Test", "Description");

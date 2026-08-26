@@ -49,7 +49,7 @@ namespace StacyClouds.C4Sharp.Renderer
 				? Math.Max(600, elements.Select((element, index) => Y(element, index, needsLayout) + 135).DefaultIfEmpty(600).Max())
 				: view.Dimensions.Height;
 			StringBuilder svg = new StringBuilder();
-			svg.Append("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"").Append(width).Append("\" height=\"").Append(height).Append("\" viewBox=\"0 0 ").Append(width).Append(' ').Append(height).Append("\">");
+			svg.Append("<svg xmlns=\"http://www.w3.org/2000/svg\" data-c4-view-key=\"").Append(Escape(key)).Append("\" width=\"").Append(width).Append("\" height=\"").Append(height).Append("\" viewBox=\"0 0 ").Append(width).Append(' ').Append(height).Append("\">");
 			svg.Append("<defs><marker id=\"arrow\" markerWidth=\"10\" markerHeight=\"10\" refX=\"9\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L0,6 L9,3 z\" fill=\"#707070\" /></marker></defs>");
 			svg.Append("<text x=\"20\" y=\"30\" font-family=\"Arial\" font-size=\"20\">").Append(Escape(string.IsNullOrEmpty(view.Title) ? key : view.Title)).Append("</text>");
 
@@ -64,7 +64,7 @@ namespace StacyClouds.C4Sharp.Renderer
 				string points = sourceX + "," + sourceY + " " + string.Join(" ", relationshipView.Vertices.Where(vertex => vertex.X.HasValue && vertex.Y.HasValue).Select(vertex => vertex.X.Value + "," + vertex.Y.Value)) + " " + destinationX + "," + destinationY;
 				RelationshipStyle relationshipStyle = ResolveRelationshipStyle(relationshipView.Relationship, styles);
 				string relationshipColor = relationshipStyle == null || relationshipStyle.Color == null ? "#707070" : relationshipStyle.Color;
-				svg.Append("<polyline points=\"").Append(points).Append("\" fill=\"none\" stroke=\"").Append(relationshipColor).Append("\"");
+				svg.Append("<polyline data-c4-relationship-id=\"").Append(Escape(relationshipView.Id)).Append("\" points=\"").Append(points).Append("\" fill=\"none\" stroke=\"").Append(relationshipColor).Append("\"");
 				if (relationshipStyle != null && relationshipStyle.Thickness.HasValue) svg.Append(" stroke-width=\"").Append(relationshipStyle.Thickness.Value).Append("\"");
 				if (relationshipStyle != null && relationshipStyle.Dashed == true) svg.Append(" stroke-dasharray=\"5,5\"");
 				svg.Append(" marker-end=\"url(#arrow)\" />");
@@ -89,11 +89,13 @@ namespace StacyClouds.C4Sharp.Renderer
 				string background = elementStyle == null || elementStyle.Background == null ? "#dddddd" : elementStyle.Background;
 				string stroke = elementStyle == null || elementStyle.Stroke == null ? "#707070" : elementStyle.Stroke;
 				string textColor = elementStyle == null || elementStyle.Color == null ? "#000000" : elementStyle.Color;
+				svg.Append("<g data-c4-element-id=\"").Append(Escape(element.Id)).Append("\">");
 				if (elementStyle != null && elementStyle.Shape == Shape.Circle)
 					svg.Append("<circle cx=\"").Append(x).Append("\" cy=\"").Append(y).Append("\" r=\"35\" fill=\"").Append(background).Append("\" stroke=\"").Append(stroke).Append("\" />");
 				else
 					svg.Append("<rect x=\"").Append(x - 75).Append("\" y=\"").Append(y - 35).Append("\" width=\"150\" height=\"70\" rx=\"8\" fill=\"").Append(background).Append("\" stroke=\"").Append(stroke).Append("\" />");
 				svg.Append("<text x=\"").Append(x).Append("\" y=\"").Append(y).Append("\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"14\" fill=\"").Append(textColor).Append("\">").Append(Escape(element.Element == null ? element.Id : element.Element.Name)).Append("</text>");
+				svg.Append("</g>");
 			}
 
 			return svg.Append("</svg>").ToString();

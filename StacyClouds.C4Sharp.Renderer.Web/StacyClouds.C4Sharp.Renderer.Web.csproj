@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\StacyClouds.C4Sharp.Examples\StacyClouds.C4Sharp.Examples.csproj" />
     <ProjectReference Include="..\StacyClouds.C4Sharp.Renderer\StacyClouds.C4Sharp.Renderer.csproj" />
+    <ProjectReference Include="..\StacyClouds.C4Sharp.Editor\StacyClouds.C4Sharp.Editor.csproj" />
   </ItemGroup>
 
 </Project>
