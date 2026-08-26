@@ -86,6 +86,7 @@ namespace StacyClouds.C4Sharp.Editor.Tests
 			script.ShouldContain("setAttribute('transform'");
 			script.ShouldContain("c4RelationshipSourceId");
 			script.ShouldContain("c4RelationshipDestinationId");
+			script.ShouldContain("updateConnectorVertex");
 		}
 	}
 }

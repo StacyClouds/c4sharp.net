@@ -214,6 +214,29 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
         }
 
         [Fact]
+        public void Render_ExpandsItsViewportAndRendersConnectorVertexHandles()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem source = workspace.Model.AddSoftwareSystem("Source", "Description");
+            SoftwareSystem destination = workspace.Model.AddSoftwareSystem("Destination", "Description");
+            Relationship relationship = source.Uses(destination, "Calls");
+            SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            view.AddAllSoftwareSystems();
+            view.GetElementView(source).X = 100;
+            view.GetElementView(source).Y = 100;
+            view.GetElementView(destination).X = 1200;
+            view.GetElementView(destination).Y = 900;
+            view.GetRelationshipView(relationship).SetVertices(new[] { new Vertex(1400, 1100) });
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["landscape"];
+
+            svg.ShouldContain("width=\"1500\"");
+            svg.ShouldContain("height=\"1200\"");
+            svg.ShouldContain("data-c4-relationship-vertex-index=\"0\"");
+            svg.ShouldContain("cx=\"1400\" cy=\"1100\"");
+        }
+
+        [Fact]
         public void SvgRenderingExample_ProducesTheDocumentedWorkspaceSvg()
         {
             IReadOnlyDictionary<string, string> diagrams = StacyClouds.C4Sharp.Examples.SvgRenderingExample.CreateSvgDocuments();

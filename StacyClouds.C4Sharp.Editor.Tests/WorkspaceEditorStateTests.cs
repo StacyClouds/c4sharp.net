@@ -53,5 +53,25 @@ namespace StacyClouds.C4Sharp.Editor.Tests
 
 			state.Workspace.ShouldBeSameAs(workspace);
 		}
+
+		[Fact]
+		public void MoveAndRemoveRelationshipVertex_PersistTheRequestedVertexMutation()
+		{
+			Workspace workspace = new Workspace("Test", "Description");
+			SoftwareSystem source = workspace.Model.AddSoftwareSystem("Source", "Description");
+			SoftwareSystem destination = workspace.Model.AddSoftwareSystem("Destination", "Description");
+			Relationship relationship = source.Uses(destination, "Calls");
+			SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+			view.AddAllSoftwareSystems();
+			view.GetRelationshipView(relationship).SetVertices(new[] { new Vertex(200, 150) });
+			WorkspaceEditorState state = new WorkspaceEditorState(workspace, view.Key);
+
+			state.MoveRelationshipVertex(relationship.Id, 0, 250, 175);
+			view.GetRelationshipView(relationship).Vertices[0].X.ShouldBe(250);
+			view.GetRelationshipView(relationship).Vertices[0].Y.ShouldBe(175);
+			state.RemoveRelationshipVertex(relationship.Id, 0);
+
+			view.GetRelationshipView(relationship).Vertices.Count.ShouldBe(0);
+		}
 	}
 }

@@ -52,9 +52,28 @@
 		await InvokeAsync(StateHasChanged);
 	}
 
+	[JSInvokable] public async Task MoveRelationshipVertex(string id, int index, int x, int y)
+	{
+		state!.MoveRelationshipVertex(id, index, x, y);
+		await RefreshAndNotifyAsync();
+	}
+
+	[JSInvokable] public async Task RemoveRelationshipVertex(string id, int index)
+	{
+		state!.RemoveRelationshipVertex(id, index);
+		await RefreshAndNotifyAsync();
+	}
+
 	private void RefreshSvg()
 	{
 		svg = renderer.Render(Workspace!).GetValueOrDefault(ViewKey);
+	}
+
+	private async Task RefreshAndNotifyAsync()
+	{
+		RefreshSvg();
+		await LayoutChanged.InvokeAsync(Workspace!);
+		await InvokeAsync(StateHasChanged);
 	}
 
 	public async ValueTask DisposeAsync()

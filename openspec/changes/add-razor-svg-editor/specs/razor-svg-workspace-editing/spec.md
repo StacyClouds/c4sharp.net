@@ -40,6 +40,17 @@ The editor component SHALL add a `Vertex` to the relationship view that a user d
 - **WHEN** a user double-clicks the second segment of a relationship containing an existing connector vertex
 - **THEN** the workspace relationship view contains the new vertex after the existing vertex and before the destination
 
+### Requirement: Keep edited diagrams visible and manageable
+The editor SHALL expand a rendered SVG viewport to contain elements and connector vertices outside its previous extent. Each connector vertex SHALL render as a draggable circular handle. Double-clicking a handle SHALL remove that vertex.
+
+#### Scenario: Edit extends past the previous SVG bounds
+- **WHEN** an element or connector vertex is positioned beyond the existing SVG extent
+- **THEN** the rendered SVG viewport includes the edited object
+
+#### Scenario: User adjusts or removes a connector vertex
+- **WHEN** a user drags a connector handle or double-clicks it
+- **THEN** the corresponding persisted vertex is moved or removed and the SVG rerenders
+
 ### Requirement: Delegate workspace persistence to the host
 The workspace editor SHALL raise a save-requested callback when its user invokes Save. It SHALL not write the workspace to disk, a database, or a remote service itself.
 

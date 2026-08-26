@@ -50,6 +50,30 @@ namespace StacyClouds.C4Sharp.Editor
 			relationship.SetVertices(vertices);
 		}
 
+		public void MoveRelationshipVertex(string relationshipId, int index, int x, int y)
+		{
+			RelationshipView relationship = GetRelationship(relationshipId);
+			List<Vertex> vertices = relationship.Vertices;
+			if (index < 0 || index >= vertices.Count) throw new ArgumentOutOfRangeException(nameof(index));
+			vertices[index] = new Vertex(x, y);
+			relationship.SetVertices(vertices);
+		}
+
+		public void RemoveRelationshipVertex(string relationshipId, int index)
+		{
+			RelationshipView relationship = GetRelationship(relationshipId);
+			List<Vertex> vertices = relationship.Vertices;
+			if (index < 0 || index >= vertices.Count) throw new ArgumentOutOfRangeException(nameof(index));
+			vertices.RemoveAt(index);
+			relationship.SetVertices(vertices);
+		}
+
+		private RelationshipView GetRelationship(string relationshipId)
+		{
+			RelationshipView relationship = GetLayoutView().Relationships.FirstOrDefault(candidate => candidate.Id == relationshipId);
+			return relationship ?? throw new ArgumentException("The relationship does not exist in the selected view.", nameof(relationshipId));
+		}
+
 		private View GetLayoutView()
 		{
 			return workspace.Views.SystemLandscapeViews.Cast<View>().Concat(workspace.Views.SystemContextViews).Concat(workspace.Views.ContainerViews).Concat(workspace.Views.ComponentViews).Concat(workspace.Views.DynamicViews).Concat(workspace.Views.DeploymentViews).FirstOrDefault(view => view.Key == SelectedViewKey) ?? workspace.Views.FilteredViews.FirstOrDefault(view => view.Key == SelectedViewKey)?.View ?? throw new InvalidOperationException("The selected view does not exist.");

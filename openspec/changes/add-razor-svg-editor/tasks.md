@@ -38,3 +38,10 @@
 - [x] 7.1 Add failing renderer and editor asset tests for connector endpoint feedback.
 - [x] 7.2 Emit connector endpoint identifiers and update connected connector endpoints while dragging.
 - [x] 7.3 Run focused renderer and editor tests.
+
+## 8. Connector handles and adaptive bounds
+
+- [x] 8.1 Add failing tests for adaptive bounds and connector-handle mutation.
+- [x] 8.2 Render adaptive SVG bounds and connector handles.
+- [x] 8.3 Implement handle drag and removal interactions.
+- [x] 8.4 Run focused renderer and editor tests.

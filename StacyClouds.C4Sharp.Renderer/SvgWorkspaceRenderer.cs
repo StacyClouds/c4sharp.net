@@ -41,14 +41,9 @@ namespace StacyClouds.C4Sharp.Renderer
 		{
 			List<ElementView> elements = view.Elements.Where(element => IsIncluded(element, filtered)).OrderBy(element => element.Id, StringComparer.Ordinal).ToList();
 			Dictionary<string, ElementView> positioned = elements.ToDictionary(element => element.Id);
-			int width = view.Dimensions == null
-				? Math.Max(800, elements.Select((element, index) => X(element, index) + 175).DefaultIfEmpty(800).Max())
-				: view.Dimensions.Width;
-			int height = view.Dimensions == null
-				? Math.Max(600, elements.Select((element, index) => Y(element, index) + 135).DefaultIfEmpty(600).Max())
-				: view.Dimensions.Height;
+			(int minX, int minY, int width, int height) = GetBounds(view, elements);
 			StringBuilder svg = new StringBuilder();
-			svg.Append("<svg xmlns=\"http://www.w3.org/2000/svg\" data-c4-view-key=\"").Append(Escape(key)).Append("\" width=\"").Append(width).Append("\" height=\"").Append(height).Append("\" viewBox=\"0 0 ").Append(width).Append(' ').Append(height).Append("\">");
+			svg.Append("<svg xmlns=\"http://www.w3.org/2000/svg\" data-c4-view-key=\"").Append(Escape(key)).Append("\" width=\"").Append(width).Append("\" height=\"").Append(height).Append("\" viewBox=\"").Append(minX).Append(' ').Append(minY).Append(' ').Append(width).Append(' ').Append(height).Append("\">");
 			svg.Append("<defs><marker id=\"arrow\" markerWidth=\"10\" markerHeight=\"10\" refX=\"9\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L0,6 L9,3 z\" fill=\"#707070\" /></marker></defs>");
 			svg.Append("<text x=\"20\" y=\"30\" font-family=\"Arial\" font-size=\"20\">").Append(Escape(string.IsNullOrEmpty(view.Title) ? key : view.Title)).Append("</text>");
 
@@ -67,6 +62,11 @@ namespace StacyClouds.C4Sharp.Renderer
 				svg.Append(" stroke-width=\"").Append(relationshipStyle != null && relationshipStyle.Thickness.HasValue ? relationshipStyle.Thickness.Value : 2).Append("\"");
 				if (relationshipStyle != null && relationshipStyle.Dashed == true) svg.Append(" stroke-dasharray=\"5,5\"");
 				svg.Append(" marker-end=\"url(#arrow)\" />");
+				int vertexIndex = 0;
+				foreach (Vertex vertex in relationshipView.Vertices.Where(vertex => vertex.X.HasValue && vertex.Y.HasValue))
+				{
+					svg.Append("<circle data-c4-relationship-id=\"").Append(Escape(relationshipView.Id)).Append("\" data-c4-relationship-vertex-index=\"").Append(vertexIndex++).Append("\" cx=\"").Append(vertex.X.Value).Append("\" cy=\"").Append(vertex.Y.Value).Append("\" r=\"6\" fill=\"#ffffff\" stroke=\"").Append(relationshipColor).Append("\" stroke-width=\"2\" />");
+				}
 
 				string label = string.IsNullOrEmpty(relationshipView.Description) ? relationshipView.Relationship.Description : relationshipView.Description;
 				if (!string.IsNullOrEmpty(label))
@@ -125,6 +125,31 @@ namespace StacyClouds.C4Sharp.Renderer
 		private static int Y(ElementView element, int index)
 		{
 			return element.X == 0 && element.Y == 0 ? 100 + (index / 3) * 180 : element.Y;
+		}
+
+		private static (int MinX, int MinY, int Width, int Height) GetBounds(View view, List<ElementView> elements)
+		{
+			int minX = 0;
+			int minY = 0;
+			int maxX = view.Dimensions == null ? 800 : view.Dimensions.Width;
+			int maxY = view.Dimensions == null ? 600 : view.Dimensions.Height;
+			for (int index = 0; index < elements.Count; index++)
+			{
+				int x = X(elements[index], index);
+				int y = Y(elements[index], index);
+				minX = Math.Min(minX, x - 75);
+				minY = Math.Min(minY, y - 35);
+				maxX = Math.Max(maxX, x + 175);
+				maxY = Math.Max(maxY, y + 135);
+			}
+			foreach (Vertex vertex in view.Relationships.SelectMany(relationship => relationship.Vertices).Where(vertex => vertex.X.HasValue && vertex.Y.HasValue))
+			{
+				minX = Math.Min(minX, vertex.X.Value);
+				minY = Math.Min(minY, vertex.Y.Value);
+				maxX = Math.Max(maxX, vertex.X.Value + 100);
+				maxY = Math.Max(maxY, vertex.Y.Value + 100);
+			}
+			return (minX, minY, maxX - minX, maxY - minY);
 		}
 
 		private static string Escape(string value)
