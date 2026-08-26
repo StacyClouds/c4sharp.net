@@ -11,4 +11,10 @@
   <ItemGroup>
     <ProjectReference Include="..\StacyClouds.C4Sharp.Client\StacyClouds.C4Sharp.Client.csproj" />
   </ItemGroup>
+  <Target Name="AddNuGetProbingPathForStryker" AfterTargets="Build">
+    <WriteLinesToFile
+      File="$(OutputPath)$(AssemblyName).runtimeconfig.dev.json"
+      Lines="{&quot;runtimeOptions&quot;:{&quot;additionalProbingPaths&quot;:[&quot;$(NuGetPackageRoot)&quot;]}}"
+      Overwrite="true" />
+  </Target>
 </Project>

@@ -24,13 +24,31 @@ jobs:
           dotnet-version: 11.0.x
 
       - name: Restore
-        run: dotnet restore StacyClouds.C4Sharp.sln -p:TargetFramework=${{ matrix.framework }}
+        run: dotnet restore StacyClouds.C4Sharp.CI.slnf -p:TargetFramework=${{ matrix.framework }}
 
       - name: Build
-        run: dotnet build StacyClouds.C4Sharp.sln --no-restore -c Release -p:TargetFramework=${{ matrix.framework }}
+        run: dotnet build StacyClouds.C4Sharp.CI.slnf --no-restore -c Release -p:TargetFramework=${{ matrix.framework }}
 
       - name: Test
-        run: dotnet test StacyClouds.C4Sharp.sln --no-build -c Release -p:TargetFramework=${{ matrix.framework }}
+        run: dotnet test StacyClouds.C4Sharp.CI.slnf --no-build -c Release -p:TargetFramework=${{ matrix.framework }}
+
+  making-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 11.0.x
+
+      - name: Restore making app
+        run: dotnet restore StacyClouds.C4Sharp.Renderer.Web/StacyClouds.C4Sharp.Renderer.Web.csproj
+
+      - name: Build making app
+        run: dotnet build StacyClouds.C4Sharp.Renderer.Web/StacyClouds.C4Sharp.Renderer.Web.csproj --no-restore -c Release -p:TargetFramework=net11.0
 
   mutation-test:
     runs-on: ubuntu-latest
@@ -48,4 +66,4 @@ jobs:
         run: dotnet tool install --tool-path ./.dotnet-tools dotnet-stryker
 
       - name: Run Stryker (informational)
-        run: ./.dotnet-tools/dotnet-stryker --config-file stryker-config.json
+        run: bash scripts/run-stryker.sh

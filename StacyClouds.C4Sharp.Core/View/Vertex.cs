@@ -10,11 +10,11 @@ namespace StacyClouds.C4Sharp
     public sealed class Vertex
     {
 
-        internal Vertex()
+        public Vertex()
         {
         }
 
-        internal Vertex(int x, int y)
+        public Vertex(int x, int y)
         {
             X = x;
             Y = y;

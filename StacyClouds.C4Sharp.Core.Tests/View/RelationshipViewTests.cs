@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Json;
 using Xunit;
 using Shouldly;
 
@@ -111,6 +115,74 @@ namespace StacyClouds.C4Sharp.Core.Tests
 
             destination.Routing.ShouldBe(Routing.Orthogonal);
             destination.Position.ShouldBe(75);
+        }
+
+        [Fact]
+        public void Test_ConnectorVertices_CanBeCreatedAndEditedWithoutExposingInternalState()
+        {
+            RelationshipView view = new RelationshipView(relationship);
+            Vertex first = new Vertex(100, 200);
+            Vertex second = new Vertex(300, 400);
+            List<Vertex> replacement = new List<Vertex> { first, second };
+
+            view.SetVertices(replacement);
+            view.Vertices.Count.ShouldBe(2);
+            view.Vertices[0].X.ShouldBe(100);
+            view.Vertices[1].Y.ShouldBe(400);
+
+            replacement.Clear();
+            view.Vertices.Count.ShouldBe(2);
+
+            view.AddVertex(new Vertex(500, 600));
+            view.Vertices.Count.ShouldBe(3);
+            view.RemoveVertex(second).ShouldBeTrue();
+            view.Vertices.Count.ShouldBe(2);
+            view.Vertices[0].X.ShouldBe(100);
+            view.Vertices[1].X.ShouldBe(500);
+
+            List<Vertex> returnedVertices = view.Vertices;
+            returnedVertices.Clear();
+            view.Vertices.Count.ShouldBe(2);
+
+            view.ClearVertices();
+            view.Vertices.ShouldBeEmpty();
+        }
+
+        [Fact]
+        public void Test_ConnectorVertices_RejectNullValuesWithoutChangingTheLayout()
+        {
+            RelationshipView view = new RelationshipView(relationship);
+            view.AddVertex(new Vertex(100, 200));
+
+            Should.Throw<ArgumentNullException>(() => view.AddVertex(null));
+            Should.Throw<ArgumentNullException>(() => view.SetVertices(null));
+            Should.Throw<ArgumentException>(() => view.SetVertices(new List<Vertex> { null }));
+
+            view.Vertices.Count.ShouldBe(1);
+            view.Vertices[0].X.ShouldBe(100);
+            view.Vertices[0].Y.ShouldBe(200);
+        }
+
+        [Fact]
+        public void Test_ConnectorVertices_ArePreservedBySerializationAndLayoutCopying()
+        {
+            RelationshipView source = new RelationshipView(relationship);
+            source.SetVertices(new[] { new Vertex(100, 200), new Vertex(300, 400) });
+
+            RelationshipView copy = new RelationshipView(relationship);
+            copy.CopyLayoutInformationFrom(source);
+            copy.Vertices.Count.ShouldBe(2);
+            copy.Vertices[1].Y.ShouldBe(400);
+
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RelationshipView));
+            using MemoryStream stream = new MemoryStream();
+            serializer.WriteObject(stream, source);
+            stream.Position = 0;
+            RelationshipView deserialized = (RelationshipView)serializer.ReadObject(stream);
+
+            deserialized.Vertices.Count.ShouldBe(2);
+            deserialized.Vertices[0].X.ShouldBe(100);
+            deserialized.Vertices[1].Y.ShouldBe(400);
         }
     }
 }

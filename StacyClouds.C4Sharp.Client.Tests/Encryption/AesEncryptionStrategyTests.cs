@@ -128,6 +128,15 @@ namespace StacyClouds.C4Sharp.Api.Encryption.Tests
             Assert.Throws<FormatException>(() => strategy.Decrypt("this-is-not-base64"));
         }
 
+        [Fact]
+        public void Test_Constructor_UsesSaltAndIvSizesBasedOnKeySize()
+        {
+            strategy = new AesEncryptionStrategy(256, 1000, "password");
+
+            Assert.Equal(64, strategy.Salt.Length);
+            Assert.Equal(32, strategy.Iv.Length);
+        }
+
     }
 
 }

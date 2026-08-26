@@ -499,6 +499,28 @@ namespace StacyClouds.C4Sharp
             IdGenerator.Found(relationship.Id);
         }
 
+        internal void UpdateRelationshipId(Relationship relationship, string newId)
+        {
+            if (relationship == null)
+            {
+                throw new ArgumentException("A relationship must be specified.");
+            }
+
+            if (string.IsNullOrWhiteSpace(newId))
+            {
+                throw new ArgumentException("A new ID must be specified.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(relationship.Id))
+            {
+                _relationshipsById.Remove(relationship.Id);
+            }
+
+            relationship.Id = newId;
+            _relationshipsById.Add(newId, relationship);
+            IdGenerator.Found(newId);
+        }
+
         /// <summary>
         /// Provides a way for the description and technology to be modified on an existing relationship.
         /// </summary>
@@ -576,6 +598,28 @@ namespace StacyClouds.C4Sharp
             _elementsById.Add(element.Id, element);
             element.Model = this;
             IdGenerator.Found(element.Id);
+        }
+
+        internal void UpdateElementId(Element element, string newId)
+        {
+            if (element == null)
+            {
+                throw new ArgumentException("An element must be specified.");
+            }
+
+            if (string.IsNullOrWhiteSpace(newId))
+            {
+                throw new ArgumentException("A new ID must be specified.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(element.Id))
+            {
+                _elementsById.Remove(element.Id);
+            }
+
+            element.Id = newId;
+            _elementsById.Add(newId, element);
+            IdGenerator.Found(newId);
         }
 
         public bool Contains(Element element)
