@@ -50,5 +50,5 @@
 		await SelectedViewKeyChanged.InvokeAsync(key);
 	}
 	private void ToggleNavigator() => navigatorOpen = !navigatorOpen;
-	private Task RequestSave() => SaveRequested.InvokeAsync(Workspace!);
+	private Task RequestSave() => Workspace is null ? Task.CompletedTask : SaveRequested.InvokeAsync(Workspace);
 }

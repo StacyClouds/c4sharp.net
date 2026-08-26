@@ -10,10 +10,10 @@ namespace StacyClouds.C4Sharp.Editor
 	{
 		private readonly Workspace workspace;
 
-		public WorkspaceEditorState(Workspace workspace, string selectedViewKey = null)
+		public WorkspaceEditorState(Workspace workspace, string? selectedViewKey = null)
 		{
 			this.workspace = workspace ?? throw new ArgumentNullException(nameof(workspace));
-			SelectedViewKey = selectedViewKey ?? GetViewKeys().FirstOrDefault();
+			SelectedViewKey = selectedViewKey ?? GetViewKeys().FirstOrDefault() ?? string.Empty;
 		}
 
 		public string SelectedViewKey { get; private set; }
@@ -28,7 +28,8 @@ namespace StacyClouds.C4Sharp.Editor
 
 		public void SelectView(string viewKey)
 		{
-			if (!GetViewKeys().Contains(viewKey)) throw new ArgumentException("The view does not exist in the workspace.", nameof(viewKey));
+			if (string.IsNullOrWhiteSpace(viewKey)) throw new ArgumentException("View key must be provided.", nameof(viewKey));
+			if (!GetViewKeys().Contains(viewKey, StringComparer.Ordinal)) throw new ArgumentException("The view does not exist in the workspace.", nameof(viewKey));
 			SelectedViewKey = viewKey;
 		}
 
@@ -124,12 +125,17 @@ namespace StacyClouds.C4Sharp.Editor
 
 		private static int FindNearestSegment(View view, RelationshipView relationship, List<Vertex> vertices, int x, int y)
 		{
-			ElementView source = view.Elements.First(element => element.Id == relationship.Relationship.Source.Id);
-			ElementView destination = view.Elements.First(element => element.Id == relationship.Relationship.Destination.Id);
-			List<(int X, int Y)> points = new List<(int X, int Y)> { (source.X, source.Y) };
+			List<ElementView> elements = view.Elements.OrderBy(element => element.Id, StringComparer.Ordinal).ToList();
+			ElementView source = elements.First(element => element.Id == relationship.Relationship.Source.Id);
+			ElementView destination = elements.First(element => element.Id == relationship.Relationship.Destination.Id);
+
+			List<(int X, int Y)> points = new List<(int X, int Y)> { PositionOf(source, elements.IndexOf(source)) };
 			points.AddRange(vertices.Where(vertex => vertex.X.HasValue && vertex.Y.HasValue).Select(vertex => (vertex.X.Value, vertex.Y.Value)));
-			points.Add((destination.X, destination.Y));
-			return Enumerable.Range(0, points.Count - 1).OrderBy(index => DistanceToSegmentSquared(points[index], points[index + 1], x, y)).First();
+			points.Add(PositionOf(destination, elements.IndexOf(destination)));
+
+			return Enumerable.Range(0, points.Count - 1)
+				.OrderBy(index => DistanceToSegmentSquared(points[index], points[index + 1], x, y))
+				.First();
 		}
 
 		private static double DistanceToSegmentSquared((int X, int Y) start, (int X, int Y) end, int x, int y)
