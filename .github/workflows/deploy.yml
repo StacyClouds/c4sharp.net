@@ -1,17 +1,19 @@
 name: Deploy
 
 on:
-  workflow_dispatch:
-    inputs:
-      run_id:
-        description: 'CI run ID to deploy (from a push-to-main build). Find it in the Actions tab.'
-        required: true
-        type: string
+  workflow_run:
+    workflows:
+      - CI
+    branches:
+      - main
+    types:
+      - completed
 
 jobs:
   publish:
     name: Publish NuGet Packages
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
       contents: read
       actions: read
@@ -21,7 +23,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           pattern: nuget-packages-*
-          run-id: ${{ inputs.run_id }}
+          run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           merge-multiple: true
           path: packages
