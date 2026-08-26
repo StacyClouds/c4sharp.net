@@ -3,7 +3,6 @@
     <TargetFrameworks>net8.0;net9.0;net10.0;net11.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.1.1</Version>
     <PackageId>StacyClouds.C4Sharp.Editor</PackageId>
     <Description>Interactive Razor components for organising C4Sharp workspace SVG diagrams.</Description>

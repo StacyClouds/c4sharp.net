@@ -1,44 +1,67 @@
-name: Deploy
+name: Publish NuGet packages
 
 on:
-  workflow_run:
-    workflows:
-      - CI
-    branches:
-      - main
-    types:
-      - completed
+  workflow_dispatch:
 
 jobs:
   publish:
-    name: Publish NuGet Packages
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     permissions:
       contents: read
-      actions: read
 
     steps:
-      - name: Download NuGet packages from CI run
-        uses: actions/download-artifact@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          pattern: nuget-packages-*
-          run-id: ${{ github.event.workflow_run.id }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          merge-multiple: true
-          path: packages
+          ref: main
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v3
+        with:
+          versionSpec: '5.x'
+
+      - name: Determine version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v3
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
-            8.x
-            9.x
-            10.x
+            8.0.x
+            9.0.x
+            10.0.x
+            11.0.x
+
+      - name: Restore packages
+        run: dotnet restore StacyClouds.C4Sharp.CI.slnf
+
+      - name: Build packages
+        run: dotnet build StacyClouds.C4Sharp.CI.slnf --no-restore -c Release
+
+      - name: Pack NuGet packages
+        run: |
+          dotnet pack StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj --no-build --no-restore -c Release -p:Version=${{ steps.gitversion.outputs.semVer }}
+          dotnet pack StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj --no-build --no-restore -c Release -p:Version=${{ steps.gitversion.outputs.semVer }}
+          dotnet pack StacyClouds.C4Sharp.Renderer/StacyClouds.C4Sharp.Renderer.csproj --no-build --no-restore -c Release -p:Version=${{ steps.gitversion.outputs.semVer }}
+          dotnet pack StacyClouds.C4Sharp.Editor/StacyClouds.C4Sharp.Editor.csproj --no-build --no-restore -c Release -p:Version=${{ steps.gitversion.outputs.semVer }}
 
       - name: Publish to NuGet
         run: |
-          dotnet nuget push packages/*.nupkg \
+          dotnet nuget push StacyClouds.C4Sharp.Core/bin/Release/*.nupkg \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+          dotnet nuget push StacyClouds.C4Sharp.Client/bin/Release/*.nupkg \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+          dotnet nuget push StacyClouds.C4Sharp.Renderer/bin/Release/*.nupkg \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+          dotnet nuget push StacyClouds.C4Sharp.Editor/bin/Release/*.nupkg \
             --api-key ${{ secrets.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate

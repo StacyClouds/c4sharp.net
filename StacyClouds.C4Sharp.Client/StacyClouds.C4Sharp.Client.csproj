@@ -4,7 +4,6 @@
   <PropertyGroup>
     <ReleaseNotes></ReleaseNotes>
     <Version>1.1.1</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup>
