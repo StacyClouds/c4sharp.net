@@ -164,6 +164,7 @@ namespace StacyClouds.C4Sharp.Renderer
 				double dx = points[index + 1].X - points[index].X;
 				double dy = points[index + 1].Y - points[index].Y;
 				double length = Math.Sqrt(dx * dx + dy * dy);
+				if (length == 0) continue;
 				if (remaining <= length) return ((int)(points[index].X + dx * remaining / length), (int)(points[index].Y + dy * remaining / length));
 				remaining -= length;
 			}
