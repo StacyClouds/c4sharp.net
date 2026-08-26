@@ -32,3 +32,9 @@
 - [x] 6.1 Add a failing renderer test for preserving deterministic positions after one element is moved.
 - [x] 6.2 Preserve per-element deterministic fallback positions and add live drag feedback.
 - [x] 6.3 Run focused renderer and editor tests.
+
+## 7. Live connector drag feedback
+
+- [x] 7.1 Add failing renderer and editor asset tests for connector endpoint feedback.
+- [x] 7.2 Emit connector endpoint identifiers and update connected connector endpoints while dragging.
+- [x] 7.3 Run focused renderer and editor tests.

@@ -63,7 +63,7 @@ namespace StacyClouds.C4Sharp.Renderer
 				string points = sourceX + "," + sourceY + " " + string.Join(" ", relationshipView.Vertices.Where(vertex => vertex.X.HasValue && vertex.Y.HasValue).Select(vertex => vertex.X.Value + "," + vertex.Y.Value)) + " " + destinationX + "," + destinationY;
 				RelationshipStyle relationshipStyle = ResolveRelationshipStyle(relationshipView.Relationship, styles);
 				string relationshipColor = relationshipStyle == null || relationshipStyle.Color == null ? "#707070" : relationshipStyle.Color;
-				svg.Append("<polyline data-c4-relationship-id=\"").Append(Escape(relationshipView.Id)).Append("\" points=\"").Append(points).Append("\" fill=\"none\" stroke=\"").Append(relationshipColor).Append("\"");
+				svg.Append("<polyline data-c4-relationship-id=\"").Append(Escape(relationshipView.Id)).Append("\" data-c4-relationship-source-id=\"").Append(Escape(relationshipView.Relationship.Source.Id)).Append("\" data-c4-relationship-destination-id=\"").Append(Escape(relationshipView.Relationship.Destination.Id)).Append("\" points=\"").Append(points).Append("\" fill=\"none\" stroke=\"").Append(relationshipColor).Append("\"");
 				svg.Append(" stroke-width=\"").Append(relationshipStyle != null && relationshipStyle.Thickness.HasValue ? relationshipStyle.Thickness.Value : 2).Append("\"");
 				if (relationshipStyle != null && relationshipStyle.Dashed == true) svg.Append(" stroke-dasharray=\"5,5\"");
 				svg.Append(" marker-end=\"url(#arrow)\" />");

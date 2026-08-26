@@ -150,6 +150,8 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
             svg.ShouldContain("data-c4-element-id=\"" + source.Id + "\"");
             svg.ShouldContain("data-c4-element-id=\"" + destination.Id + "\"");
             svg.ShouldContain("data-c4-relationship-id=\"" + relationship.Id + "\"");
+			svg.ShouldContain("data-c4-relationship-source-id=\"" + source.Id + "\"");
+			svg.ShouldContain("data-c4-relationship-destination-id=\"" + destination.Id + "\"");
         }
 
         [Fact]
