@@ -73,5 +73,25 @@ namespace StacyClouds.C4Sharp.Editor.Tests
 
 			view.GetRelationshipView(relationship).Vertices.Count.ShouldBe(0);
 		}
+
+		[Fact]
+		public void MoveRelationshipLabel_PersistsItsPositionAlongTheConnectorPath()
+		{
+			Workspace workspace = new Workspace("Test", "Description");
+			SoftwareSystem source = workspace.Model.AddSoftwareSystem("Source", "Description");
+			SoftwareSystem destination = workspace.Model.AddSoftwareSystem("Destination", "Description");
+			Relationship relationship = source.Uses(destination, "Calls");
+			SystemLandscapeView view = workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+			view.AddAllSoftwareSystems();
+			view.GetElementView(source).X = 100;
+			view.GetElementView(source).Y = 100;
+			view.GetElementView(destination).X = 500;
+			view.GetElementView(destination).Y = 100;
+			WorkspaceEditorState state = new WorkspaceEditorState(workspace, view.Key);
+
+			state.MoveRelationshipLabel(relationship.Id, 400, 100);
+
+			view.GetRelationshipView(relationship).Position.ShouldBe(75);
+		}
 	}
 }

@@ -51,3 +51,14 @@
 - [x] 9.1 Add failing renderer and editor asset checks for movable relationship labels.
 - [x] 9.2 Identify labels and update their positions during connector edits.
 - [x] 9.3 Run focused renderer and editor tests.
+
+## 10. Draggable relationship labels
+
+- [x] 10.1 Add failing state and editor asset tests for label drag persistence.
+- [x] 10.2 Persist label position through the existing relationship-view API.
+- [x] 10.3 Add draggable label interactions and validate focused tests.
+
+## 11. Constrained live label drag
+
+- [x] 11.1 Add a failing editor asset test for connector-constrained label previews.
+- [x] 11.2 Keep live label previews on their connector and run focused tests.

@@ -68,10 +68,53 @@ namespace StacyClouds.C4Sharp.Editor
 			relationship.SetVertices(vertices);
 		}
 
+		public void MoveRelationshipLabel(string relationshipId, int x, int y)
+		{
+			View view = GetLayoutView();
+			RelationshipView relationship = GetRelationship(relationshipId);
+			List<ElementView> elements = view.Elements.OrderBy(element => element.Id, StringComparer.Ordinal).ToList();
+			ElementView source = elements.First(element => element.Id == relationship.Relationship.Source.Id);
+			ElementView destination = elements.First(element => element.Id == relationship.Relationship.Destination.Id);
+			List<(int X, int Y)> points = new List<(int X, int Y)> { PositionOf(source, elements.IndexOf(source)) };
+			points.AddRange(relationship.Vertices.Where(vertex => vertex.X.HasValue && vertex.Y.HasValue).Select(vertex => (vertex.X.Value, vertex.Y.Value)));
+			points.Add(PositionOf(destination, elements.IndexOf(destination)));
+			double totalLength = Enumerable.Range(0, points.Count - 1).Sum(index => Length(points[index], points[index + 1]));
+			double distanceBefore = 0;
+			double bestDistance = double.MaxValue;
+			double bestPosition = 0;
+			for (int index = 0; index < points.Count - 1; index++)
+			{
+				double length = Length(points[index], points[index + 1]);
+				double t = Projection(points[index], points[index + 1], x, y);
+				double projectedX = points[index].X + (points[index + 1].X - points[index].X) * t;
+				double projectedY = points[index].Y + (points[index + 1].Y - points[index].Y) * t;
+				double distance = Math.Pow(x - projectedX, 2) + Math.Pow(y - projectedY, 2);
+				if (distance < bestDistance) { bestDistance = distance; bestPosition = distanceBefore + length * t; }
+				distanceBefore += length;
+			}
+			relationship.Position = totalLength == 0 ? 0 : (int)Math.Round(bestPosition * 100 / totalLength);
+		}
+
 		private RelationshipView GetRelationship(string relationshipId)
 		{
 			RelationshipView relationship = GetLayoutView().Relationships.FirstOrDefault(candidate => candidate.Id == relationshipId);
 			return relationship ?? throw new ArgumentException("The relationship does not exist in the selected view.", nameof(relationshipId));
+		}
+
+		private static (int X, int Y) PositionOf(ElementView element, int index)
+		{
+			return element.X == 0 && element.Y == 0 ? (120 + (index % 3) * 240, 100 + (index / 3) * 180) : (element.X, element.Y);
+		}
+
+		private static double Length((int X, int Y) start, (int X, int Y) end)
+		{
+			return Math.Sqrt(Math.Pow(end.X - start.X, 2) + Math.Pow(end.Y - start.Y, 2));
+		}
+
+		private static double Projection((int X, int Y) start, (int X, int Y) end, int x, int y)
+		{
+			double dx = end.X - start.X; double dy = end.Y - start.Y;
+			return dx == 0 && dy == 0 ? 0 : Math.Max(0, Math.Min(1, ((x - start.X) * dx + (y - start.Y) * dy) / (dx * dx + dy * dy)));
 		}
 
 		private View GetLayoutView()

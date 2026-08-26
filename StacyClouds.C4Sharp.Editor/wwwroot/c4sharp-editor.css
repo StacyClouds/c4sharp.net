@@ -13,3 +13,4 @@
 .c4sharp-view-editor [data-c4-element-id] { cursor: grab; }
 .c4sharp-view-editor [data-c4-relationship-id] { cursor: crosshair; pointer-events: stroke; }
 .c4sharp-view-editor [data-c4-relationship-vertex-index] { cursor: move; pointer-events: all; }
+.c4sharp-view-editor [data-c4-relationship-label-id] { cursor: move; pointer-events: all; }

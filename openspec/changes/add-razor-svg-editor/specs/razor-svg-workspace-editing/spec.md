@@ -51,6 +51,13 @@ The editor SHALL expand a rendered SVG viewport to contain elements and connecto
 - **WHEN** a user drags a connector handle or double-clicks it
 - **THEN** the corresponding persisted vertex is moved or removed and the SVG rerenders
 
+### Requirement: Persist draggable relationship-label positions
+The editor SHALL allow a relationship label to be dragged without changing the workspace API. It SHALL persist the nearest position on the connector path using the existing `RelationshipView.Position` value.
+
+#### Scenario: User drags a relationship label
+- **WHEN** a user drags a relationship label along its connector
+- **THEN** its live position remains on the connector, the matching relationship view stores an updated label position, and the SVG rerenders
+
 ### Requirement: Delegate workspace persistence to the host
 The workspace editor SHALL raise a save-requested callback when its user invokes Save. It SHALL not write the workspace to disk, a database, or a remote service itself.
 

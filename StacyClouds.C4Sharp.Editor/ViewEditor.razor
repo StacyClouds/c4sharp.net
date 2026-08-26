@@ -64,6 +64,12 @@
 		await RefreshAndNotifyAsync();
 	}
 
+	[JSInvokable] public async Task MoveRelationshipLabel(string id, int x, int y)
+	{
+		state!.MoveRelationshipLabel(id, x, y);
+		await RefreshAndNotifyAsync();
+	}
+
 	private void RefreshSvg()
 	{
 		svg = renderer.Render(Workspace!).GetValueOrDefault(ViewKey);
