@@ -66,4 +66,4 @@ jobs:
         run: dotnet tool install --tool-path ./.dotnet-tools dotnet-stryker
 
       - name: Run Stryker (informational)
-        run: ./.dotnet-tools/dotnet-stryker --config-file stryker-config.json
+        run: bash scripts/run-stryker.sh

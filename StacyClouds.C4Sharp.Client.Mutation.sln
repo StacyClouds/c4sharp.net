@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StacyClouds.C4Sharp.Client", "StacyClouds.C4Sharp.Client\StacyClouds.C4Sharp.Client.csproj", "{E142F0DE-5C50-476A-988A-50B342FAC527}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StacyClouds.C4Sharp.Client.Tests", "StacyClouds.C4Sharp.Client.Tests\StacyClouds.C4Sharp.Client.Tests.csproj", "{D3BB6923-DB8A-4E8F-A6C8-E927A65F3B2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E142F0DE-5C50-476A-988A-50B342FAC527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E142F0DE-5C50-476A-988A-50B342FAC527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E142F0DE-5C50-476A-988A-50B342FAC527}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E142F0DE-5C50-476A-988A-50B342FAC527}.Debug|x64.Build.0 = Debug|Any CPU
+		{D3BB6923-DB8A-4E8F-A6C8-E927A65F3B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3BB6923-DB8A-4E8F-A6C8-E927A65F3B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3BB6923-DB8A-4E8F-A6C8-E927A65F3B2D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D3BB6923-DB8A-4E8F-A6C8-E927A65F3B2D}.Debug|x64.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal

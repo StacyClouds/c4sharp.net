@@ -1,12 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/stryker-mutator/stryker-net/master/src/Stryker.CLI/Stryker.CLI/schema/stryker-schema.json",
   "stryker-config": {
-    "solution": "StacyClouds.C4Sharp.slnx",
+    "solution": "StacyClouds.C4Sharp.Client.Mutation.sln",
     "project": "StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj",
     "test-projects": [
       "StacyClouds.C4Sharp.Client.Tests/StacyClouds.C4Sharp.Client.Tests.csproj"
     ],
-    "target-framework": "net11.0",
+    "target-framework": "net8.0",
+    "configuration": "Debug|x64",
     "mutation-level": "standard",
     "reporters": [
       "progress",

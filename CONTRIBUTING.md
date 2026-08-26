@@ -199,7 +199,7 @@ dotnet test --filter "FullyQualifiedName~TestName"
 dotnet tool install --global dotnet-stryker
 
 # Run mutation testing with repository config
-dotnet stryker --config-file stryker-config.json
+bash scripts/run-stryker.sh
 
 # Run mutation testing for the DSL foundation scope
 dotnet stryker --config-file stryker-dsl-config.json
