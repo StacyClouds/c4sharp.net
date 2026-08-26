@@ -1,23 +1,29 @@
 version: 1.0.{build}
 pull_requests:
   do_not_increment_build_number: true
-image: Visual Studio 2017
+image: Visual Studio 2022
 build_script:
 - ps: >-
-    dotnet restore
+    dotnet restore .\StacyClouds.C4Sharp.CI.slnf
 
-    dotnet build
+    dotnet build .\StacyClouds.C4Sharp.CI.slnf --configuration Release --no-restore
+
+    dotnet restore .\StacyClouds.C4Sharp.Renderer.Web\StacyClouds.C4Sharp.Renderer.Web.csproj
+
+    dotnet build .\StacyClouds.C4Sharp.Renderer.Web\StacyClouds.C4Sharp.Renderer.Web.csproj --configuration Release --no-restore --framework net11.0
 
 
-    dotnet clean /p:Configuration=Release
+    dotnet clean .\StacyClouds.C4Sharp.CI.slnf /p:Configuration=Release
 
     if ($env:APPVEYOR_REPO_TAG -Eq "true") {
-        dotnet msbuild "/t:Restore;Pack" /p:Configuration=Release /p:Version=$env:APPVEYOR_REPO_TAG_NAME
+        dotnet msbuild "/t:Restore;Pack" /p:Configuration=Release /p:Version=$env:APPVEYOR_REPO_TAG_NAME .\StacyClouds.C4Sharp.Core\StacyClouds.C4Sharp.Core.csproj
+        dotnet msbuild "/t:Restore;Pack" /p:Configuration=Release /p:Version=$env:APPVEYOR_REPO_TAG_NAME .\StacyClouds.C4Sharp.Client\StacyClouds.C4Sharp.Client.csproj
     } else {
-        dotnet msbuild "/t:Restore;Pack" /p:Configuration=Release /p:VersionSuffix=pre${env:APPVEYOR_BUILD_NUMBER}-$($env:APPVEYOR_REPO_COMMIT.Substring(0,8))
+        dotnet msbuild "/t:Restore;Pack" /p:Configuration=Release /p:VersionSuffix=pre${env:APPVEYOR_BUILD_NUMBER}-$($env:APPVEYOR_REPO_COMMIT.Substring(0,8)) .\StacyClouds.C4Sharp.Core\StacyClouds.C4Sharp.Core.csproj
+        dotnet msbuild "/t:Restore;Pack" /p:Configuration=Release /p:VersionSuffix=pre${env:APPVEYOR_BUILD_NUMBER}-$($env:APPVEYOR_REPO_COMMIT.Substring(0,8)) .\StacyClouds.C4Sharp.Client\StacyClouds.C4Sharp.Client.csproj
     }
 test_script:
-- ps: dotnet test .\Structurizr.Core.Tests\Structurizr.Core.Tests.csproj
-- ps: dotnet test .\Structurizr.Client.Tests\Structurizr.Client.Tests.csproj
+- ps: dotnet test .\StacyClouds.C4Sharp.Core.Tests\StacyClouds.C4Sharp.Core.Tests.csproj -f net11.0
+- ps: dotnet test .\StacyClouds.C4Sharp.Client.Tests\StacyClouds.C4Sharp.Client.Tests.csproj -f net11.0
 artifacts:
 - path: '*\bin\Release\*.nupkg'

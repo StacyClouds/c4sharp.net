@@ -5,7 +5,7 @@ This document outlines planned improvements and enhancements for C4Sharp.NET.
 ## Completed ✅
 
 ### Version 2.0 (Current)
-- ✅ Updated to support .NET 8, 9, and 10 (multi-targeting)
+- ✅ Updated to support .NET 8, 9, 10, and 11 (multi-targeting)
 - ✅ Migrated from netstandard2.0 and netcoreapp3.1
 - ✅ Updated all NuGet package dependencies to latest versions
 - ✅ Updated test frameworks (xUnit, Microsoft.NET.Test.Sdk)
@@ -14,7 +14,7 @@ This document outlines planned improvements and enhancements for C4Sharp.NET.
 - ✅ Updated NuGet package metadata (owner: StacyClouds)
 - ✅ Created project website with GitHub Pages
 - ✅ Updated README with modern branding and documentation
-- ✅ All 448 unit tests passing on .NET 8, 9, and 10
+- ✅ All unit tests passing on .NET 8, 9, 10, and 11
 
 ## Planned Improvements
 
@@ -36,9 +36,17 @@ Migrate from Newtonsoft.Json to System.Text.Json for better performance and .NET
 #### 3. C4 DSL Gap Analysis
 Compare against the latest C4 DSL specification and identify missing features:
 - Review [Structurizr DSL](https://docs.structurizr.com/dsl) latest features
+- Read [C4 DSL Gap Analysis](docs/C4-DSL-GAP-ANALYSIS.md) for the current support matrix
 - Identify features present in DSL but missing in C4Sharp.NET
 - Prioritize features based on user needs
 - Create implementation plan
+
+Current phased focus from the analysis:
+1. DSL foundation: workspace/model/views/identifiers/implied relationships
+2. DSL directives and composition: includes/scripts/expressions/document composition
+3. Ecosystem parity: groups, archetypes/patterns, workspace extension, plugins, ADR handling
+
+Status: the structured DSL foundation import boundary is now implemented in `StacyClouds.C4Sharp.Dsl`.
 
 ### Medium Priority
 
@@ -98,7 +106,7 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 ## Version History
 
 ### 2.0.0 (2026)
-- Multi-framework support (.NET 8, 9, 10)
+- Multi-framework support (.NET 8, 9, 10, 11)
 - Updated dependencies
 - Security fixes
 - Rebranding to C4Sharp.NET

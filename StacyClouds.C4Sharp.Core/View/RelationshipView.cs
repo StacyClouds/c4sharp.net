@@ -74,6 +74,63 @@ namespace StacyClouds.C4Sharp
         }
 
         /// <summary>
+        /// Replaces the connector vertices for this relationship view.
+        /// </summary>
+        /// <param name="vertices">The ordered connector vertices.</param>
+        public void SetVertices(IEnumerable<Vertex> vertices)
+        {
+            if (vertices == null)
+            {
+                throw new ArgumentNullException(nameof(vertices));
+            }
+
+            List<Vertex> replacement = new List<Vertex>(vertices);
+            if (replacement.Any(vertex => vertex == null))
+            {
+                throw new ArgumentException("Connector vertices cannot contain null values.", nameof(vertices));
+            }
+
+            _vertices = replacement;
+        }
+
+        /// <summary>
+        /// Adds a connector vertex to the end of this relationship view.
+        /// </summary>
+        /// <param name="vertex">The connector vertex to add.</param>
+        public void AddVertex(Vertex vertex)
+        {
+            if (vertex == null)
+            {
+                throw new ArgumentNullException(nameof(vertex));
+            }
+
+            _vertices.Add(vertex);
+        }
+
+        /// <summary>
+        /// Removes a connector vertex from this relationship view.
+        /// </summary>
+        /// <param name="vertex">The connector vertex to remove.</param>
+        /// <returns>true if the vertex was removed; otherwise, false.</returns>
+        public bool RemoveVertex(Vertex vertex)
+        {
+            if (vertex == null)
+            {
+                throw new ArgumentNullException(nameof(vertex));
+            }
+
+            return _vertices.Remove(vertex);
+        }
+
+        /// <summary>
+        /// Removes all connector vertices from this relationship view.
+        /// </summary>
+        public void ClearVertices()
+        {
+            _vertices.Clear();
+        }
+
+        /// <summary>
         /// The routing of the line.
         /// </summary>
         [DataMember(Name = "routing", EmitDefaultValue = false)]

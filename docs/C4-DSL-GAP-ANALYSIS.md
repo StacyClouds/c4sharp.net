@@ -1,214 +1,69 @@
 # C4 DSL Gap Analysis
 
-This document identifies features in the [Structurizr DSL](https://docs.structurizr.com/dsl) that are missing or different in C4Sharp.NET.
+Baseline: [Structurizr DSL](https://docs.structurizr.com/dsl) compared with the current C4Sharp.NET codebase.
 
-## Analysis Date
-February 2026
+## Summary
 
-## Methodology
-This analysis compares C4Sharp.NET (formerly Structurizr for .NET) against the current Structurizr DSL specification and identifies gaps.
+C4Sharp.NET already covers a strong core of the C4 model API: model elements, relationships, the major view types, styles, themes, animations, filtered views, deployment nodes, and documentation composition. The foundation phase now also has a structured DSL-shaped import boundary. The main remaining gaps are the DSL-specific text surface and its directive ecosystem: includes, scripts, expressions, plugins, workspace extension, and a reusable pattern/archetype layer.
 
-## Feature Comparison
+## Feature Matrix
 
-### ✅ Fully Supported Features
+| DSL area | Status | Current C4Sharp.NET evidence | Gap / note |
+|---|---|---|---|
+| Workspace / model | Supported | `Workspace`, `Model`, `JsonReader`, `JsonWriter`, `ViewSet`, `ViewConfiguration` | Core model serialization and view configuration already exist. |
+| DSL workspace import boundary | Partial | `StacyClouds.C4Sharp.Dsl.DslWorkspaceImporter`, `DslWorkspace`, `DslModel`, `DslViews` | Foundation import boundary exists for structured workspace/model/view inputs; DSL text parsing and directives remain future work. |
+| Views (system/context/container/component/dynamic/deployment/filtered) | Supported | `ViewSet.CreateSystemLandscapeView`, `CreateSystemContextView`, `CreateContainerView`, `CreateComponentView`, `CreateDynamicView`, `CreateDeploymentView`, `CreateFilteredView` | Major DSL view types are already represented in the API. |
+| Styles / themes | Supported | `ViewConfiguration.Styles`, `ViewConfiguration.Theme(s)`, `Styles`, `ElementStyle`, `RelationshipStyle` | Theme URLs and styling are supported, though not via a DSL text parser. |
+| Animations | Supported | `StaticView.AddAnimation(...)` and the example programs in `StacyClouds.C4Sharp.Examples/` | Animation steps are modeled directly in the API. |
+| Documentation sections | Partial | `StructurizrDocumentationTemplate`, `AddContextSection`, `AddDeploymentSection`, etc. | Documentation is supported as file-based composition, not as DSL text directives. |
+| Implied relationships | Partial | `Model.ImpliedRelationshipsStrategy`, `DefaultImpliedRelationshipsStrategy`, `CreateImpliedRelationshipsUnlessAnyRelationshipExistsStrategy`, `CreateImpliedRelationshipsUnlessSameRelationshipExistsStrategy` | The strategy seam exists, but there is no DSL parser/directive layer. |
+| Deployment groups / deployment modeling | Partial | `DeploymentNode.Add(...)`, `ContainerInstance.DeploymentGroup`, `SoftwareSystemInstance.DeploymentGroup`, examples in `BigBankPlc.cs` and `HttpHealthChecks.cs` | The model supports deployment groups and nested deployment nodes; DSL syntax and import/export parity are still missing. |
+| Identifiers | Partial | `IdGenerator`, `SequentialIntegerIdGeneratorStrategy`, `Model.IdGenerator` | There is a generator seam, but not the DSL’s identifier policies/directives. |
+| Groups | Missing | No grouping API or DSL grouping surface found in the codebase | DSL group semantics are not represented today. |
+| Includes | Missing | No DSL include/import layer found in core, client, or examples | No parser or include resolution exists today. |
+| Scripts | Missing | No DSL script execution surface found | No `!script`-style support or execution model exists. |
+| Expressions | Missing | No expression parser/evaluator found | No support for DSL expressions/templating. |
+| Archetypes / patterns | Missing | Only hand-built examples and samples exist | No reusable DSL pattern layer or archetype catalog exists. |
+| Plugins | Missing | No plugin extension surface found | No Mermaid/PlantUML-style DSL plugin system exists. |
+| Workspace extension | Missing | No workspace extension loader found | No DSL workspace extension mechanism exists. |
+| ADRs | Missing | Documentation examples exist, but no DSL ADR directive/import model | No DSL ADR feature exists. |
 
-- **Core Model Elements**
-  - Person
-  - Software System
-  - Container
-  - Component
-  - Relationships
-  - Tags
-  - Properties
+## Evidence Notes
 
-- **Views**
-  - System Context Diagram
-  - Container Diagram
-  - Component Diagram
-  - Dynamic Diagram
-  - Deployment Diagram
-  - System Landscape Diagram
-  - Filtered Views
+- Core model and view support is visible in `StacyClouds.C4Sharp.Core/View/ViewSet.cs`, `ViewConfiguration.cs`, `StaticView.cs`, `Model.cs`, `DeploymentNode.cs`, and the example programs under `StacyClouds.C4Sharp.Examples/`.
+- Documentation composition is visible in `StacyClouds.C4Sharp.Examples/StructurizrDocumentationExample.cs` and `FinancialRiskSystem.cs`.
+- Custom ID generation and implied-relationships strategy seams are visible in `StacyClouds.C4Sharp.Core/Model/IdGenerator.cs`, `SequentialIntegerIdGeneratorStrategy.cs`, `ImpliedRelationshipsStrategy.cs`, and `DefaultImpliedRelationshipsStrategy.cs`.
 
-- **Styling**
-  - Element styles (background, color, shape, icon, etc.)
-  - Relationship styles (color, thickness, dashed, etc.)
-  - Themes support
-  - Corporate branding
+## Phased Closure Plan
 
-- **Documentation**
-  - Markdown and AsciiDoc support
-  - Documentation sections
-  - Architecture Decision Records (ADRs)
-  - Multiple documentation formats (Structurizr, arc42, Viewpoints & Perspectives)
-  - Images and diagrams
+### Phase 1 — DSL foundation
+- Add a DSL import/export boundary that can represent workspace/model/view structures.
+- Close identifier semantics and implied-relationships parity where the DSL requires it.
+- Preserve the current API-first model while enabling DSL-shaped inputs.
 
-### ⚠️ Partially Supported Features
+### Phase 2 — DSL directives and composition
+- Add include resolution.
+- Add script/expression support.
+- Add better documentation-text composition so DSL docs can round-trip more naturally.
 
-- **Workspace Features**
-  - ✅ Basic workspace configuration
-  - ✅ User/role management
-  - ❌ Workspace extends (DSL only)
-  - ❌ Include files (DSL only)
-  - ❌ Variables and constants (DSL only)
+### Phase 3 — Ecosystem parity
+- Add groups, archetypes/pattern support, and workspace extension support.
+- Add plugin support (for example Mermaid/PlantUML integrations).
+- Add ADR-style document handling if needed for parity.
 
-- **Model Features**
-  - ✅ Basic enterprise boundary
-  - ❌ Group elements
-  - ❌ Model identifiers for referencing
-  - ❌ Implied relationships configuration
+## Recommended First Follow-up Change
 
-### ❌ Missing Features
+Start with a DSL parser/import layer for the foundation areas:
+1. workspace
+2. model
+3. views
+4. identifiers
+5. implied relationships
 
-1. **DSL-Specific Features** (Not applicable to code-based API)
-   - Script/file-based definition
-   - Include/import statements
-   - Variable substitution
-   - Expressions and calculations
+That gives the highest leverage because it unlocks the remaining directive ecosystem and provides the base for future compatibility work.
 
-2. **Recent DSL Additions** (Need investigation)
-   - Custom elements and relationships
-   - Element metadata
-   - Relationship perspectives
-   - Auto-layout customization
-   - Animation steps (beyond basic dynamic views)
+## Current Foundation Status
 
-3. **Advanced Styling**
-   - Workspace-level themes from URLs
-   - Element border styles
-   - Relationship positions
-   - Custom diagram keys
-
-4. **Deployment Features**
-   - Infrastructure nodes groups
-   - Deployment environments beyond basic support
-   - Container instances with custom properties
-
-5. **View Features**
-   - Image views
-   - Enterprise context diagrams
-   - Custom diagrams beyond standard C4 types
-   - View animation steps
-
-## Priority Assessment
-
-### High Priority Gaps
-
-These features would significantly enhance C4Sharp.NET:
-
-1. **Group Elements Support**
-   - Common requirement for organizing complex diagrams
-   - Present in DSL, missing in .NET
-   - Relatively straightforward to implement
-
-2. **Implied Relationships Configuration**
-   - Control automatic relationship creation
-   - Important for large models
-   - Moderate implementation complexity
-
-3. **Enhanced Deployment Support**
-   - Better infrastructure modeling
-   - Container instances with properties
-   - Deployment environment grouping
-
-### Medium Priority Gaps
-
-Useful but not critical:
-
-1. **Animation Steps**
-   - Enhanced dynamic views
-   - Better storytelling in diagrams
-   - Complex implementation
-
-2. **Custom Element Properties**
-   - Extensibility for domain-specific needs
-   - Metadata attachment
-   - Moderate complexity
-
-3. **Advanced Styling Options**
-   - More granular control
-   - Border customization
-   - Element positioning hints
-
-### Low Priority Gaps
-
-Nice-to-have features:
-
-1. **Image Views**
-   - Supplementary documentation
-   - Low complexity
-
-2. **Custom View Types**
-   - Beyond standard C4
-   - Complex implementation
-   - Limited use cases
-
-## Recommendations
-
-1. **Maintain Core C4 Compatibility**
-   - Focus on standard C4 model elements
-   - Ensure compatibility with Structurizr visualization
-
-2. **Prioritize Common Use Cases**
-   - Group elements (high demand)
-   - Better deployment modeling
-   - Relationship control
-
-3. **Document DSL vs. Code Differences**
-   - Clear documentation of what's different
-   - Migration guide from DSL to code
-   - When to use each approach
-
-4. **Consider Future Enhancements**
-   - Track DSL evolution
-   - Evaluate new features for inclusion
-   - Community feedback on priorities
-
-## Implementation Plan
-
-### Phase 1: Group Elements
-- Design API for grouping
-- Implement in model
-- Update serialization
-- Add tests
-- Update documentation
-
-### Phase 2: Implied Relationships
-- Add configuration options
-- Implement relationship rules
-- Update model hydration
-- Add tests
-
-### Phase 3: Enhanced Deployment
-- Extend deployment model
-- Add infrastructure grouping
-- Container instance properties
-- Update views
-
-### Phase 4: Advanced Features
-- Animation steps
-- Custom properties
-- Advanced styling
-
-## Resources
-
-- [Structurizr DSL Reference](https://docs.structurizr.com/dsl)
-- [C4 Model](https://c4model.com)
-- [Structurizr Cloud](https://structurizr.com)
-- [C4Sharp.NET Repository](https://github.com/StacyClouds/c4sharp.net)
-
-## Conclusion
-
-C4Sharp.NET provides solid support for core C4 modeling with .NET. The main gaps are in:
-1. Group elements for better organization
-2. Advanced deployment features
-3. Some newer DSL features
-
-These gaps are opportunities for enhancement rather than critical issues. The library is fully functional for standard C4 modeling use cases.
-
-## Next Steps
-
-1. Create GitHub issues for high-priority gaps
-2. Gather community feedback on priorities
-3. Start implementation of top-requested features
-4. Regular review against DSL updates
+- `StacyClouds.C4Sharp.Dsl.DslWorkspaceImporter` now covers structured workspace/model/view imports.
+- Explicit identifiers are preserved and missing identifiers are generated deterministically.
+- Imported relationships still honor the configured implied-relationship strategy.

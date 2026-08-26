@@ -1,0 +1,36 @@
+﻿@page "/"
+@using StacyClouds.C4Sharp.Examples
+@using StacyClouds.C4Sharp.Renderer
+
+<PageTitle>Big Bank SVG layouts</PageTitle>
+
+<main>
+    <p class="eyebrow">C4Sharp.NET</p>
+    <h1>Big Bank SVG layouts</h1>
+    <p>Browse each view from the Big Bank example workspace.</p>
+    <p><a href="editor">Open the interactive workspace editor</a></p>
+
+    <label for="view-key">View</label>
+    <select id="view-key" @bind="selectedKey">
+        @foreach (string key in diagrams.Keys)
+        {
+            <option value="@key">@key</option>
+        }
+    </select>
+
+    @if (!string.IsNullOrEmpty(selectedKey))
+    {
+        <iframe class="diagram" title="@selectedKey SVG diagram" srcdoc="@diagrams[selectedKey]"></iframe>
+    }
+</main>
+
+@code {
+    private IReadOnlyDictionary<string, string> diagrams = new Dictionary<string, string>();
+    private string? selectedKey;
+
+    protected override void OnInitialized()
+    {
+        diagrams = new SvgWorkspaceRenderer().Render(BigBankPlc.Create());
+        selectedKey = diagrams.Keys.FirstOrDefault();
+    }
+}

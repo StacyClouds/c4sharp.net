@@ -1,0 +1,66 @@
+## ADDED Requirements
+
+### Requirement: Provide an optional Razor editor package
+The system SHALL provide `StacyClouds.C4Sharp.Editor` as a separately packable Razor class library targeting every framework supported by the renderer. The package SHALL depend on the renderer package and SHALL not require the renderer package to reference Razor or ASP.NET Core.
+
+#### Scenario: Consumer uses only the renderer package
+- **WHEN** an application references `StacyClouds.C4Sharp.Renderer` but not `StacyClouds.C4Sharp.Editor`
+- **THEN** it can render workspace SVG documents without Razor component dependencies or editor static assets
+
+### Requirement: Navigate workspace views
+The workspace editor component SHALL accept a workspace and SHALL provide a collapsible side panel containing a thumbnail for every rendered workspace view. Selecting a thumbnail SHALL load that view into the interactive editor surface. The component SHALL accept an optional initial view key.
+
+#### Scenario: User selects a workspace view
+- **WHEN** a user selects a thumbnail in the workspace editor navigator
+- **THEN** the component displays the renderer's SVG document for that view in the active editing surface
+
+#### Scenario: Consumer embeds a single view editor
+- **WHEN** a consumer supplies a workspace and view key to the focused view editor component
+- **THEN** the component displays the renderer's SVG document for that view without a workspace navigator
+
+### Requirement: Persist element drag positions
+The editor component SHALL update the matching `ElementView.X` and `ElementView.Y` values in the supplied workspace after an element drag completes, and SHALL raise its layout-changed callback. It SHALL visually move the element during the drag before persisting the final position.
+
+#### Scenario: User moves an element
+- **WHEN** a user drags an element to a new SVG coordinate and releases it
+- **THEN** the element view in the supplied workspace stores that coordinate and the component rerenders the SVG
+
+#### Scenario: User drags an initially auto-laid-out view
+- **WHEN** a user moves one element in a view whose elements use the renderer's deterministic layout
+- **THEN** every untouched element remains at its deterministic layout position
+
+#### Scenario: User drags an element with connectors
+- **WHEN** a user drags an element connected by one or more relationships
+- **THEN** each connected relationship endpoint and its label move with the element before the drag completes
+
+### Requirement: Insert connector vertices from double-clicks
+The editor component SHALL add a `Vertex` to the relationship view that a user double-clicks. It SHALL insert the vertex at the location that preserves the order of the existing connector path and SHALL raise its layout-changed callback.
+
+#### Scenario: User double-clicks a routed connector
+- **WHEN** a user double-clicks the second segment of a relationship containing an existing connector vertex
+- **THEN** the workspace relationship view contains the new vertex after the existing vertex and before the destination
+
+### Requirement: Keep edited diagrams visible and manageable
+The editor SHALL expand a rendered SVG viewport to contain elements and connector vertices outside its previous extent. Each connector vertex SHALL render as a draggable circular handle. Double-clicking a handle SHALL remove that vertex.
+
+#### Scenario: Edit extends past the previous SVG bounds
+- **WHEN** an element or connector vertex is positioned beyond the existing SVG extent
+- **THEN** the rendered SVG viewport includes the edited object
+
+#### Scenario: User adjusts or removes a connector vertex
+- **WHEN** a user drags a connector handle or double-clicks it
+- **THEN** the corresponding persisted vertex is moved or removed and the SVG rerenders
+
+### Requirement: Persist draggable relationship-label positions
+The editor SHALL allow a relationship label to be dragged without changing the workspace API. It SHALL persist the nearest position on the connector path using the existing `RelationshipView.Position` value.
+
+#### Scenario: User drags a relationship label
+- **WHEN** a user drags a relationship label along its connector
+- **THEN** its live position remains on the connector, the matching relationship view stores an updated label position, and the SVG rerenders
+
+### Requirement: Delegate workspace persistence to the host
+The workspace editor SHALL raise a save-requested callback when its user invokes Save. It SHALL not write the workspace to disk, a database, or a remote service itself.
+
+#### Scenario: User saves edited layout
+- **WHEN** a user invokes Save after changing a workspace layout
+- **THEN** the component raises its save-requested callback with the updated workspace

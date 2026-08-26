@@ -12,6 +12,7 @@ namespace StacyClouds.C4Sharp.Encryption
     {
 
         private const int InitializationVectorSizeInBytes = 16;
+        private static readonly HashAlgorithmName LegacyPbkdf2HashAlgorithm = HashAlgorithmName.SHA1;
 
         public override string Type
         {
@@ -80,12 +81,7 @@ namespace StacyClouds.C4Sharp.Encryption
                 {
                     aes.KeySize = KeySize;
                     aes.BlockSize = 128;
-
-                    var key = new Rfc2898DeriveBytes(
-                        Encoding.UTF8.GetBytes(Passphrase),
-                        hexStringToByteArray(Salt),
-                        IterationCount);
-                    aes.Key = key.GetBytes(aes.KeySize / 8);
+                    aes.Key = DeriveKeyBytes(aes.KeySize / 8);
                     aes.IV = hexStringToByteArray(Iv);
 
                     aes.Mode = CipherMode.CBC;
@@ -115,12 +111,7 @@ namespace StacyClouds.C4Sharp.Encryption
                 {
                     aes.KeySize = KeySize;
                     aes.BlockSize = 128;
-
-                    var key = new Rfc2898DeriveBytes(
-                        Encoding.UTF8.GetBytes(Passphrase),
-                        hexStringToByteArray(Salt),
-                        IterationCount);
-                    aes.Key = key.GetBytes(aes.KeySize / 8);
+                    aes.Key = DeriveKeyBytes(aes.KeySize / 8);
                     aes.IV = hexStringToByteArray(Iv);
 
                     aes.Mode = CipherMode.CBC;
@@ -148,6 +139,16 @@ namespace StacyClouds.C4Sharp.Encryption
             }
 
             return bytes;
+        }
+
+        private byte[] DeriveKeyBytes(int keySizeInBytes)
+        {
+            return Rfc2898DeriveBytes.Pbkdf2(
+                Encoding.UTF8.GetBytes(Passphrase),
+                hexStringToByteArray(Salt),
+                IterationCount,
+                LegacyPbkdf2HashAlgorithm,
+                keySizeInBytes);
         }
 
     }

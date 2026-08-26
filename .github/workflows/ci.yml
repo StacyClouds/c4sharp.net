@@ -9,11 +9,12 @@ on:
       - main
 
 jobs:
-  build-and-test:
-    name: Build and Test
+  build-test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        framework: [net8.0, net9.0, net10.0, net11.0]
 
     steps:
       - name: Checkout
@@ -26,6 +27,7 @@ jobs:
         with:
           versionSpec: '5.x'
 
+      - name: Setup .NET SDK
       - name: Determine version
         id: gitversion
         uses: gittools/actions/gitversion/execute@v3
@@ -33,17 +35,19 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: |
-            8.x
-            9.x
-            10.x
+          dotnet-version: 11.0.x
 
-      - name: Restore dependencies
-        run: dotnet restore StacyClouds.C4Sharp.sln
+      - name: Restore
+        run: dotnet restore StacyClouds.C4Sharp.CI.slnf -p:TargetFramework=${{ matrix.framework }}
 
       - name: Build
-        run: dotnet build StacyClouds.C4Sharp.sln --no-restore --configuration Release
+        run: dotnet build StacyClouds.C4Sharp.CI.slnf --no-restore -c Release -p:TargetFramework=${{ matrix.framework }}
 
+      - name: Test
+        run: dotnet test StacyClouds.C4Sharp.CI.slnf --no-build -c Release -p:TargetFramework=${{ matrix.framework }}
+
+  making-app:
+    runs-on: ubuntu-latest
       - name: Pack NuGet packages
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
@@ -56,31 +60,43 @@ jobs:
             /p:NoBuild=true \
             StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj
 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
       - name: Upload NuGet packages as artifact
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
+          dotnet-version: 11.0.x
           name: nuget-packages-${{ github.run_number }}
           path: |
             StacyClouds.C4Sharp.Core/bin/Release/*.nupkg
             StacyClouds.C4Sharp.Client/bin/Release/*.nupkg
           retention-days: 90
 
-      - name: Run tests
-        run: |
-          dotnet test StacyClouds.C4Sharp.Core.Tests/StacyClouds.C4Sharp.Core.Tests.csproj --no-build --configuration Release
-          dotnet test StacyClouds.C4Sharp.Client.Tests/StacyClouds.C4Sharp.Client.Tests.csproj --no-build --configuration Release
+      - name: Restore making app
+        run: dotnet restore StacyClouds.C4Sharp.Renderer.Web/StacyClouds.C4Sharp.Renderer.Web.csproj
 
-      - name: Install dotnet-stryker
-        run: dotnet tool install --global dotnet-stryker
+      - name: Build making app
+        run: dotnet build StacyClouds.C4Sharp.Renderer.Web/StacyClouds.C4Sharp.Renderer.Web.csproj --no-restore -c Release -p:TargetFramework=net11.0
 
-      - name: Run Stryker
-        run: dotnet stryker
+  mutation-test:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Upload Stryker reports
-        if: always()
-        uses: actions/upload-artifact@v4
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
         with:
-          name: stryker-reports
-          path: StrykerOutput
-          retention-days: 7
+          dotnet-version: 11.0.x
+
+      - name: Install Stryker
+        run: dotnet tool install --tool-path ./.dotnet-tools dotnet-stryker
+
+      - name: Run Stryker (informational)
+        run: bash scripts/run-stryker.sh

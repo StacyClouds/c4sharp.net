@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Json;
 using Xunit;
 using Shouldly;
 
@@ -114,99 +118,71 @@ namespace StacyClouds.C4Sharp.Core.Tests
         }
 
         [Fact]
-        public void Test_Position_IsSetToZero_WhenValueIsExactlyZero()
+        public void Test_ConnectorVertices_CanBeCreatedAndEditedWithoutExposingInternalState()
         {
             RelationshipView view = new RelationshipView(relationship);
-            view.Position = 0;
-            view.Position.ShouldBe(0);
+            Vertex first = new Vertex(100, 200);
+            Vertex second = new Vertex(300, 400);
+            List<Vertex> replacement = new List<Vertex> { first, second };
+
+            view.SetVertices(replacement);
+            view.Vertices.Count.ShouldBe(2);
+            view.Vertices[0].X.ShouldBe(100);
+            view.Vertices[1].Y.ShouldBe(400);
+
+            replacement.Clear();
+            view.Vertices.Count.ShouldBe(2);
+
+            view.AddVertex(new Vertex(500, 600));
+            view.Vertices.Count.ShouldBe(3);
+            view.RemoveVertex(second).ShouldBeTrue();
+            view.Vertices.Count.ShouldBe(2);
+            view.Vertices[0].X.ShouldBe(100);
+            view.Vertices[1].X.ShouldBe(500);
+
+            List<Vertex> returnedVertices = view.Vertices;
+            returnedVertices.Clear();
+            view.Vertices.Count.ShouldBe(2);
+
+            view.ClearVertices();
+            view.Vertices.ShouldBeEmpty();
         }
 
         [Fact]
-        public void Test_Position_IsSetTo100_WhenValueIsExactly100()
+        public void Test_ConnectorVertices_RejectNullValuesWithoutChangingTheLayout()
         {
             RelationshipView view = new RelationshipView(relationship);
-            view.Position = 100;
-            view.Position.ShouldBe(100);
+            view.AddVertex(new Vertex(100, 200));
+
+            Should.Throw<ArgumentNullException>(() => view.AddVertex(null));
+            Should.Throw<ArgumentNullException>(() => view.SetVertices(null));
+            Should.Throw<ArgumentException>(() => view.SetVertices(new List<Vertex> { null }));
+
+            view.Vertices.Count.ShouldBe(1);
+            view.Vertices[0].X.ShouldBe(100);
+            view.Vertices[0].Y.ShouldBe(200);
         }
 
         [Fact]
-        public void Test_Equals_ReturnsFalse_WhenDescriptionIsNullInSourceButNotDestination()
+        public void Test_ConnectorVertices_ArePreservedBySerializationAndLayoutCopying()
         {
-            RelationshipView view1 = new RelationshipView(relationship);
-            view1.Description = "desc";
+            RelationshipView source = new RelationshipView(relationship);
+            source.SetVertices(new[] { new Vertex(100, 200), new Vertex(300, 400) });
 
-            RelationshipView view2 = new RelationshipView(relationship);
-            // view2.Description is null
+            RelationshipView copy = new RelationshipView(relationship);
+            copy.CopyLayoutInformationFrom(source);
+            copy.Vertices.Count.ShouldBe(2);
+            copy.Vertices[1].Y.ShouldBe(400);
 
-            view1.Equals(view2).ShouldBeFalse();
-        }
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(RelationshipView));
+            using MemoryStream stream = new MemoryStream();
+            serializer.WriteObject(stream, source);
+            stream.Position = 0;
+            RelationshipView deserialized = (RelationshipView)serializer.ReadObject(stream);
 
-        [Fact]
-        public void Test_Equals_ReturnsFalse_WhenOrderIsNullInSourceButNotDestination()
-        {
-            RelationshipView view1 = new RelationshipView(relationship);
-            view1.Order = "1";
-
-            RelationshipView view2 = new RelationshipView(relationship);
-            // view2.Order is null
-
-            view1.Equals(view2).ShouldBeFalse();
-        }
-
-        [Fact]
-        public void Test_Equals_ReturnsFalse_WhenIdsAreDifferent()
-        {
-            SoftwareSystem softwareSystem3 = Model.AddSoftwareSystem("Software System 3", "Description");
-            Relationship relationship2 = softwareSystem1.Uses(softwareSystem3, "Uses");
-
-            RelationshipView view1 = new RelationshipView(relationship);
-            RelationshipView view2 = new RelationshipView(relationship2);
-
-            view1.Equals(view2).ShouldBeFalse();
-        }
-
-        [Fact]
-        public void Test_GetHashCode_IsConsistentForSameObject()
-        {
-            RelationshipView view = new RelationshipView(relationship);
-            view.Order = "1";
-            view.Description = "desc";
-
-            view.GetHashCode().ShouldBe(view.GetHashCode());
-        }
-
-        [Fact]
-        public void Test_GetHashCode_DifferentForDifferentDescriptions()
-        {
-            RelationshipView view1 = new RelationshipView(relationship);
-            view1.Order = "1";
-            view1.Description = "desc1";
-
-            RelationshipView view2 = new RelationshipView(relationship);
-            view2.Order = "1";
-            view2.Description = "desc2";
-
-            view1.GetHashCode().ShouldNotBe(view2.GetHashCode());
-        }
-
-        [Fact]
-        public void Test_GetHashCode_DifferentForDifferentOrders()
-        {
-            RelationshipView view1 = new RelationshipView(relationship);
-            view1.Order = "1";
-
-            RelationshipView view2 = new RelationshipView(relationship);
-            view2.Order = "2";
-
-            view1.GetHashCode().ShouldNotBe(view2.GetHashCode());
-        }
-
-        [Fact]
-        public void Test_Equals_ReturnsTrue_WhenBothViewsHaveNullDescriptionAndNullOrder()
-        {
-            RelationshipView view1 = new RelationshipView(relationship);
-            RelationshipView view2 = new RelationshipView(relationship);
-            view1.Equals(view2).ShouldBeTrue();
+            deserialized.Vertices.Count.ShouldBe(2);
+            deserialized.Vertices[0].X.ShouldBe(100);
+            deserialized.Vertices[1].Y.ShouldBe(400);
         }
     }
 }

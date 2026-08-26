@@ -1,0 +1,77 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/docs/">
+    <File Path="docs/api-client.md" />
+    <File Path="docs/binaries.md" />
+    <File Path="docs/changelog.md" />
+    <File Path="docs/client-side-encryption.md" />
+    <File Path="docs/component-diagram.md" />
+    <File Path="docs/container-diagram.md" />
+    <File Path="docs/corporate-branding.md" />
+    <File Path="docs/deployment-diagram.md" />
+    <File Path="docs/documentation-arc42.md" />
+    <File Path="docs/documentation-structurizr.md" />
+    <File Path="docs/documentation-viewpoints-and-perspectives.md" />
+    <File Path="docs/documentation.md" />
+    <File Path="docs/dynamic-diagram.md" />
+    <File Path="docs/filtered-views.md" />
+    <File Path="docs/getting-started.md" />
+    <File Path="docs/health-checks.md" />
+    <File Path="docs/implied-relationships.md" />
+    <File Path="docs/nuget.md" />
+    <File Path="docs/styling-elements.md" />
+    <File Path="docs/styling-relationships.md" />
+    <File Path="docs/system-context-diagram.md" />
+    <File Path="docs/system-landscape-diagram.md" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/docs/images/">
+    <File Path="docs/images/basic-concepts.png" />
+    <File Path="docs/images/component-diagram-1.png" />
+    <File Path="docs/images/container-diagram-1.png" />
+    <File Path="docs/images/corporate-branding-1.png" />
+    <File Path="docs/images/corporate-branding-2.png" />
+    <File Path="docs/images/corporate-branding-3.png" />
+    <File Path="docs/images/corporate-branding-4.png" />
+    <File Path="docs/images/deployment-diagram-1.png" />
+    <File Path="docs/images/documentation-1.png" />
+    <File Path="docs/images/documentation-2.png" />
+    <File Path="docs/images/documentation-3.png" />
+    <File Path="docs/images/dynamic-diagram-1.png" />
+    <File Path="docs/images/enterprise-context-diagram-1.png" />
+    <File Path="docs/images/filtered-views-1.png" />
+    <File Path="docs/images/filtered-views-2.png" />
+    <File Path="docs/images/getting-started-diagram-key.png" />
+    <File Path="docs/images/getting-started.png" />
+    <File Path="docs/images/structurizr-banner.png" />
+    <File Path="docs/images/structurizr-overview.png" />
+    <File Path="docs/images/styling-elements-1.png" />
+    <File Path="docs/images/styling-elements-2.png" />
+    <File Path="docs/images/styling-elements-3.png" />
+    <File Path="docs/images/styling-elements-4.png" />
+    <File Path="docs/images/styling-elements-5.png" />
+    <File Path="docs/images/styling-elements-6.png" />
+    <File Path="docs/images/styling-relationships-1.png" />
+    <File Path="docs/images/styling-relationships-2.png" />
+    <File Path="docs/images/styling-relationships-3.png" />
+    <File Path="docs/images/styling-relationships-4.png" />
+    <File Path="docs/images/system-context-diagram-1.png" />
+  </Folder>
+  <Folder Name="/etc/">
+    <File Path="appveyor.yml" />
+  </Folder>
+  <Project Path="StacyClouds.C4Sharp.Client.Tests/StacyClouds.C4Sharp.Client.Tests.csproj" />
+  <Project Path="StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj" />
+  <Project Path="StacyClouds.C4Sharp.Core.Tests/StacyClouds.C4Sharp.Core.Tests.csproj" />
+  <Project Path="StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj" />
+  <Project Path="StacyClouds.C4Sharp.Examples/StacyClouds.C4Sharp.Examples.csproj" />
+  <Project Path="StacyClouds.C4Sharp.Renderer.Tests/StacyClouds.C4Sharp.Renderer.Tests.csproj" />
+  <Project Path="StacyClouds.C4Sharp.Editor.Tests/StacyClouds.C4Sharp.Editor.Tests.csproj" />
+  <Project Path="StacyClouds.C4Sharp.Editor/StacyClouds.C4Sharp.Editor.csproj" />
+  <Project Path="StacyClouds.C4Sharp.Renderer.Web/StacyClouds.C4Sharp.Renderer.Web.csproj" />
+  <Project Path="StacyClouds.C4Sharp.Renderer/StacyClouds.C4Sharp.Renderer.csproj" />
+</Solution>

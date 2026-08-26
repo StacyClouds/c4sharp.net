@@ -1,0 +1,14 @@
+{
+  "solution": {
+    "path": "StacyClouds.C4Sharp.slnx",
+    "projects": [
+      "StacyClouds.C4Sharp.Client.Tests/StacyClouds.C4Sharp.Client.Tests.csproj",
+      "StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj",
+      "StacyClouds.C4Sharp.Core.Tests/StacyClouds.C4Sharp.Core.Tests.csproj",
+      "StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj",
+      "StacyClouds.C4Sharp.Examples/StacyClouds.C4Sharp.Examples.csproj",
+      "StacyClouds.C4Sharp.Renderer.Tests/StacyClouds.C4Sharp.Renderer.Tests.csproj",
+      "StacyClouds.C4Sharp.Renderer/StacyClouds.C4Sharp.Renderer.csproj"
+    ]
+  }
+}

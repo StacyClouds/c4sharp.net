@@ -241,3 +241,5 @@ _Pvt_Extensions
 
 # Structurizr JSON files
 Structurizr.Examples/*.json
+
+**/.DS_Store
