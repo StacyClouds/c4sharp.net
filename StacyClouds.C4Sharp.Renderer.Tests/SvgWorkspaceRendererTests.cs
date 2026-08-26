@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Shouldly;
@@ -18,6 +19,136 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
 
             diagrams.Keys.ShouldBe(new[] { "dynamic", "landscape" }, ignoreOrder: true);
             diagrams["landscape"].ShouldStartWith("<svg");
+        }
+
+        [Fact]
+        public void Render_WithPredecessor_CopiesMatchingLayoutAndRendersIt()
+        {
+            Workspace predecessor = new Workspace("Predecessor", "Description");
+            SoftwareSystem predecessorSource = predecessor.Model.AddSoftwareSystem("Source", "Description");
+            SoftwareSystem predecessorDestination = predecessor.Model.AddSoftwareSystem("Destination", "Description");
+            Relationship predecessorRelationship = predecessorSource.Uses(predecessorDestination, "Calls");
+            SystemLandscapeView predecessorView = predecessor.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            predecessorView.AddAllSoftwareSystems();
+            predecessorView.Dimensions = new Dimensions(900, 700);
+            predecessorView.GetElementView(predecessorSource).X = 210;
+            predecessorView.GetElementView(predecessorSource).Y = 150;
+            predecessorView.GetElementView(predecessorDestination).X = 650;
+            predecessorView.GetElementView(predecessorDestination).Y = 450;
+            RelationshipView predecessorRelationshipView = predecessorView.GetRelationshipView(predecessorRelationship);
+            predecessorRelationshipView.SetVertices(new[] { new Vertex(400, 150), new Vertex(400, 450) });
+            predecessorRelationshipView.Routing = Routing.Orthogonal;
+            predecessorRelationshipView.Position = 75;
+
+            Workspace successor = new Workspace("Successor", "Description");
+            SoftwareSystem successorSource = successor.Model.AddSoftwareSystem("Source", "Description");
+            SoftwareSystem successorDestination = successor.Model.AddSoftwareSystem("Destination", "Description");
+            Relationship successorRelationship = successorSource.Uses(successorDestination, "Calls");
+            SystemLandscapeView successorView = successor.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            successorView.AddAllSoftwareSystems();
+
+            string svg = new SvgWorkspaceRenderer().Render(successor, predecessor)["landscape"];
+
+            successorView.GetElementView(successorSource).X.ShouldBe(210);
+            successorView.GetElementView(successorSource).Y.ShouldBe(150);
+            successorView.GetElementView(successorDestination).X.ShouldBe(650);
+            successorView.GetElementView(successorDestination).Y.ShouldBe(450);
+            successorView.Dimensions.Width.ShouldBe(900);
+            successorView.Dimensions.Height.ShouldBe(700);
+            RelationshipView successorRelationshipView = successorView.GetRelationshipView(successorRelationship);
+            successorRelationshipView.Routing.ShouldBe(Routing.Orthogonal);
+            successorRelationshipView.Position.ShouldBe(75);
+            successorRelationshipView.Vertices.Count.ShouldBe(2);
+            successorRelationshipView.Vertices[0].X.ShouldBe(400);
+            successorRelationshipView.Vertices[0].Y.ShouldBe(150);
+            successorRelationshipView.Vertices[1].X.ShouldBe(400);
+            successorRelationshipView.Vertices[1].Y.ShouldBe(450);
+            svg.ShouldContain("x=\"135\" y=\"115\"");
+            svg.ShouldContain("210,150 400,150 400,450 650,450");
+            svg.ShouldContain("data-c4-relationship-label-position=\"75\"");
+            predecessorView.GetElementView(predecessorSource).X.ShouldBe(210);
+        }
+
+        [Fact]
+        public void Render_WithPredecessor_PreservesExplicitSuccessorDimensions()
+        {
+            Workspace predecessor = new Workspace("Predecessor", "Description");
+            SystemLandscapeView predecessorView = predecessor.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            predecessorView.Dimensions = new Dimensions(900, 700);
+            Workspace successor = new Workspace("Successor", "Description");
+            SystemLandscapeView successorView = successor.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            successorView.Dimensions = new Dimensions(400, 300);
+
+            new SvgWorkspaceRenderer().Render(successor, predecessor);
+
+            successorView.Dimensions.Width.ShouldBe(400);
+            successorView.Dimensions.Height.ShouldBe(300);
+        }
+
+        [Fact]
+        public void Render_WithPredecessor_OmitsDeletedObjectsAndUsesDeterministicFallbackForNewElements()
+        {
+            Workspace predecessor = new Workspace("Predecessor", "Description");
+            SoftwareSystem sharedPredecessor = predecessor.Model.AddSoftwareSystem("Shared", "Description");
+            SoftwareSystem removedPredecessor = predecessor.Model.AddSoftwareSystem("Removed", "Description");
+            Relationship removedRelationship = sharedPredecessor.Uses(removedPredecessor, "Removed relationship");
+            SystemLandscapeView predecessorView = predecessor.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            predecessorView.AddAllSoftwareSystems();
+            predecessorView.GetElementView(sharedPredecessor).X = 300;
+            predecessorView.GetElementView(sharedPredecessor).Y = 200;
+            predecessorView.GetRelationshipView(removedRelationship).SetVertices(new[] { new Vertex(500, 200) });
+            SystemLandscapeView removedView = predecessor.Views.CreateSystemLandscapeView("removed", "Removed view");
+            removedView.Add(removedPredecessor);
+
+            Workspace successor = new Workspace("Successor", "Description");
+            SoftwareSystem sharedSuccessor = successor.Model.AddSoftwareSystem("Shared", "Description");
+            SoftwareSystem newSuccessor = successor.Model.AddSoftwareSystem("New", "New description");
+            SystemLandscapeView successorView = successor.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            successorView.AddAllSoftwareSystems();
+
+            SvgWorkspaceRenderer renderer = new SvgWorkspaceRenderer();
+            string first = renderer.Render(successor, predecessor)["landscape"];
+            string second = renderer.Render(successor, predecessor)["landscape"];
+
+            successorView.Elements.Count.ShouldBe(2);
+            successorView.Relationships.ShouldBeEmpty();
+            successorView.GetElementView(sharedSuccessor).X.ShouldBe(300);
+            successorView.GetElementView(newSuccessor).X.ShouldBe(0);
+            successorView.GetElementView(newSuccessor).Y.ShouldBe(0);
+            first.ShouldBe(second);
+            first.ShouldContain("New");
+            first.ShouldNotContain("Removed");
+            first.ShouldNotContain("Removed relationship");
+            renderer.Render(successor, predecessor).ContainsKey("removed").ShouldBeFalse();
+        }
+
+        [Fact]
+        public void Render_WithPredecessor_IgnoresUnmatchedViews()
+        {
+            Workspace predecessor = new Workspace("Predecessor", "Description");
+            predecessor.Views.CreateSystemLandscapeView("predecessor", "Predecessor");
+            Workspace successor = new Workspace("Successor", "Description");
+            SoftwareSystem system = successor.Model.AddSoftwareSystem("System", "Description");
+            SystemLandscapeView successorView = successor.Views.CreateSystemLandscapeView("successor", "Successor");
+            successorView.Add(system);
+            SvgWorkspaceRenderer renderer = new SvgWorkspaceRenderer();
+            string expected = renderer.Render(successor)["successor"];
+
+            string actual = renderer.Render(successor, predecessor)["successor"];
+
+            actual.ShouldBe(expected);
+            successorView.GetElementView(system).X.ShouldBe(0);
+            successorView.GetElementView(system).Y.ShouldBe(0);
+        }
+
+        [Fact]
+        public void Render_WithPredecessor_RejectsNullWorkspaces()
+        {
+            Workspace workspace = new Workspace("Workspace", "Description");
+            SvgWorkspaceRenderer renderer = new SvgWorkspaceRenderer();
+
+            Should.Throw<ArgumentNullException>(() => renderer.Render(null, workspace)).ParamName.ShouldBe("workspace");
+            Should.Throw<ArgumentNullException>(() => renderer.Render(workspace, null)).ParamName.ShouldBe("predecessor");
         }
 
         [Fact]

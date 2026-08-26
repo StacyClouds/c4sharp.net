@@ -9,6 +9,21 @@ namespace StacyClouds.C4Sharp.Renderer
 	/// <summary>Renders the views in a workspace as standalone SVG documents.</summary>
 	public sealed class SvgWorkspaceRenderer
 	{
+		/// <summary>
+		/// Copies reusable layout from a predecessor workspace into the updated workspace, then renders its views as standalone SVG documents.
+		/// </summary>
+		/// <param name="workspace">The updated workspace to render and mutate with matching predecessor layout.</param>
+		/// <param name="predecessor">The read-only workspace that supplies saved layout information.</param>
+		/// <returns>A dictionary of SVG documents keyed by view key.</returns>
+		public IReadOnlyDictionary<string, string> Render(Workspace workspace, Workspace predecessor)
+		{
+			if (workspace == null) throw new ArgumentNullException(nameof(workspace));
+			if (predecessor == null) throw new ArgumentNullException(nameof(predecessor));
+
+			workspace.Views.CopyLayoutInformationFrom(predecessor.Views);
+			return Render(workspace);
+		}
+
 		public IReadOnlyDictionary<string, string> Render(Workspace workspace)
 		{
 			if (workspace == null) throw new ArgumentNullException(nameof(workspace));
