@@ -7,7 +7,8 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      id-token: write
 
     steps:
       - name: Checkout
@@ -47,21 +48,27 @@ jobs:
           dotnet pack StacyClouds.C4Sharp.Renderer/StacyClouds.C4Sharp.Renderer.csproj --no-build --no-restore -c Release -p:Version=${{ steps.gitversion.outputs.semVer }}
           dotnet pack StacyClouds.C4Sharp.Editor/StacyClouds.C4Sharp.Editor.csproj --no-build --no-restore -c Release -p:Version=${{ steps.gitversion.outputs.semVer }}
 
+      - name: NuGet login (OIDC)
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: StacyClouds
+
       - name: Publish to NuGet
         run: |
           dotnet nuget push StacyClouds.C4Sharp.Core/bin/Release/*.nupkg \
-            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate
           dotnet nuget push StacyClouds.C4Sharp.Client/bin/Release/*.nupkg \
-            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate
           dotnet nuget push StacyClouds.C4Sharp.Renderer/bin/Release/*.nupkg \
-            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate
           dotnet nuget push StacyClouds.C4Sharp.Editor/bin/Release/*.nupkg \
-            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate
