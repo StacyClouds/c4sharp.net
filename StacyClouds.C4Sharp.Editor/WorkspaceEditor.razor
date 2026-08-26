@@ -1,5 +1,6 @@
 @namespace StacyClouds.C4Sharp.Editor
 @using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
 @using StacyClouds.C4Sharp
 @using StacyClouds.C4Sharp.Renderer
 
@@ -10,9 +11,7 @@
 		{
 			@foreach (string key in diagrams.Keys)
 			{
-				<button type="button" class="c4sharp-workspace-editor__thumbnail @(key == selectedViewKey ? "is-selected" : "")" aria-pressed="@(key == selectedViewKey)" @onclick="() => SelectViewAsync(key)">
-					<span>@key</span><span class="c4sharp-workspace-editor__thumbnail-svg">@((MarkupString)diagrams[key])</span>
-				</button>
+				<ViewThumbnail ViewKey="@key" Thumbnail="@((MarkupString)diagrams[key])" Selected="@(key == selectedViewKey)" SelectedChanged="SelectViewAsync" />
 			}
 		}
 	</aside>
@@ -20,7 +19,7 @@
 		<header><strong>@selectedViewKey</strong><button type="button" @onclick="RequestSave">Save</button></header>
 		@if (!string.IsNullOrWhiteSpace(selectedViewKey))
 		{
-			<ViewEditor @key="selectedViewKey" Workspace="Workspace" ViewKey="selectedViewKey" LayoutChanged="LayoutChanged" />
+			<ViewEditor @key="selectedViewKey" Workspace="Workspace" ViewKey="@selectedViewKey" LayoutChanged="LayoutChanged" />
 		}
 	</div>
 </section>

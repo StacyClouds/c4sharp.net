@@ -1,6 +1,7 @@
 @page "/editor"
 @using StacyClouds.C4Sharp.Examples
 @using StacyClouds.C4Sharp.Editor
+@using StacyClouds.C4Sharp.Renderer
 
 <PageTitle>Big Bank workspace editor</PageTitle>
 
@@ -16,9 +17,15 @@
 </main>
 
 @code {
-	private Workspace workspace = BigBankPlc.Create();
+	private Workspace workspace = null!;
 	private string? selectedViewKey;
 	private bool saved;
+
+	protected override void OnInitialized()
+	{
+		workspace = BigBankPlc.Create();
+		selectedViewKey = new SvgWorkspaceRenderer().Render(workspace).Keys.FirstOrDefault();
+	}
 
 	private Task SaveRequested(Workspace editedWorkspace)
 	{

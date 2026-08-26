@@ -1,0 +1,16 @@
+@namespace StacyClouds.C4Sharp.Editor
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+
+<button type="button" class="c4sharp-workspace-editor__thumbnail @(Selected ? "is-selected" : "")" aria-pressed="@Selected" @onclick="SelectAsync">
+	<span>@ViewKey</span><span class="c4sharp-workspace-editor__thumbnail-svg">@Thumbnail</span>
+</button>
+
+@code {
+	[Parameter, EditorRequired] public string ViewKey { get; set; } = string.Empty;
+	[Parameter] public MarkupString Thumbnail { get; set; }
+	[Parameter] public bool Selected { get; set; }
+	[Parameter] public EventCallback<string> SelectedChanged { get; set; }
+
+	private Task SelectAsync() => SelectedChanged.InvokeAsync(ViewKey);
+}
