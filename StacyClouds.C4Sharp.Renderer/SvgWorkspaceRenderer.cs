@@ -40,19 +40,14 @@ namespace StacyClouds.C4Sharp.Renderer
 
         private static string RenderView(View view, string key, string description, Styles styles, FilteredView filtered = null)
         {
-            List<ElementView> elements = view.Elements.Where(element => IsIncluded(element, filtered)).OrderBy(element => element.Id, StringComparer.Ordinal).ToList();
-            Dictionary<string, ElementView> positioned = elements.ToDictionary(element => element.Id);
-            bool needsLayout = elements.Count > 1 && elements.All(element => element.X == 0 && element.Y == 0);
-            int width = view.Dimensions == null
+            bool needsLayout = elements.Count > 0 && elements.All(element => element.X == 0 && element.Y == 0);
                 ? Math.Max(800, elements.Select((element, index) => X(element, index, needsLayout) + 175).DefaultIfEmpty(800).Max())
                 : view.Dimensions.Width;
             int height = view.Dimensions == null
                 ? Math.Max(600, elements.Select((element, index) => Y(element, index, needsLayout) + 135).DefaultIfEmpty(600).Max())
                 : view.Dimensions.Height;
             StringBuilder svg = new StringBuilder();
-            svg.Append("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"").Append(width).Append("\" height=\"").Append(height).Append("\" viewBox=\"0 0 ").Append(width).Append(' ').Append(height).Append("\">");
-            svg.Append("<defs><marker id=\"arrow\" markerWidth=\"10\" markerHeight=\"10\" refX=\"9\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L0,6 L9,3 z\" fill=\"#707070\" /></marker></defs>");
-            svg.Append("<text x=\"20\" y=\"30\" font-family=\"Arial\" font-size=\"20\">").Append(Escape(string.IsNullOrEmpty(view.Title) ? key : view.Title)).Append("</text>");
+            svg.Append("<defs><marker id=\"arrow\" markerWidth=\"10\" markerHeight=\"10\" refX=\"9\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L0,6 L9,3 z\" fill=\"context-stroke\" /></marker></defs>");
             foreach (RelationshipView relationshipView in view.Relationships.Where(relationship => relationship.Relationship != null && positioned.ContainsKey(relationship.Relationship.Source.Id) && positioned.ContainsKey(relationship.Relationship.Destination.Id)))
             {
                 ElementView source = positioned[relationshipView.Relationship.Source.Id];
@@ -71,10 +66,7 @@ namespace StacyClouds.C4Sharp.Renderer
                 {
                     if (view is DynamicView && !string.IsNullOrEmpty(relationshipView.Order)) label = relationshipView.Order + ": " + label;
                     int labelPosition = relationshipView.Position ?? 50;
-                    int labelX = sourceX + (destinationX - sourceX) * labelPosition / 100;
-                    int labelY = sourceY + (destinationY - sourceY) * labelPosition / 100 - 8;
-                    svg.Append("<text x=\"").Append(labelX).Append("\" y=\"").Append(labelY).Append("\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"12\">").Append(Escape(label)).Append("</text>");
-                }
+                    svg.Append("<text x=\"").Append(labelX).Append("\" y=\"").Append(labelY).Append("\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"12\" fill=\"").Append(relationshipColor).Append("\">").Append(Escape(label)).Append("</text>");
             }
             foreach (ElementView element in elements)
             {
@@ -82,12 +74,12 @@ namespace StacyClouds.C4Sharp.Renderer
                 ElementStyle elementStyle = ResolveElementStyle(element.Element, styles);
                 string background = elementStyle == null || elementStyle.Background == null ? "#dddddd" : elementStyle.Background;
                 string stroke = elementStyle == null || elementStyle.Stroke == null ? "#707070" : elementStyle.Stroke;
+                string textColor = elementStyle == null || elementStyle.Color == null ? "#000000" : elementStyle.Color;
                 if (elementStyle != null && elementStyle.Shape == Shape.Circle)
                     svg.Append("<circle cx=\"").Append(x).Append("\" cy=\"").Append(y).Append("\" r=\"35\" fill=\"").Append(background).Append("\" stroke=\"").Append(stroke).Append("\" />");
                 else
                     svg.Append("<rect x=\"").Append(x - 75).Append("\" y=\"").Append(y - 35).Append("\" width=\"150\" height=\"70\" rx=\"8\" fill=\"").Append(background).Append("\" stroke=\"").Append(stroke).Append("\" />");
-                svg.Append("<text x=\"").Append(x).Append("\" y=\"").Append(y).Append("\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"14\">").Append(Escape(element.Element == null ? element.Id : element.Element.Name)).Append("</text>");
-            }
+                svg.Append("<text x=\"").Append(x).Append("\" y=\"").Append(y).Append("\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"14\" fill=\"").Append(textColor).Append("\">").Append(Escape(element.Element == null ? element.Id : element.Element.Name)).Append("</text>");
             return svg.Append("</svg>").ToString();
         }
 
