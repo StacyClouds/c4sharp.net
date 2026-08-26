@@ -200,10 +200,16 @@ dotnet tool install --global dotnet-stryker
 
 # Run mutation testing with repository config
 dotnet stryker --config-file stryker-config.json
+
+# Run mutation testing for the DSL foundation scope
+dotnet stryker --config-file stryker-dsl-config.json
 ```
 
 Current baseline scope is business-logic encryption code under
 `StacyClouds.C4Sharp.Client/Encryption/**/*.cs` with a break threshold of 80%.
+
+The DSL foundation scope covers `StacyClouds.C4Sharp.Core/Dsl/DslWorkspaceImporter.cs`
+and `StacyClouds.C4Sharp.Core/Dsl/DslIdGenerator.cs`.
 
 ### Creating NuGet Packages
 
@@ -234,9 +240,9 @@ c4sharp.net/
 Use this command set to validate the .NET 11 support gate for the maintained C4Sharp solution:
 
 ```bash
-dotnet restore StacyClouds.C4Sharp.sln -p:TargetFramework=net11.0
-dotnet build StacyClouds.C4Sharp.sln -p:TargetFramework=net11.0
-dotnet test StacyClouds.C4Sharp.sln -p:TargetFramework=net11.0
+dotnet restore StacyClouds.C4Sharp.slnx -p:TargetFramework=net11.0
+dotnet build StacyClouds.C4Sharp.slnx -p:TargetFramework=net11.0
+dotnet test StacyClouds.C4Sharp.slnx -p:TargetFramework=net11.0
 ```
 
 ## Questions?

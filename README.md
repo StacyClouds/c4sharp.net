@@ -16,6 +16,7 @@ The [C4 model](https://c4model.com) is a lean graphical notation technique for m
 - ✅ Comprehensive styling and theming support
 
 > **Note:** For simple use cases, the [Structurizr DSL](https://docs.structurizr.com/dsl) may be more convenient. Use C4Sharp.NET when you need to generate architecture models programmatically from .NET code.
+> A structured DSL foundation import boundary is also available for workspace/model/view inputs via `StacyClouds.C4Sharp.Dsl`.
 
 ## A quick example
 
@@ -61,6 +62,8 @@ Install-Package StacyClouds.C4Sharp.Client
 
 - 📦 [NuGet Packages](https://www.nuget.org/profiles/StacyClouds)
 - 📖 [Documentation](docs/)
+- 📐 [C4 DSL Gap Analysis](docs/C4-DSL-GAP-ANALYSIS.md)
+- 🖼️ [SVG rendering](docs/svg-rendering.md)
 - 🐛 [Issues](https://github.com/StacyClouds/c4sharp.net/issues)
 - 🌐 [C4 Model](https://c4model.com)
 - 🔗 [Structurizr](https://structurizr.com)

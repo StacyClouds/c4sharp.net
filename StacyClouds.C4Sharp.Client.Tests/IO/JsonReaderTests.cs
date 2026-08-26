@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using StacyClouds.C4Sharp.IO.Json;
 using Xunit;
 
@@ -63,6 +64,47 @@ namespace StacyClouds.C4Sharp.Api.Tests.IO
             Workspace workspace2 = jsonReader.Read(stringReader);
             Assert.Equal(user.Id, workspace2.Model.GetPersonWithName("User").Id);
             Assert.NotNull(workspace2.Model.GetElement(user.Id));
+        }
+
+        [Fact]
+        public void Test_Write_ProducesIndentedJson_WhenIndentOutputIsTrue()
+        {
+            Workspace workspace = new Workspace("Name", "Description");
+            StringWriter stringWriter = new StringWriter();
+
+            new JsonWriter(true).Write(workspace, stringWriter);
+
+            Assert.Contains(Environment.NewLine, stringWriter.ToString());
+        }
+
+        [Fact]
+        public void Test_Write_ProducesCompactJson_WhenIndentOutputIsFalse()
+        {
+            Workspace workspace = new Workspace("Name", "Description");
+            StringWriter stringWriter = new StringWriter();
+
+            new JsonWriter(false).Write(workspace, stringWriter);
+
+            Assert.DoesNotContain(Environment.NewLine, stringWriter.ToString());
+        }
+
+        [Fact]
+        public void Test_Write_and_Read_PreservesPaperSize()
+        {
+            Workspace workspace = new Workspace("Name", "Description");
+            SoftwareSystem softwareSystem = workspace.Model.AddSoftwareSystem("System", "Description");
+            SystemContextView view = workspace.Views.CreateSystemContextView(softwareSystem, "context", "Context");
+            view.PaperSize = PaperSize.A4_Landscape;
+
+            StringWriter stringWriter = new StringWriter();
+            new JsonWriter(false).Write(workspace, stringWriter);
+
+            Assert.Contains("\"paperSize\":\"A4_Landscape\"", stringWriter.ToString());
+
+            StringReader stringReader = new StringReader(stringWriter.ToString());
+            Workspace roundTripped = new JsonReader().Read(stringReader);
+
+            Assert.Same(PaperSize.A4_Landscape, roundTripped.Views.SystemContextViews.Single().PaperSize);
         }
         
     }

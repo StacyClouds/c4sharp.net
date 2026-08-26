@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/stryker-mutator/stryker-net/master/src/Stryker.CLI/Stryker.CLI/schema/stryker-schema.json",
   "stryker-config": {
-    "solution": "StacyClouds.C4Sharp.sln",
+    "solution": "StacyClouds.C4Sharp.slnx",
     "project": "StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj",
     "test-projects": [
       "StacyClouds.C4Sharp.Client.Tests/StacyClouds.C4Sharp.Client.Tests.csproj"
@@ -15,7 +15,15 @@
       "json"
     ],
     "mutate": [
-      "Encryption/**/*.cs"
+      "Api/StructurizrClient.cs",
+      "Api/HashBasedMessageAuthenticationCode.cs",
+      "Api/HmacAuthorizationHeader.cs",
+      "Encryption/AesEncryptionStrategy.cs",
+      "IO/Json/JsonReader.cs",
+      "IO/Json/JsonWriter.cs",
+      "IO/Json/PaperSizeJsonConverter.cs",
+      "IO/Json/EncryptionStrategyJsonConverter.cs",
+      "Util/WorkspaceUtils.cs"
     ],
     "thresholds": {
       "high": 90,

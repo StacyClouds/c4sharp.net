@@ -4,12 +4,12 @@ pull_requests:
 image: Visual Studio 2022
 build_script:
 - ps: >-
-    dotnet restore .\StacyClouds.C4Sharp.sln
+    dotnet restore .\StacyClouds.C4Sharp.slnx
 
-    dotnet build .\StacyClouds.C4Sharp.sln --configuration Release --no-restore
+    dotnet build .\StacyClouds.C4Sharp.slnx --configuration Release --no-restore
 
 
-    dotnet clean .\StacyClouds.C4Sharp.sln /p:Configuration=Release
+    dotnet clean .\StacyClouds.C4Sharp.slnx /p:Configuration=Release
 
     if ($env:APPVEYOR_REPO_TAG -Eq "true") {
         dotnet msbuild "/t:Restore;Pack" /p:Configuration=Release /p:Version=$env:APPVEYOR_REPO_TAG_NAME .\StacyClouds.C4Sharp.Core\StacyClouds.C4Sharp.Core.csproj

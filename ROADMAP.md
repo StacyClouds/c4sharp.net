@@ -36,9 +36,17 @@ Migrate from Newtonsoft.Json to System.Text.Json for better performance and .NET
 #### 3. C4 DSL Gap Analysis
 Compare against the latest C4 DSL specification and identify missing features:
 - Review [Structurizr DSL](https://docs.structurizr.com/dsl) latest features
+- Read [C4 DSL Gap Analysis](docs/C4-DSL-GAP-ANALYSIS.md) for the current support matrix
 - Identify features present in DSL but missing in C4Sharp.NET
 - Prioritize features based on user needs
 - Create implementation plan
+
+Current phased focus from the analysis:
+1. DSL foundation: workspace/model/views/identifiers/implied relationships
+2. DSL directives and composition: includes/scripts/expressions/document composition
+3. Ecosystem parity: groups, archetypes/patterns, workspace extension, plugins, ADR handling
+
+Status: the structured DSL foundation import boundary is now implemented in `StacyClouds.C4Sharp.Dsl`.
 
 ### Medium Priority
 
