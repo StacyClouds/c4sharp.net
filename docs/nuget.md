@@ -38,9 +38,13 @@ To create local multi-target NuGet packages:
    ```bash
    dotnet restore StacyClouds.C4Sharp.slnx
    ```
-3. Pack the project you want to publish:
+3. Build the maintained solution:
+   ```bash
+   dotnet build StacyClouds.C4Sharp.slnx
+   ```
+4. Pack the project you want to publish:
    ```bash
    dotnet pack StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj -c Release
    ```
 
-Repeat step 3 for `Client`, `Renderer`, and `Editor` when required.
+Repeat step 4 for `Client`, `Renderer`, and `Editor` when required.
