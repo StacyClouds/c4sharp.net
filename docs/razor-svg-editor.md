@@ -47,4 +47,4 @@ Use `ViewEditor` when the host already controls navigation and only needs a sing
 
 Dragging updates `ElementView.X` and `ElementView.Y`. Connector edits update the underlying `RelationshipView`. `LayoutChanged` reports in-memory changes immediately, and `SaveRequested` lets the host decide how to persist the updated workspace.
 
-See `/home/runner/work/c4sharp.net/c4sharp.net/StacyClouds.C4Sharp.Renderer.Web/Components/Pages/Editor.razor` for a complete host example.
+See `StacyClouds.C4Sharp.Renderer.Web/Components/Pages/Editor.razor` for a complete host example.

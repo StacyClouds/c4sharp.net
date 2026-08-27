@@ -50,20 +50,19 @@ styles.Add(new ElementStyle(Tags.Person) { Background = "#08427b", Color = "#fff
 
 ## Documentation
 
-- [Package map](/home/runner/work/c4sharp.net/c4sharp.net/docs/nuget.md)
-- [Core package guide](/home/runner/work/c4sharp.net/c4sharp.net/docs/getting-started.md)
-- [Client package guide](/home/runner/work/c4sharp.net/c4sharp.net/docs/api-client.md)
-- [Renderer package guide](/home/runner/work/c4sharp.net/c4sharp.net/docs/svg-rendering.md)
-- [Editor package guide](/home/runner/work/c4sharp.net/c4sharp.net/docs/razor-svg-editor.md)
-- [Client-side encryption](/home/runner/work/c4sharp.net/c4sharp.net/docs/client-side-encryption.md)
-- [Changelog](/home/runner/work/c4sharp.net/c4sharp.net/docs/changelog.md)
+- [Package map](docs/nuget.md)
+- [Core package guide](docs/getting-started.md)
+- [Client package guide](docs/api-client.md)
+- [Renderer package guide](docs/svg-rendering.md)
+- [Editor package guide](docs/razor-svg-editor.md)
+- [Client-side encryption](docs/client-side-encryption.md)
 
 ## Table of contents
 
-- [NuGet packages for developers](/home/runner/work/c4sharp.net/c4sharp.net/docs/nuget.md)
-- [Using `StacyClouds.C4Sharp.Core`](/home/runner/work/c4sharp.net/c4sharp.net/docs/getting-started.md)
-- [Using `StacyClouds.C4Sharp.Client`](/home/runner/work/c4sharp.net/c4sharp.net/docs/api-client.md)
-- [Using `StacyClouds.C4Sharp.Renderer`](/home/runner/work/c4sharp.net/c4sharp.net/docs/svg-rendering.md)
-- [Using `StacyClouds.C4Sharp.Editor`](/home/runner/work/c4sharp.net/c4sharp.net/docs/razor-svg-editor.md)
-- [Using client-side encryption](/home/runner/work/c4sharp.net/c4sharp.net/docs/client-side-encryption.md)
+- [NuGet packages for developers](docs/nuget.md)
+- [Using `StacyClouds.C4Sharp.Core`](docs/getting-started.md)
+- [Using `StacyClouds.C4Sharp.Client`](docs/api-client.md)
+- [Using `StacyClouds.C4Sharp.Renderer`](docs/svg-rendering.md)
+- [Using `StacyClouds.C4Sharp.Editor`](docs/razor-svg-editor.md)
+- [Using client-side encryption](docs/client-side-encryption.md)
 - [C4 Model reference](https://c4model.com)

@@ -23,4 +23,4 @@ client.PutWorkspace(1234, workspace);
 
 `AesEncryptionStrategy` defaults to a 128-bit key size and 1000 iterations. Use the overload that accepts key size, iteration count, and passphrase when you need to control those values explicitly.
 
-See `/home/runner/work/c4sharp.net/c4sharp.net/StacyClouds.C4Sharp.Examples/ClientSideEncryption.cs` for a complete example.
+See `StacyClouds.C4Sharp.Examples/ClientSideEncryption.cs` for a complete example.

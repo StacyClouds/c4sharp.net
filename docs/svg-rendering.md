@@ -35,4 +35,4 @@ The two-workspace overload copies matching view geometry, element positions, con
 ## Related topics
 
 - `StacyClouds.C4Sharp.Editor` builds on this package for interactive browser editing.
-- `/home/runner/work/c4sharp.net/c4sharp.net/StacyClouds.C4Sharp.Examples/SvgRenderingExample.cs` shows a complete rendering example.
+- `StacyClouds.C4Sharp.Examples/SvgRenderingExample.cs` shows a complete rendering example.
