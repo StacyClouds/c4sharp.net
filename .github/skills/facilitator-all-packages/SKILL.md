@@ -49,12 +49,27 @@ Install the smallest set required for the scenario:
 | Publish model to Structurizr | Core, Client | Renderer |
 | Build an editor-like app | Core, Editor | Renderer, Client |
 
+## API correctness protocol for agents
+
+- Do not assume method/type names from memory alone.
+- Ground package usage guidance in repository docs and package tests.
+- If an API detail is uncertain, inspect the corresponding package source and tests before returning a snippet.
+
+## Authoritative references
+
+- `docs/nuget.md`
+- `docs/getting-started.md`
+- `docs/api-client.md`
+- `docs/svg-rendering.md`
+- `docs/razor-svg-editor.md`
+
 ## Facilitation flow
 
 1. Ask what outcome the developer wants (generate model, render SVG, publish, build editor).
 2. Map outcome to required and optional packages.
 3. Provide install commands and a minimal usage path.
-4. Offer the next focused skill (`core`, `client`, `renderer`, or `editor`) for deeper guidance.
+4. Validate API details against references before giving package-specific snippets.
+5. Offer the next focused skill (`core`, `client`, `renderer`, or `editor`) for deeper guidance.
 
 ## Output format
 
@@ -62,4 +77,5 @@ Install the smallest set required for the scenario:
 - Recommended package list (required/optional)
 - Install command snippet
 - First implementation step (what code to write first)
+- API verification note (what doc/source/test references were used)
 - Suggested next skill

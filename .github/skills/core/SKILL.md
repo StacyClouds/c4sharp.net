@@ -30,6 +30,21 @@ dotnet add package StacyClouds.C4Sharp.Core
 4. Apply tags and styles for readability.
 5. Hand off to `renderer` for SVG output or `client` for publishing.
 
+## API correctness protocol
+
+- Verify public type and method names against `StacyClouds.C4Sharp.Core` source and tests before returning snippets.
+- Prefer examples aligned with `docs/getting-started.md` and view-specific docs.
+- If an API is uncertain, investigate first and return a verified workflow instead of guessing.
+
+## Authoritative references
+
+- `docs/getting-started.md`
+- `docs/system-context-diagram.md`
+- `docs/container-diagram.md`
+- `docs/component-diagram.md`
+- `StacyClouds.C4Sharp.Core/`
+- `StacyClouds.C4Sharp.Core.Tests/`
+
 ## Guidance flow
 
 1. Confirm the architecture scope being modeled.
@@ -45,5 +60,5 @@ dotnet add package StacyClouds.C4Sharp.Core
 ## Expected output
 
 - Minimal model + view workflow (and snippet when requested)
-- Notes on which Core APIs to extend
+- Notes on which Core APIs to extend (with source/test reference)
 - Follow-up recommendation for `renderer` or `client` when needed
