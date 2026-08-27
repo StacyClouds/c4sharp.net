@@ -66,6 +66,7 @@ Install-Package StacyClouds.C4Sharp.Editor
 
 - 📦 [NuGet Packages](https://www.nuget.org/profiles/StacyClouds)
 - 📖 [Documentation](docs/)
+- 👩‍💻 [NuGet packages for developers](docs/nuget.md)
 - 📐 [C4 DSL Gap Analysis](docs/C4-DSL-GAP-ANALYSIS.md)
 - 🖼️ [SVG rendering](docs/svg-rendering.md)
 - 🐛 [Issues](https://github.com/StacyClouds/c4sharp.net/issues)
@@ -76,6 +77,7 @@ Install-Package StacyClouds.C4Sharp.Editor
 
 * Introduction
     * [Getting started](docs/getting-started.md)
+    * [NuGet packages for developers](docs/nuget.md)
     * [Binaries](docs/binaries.md)
     * [API Client](docs/api-client.md)
     * [FAQ](docs/faq.md)
