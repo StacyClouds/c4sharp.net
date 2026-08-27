@@ -1,60 +1,58 @@
-# API client
+# Client package guide
 
-The Structurizr for .NET library includes a client for the [Structurizr web API](https://api.structurizr.com), which allows you to get and put workspaces using JSON over HTTPS. This page provides a quick overview of how to use the API client.
+Install `StacyClouds.C4Sharp.Client` when your application needs to read or publish workspaces through a Structurizr-compatible API.
 
-## Configuration
-
-To configure the API client, simply provide values for the API key and API secret programmatically when creating a ```StructurizrClient``` instance. Each workspace has its own API key and secret, the values for which can be found on [your dashboard](https://structurizr.com/dashboard).
-
-```c#
-StructurizrClient structurizrClient = new StructurizrClient("key", "secret");
+```bash
+dotnet add package StacyClouds.C4Sharp.Client
 ```
 
-If you're using the [on-premises installation](https://structurizr.com/help/on-premises-ui), there is a three argument version of the constructor where you can also specify the API URL.
+## Namespaces
 
-```c#
-StructurizrClient structurizrClient = new StructurizrClient("url", "key", "secret");
+```csharp
+using StacyClouds.C4Sharp;
+using StacyClouds.C4Sharp.Api;
 ```
 
-## Usage
+## Create a client
 
-The following operations are available on the API client.
+Use the two-argument constructor for the hosted API endpoint.
 
-### 1. GetWorkspace
-
-This allows you to get the content of a workspace.
-
-```c#
-Workspace workspace = structurizrClient.GetWorkspace(1234);
+```csharp
+StructurizrClient client = new StructurizrClient("key", "secret");
 ```
 
-By default, a copy of the workspace (as JSON) is archived to the current working directory. You can modify this behaviour by setting the ```WorkspaceArchiveLocation``` property. A ```null``` value will disable archiving.
+Use the three-argument constructor when targeting a different base URL.
 
-### 2. PutWorkspace
-
-This allows you to overwrite an existing workspace.   If the ```MergeFromRemote``` property (on the ```StructurizrClient``` instance) is set to ```true``` (this is the default), any layout information (i.e. the location of boxes on diagrams) is preserved where possible (i.e. where diagram elements haven't been renamed).
-
-```c#
-structurizrClient.PutWorkspace(1234, workspace);
+```csharp
+StructurizrClient client = new StructurizrClient("https://your-structurizr-instance", "key", "secret");
 ```
 
-### 3. LockWorkspace
+## Download a workspace
 
-If your workspace supports sharing (not available with the Free Plan), you can optionally attempt to lock your workspace before writing to it, to prevent concurrent updates.
-
-```c#
-structurizrClient.LockWorkspace(1234);
+```csharp
+Workspace workspace = client.GetWorkspace(1234);
 ```
 
-This method returns a boolean; ```true``` if the workspace could be locked, ```false``` otherwise.
+By default, downloaded JSON is archived to the current working directory through `WorkspaceArchiveLocation`. Set that property to `null` to disable archiving, or point it at a different directory.
 
-### 4. UnlockWorkspace
+## Publish a workspace
 
-Similarly, you can unlock a workspace.
-
-```c#
-structurizrClient.UnlockWorkspace(1234);
+```csharp
+client.PutWorkspace(1234, workspace);
 ```
 
-This method also returns a boolean; ```true``` if the workspace could be unlocked, ```false``` otherwise.
+`MergeFromRemote` defaults to `true`, which preserves matching remote layout information where possible when you upload an updated workspace.
 
+## Locking and unlocking
+
+Use locking when the target workspace supports shared editing and you want to reduce concurrent update conflicts.
+
+```csharp
+bool locked = client.LockWorkspace(1234);
+bool unlocked = client.UnlockWorkspace(1234);
+```
+
+## Related topics
+
+- [Client-side encryption](client-side-encryption.md)
+- [Core package guide](getting-started.md)

@@ -1,15 +1,15 @@
 # NuGet packages for developers
 
-This page is the package map for developers building diagram-as-code solutions with C4Sharp.NET.
+This documentation set is organised around the published NuGet packages.
 
 ## Package overview
 
-| Package | Purpose | Typical usage |
-|---|---|---|
-| `StacyClouds.C4Sharp.Core` | C4 model and view primitives | Build workspaces, systems, containers, components, and views |
-| `StacyClouds.C4Sharp.Client` | Structurizr API client and encryption support | Push/pull workspaces to Structurizr cloud/on-prem |
-| `StacyClouds.C4Sharp.Renderer` | SVG rendering support | Render diagrams to SVG in build pipelines or apps |
-| `StacyClouds.C4Sharp.Editor` | Editor-focused helpers and integration surface | Support editor-style experiences around workspaces |
+| Package | Depends on | Use it for | Guide |
+|---|---|---|---|
+| `StacyClouds.C4Sharp.Core` | - | Creating workspaces, models, views, styles, and documentation objects in code | [Core package guide](getting-started.md) |
+| `StacyClouds.C4Sharp.Client` | `StacyClouds.C4Sharp.Core` | Reading and writing workspaces through the Structurizr-compatible API | [Client package guide](api-client.md) |
+| `StacyClouds.C4Sharp.Renderer` | `StacyClouds.C4Sharp.Core` | Rendering workspace views to standalone SVG documents | [Renderer package guide](svg-rendering.md) |
+| `StacyClouds.C4Sharp.Editor` | `StacyClouds.C4Sharp.Renderer` | Embedding an interactive Blazor editor for workspace layouts | [Editor package guide](razor-svg-editor.md) |
 
 ## Install packages
 
@@ -20,31 +20,24 @@ dotnet add package StacyClouds.C4Sharp.Renderer
 dotnet add package StacyClouds.C4Sharp.Editor
 ```
 
-Install only what you need. Most projects start with `StacyClouds.C4Sharp.Core`, then add `Client`, `Renderer`, or `Editor` based on delivery needs.
+Install only the packages you need:
 
-## Package source locations
+- Start with `Core` when your application creates or transforms workspaces.
+- Add `Client` when you need to download or publish workspaces.
+- Add `Renderer` when you need SVG output in a console app, service, or pipeline.
+- Add `Editor` when a Blazor host needs interactive layout editing in the browser.
 
-- Core: `/StacyClouds.C4Sharp.Core`
-- Client: `/StacyClouds.C4Sharp.Client`
-- Renderer: `/StacyClouds.C4Sharp.Renderer`
-- Editor: `/StacyClouds.C4Sharp.Editor`
+## Common package combinations
 
-## Building packages locally
+- `Core` only: model a workspace and hand it to another process.
+- `Core` + `Client`: build a workspace in code and publish it.
+- `Core` + `Renderer`: generate SVG artifacts locally.
+- `Core` + `Renderer` + `Editor`: render and edit layouts inside a Blazor app.
+- `Core` + `Client` + `Renderer`: generate diagrams locally and publish the same workspace remotely.
 
-To create local multi-target NuGet packages:
+## Source locations
 
-1. Open a terminal in the repository root.
-2. Restore the maintained solution:
-   ```bash
-   dotnet restore StacyClouds.C4Sharp.slnx
-   ```
-3. Build the maintained solution:
-   ```bash
-   dotnet build StacyClouds.C4Sharp.slnx
-   ```
-4. Pack the project you want to publish:
-   ```bash
-   dotnet pack StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj -c Release
-   ```
-
-Repeat step 4 for `Client`, `Renderer`, and `Editor` when required.
+- Core: `/home/runner/work/c4sharp.net/c4sharp.net/StacyClouds.C4Sharp.Core`
+- Client: `/home/runner/work/c4sharp.net/c4sharp.net/StacyClouds.C4Sharp.Client`
+- Renderer: `/home/runner/work/c4sharp.net/c4sharp.net/StacyClouds.C4Sharp.Renderer`
+- Editor: `/home/runner/work/c4sharp.net/c4sharp.net/StacyClouds.C4Sharp.Editor`

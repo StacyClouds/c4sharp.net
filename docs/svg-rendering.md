@@ -1,31 +1,38 @@
-# SVG rendering
+# Renderer package guide
 
-`StacyClouds.C4Sharp.Renderer` renders every view in a workspace as a
-standalone SVG document. The returned dictionary is keyed by the view key.
+Install `StacyClouds.C4Sharp.Renderer` when you need standalone SVG documents for one or more workspace views.
+
+```bash
+dotnet add package StacyClouds.C4Sharp.Renderer
+```
+
+## Namespace
+
+```csharp
+using StacyClouds.C4Sharp.Renderer;
+```
+
+## Render a workspace
+
+`SvgWorkspaceRenderer` returns a dictionary keyed by view key.
 
 ```csharp
 IReadOnlyDictionary<string, string> diagrams = new SvgWorkspaceRenderer().Render(workspace);
 File.WriteAllText("system-context.svg", diagrams["system-context"]);
 ```
 
-This overload does not mutate `workspace`. The renderer uses persisted element
-coordinates and relationship connector vertices. When a new view has no
-layout, it uses a deterministic in-memory grid without changing the workspace.
+This overload does not mutate `workspace`. It uses persisted element coordinates and relationship vertices when they exist, and falls back to a deterministic in-memory layout when they do not.
 
-To reuse saved layout from an earlier workspace version, render the updated
-successor against its predecessor:
+## Reuse layout from an earlier workspace
 
 ```csharp
 IReadOnlyDictionary<string, string> diagrams = new SvgWorkspaceRenderer().Render(successor, predecessor);
-SaveWorkspace(successor); // persist copied layout for matching views and objects
+SaveWorkspace(successor);
 ```
 
-The two-workspace overload intentionally mutates only `successor`: matching
-view geometry, element coordinates, relationship connector vertices, routing,
-and label positions are copied from `predecessor` before rendering. New
-successor-only objects still use the deterministic in-memory grid, while
-predecessor-only objects are not restored. Use `RelationshipView.AddVertex`,
-`SetVertices`, `RemoveVertex`, and `ClearVertices` to edit connector bends.
+The two-workspace overload copies matching view geometry, element positions, connector vertices, routing, and label positions from `predecessor` into `successor` before rendering.
 
-`SvgRenderingExample.WriteSvgDocuments(outputDirectory)` writes the example
-workspace's SVG documents to a directory.
+## Related topics
+
+- `StacyClouds.C4Sharp.Editor` builds on this package for interactive browser editing.
+- `/home/runner/work/c4sharp.net/c4sharp.net/StacyClouds.C4Sharp.Examples/SvgRenderingExample.cs` shows a complete rendering example.
