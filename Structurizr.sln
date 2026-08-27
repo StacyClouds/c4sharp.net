@@ -6,28 +6,12 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{4ED0E8DB-8A5B-4DF0-9CB1-995D97A04B88}"
 	ProjectSection(SolutionItems) = preProject
 		docs\api-client.md = docs\api-client.md
-		docs\binaries.md = docs\binaries.md
-		docs\changelog.md = docs\changelog.md
 		docs\client-side-encryption.md = docs\client-side-encryption.md
-		docs\component-diagram.md = docs\component-diagram.md
-		docs\container-diagram.md = docs\container-diagram.md
-		docs\corporate-branding.md = docs\corporate-branding.md
-		docs\deployment-diagram.md = docs\deployment-diagram.md
-		docs\documentation-arc42.md = docs\documentation-arc42.md
-		docs\documentation-structurizr.md = docs\documentation-structurizr.md
-		docs\documentation-viewpoints-and-perspectives.md = docs\documentation-viewpoints-and-perspectives.md
-		docs\documentation.md = docs\documentation.md
-		docs\dynamic-diagram.md = docs\dynamic-diagram.md
-		docs\filtered-views.md = docs\filtered-views.md
 		docs\getting-started.md = docs\getting-started.md
-		docs\health-checks.md = docs\health-checks.md
 		docs\nuget.md = docs\nuget.md
+		docs\razor-svg-editor.md = docs\razor-svg-editor.md
 		README.md = README.md
-		docs\styling-elements.md = docs\styling-elements.md
-		docs\styling-relationships.md = docs\styling-relationships.md
-		docs\system-context-diagram.md = docs\system-context-diagram.md
-		docs\system-landscape-diagram.md = docs\system-landscape-diagram.md
-		docs\implied-relationships.md = docs\implied-relationships.md
+		docs\svg-rendering.md = docs\svg-rendering.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Structurizr.Core", "Structurizr.Core\Structurizr.Core.csproj", "{2F8E45CF-19B0-4B49-B7C7-5A3F25A993BD}"
@@ -39,40 +23,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Structurizr.Client", "Structurizr.Client\Structurizr.Client.csproj", "{5A35FC5E-28E2-4534-9921-DA2AA1259FFA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Structurizr.Client.Tests", "Structurizr.Client.Tests\Structurizr.Client.Tests.csproj", "{833AD46A-DCE2-4D83-9D74-BF67BBE4396E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{4FBA617C-1ED8-411B-AE3D-3723BD77A7A2}"
-	ProjectSection(SolutionItems) = preProject
-		docs\images\basic-concepts.png = docs\images\basic-concepts.png
-		docs\images\component-diagram-1.png = docs\images\component-diagram-1.png
-		docs\images\container-diagram-1.png = docs\images\container-diagram-1.png
-		docs\images\corporate-branding-1.png = docs\images\corporate-branding-1.png
-		docs\images\corporate-branding-2.png = docs\images\corporate-branding-2.png
-		docs\images\corporate-branding-3.png = docs\images\corporate-branding-3.png
-		docs\images\corporate-branding-4.png = docs\images\corporate-branding-4.png
-		docs\images\deployment-diagram-1.png = docs\images\deployment-diagram-1.png
-		docs\images\documentation-1.png = docs\images\documentation-1.png
-		docs\images\documentation-2.png = docs\images\documentation-2.png
-		docs\images\documentation-3.png = docs\images\documentation-3.png
-		docs\images\dynamic-diagram-1.png = docs\images\dynamic-diagram-1.png
-		docs\images\enterprise-context-diagram-1.png = docs\images\enterprise-context-diagram-1.png
-		docs\images\filtered-views-1.png = docs\images\filtered-views-1.png
-		docs\images\filtered-views-2.png = docs\images\filtered-views-2.png
-		docs\images\getting-started-diagram-key.png = docs\images\getting-started-diagram-key.png
-		docs\images\getting-started.png = docs\images\getting-started.png
-		docs\images\structurizr-banner.png = docs\images\structurizr-banner.png
-		docs\images\structurizr-overview.png = docs\images\structurizr-overview.png
-		docs\images\styling-elements-1.png = docs\images\styling-elements-1.png
-		docs\images\styling-elements-2.png = docs\images\styling-elements-2.png
-		docs\images\styling-elements-3.png = docs\images\styling-elements-3.png
-		docs\images\styling-elements-4.png = docs\images\styling-elements-4.png
-		docs\images\styling-elements-5.png = docs\images\styling-elements-5.png
-		docs\images\styling-elements-6.png = docs\images\styling-elements-6.png
-		docs\images\styling-relationships-1.png = docs\images\styling-relationships-1.png
-		docs\images\styling-relationships-2.png = docs\images\styling-relationships-2.png
-		docs\images\styling-relationships-3.png = docs\images\styling-relationships-3.png
-		docs\images\styling-relationships-4.png = docs\images\styling-relationships-4.png
-		docs\images\system-context-diagram-1.png = docs\images\system-context-diagram-1.png
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "etc", "etc", "{043B24B2-2120-48D9-91B1-8BB426C1C369}"
 ProjectSection(SolutionItems) = preProject
