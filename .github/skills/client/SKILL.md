@@ -10,11 +10,21 @@ metadata:
 
 Use this skill for Structurizr API client integration.
 
+## Install
+
+```bash
+dotnet add package StacyClouds.C4Sharp.Client
+```
+
 ## Scope
 
 - API client configuration
 - Workspace upload/download flows
 - Client-side encryption usage
+
+## Prerequisite
+
+The workspace is normally produced with `StacyClouds.C4Sharp.Core`.
 
 ## Guidance flow
 
@@ -22,6 +32,12 @@ Use this skill for Structurizr API client integration.
 2. Collect required identifiers and credentials.
 3. Build upload/download flow around workspace lifecycle.
 4. Add encryption guidance when security requirements exist.
+
+## Usage checklist
+
+- Confirm API URL/endpoint and workspace identifier.
+- Avoid hardcoding credentials; use environment variables or secure secrets stores.
+- Validate publish success and retrieve the same workspace for round-trip verification.
 
 ## Expected output
 

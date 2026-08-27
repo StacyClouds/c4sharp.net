@@ -10,11 +10,21 @@ metadata:
 
 Use this skill for rendering architecture diagrams.
 
+## Install
+
+```bash
+dotnet add package StacyClouds.C4Sharp.Renderer
+```
+
 ## Scope
 
 - SVG rendering entry points
 - Render pipeline integration in apps or build steps
 - Output verification for diagram quality
+
+## Prerequisite
+
+The views to render are normally created with `StacyClouds.C4Sharp.Core`.
 
 ## Guidance flow
 
@@ -22,6 +32,12 @@ Use this skill for rendering architecture diagrams.
 2. Ensure model/view data is complete from Core.
 3. Render and save SVG output.
 4. Validate visual completeness and style expectations.
+
+## Usage checklist
+
+- Define output folder and file naming strategy.
+- Render each target view consistently (context/container/component/etc.).
+- Verify generated SVG files are non-empty and readable in browser/viewer.
 
 ## Expected output
 
