@@ -1,15 +1,35 @@
-# Razor SVG editor
+# Editor package guide
 
-Install `StacyClouds.C4Sharp.Editor` to add the optional interactive editor to a Blazor application. This package depends on the renderer; applications that only render SVG do not need to reference it.
+Install `StacyClouds.C4Sharp.Editor` to embed interactive workspace layout editing in a Blazor application.
 
-Add the package static assets to the host page:
+```bash
+dotnet add package StacyClouds.C4Sharp.Editor
+```
+
+`StacyClouds.C4Sharp.Editor` depends on the renderer package and expects a `Workspace` instance from the core package.
+
+## Namespace
+
+```razor
+@using StacyClouds.C4Sharp.Editor
+```
+
+## Add static assets
+
+Reference the packaged stylesheet and script from the host page.
 
 ```html
 <link rel="stylesheet" href="_content/StacyClouds.C4Sharp.Editor/c4sharp-editor.css" />
 <script src="_content/StacyClouds.C4Sharp.Editor/c4sharp-editor.js"></script>
 ```
 
-Use `WorkspaceEditor` for a collapsible thumbnail navigator and a selected interactive view. Use `ViewEditor` when the host already manages view navigation. Both components require an interactive Blazor render mode for drag and double-click editing.
+## Enable an interactive render mode
+
+The editor components use Blazor interop for dragging elements and editing connector vertices, so the host page must render them with an interactive Blazor render mode.
+
+## Use `WorkspaceEditor`
+
+`WorkspaceEditor` renders a thumbnail navigator plus the selected interactive view.
 
 ```razor
 <WorkspaceEditor Workspace="workspace"
@@ -19,6 +39,12 @@ Use `WorkspaceEditor` for a collapsible thumbnail navigator and a selected inter
                  SaveRequested="SaveWorkspace" />
 ```
 
-Dragging updates the existing `ElementView.X` and `ElementView.Y` values. Double-clicking an arrow inserts an ordered `Vertex` into its `RelationshipView`. `LayoutChanged` is raised after either operation. `SaveRequested` is raised only when the user selects Save: the component does not write files or call the Structurizr API, so the host decides how to persist the updated workspace.
+## Use `ViewEditor`
 
-`SelectedViewKeyChanged` is raised when the user selects a thumbnail. Bind `SelectedViewKey` to let the host observe and control which view is loaded in the editor pane.
+Use `ViewEditor` when the host already controls navigation and only needs a single editable view surface.
+
+## Persistence responsibilities
+
+Dragging updates `ElementView.X` and `ElementView.Y`. Connector edits update the underlying `RelationshipView`. `LayoutChanged` reports in-memory changes immediately, and `SaveRequested` lets the host decide how to persist the updated workspace.
+
+See `StacyClouds.C4Sharp.Renderer.Web/Components/Pages/Editor.razor` for a complete host example.
