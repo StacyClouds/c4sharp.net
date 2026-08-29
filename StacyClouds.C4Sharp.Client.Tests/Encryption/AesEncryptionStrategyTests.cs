@@ -95,7 +95,7 @@ namespace StacyClouds.C4Sharp.Api.Encryption.Tests
         {
             strategy = new AesEncryptionStrategy(128, 1000, "password");
             string ciphertext = strategy.Encrypt("Hello world");
-            strategy = new AesEncryptionStrategy(strategy.KeySize, strategy.IterationCount, "133D30C2A658B3081279A97FD3B1F7CDE10C4FB61D39EEA8", strategy.Iv, "password");
+            strategy = new AesEncryptionStrategy(strategy.KeySize, strategy.IterationCount, "133D30C2A658B3081279A97FD3B1F7CD", strategy.Iv, "password");
 
             Assert.Throws<CryptographicException>(() => strategy.Decrypt(ciphertext));
         }
