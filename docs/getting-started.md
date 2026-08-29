@@ -1,3 +1,7 @@
+---
+title: Core package guide
+---
+
 # Core package guide
 
 Install `StacyClouds.C4Sharp.Core` when you want to create or modify workspaces in .NET code.

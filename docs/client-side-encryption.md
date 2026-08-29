@@ -1,3 +1,7 @@
+---
+title: Client-side encryption
+---
+
 # Client-side encryption
 
 `StacyClouds.C4Sharp.Client` can encrypt a workspace before upload so the encrypted payload is stored remotely and the passphrase remains with the client.

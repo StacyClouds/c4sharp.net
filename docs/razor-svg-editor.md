@@ -1,3 +1,7 @@
+---
+title: Editor package guide
+---
+
 # Editor package guide
 
 Install `StacyClouds.C4Sharp.Editor` to embed interactive workspace layout editing in a Blazor application.

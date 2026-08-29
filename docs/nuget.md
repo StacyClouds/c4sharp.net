@@ -1,3 +1,7 @@
+---
+title: NuGet package map
+---
+
 # NuGet packages for developers
 
 This documentation set is organised around the published NuGet packages.

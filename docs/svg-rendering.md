@@ -1,3 +1,7 @@
+---
+title: Renderer package guide
+---
+
 # Renderer package guide
 
 Install `StacyClouds.C4Sharp.Renderer` when you need standalone SVG documents for one or more workspace views.
