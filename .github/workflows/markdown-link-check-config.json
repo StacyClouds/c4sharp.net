@@ -1,13 +1,10 @@
 {
   "ignorePatterns": [
     {
-      "pattern": "^https://www.nuget.org/profiles/StacyClouds$"
-    }
-  ],
-  "replacementPatterns": [
+      "pattern": "^https://www.nuget.org/profiles/StacyClouds"
+    },
     {
-      "pattern": "^(?!http)(.*\\.md)$",
-      "replacement": "$1"
+      "pattern": "^https://c4model.com"
     }
   ],
   "timeout": "20s",

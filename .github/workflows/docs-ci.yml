@@ -6,39 +6,43 @@ on:
     paths:
       - docs/**
       - .github/workflows/docs-ci.yml
+      - .github/workflows/markdown-link-check-config.json
   pull_request:
     branches: [main]
     paths:
       - docs/**
       - .github/workflows/docs-ci.yml
+      - .github/workflows/markdown-link-check-config.json
 
 jobs:
   markdown-links:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 22
 
       - name: Validate markdown links
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
-        with:
-          use-quiet-mode: yes
-          use-verbose-mode: no
-          config-file: .github/workflows/markdown-link-check-config.json
-          folder-path: docs
+        run: |
+          npm install -g markdown-link-check@3.12.2
+          find docs -name "*.md" -print0 | xargs -0 -n1 markdown-link-check -q -c .github/workflows/markdown-link-check-config.json
 
   jekyll-build:
     runs-on: ubuntu-latest
     needs: markdown-links
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v5.0.0
 
       - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
+        uses: actions/jekyll-build-pages@v1.0.13
         with:
           source: docs
           destination: _site
