@@ -1,0 +1,44 @@
+name: Docs CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/**
+      - .github/workflows/docs-ci.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - docs/**
+      - .github/workflows/docs-ci.yml
+
+jobs:
+  markdown-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate markdown links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: yes
+          use-verbose-mode: no
+          config-file: .github/workflows/markdown-link-check-config.json
+          folder-path: docs
+
+  jekyll-build:
+    runs-on: ubuntu-latest
+    needs: markdown-links
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: docs
+          destination: _site

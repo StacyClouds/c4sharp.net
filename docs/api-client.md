@@ -1,3 +1,7 @@
+---
+title: Client package guide
+---
+
 # Client package guide
 
 Install `StacyClouds.C4Sharp.Client` when your application needs to read or publish workspaces through a Structurizr-compatible API.

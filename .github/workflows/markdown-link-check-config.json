@@ -1,0 +1,17 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^https://www.nuget.org/profiles/StacyClouds$"
+    }
+  ],
+  "replacementPatterns": [
+    {
+      "pattern": "^(?!http)(.*\\.md)$",
+      "replacement": "$1"
+    }
+  ],
+  "timeout": "20s",
+  "retryOn429": true,
+  "retryCount": 2,
+  "fallbackRetryDelay": "30s"
+}
