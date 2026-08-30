@@ -201,7 +201,7 @@ dotnet docfx build docfx.json
 
 Commit any changed files under `docs/api/` along with source changes when the API reference diverges from the published version. The intermediate `api/` YAML directory is gitignored and does not need to be committed.
 
-The DocFX configuration lives in `docfx.json` at the repository root. `docfx-filter.yml` controls which members are included — currently public members only.
+The DocFX configuration lives in `docfx.json` at the repository root.
 
 
 1. Ensure your code builds without warnings

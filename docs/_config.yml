@@ -6,8 +6,6 @@ baseurl: ""
 show_downloads: false
 markdown: kramdown
 
-exclude:
-  - api
 
 defaults:
   - scope:
