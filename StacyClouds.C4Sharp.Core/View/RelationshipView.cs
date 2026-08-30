@@ -14,6 +14,9 @@ namespace StacyClouds.C4Sharp
     public sealed class RelationshipView : IEquatable<RelationshipView>
     {
 
+        /// <summary>
+        /// References the model relationship represented by this view edge.
+        /// </summary>
         public Relationship Relationship { get; set; }
 
         private string id;
@@ -77,6 +80,8 @@ namespace StacyClouds.C4Sharp
         /// Replaces the connector vertices for this relationship view.
         /// </summary>
         /// <param name="vertices">The ordered connector vertices.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="vertices"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="vertices"/> contains a <see langword="null"/> entry.</exception>
         public void SetVertices(IEnumerable<Vertex> vertices)
         {
             if (vertices == null)
@@ -97,6 +102,7 @@ namespace StacyClouds.C4Sharp
         /// Adds a connector vertex to the end of this relationship view.
         /// </summary>
         /// <param name="vertex">The connector vertex to add.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="vertex"/> is <see langword="null"/>.</exception>
         public void AddVertex(Vertex vertex)
         {
             if (vertex == null)
@@ -112,6 +118,7 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="vertex">The connector vertex to remove.</param>
         /// <returns>true if the vertex was removed; otherwise, false.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="vertex"/> is <see langword="null"/>.</exception>
         public bool RemoveVertex(Vertex vertex)
         {
             if (vertex == null)
@@ -166,33 +173,53 @@ namespace StacyClouds.C4Sharp
         }
 
         /// <summary>
-        /// Whether this relationship view represents a response (used in dynamic views only). 
+        /// Indicates whether this relationship view represents a response message in a dynamic view.
         /// </summary>
-        /// <returns></returns>
         [DataMember(Name = "response", EmitDefaultValue = false)]
         public bool? Response;
         
+        /// <summary>
+        /// Initializes a relationship view during deserialization.
+        /// </summary>
         internal RelationshipView()
         {
             Vertices = new List<Vertex>();
         }
 
+        /// <summary>
+        /// Creates a relationship view for the supplied model relationship.
+        /// </summary>
+        /// <param name="relationship">The relationship to wrap.</param>
         internal RelationshipView(Relationship relationship)
         {
             Vertices = new List<Vertex>();
             this.Relationship = relationship;
         }
 
+        /// <summary>
+        /// Returns the wrapped relationship text.
+        /// </summary>
+        /// <returns>A human-readable representation of the relationship view.</returns>
         public override string ToString()
         {
             return this.Relationship.ToString();
         }
 
+        /// <summary>
+        /// Determines whether another object represents the same relationship view.
+        /// </summary>
+        /// <param name="obj">The object to compare.</param>
+        /// <returns><see langword="true"/> when the object is an equivalent <see cref="RelationshipView"/>; otherwise, <see langword="false"/>.</returns>
         public override bool Equals(object obj)
         {
             return Equals(obj as RelationshipView);
         }
 
+        /// <summary>
+        /// Determines whether another relationship view represents the same relationship, order, and description.
+        /// </summary>
+        /// <param name="relationshipView">The relationship view to compare.</param>
+        /// <returns><see langword="true"/> when both views are equivalent; otherwise, <see langword="false"/>.</returns>
         public bool Equals(RelationshipView relationshipView)
         {
             if (relationshipView == null)
@@ -210,6 +237,10 @@ namespace StacyClouds.C4Sharp
 
         }
 
+        /// <summary>
+        /// Returns a hash code based on the relationship identity and dynamic-view metadata.
+        /// </summary>
+        /// <returns>A hash code for this relationship view.</returns>
         public override int GetHashCode()
         {
             int result = Id.GetHashCode();
@@ -218,6 +249,10 @@ namespace StacyClouds.C4Sharp
             return result;
         }
 
+        /// <summary>
+        /// Copies the connector layout metadata from another relationship view.
+        /// </summary>
+        /// <param name="source">The source relationship view that provides layout metadata.</param>
         internal void CopyLayoutInformationFrom(RelationshipView source)
         {
             if (source != null)

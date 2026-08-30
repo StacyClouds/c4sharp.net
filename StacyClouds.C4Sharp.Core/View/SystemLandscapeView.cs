@@ -1,4 +1,4 @@
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace StacyClouds.C4Sharp
 { 
@@ -12,6 +12,9 @@ namespace StacyClouds.C4Sharp
     public sealed class SystemLandscapeView : StaticView
     {
 
+        /// <summary>
+        /// Returns the default name shown for this system landscape view.
+        /// </summary>
         public override string Name
         {
             get
@@ -21,6 +24,9 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Stores the model whose people and software systems are displayed by this landscape view.
+        /// </summary>
         public sealed override Model Model { get; set; }
 
         /// <summary>
@@ -29,10 +35,19 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "enterpriseBoundaryVisible", EmitDefaultValue = false)]
         public bool? EnterpriseBoundaryVisible { get; set; }
 
+        /// <summary>
+        /// Initializes a system landscape view during deserialization.
+        /// </summary>
         internal SystemLandscapeView() : base()
         {
         }
 
+        /// <summary>
+        /// Creates a system landscape view for the supplied model.
+        /// </summary>
+        /// <param name="model">The model to visualize.</param>
+        /// <param name="key">The unique view key.</param>
+        /// <param name="description">The view description.</param>
         internal SystemLandscapeView(Model model, string key, string description) : base(null, key, description)
         {
             Model = model;

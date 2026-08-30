@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DeploymentNode | C4Sharp.NET API Reference </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DeploymentNode | C4Sharp.NET API Reference ">
+      
+      <meta name="description" content="Represents a deployment node, which is something like:  Physical infrastructure (e.g. a physical server or device) Virtualised infrastructure (e.g. IaaS, PaaS, a virtual machine) Containerised infrastructure (e.g. a Docker container) Database server Java EE web/application server Microsoft IIS etc">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="C4Sharp.NET">
+            C4Sharp.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="StacyClouds.C4Sharp.DeploymentNode">
+
+
+
+  <h1 id="StacyClouds_C4Sharp_DeploymentNode" data-uid="StacyClouds.C4Sharp.DeploymentNode" class="text-break">
+Class DeploymentNode  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="StacyClouds.html">StacyClouds</a>.<a class="xref" href="StacyClouds.C4Sharp.html">C4Sharp</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>StacyClouds.C4Sharp.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a deployment node, which is something like:</p>
+<ul>
+<li>Physical infrastructure (e.g. a physical server or device)</li>
+<li>Virtualised infrastructure (e.g. IaaS, PaaS, a virtual machine)</li>
+<li>Containerised infrastructure (e.g. a Docker container)</li>
+<li>Database server</li>
+<li>Java EE web/application server</li>
+<li>Microsoft IIS</li>
+<li>etc</li>
+</ul>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataContract]
+public sealed class DeploymentNode : DeploymentElement</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="StacyClouds.C4Sharp.ModelItem.html">ModelItem</a></div>
+      <div><a class="xref" href="StacyClouds.C4Sharp.Element.html">Element</a></div>
+      <div><a class="xref" href="StacyClouds.C4Sharp.DeploymentElement.html">DeploymentElement</a></div>
+      <div><span class="xref">DeploymentNode</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.DeploymentElement.html#StacyClouds_C4Sharp_DeploymentElement_Environment">DeploymentElement.Environment</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_Name">Element.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_Description">Element.Description</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_Url">Element.Url</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_Model">Element.Model</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_Relationships">Element.Relationships</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_Has_StacyClouds_C4Sharp_Relationship_">Element.Has(Relationship)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_HasAfferentRelationships">Element.HasAfferentRelationships()</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_HasEfferentRelationshipWith_StacyClouds_C4Sharp_Element_">Element.HasEfferentRelationshipWith(Element)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_HasEfferentRelationshipWith_StacyClouds_C4Sharp_Element_System_String_">Element.HasEfferentRelationshipWith(Element, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_GetEfferentRelationshipsWith_StacyClouds_C4Sharp_Element_">Element.GetEfferentRelationshipsWith(Element)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_GetEfferentRelationshipWith_StacyClouds_C4Sharp_Element_">Element.GetEfferentRelationshipWith(Element)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_GetEfferentRelationshipWith_StacyClouds_C4Sharp_Element_System_String_">Element.GetEfferentRelationshipWith(Element, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_ToString">Element.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_Equals_System_Object_">Element.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Element.html#StacyClouds_C4Sharp_Element_Equals_StacyClouds_C4Sharp_Element_">Element.Equals(Element)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.ModelItem.html#StacyClouds_C4Sharp_ModelItem_Id">ModelItem.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.ModelItem.html#StacyClouds_C4Sharp_ModelItem_GetAllTags">ModelItem.GetAllTags()</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.ModelItem.html#StacyClouds_C4Sharp_ModelItem_GetTagsAsSet">ModelItem.GetTagsAsSet()</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.ModelItem.html#StacyClouds_C4Sharp_ModelItem_Tags">ModelItem.Tags</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.ModelItem.html#StacyClouds_C4Sharp_ModelItem_AddTags_System_String___">ModelItem.AddTags(params string[])</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.ModelItem.html#StacyClouds_C4Sharp_ModelItem_RemoveTag_System_String_">ModelItem.RemoveTag(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.ModelItem.html#StacyClouds_C4Sharp_ModelItem_Properties">ModelItem.Properties</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.ModelItem.html#StacyClouds_C4Sharp_ModelItem_AddProperty_System_String_System_String_">ModelItem.AddProperty(string, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.ModelItem.html#StacyClouds_C4Sharp_ModelItem_Perspectives">ModelItem.Perspectives</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.ModelItem.html#StacyClouds_C4Sharp_ModelItem_AddPerspective_System_String_System_String_">ModelItem.AddPerspective(string, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_CanonicalName_" data-uid="StacyClouds.C4Sharp.DeploymentNode.CanonicalName*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_CanonicalName" data-uid="StacyClouds.C4Sharp.DeploymentNode.CanonicalName">
+  CanonicalName
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the canonical name for this deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string CanonicalName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_Children_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Children*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_Children" data-uid="StacyClouds.C4Sharp.DeploymentNode.Children">
+  Children
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The set of child deployment nodes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;children&quot;, EmitDefaultValue = false)]
+public ISet&lt;DeploymentNode&gt; Children { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1">ISet</a>&lt;<a class="xref" href="StacyClouds.C4Sharp.DeploymentNode.html">DeploymentNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_ContainerInstances_" data-uid="StacyClouds.C4Sharp.DeploymentNode.ContainerInstances*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_ContainerInstances" data-uid="StacyClouds.C4Sharp.DeploymentNode.ContainerInstances">
+  ContainerInstances
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The set of container instances associated with this deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;containerInstances&quot;, EmitDefaultValue = false)]
+public ISet&lt;ContainerInstance&gt; ContainerInstances { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1">ISet</a>&lt;<a class="xref" href="StacyClouds.C4Sharp.ContainerInstance.html">ContainerInstance</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_InfrastructureNodes_" data-uid="StacyClouds.C4Sharp.DeploymentNode.InfrastructureNodes*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_InfrastructureNodes" data-uid="StacyClouds.C4Sharp.DeploymentNode.InfrastructureNodes">
+  InfrastructureNodes
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The set of infrastructure nodes associated with this deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;infrastructureNodes&quot;, EmitDefaultValue = false)]
+public ISet&lt;InfrastructureNode&gt; InfrastructureNodes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1">ISet</a>&lt;<a class="xref" href="StacyClouds.C4Sharp.InfrastructureNode.html">InfrastructureNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_Instances_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Instances*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_Instances" data-uid="StacyClouds.C4Sharp.DeploymentNode.Instances">
+  Instances
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The number of identical instances represented by this deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;instances&quot;, EmitDefaultValue = false)]
+public int Instances { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_Parent_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Parent*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_Parent" data-uid="StacyClouds.C4Sharp.DeploymentNode.Parent">
+  Parent
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The parent DeploymentNode, or null if there is no parent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Element Parent { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Element.html">Element</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_SoftwareSystemInstances_" data-uid="StacyClouds.C4Sharp.DeploymentNode.SoftwareSystemInstances*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_SoftwareSystemInstances" data-uid="StacyClouds.C4Sharp.DeploymentNode.SoftwareSystemInstances">
+  SoftwareSystemInstances
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The set of software system instances associated with this deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;softwareSystemInstances&quot;, EmitDefaultValue = false)]
+public ISet&lt;SoftwareSystemInstance&gt; SoftwareSystemInstances { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1">ISet</a>&lt;<a class="xref" href="StacyClouds.C4Sharp.SoftwareSystemInstance.html">SoftwareSystemInstance</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_Technology_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Technology*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_Technology" data-uid="StacyClouds.C4Sharp.DeploymentNode.Technology">
+  Technology
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The technology or product represented by this deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;technology&quot;, EmitDefaultValue = false)]
+public string Technology { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_Add_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_Add_StacyClouds_C4Sharp_Container_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Add(StacyClouds.C4Sharp.Container)">
+  Add(Container)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a container instance to this deployment node, replicating relationships.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ContainerInstance Add(Container container)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>container</code> <a class="xref" href="StacyClouds.C4Sharp.Container.html">Container</a></dt>
+    <dd><p>the Container to add an instance of</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.ContainerInstance.html">ContainerInstance</a></dt>
+    <dd><p>a ContainerInstance object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">container</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_Add_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_Add_StacyClouds_C4Sharp_Container_System_String_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Add(StacyClouds.C4Sharp.Container,System.String)">
+  Add(Container, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a container instance to this deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ContainerInstance Add(Container container, string deploymentGroup)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>container</code> <a class="xref" href="StacyClouds.C4Sharp.Container.html">Container</a></dt>
+    <dd><p>the Container to add an instance of</p>
+</dd>
+    <dt><code>deploymentGroup</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the deployment group</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.ContainerInstance.html">ContainerInstance</a></dt>
+    <dd><p>a ContainerInstance object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">container</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_Add_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_Add_StacyClouds_C4Sharp_SoftwareSystem_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Add(StacyClouds.C4Sharp.SoftwareSystem)">
+  Add(SoftwareSystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a software system instance to this deployment node, replicating relationships.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SoftwareSystemInstance Add(SoftwareSystem softwareSystem)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem to add an instance of</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.SoftwareSystemInstance.html">SoftwareSystemInstance</a></dt>
+    <dd><p>a SoftwareSystemInstance object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">softwareSystem</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_Add_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_Add_StacyClouds_C4Sharp_SoftwareSystem_System_String_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Add(StacyClouds.C4Sharp.SoftwareSystem,System.String)">
+  Add(SoftwareSystem, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a software system instance to this deployment node, optionally replicating relationships.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SoftwareSystemInstance Add(SoftwareSystem softwareSystem, string deploymentGroup)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem to add an instance of</p>
+</dd>
+    <dt><code>deploymentGroup</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the deployment group</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.SoftwareSystemInstance.html">SoftwareSystemInstance</a></dt>
+    <dd><p>a SoftwareSystemInstance object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">softwareSystem</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_AddDeploymentNode_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddDeploymentNode*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_AddDeploymentNode_System_String_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddDeploymentNode(System.String)">
+  AddDeploymentNode(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a child deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DeploymentNode AddDeploymentNode(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the name of the deployment node</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.DeploymentNode.html">DeploymentNode</a></dt>
+    <dd><p>The created child deployment node.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_AddDeploymentNode_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddDeploymentNode*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_AddDeploymentNode_System_String_System_String_System_String_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddDeploymentNode(System.String,System.String,System.String)">
+  AddDeploymentNode(string, string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a child deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DeploymentNode AddDeploymentNode(string name, string description, string technology)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the name of the deployment node</p>
+</dd>
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a short description</p>
+</dd>
+    <dt><code>technology</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the technology</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.DeploymentNode.html">DeploymentNode</a></dt>
+    <dd><p>The created child deployment node.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_AddDeploymentNode_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddDeploymentNode*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_AddDeploymentNode_System_String_System_String_System_String_System_Int32_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddDeploymentNode(System.String,System.String,System.String,System.Int32)">
+  AddDeploymentNode(string, string, string, int)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a child deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DeploymentNode AddDeploymentNode(string name, string description, string technology, int instances)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the name of the deployment node</p>
+</dd>
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a short description</p>
+</dd>
+    <dt><code>technology</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the technology</p>
+</dd>
+    <dt><code>instances</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>the number of  instances</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.DeploymentNode.html">DeploymentNode</a></dt>
+    <dd><p>The created child deployment node.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_AddDeploymentNode_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddDeploymentNode*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_AddDeploymentNode_System_String_System_String_System_String_System_Int32_System_Collections_Generic_Dictionary_System_String_System_String__" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddDeploymentNode(System.String,System.String,System.String,System.Int32,System.Collections.Generic.Dictionary{System.String,System.String})">
+  AddDeploymentNode(string, string, string, int, Dictionary&lt;string, string&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a child deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DeploymentNode AddDeploymentNode(string name, string description, string technology, int instances, Dictionary&lt;string, string&gt; properties)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the name of the deployment node</p>
+</dd>
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a short description</p>
+</dd>
+    <dt><code>technology</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the technology</p>
+</dd>
+    <dt><code>instances</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>the number of  instances</p>
+</dd>
+    <dt><code>properties</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>a Dictionary (string,string) describing name=value properties</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.DeploymentNode.html">DeploymentNode</a></dt>
+    <dd><p>The created child deployment node.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">name</code> is blank or when a deployment or infrastructure node with the same name already exists.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_AddInfrastructureNode_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddInfrastructureNode*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_AddInfrastructureNode_System_String_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddInfrastructureNode(System.String)">
+  AddInfrastructureNode(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a child infrastructure node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InfrastructureNode AddInfrastructureNode(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the name of the infrastructure node</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.InfrastructureNode.html">InfrastructureNode</a></dt>
+    <dd><p>an InfrastructureNode object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_AddInfrastructureNode_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddInfrastructureNode*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_AddInfrastructureNode_System_String_System_String_System_String_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddInfrastructureNode(System.String,System.String,System.String)">
+  AddInfrastructureNode(string, string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a child infrastructure node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InfrastructureNode AddInfrastructureNode(string name, string description, string technology)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the name of the infrastructure node</p>
+</dd>
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a short description</p>
+</dd>
+    <dt><code>technology</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the technology</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.InfrastructureNode.html">InfrastructureNode</a></dt>
+    <dd><p>an InfrastructureNode object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_AddInfrastructureNode_" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddInfrastructureNode*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_AddInfrastructureNode_System_String_System_String_System_String_System_Collections_Generic_Dictionary_System_String_System_String__" data-uid="StacyClouds.C4Sharp.DeploymentNode.AddInfrastructureNode(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+  AddInfrastructureNode(string, string, string, Dictionary&lt;string, string&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a child infrastructure node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InfrastructureNode AddInfrastructureNode(string name, string description, string technology, Dictionary&lt;string, string&gt; properties)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the name of the infrastructure node</p>
+</dd>
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a short description</p>
+</dd>
+    <dt><code>technology</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the technology</p>
+</dd>
+    <dt><code>properties</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>a Dictionary (string,string) describing name=value properties</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.InfrastructureNode.html">InfrastructureNode</a></dt>
+    <dd><p>an InfrastructureNode object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">name</code> is blank or when a deployment or infrastructure node with the same name already exists.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_GetDeploymentNodeWithName_" data-uid="StacyClouds.C4Sharp.DeploymentNode.GetDeploymentNodeWithName*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_GetDeploymentNodeWithName_System_String_" data-uid="StacyClouds.C4Sharp.DeploymentNode.GetDeploymentNodeWithName(System.String)">
+  GetDeploymentNodeWithName(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the DeploymentNode with the specified name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DeploymentNode GetDeploymentNodeWithName(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the name of the deployment node</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.DeploymentNode.html">DeploymentNode</a></dt>
+    <dd><p>the DeploymentNode instance with the specified name (or null if it doesn't exist)</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">name</code> is null or empty.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_GetInfrastructureNodeWithName_" data-uid="StacyClouds.C4Sharp.DeploymentNode.GetInfrastructureNodeWithName*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_GetInfrastructureNodeWithName_System_String_" data-uid="StacyClouds.C4Sharp.DeploymentNode.GetInfrastructureNodeWithName(System.String)">
+  GetInfrastructureNodeWithName(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the InfrastructureNode with the specified name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InfrastructureNode GetInfrastructureNodeWithName(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the name of the infrastructure node</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.InfrastructureNode.html">InfrastructureNode</a></dt>
+    <dd><p>the InfrastructureNode instance with the specified name (or null if it doesn't exist)</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">name</code> is null or empty.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_GetRequiredTags_" data-uid="StacyClouds.C4Sharp.DeploymentNode.GetRequiredTags*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_GetRequiredTags" data-uid="StacyClouds.C4Sharp.DeploymentNode.GetRequiredTags">
+  GetRequiredTags()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the tags that are always applied to deployment nodes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override List&lt;string&gt; GetRequiredTags()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>The required deployment node tags.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentNode_Uses_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Uses*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentNode_Uses_StacyClouds_C4Sharp_DeploymentNode_System_String_System_String_" data-uid="StacyClouds.C4Sharp.DeploymentNode.Uses(StacyClouds.C4Sharp.DeploymentNode,System.String,System.String)">
+  Uses(DeploymentNode, string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a relationship between this and another deployment node.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Relationship Uses(DeploymentNode destination, string description, string technology)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>destination</code> <a class="xref" href="StacyClouds.C4Sharp.DeploymentNode.html">DeploymentNode</a></dt>
+    <dd><p>the destination DeploymentNode</p>
+</dd>
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a short description of the relationship</p>
+</dd>
+    <dt><code>technology</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the technology</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Relationship.html">Relationship</a></dt>
+    <dd><p>a Relationship object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="StacyClouds_C4Sharp_DeploymentNode_Uses_StacyClouds_C4Sharp_DeploymentNode_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Deployment node relationships are created directly and do not use implied-relationship strategies.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -18,6 +18,9 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "location", EmitDefaultValue = true)]
         public Location Location { get; set; }
 
+        /// <summary>
+        /// Gets the canonical name for this person.
+        /// </summary>
         public override string CanonicalName
         {
             get
@@ -26,6 +29,9 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Persons do not have a parent element in the static structure hierarchy.
+        /// </summary>
         public override Element Parent
         {
             get
@@ -38,10 +44,17 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Initializes a person for deserialization.
+        /// </summary>
         internal Person()
         {
         }
 
+        /// <summary>
+        /// Returns the tags that are always applied to people.
+        /// </summary>
+        /// <returns>The required person tags.</returns>
         public override List<string> GetRequiredTags()
         {
             return new List<string>
@@ -51,16 +64,40 @@ namespace StacyClouds.C4Sharp
             };
         }
 
+        /// <summary>
+        /// Person-to-person delivery relationships are not supported by this API.
+        /// </summary>
+        /// <param name="destination">The destination person.</param>
+        /// <param name="description">The relationship description.</param>
+        /// <returns>This method never returns a value.</returns>
+        /// <exception cref="InvalidOperationException">Always thrown because person delivery relationships are modelled via <see cref="InteractsWith(Person, string)"/>.</exception>
         public new Relationship Delivers(Person destination, string description)
         {
             throw new InvalidOperationException();
         }
 
+        /// <summary>
+        /// Person-to-person delivery relationships are not supported by this API.
+        /// </summary>
+        /// <param name="destination">The destination person.</param>
+        /// <param name="description">The relationship description.</param>
+        /// <param name="technology">The interaction technology.</param>
+        /// <returns>This method never returns a value.</returns>
+        /// <exception cref="InvalidOperationException">Always thrown because person delivery relationships are modelled via <see cref="InteractsWith(Person, string, string)"/>.</exception>
         public new Relationship Delivers(Person destination, string description, string technology)
         {
             throw new InvalidOperationException();
         }
 
+        /// <summary>
+        /// Person-to-person delivery relationships are not supported by this API.
+        /// </summary>
+        /// <param name="destination">The destination person.</param>
+        /// <param name="description">The relationship description.</param>
+        /// <param name="technology">The interaction technology.</param>
+        /// <param name="interactionStyle">The interaction style.</param>
+        /// <returns>This method never returns a value.</returns>
+        /// <exception cref="InvalidOperationException">Always thrown because person delivery relationships are modelled via <see cref="InteractsWith(Person, string, string, InteractionStyle?)"/>.</exception>
         public new Relationship Delivers(Person destination, string description, string technology, InteractionStyle interactionStyle)
         {
             throw new InvalidOperationException();
@@ -116,6 +153,11 @@ namespace StacyClouds.C4Sharp
             return Model.AddRelationship(this, destination, description, technology, interactionStyle, tags);
         }
 
+        /// <summary>
+        /// Compares this person with another person by canonical identity.
+        /// </summary>
+        /// <param name="person">The person to compare with.</param>
+        /// <returns><see langword="true"/> when both people represent the same model element; otherwise, <see langword="false"/>.</returns>
         public bool Equals(Person person)
         {
             return this.Equals(person as Element);

@@ -38,6 +38,9 @@ namespace StacyClouds.C4Sharp
             }
         }
   
+        /// <summary>
+        /// Gets the canonical name for this software system.
+        /// </summary>
         public override string CanonicalName
         {
             get
@@ -46,6 +49,9 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Software systems do not have a parent element in the static structure hierarchy.
+        /// </summary>
         public override Element Parent
         {
             get
@@ -58,6 +64,9 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Initializes a software system for deserialization.
+        /// </summary>
         internal SoftwareSystem()
         {
             _containers = new HashSet<Container>();
@@ -67,6 +76,7 @@ namespace StacyClouds.C4Sharp
         /// Adds a container with the specified name (unless one exists with the same name already).
         /// </summary>
         /// <param name="name">the name of the container (e.g. "Web Application")</param>
+        /// <returns>The created container, or <see langword="null"/> if a container with the same name already exists.</returns>
         public Container AddContainer(string name)
         {
             return AddContainer(name, "");
@@ -77,6 +87,7 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="name">the name of the container (e.g. "Web Application")</param>
         /// <param name="description">a short description/list of responsibilities</param>
+        /// <returns>The created container, or <see langword="null"/> if a container with the same name already exists.</returns>
         public Container AddContainer(string name, string description)
         {
             return AddContainer(name, description, "");
@@ -88,11 +99,16 @@ namespace StacyClouds.C4Sharp
         /// <param name="name">the name of the container (e.g. "Web Application")</param>
         /// <param name="description">a short description/list of responsibilities</param>
         /// <param name="technology">the technology choice (e.g. "Spring MVC", "Java EE", etc)</param>
+        /// <returns>The created container, or <see langword="null"/> if a container with the same name already exists.</returns>
         public Container AddContainer(string name, string description, string technology)
         {
             return Model.AddContainer(this, name, description, technology);
         }
 
+        /// <summary>
+        /// Adds an existing container instance to this software system.
+        /// </summary>
+        /// <param name="container">The container to add.</param>
         internal void Add(Container container)
         {
             _containers.Add(container);
@@ -101,6 +117,8 @@ namespace StacyClouds.C4Sharp
         /// <summary>
         /// Gets the container with the specified name (or null if it doesn't exist).
         /// </summary>
+        /// <param name="name">The name of the container to find.</param>
+        /// <returns>The matching container, or <see langword="null"/> when no container has that name.</returns>
         public Container GetContainerWithName(string name)
         {
             foreach (Container container in _containers)
@@ -117,6 +135,8 @@ namespace StacyClouds.C4Sharp
         /// <summary>
         /// Gets the container with the specified ID (or null if it doesn't exist).
         /// </summary>
+        /// <param name="id">The identifier of the container to find.</param>
+        /// <returns>The matching container, or <see langword="null"/> when no container has that identifier.</returns>
         public Container GetContainerWithId(string id)
         {
             foreach (Container container in _containers)
@@ -130,6 +150,10 @@ namespace StacyClouds.C4Sharp
             return null;
         }
 
+        /// <summary>
+        /// Returns the tags that are always applied to software systems.
+        /// </summary>
+        /// <returns>The required software system tags.</returns>
         public override List<string> GetRequiredTags()
         {
             return new List<string>
@@ -139,6 +163,11 @@ namespace StacyClouds.C4Sharp
             };
         }
 
+        /// <summary>
+        /// Compares this software system with another software system by canonical identity.
+        /// </summary>
+        /// <param name="softwareSystem">The software system to compare with.</param>
+        /// <returns><see langword="true"/> when both software systems represent the same model element; otherwise, <see langword="false"/>.</returns>
         public bool Equals(SoftwareSystem softwareSystem)
         {
             return this.Equals(softwareSystem as Element);

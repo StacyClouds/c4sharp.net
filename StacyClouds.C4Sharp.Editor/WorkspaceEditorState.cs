@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using StacyClouds.C4Sharp;
@@ -10,22 +10,39 @@ namespace StacyClouds.C4Sharp.Editor
 	{
 		private readonly Workspace workspace;
 
+		/// <summary>
+		/// Creates editing state for a workspace and selects an initial view.
+		/// </summary>
+		/// <param name="workspace">The workspace whose layout should be edited.</param>
+		/// <param name="selectedViewKey">The initially selected view key, or <c>null</c> to select the first available view.</param>
 		public WorkspaceEditorState(Workspace workspace, string? selectedViewKey = null)
 		{
 			this.workspace = workspace ?? throw new ArgumentNullException(nameof(workspace));
 			SelectedViewKey = selectedViewKey ?? GetViewKeys().FirstOrDefault() ?? string.Empty;
 		}
 
+		/// <summary>
+		/// Identifies the view currently being edited.
+		/// </summary>
 		public string SelectedViewKey { get; private set; }
 
 		/// <summary>Gets the updated workspace supplied to a host save callback.</summary>
 		public Workspace Workspace => workspace;
 
+		/// <summary>
+		/// Lists the keys of all editable views in the workspace.
+		/// </summary>
+		/// <returns>The ordered set of editable view keys.</returns>
 		public IEnumerable<string> GetViewKeys()
 		{
 			return workspace.Views.SystemLandscapeViews.Cast<View>().Concat(workspace.Views.SystemContextViews).Concat(workspace.Views.ContainerViews).Concat(workspace.Views.ComponentViews).Concat(workspace.Views.DynamicViews).Concat(workspace.Views.DeploymentViews).Select(view => view.Key).Concat(workspace.Views.FilteredViews.Select(view => view.Key)).OrderBy(key => key, StringComparer.Ordinal);
 		}
 
+		/// <summary>
+		/// Changes the selected view.
+		/// </summary>
+		/// <param name="viewKey">The key of the view to edit.</param>
+		/// <exception cref="ArgumentException">Thrown when <paramref name="viewKey"/> is missing or does not exist in the workspace.</exception>
 		public void SelectView(string viewKey)
 		{
 			if (string.IsNullOrWhiteSpace(viewKey)) throw new ArgumentException("View key must be provided.", nameof(viewKey));
@@ -33,6 +50,13 @@ namespace StacyClouds.C4Sharp.Editor
 			SelectedViewKey = viewKey;
 		}
 
+		/// <summary>
+		/// Moves an element within the selected view.
+		/// </summary>
+		/// <param name="elementId">The identifier of the element to move.</param>
+		/// <param name="x">The new X coordinate.</param>
+		/// <param name="y">The new Y coordinate.</param>
+		/// <exception cref="ArgumentException">Thrown when the element does not exist in the selected view.</exception>
 		public void MoveElement(string elementId, int x, int y)
 		{
 			ElementView element = GetLayoutView().Elements.FirstOrDefault(candidate => candidate.Id == elementId);
@@ -41,6 +65,13 @@ namespace StacyClouds.C4Sharp.Editor
 			element.Y = y;
 		}
 
+		/// <summary>
+		/// Inserts a relationship vertex at the nearest segment within the selected view.
+		/// </summary>
+		/// <param name="relationshipId">The identifier of the relationship to edit.</param>
+		/// <param name="x">The X coordinate of the new vertex.</param>
+		/// <param name="y">The Y coordinate of the new vertex.</param>
+		/// <exception cref="ArgumentException">Thrown when the relationship does not exist in the selected view.</exception>
 		public void AddRelationshipVertex(string relationshipId, int x, int y)
 		{
 			View view = GetLayoutView();
@@ -51,6 +82,15 @@ namespace StacyClouds.C4Sharp.Editor
 			relationship.SetVertices(vertices);
 		}
 
+		/// <summary>
+		/// Moves an existing relationship vertex within the selected view.
+		/// </summary>
+		/// <param name="relationshipId">The identifier of the relationship to edit.</param>
+		/// <param name="index">The zero-based vertex index.</param>
+		/// <param name="x">The new X coordinate.</param>
+		/// <param name="y">The new Y coordinate.</param>
+		/// <exception cref="ArgumentException">Thrown when the relationship does not exist in the selected view.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="index"/> does not identify an existing vertex.</exception>
 		public void MoveRelationshipVertex(string relationshipId, int index, int x, int y)
 		{
 			RelationshipView relationship = GetRelationship(relationshipId);
@@ -60,6 +100,13 @@ namespace StacyClouds.C4Sharp.Editor
 			relationship.SetVertices(vertices);
 		}
 
+		/// <summary>
+		/// Removes an existing relationship vertex from the selected view.
+		/// </summary>
+		/// <param name="relationshipId">The identifier of the relationship to edit.</param>
+		/// <param name="index">The zero-based vertex index.</param>
+		/// <exception cref="ArgumentException">Thrown when the relationship does not exist in the selected view.</exception>
+		/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="index"/> does not identify an existing vertex.</exception>
 		public void RemoveRelationshipVertex(string relationshipId, int index)
 		{
 			RelationshipView relationship = GetRelationship(relationshipId);
@@ -69,6 +116,13 @@ namespace StacyClouds.C4Sharp.Editor
 			relationship.SetVertices(vertices);
 		}
 
+		/// <summary>
+		/// Repositions a relationship label along the selected view's connector path.
+		/// </summary>
+		/// <param name="relationshipId">The identifier of the relationship to edit.</param>
+		/// <param name="x">The target X coordinate used to project the label onto the connector.</param>
+		/// <param name="y">The target Y coordinate used to project the label onto the connector.</param>
+		/// <exception cref="ArgumentException">Thrown when the relationship does not exist in the selected view.</exception>
 		public void MoveRelationshipLabel(string relationshipId, int x, int y)
 		{
 			View view = GetLayoutView();

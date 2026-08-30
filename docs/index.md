@@ -26,6 +26,7 @@ C4Sharp.NET is a multi-package .NET toolkit for:
 
 - [NuGet package map](nuget.md)
 - [Client-side encryption](client-side-encryption.md)
+- [API Reference](api/) — full public API reference for all packages, generated from XML documentation
 
 ## Project links
 

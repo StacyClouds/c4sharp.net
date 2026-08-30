@@ -55,6 +55,9 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// The source element of the relationship.
+        /// </summary>
         public Element Source { get; set; }
 
         private string _destinationId;
@@ -82,6 +85,9 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// The destination element of the relationship.
+        /// </summary>
         public Element Destination { get; set; }
 
         /// <summary>
@@ -92,6 +98,9 @@ namespace StacyClouds.C4Sharp
 
         private InteractionStyle? _interactionStyle;
 
+        /// <summary>
+        /// The identifier of the static relationship that this replicated deployment relationship was derived from.
+        /// </summary>
         [DataMember(Name = "linkedRelationshipId", EmitDefaultValue = false)]
         public string LinkedRelationshipId { get; internal set; }
 
@@ -140,10 +149,22 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Initializes a relationship for deserialization.
+        /// </summary>
         internal Relationship()
         {
         }
 
+        /// <summary>
+        /// Initializes a relationship between two elements.
+        /// </summary>
+        /// <param name="source">The source element.</param>
+        /// <param name="destination">The destination element.</param>
+        /// <param name="description">The relationship description.</param>
+        /// <param name="technology">The relationship technology.</param>
+        /// <param name="interactionStyle">The interaction style, if specified.</param>
+        /// <param name="tags">Additional tags to apply.</param>
         internal Relationship(Element source, Element destination, string description, string technology, InteractionStyle? interactionStyle, string[] tags) :
             this()
         {
@@ -156,6 +177,13 @@ namespace StacyClouds.C4Sharp
             AddTags(tags);
         }
 
+        /// <summary>
+        /// Returns the built-in tags that apply to this relationship.
+        /// </summary>
+        /// <returns>
+        /// A list containing the relationship tag and, for non-linked relationships,
+        /// the appropriate synchronous or asynchronous tag.
+        /// </returns>
         public override List<string> GetRequiredTags()
         {
             if (LinkedRelationshipId == null) {
@@ -186,11 +214,21 @@ namespace StacyClouds.C4Sharp
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
+        /// <summary>
+        /// Compares this relationship with another object.
+        /// </summary>
+        /// <param name="obj">The object to compare with.</param>
+        /// <returns><see langword="true"/> when <paramref name="obj"/> is a matching <see cref="Relationship"/>; otherwise, <see langword="false"/>.</returns>
         public override bool Equals(object obj)
         {
             return this.Equals(obj as Relationship);
         }
 
+        /// <summary>
+        /// Compares this relationship with another relationship by source, destination, and description.
+        /// </summary>
+        /// <param name="relationship">The relationship to compare with.</param>
+        /// <returns><see langword="true"/> when both relationships connect the same elements with the same description; otherwise, <see langword="false"/>.</returns>
         public bool Equals(Relationship relationship)
         {
             if (relationship == null)
@@ -210,6 +248,10 @@ namespace StacyClouds.C4Sharp
             return true;
         }
 
+        /// <summary>
+        /// Returns a hash code derived from the source, destination, and description.
+        /// </summary>
+        /// <returns>A hash code for the current relationship.</returns>
         public override int GetHashCode()
         {
             int result = SourceId.GetHashCode();
@@ -218,6 +260,10 @@ namespace StacyClouds.C4Sharp
             return result;
         }
 
+        /// <summary>
+        /// Returns a readable representation of the relationship.
+        /// </summary>
+        /// <returns>A string containing the source, description, and destination.</returns>
         public override string ToString()
         {
             return Source.ToString() + " ---[" + Description + "]---> " + Destination.ToString();

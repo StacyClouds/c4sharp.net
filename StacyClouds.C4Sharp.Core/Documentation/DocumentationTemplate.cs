@@ -184,6 +184,7 @@ namespace StacyClouds.C4Sharp.Documentation
         /// Adds png/jpg/jpeg/gif images in the given directory to the workspace.
         /// </summary>
         /// <param name="directory">a DirectoryInfo representing the directory containing image files</param>
+        /// <returns>The images that were added to the workspace.</returns>
         public IEnumerable<Image> AddImages(DirectoryInfo directory)
         {
             if (directory == null)

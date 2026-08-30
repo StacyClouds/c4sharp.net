@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class StaticView | C4Sharp.NET API Reference </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class StaticView | C4Sharp.NET API Reference ">
+      
+      <meta name="description" content="Serves as the base type for views that render a static structural slice of the model.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="C4Sharp.NET">
+            C4Sharp.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="StacyClouds.C4Sharp.StaticView">
+
+
+
+  <h1 id="StacyClouds_C4Sharp_StaticView" data-uid="StacyClouds.C4Sharp.StaticView" class="text-break">
+Class StaticView  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="StacyClouds.html">StacyClouds</a>.<a class="xref" href="StacyClouds.C4Sharp.html">C4Sharp</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>StacyClouds.C4Sharp.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Serves as the base type for views that render a static structural slice of the model.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataContract]
+public abstract class StaticView : View</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="StacyClouds.C4Sharp.View.html">View</a></div>
+      <div><span class="xref">StaticView</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="StacyClouds.C4Sharp.ComponentView.html">ComponentView</a></div>
+      <div><a class="xref" href="StacyClouds.C4Sharp.ContainerView.html">ContainerView</a></div>
+      <div><a class="xref" href="StacyClouds.C4Sharp.SystemContextView.html">SystemContextView</a></div>
+      <div><a class="xref" href="StacyClouds.C4Sharp.SystemLandscapeView.html">SystemLandscapeView</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_LayoutMergeStrategy">View.LayoutMergeStrategy</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Key">View.Key</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_SoftwareSystem">View.SoftwareSystem</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_SoftwareSystemId">View.SoftwareSystemId</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Description">View.Description</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Name">View.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Title">View.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Model">View.Model</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_PaperSize">View.PaperSize</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Dimensions">View.Dimensions</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Elements">View.Elements</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Relationships">View.Relationships</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_CheckElementCanBeAdded_StacyClouds_C4Sharp_Element_">View.CheckElementCanBeAdded(Element)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_AddElement_StacyClouds_C4Sharp_Element_System_Boolean_">View.AddElement(Element, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_RemoveElement_StacyClouds_C4Sharp_Element_">View.RemoveElement(Element)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_AddRelationship_StacyClouds_C4Sharp_Relationship_">View.AddRelationship(Relationship)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_GetElementView_StacyClouds_C4Sharp_Element_">View.GetElementView(Element)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_GetRelationshipView_StacyClouds_C4Sharp_Relationship_">View.GetRelationshipView(Relationship)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Remove_StacyClouds_C4Sharp_Relationship_">View.Remove(Relationship)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_CopyLayoutInformationFrom_StacyClouds_C4Sharp_View_">View.CopyLayoutInformationFrom(View)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_AutomaticLayout">View.AutomaticLayout</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_EnableAutomaticLayout">View.EnableAutomaticLayout()</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_EnableAutomaticLayout_StacyClouds_C4Sharp_RankDirection_System_Int32_System_Int32_System_Int32_System_Boolean_">View.EnableAutomaticLayout(RankDirection, int, int, int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_DisableAutomaticLayout">View.DisableAutomaticLayout()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_Animations_" data-uid="StacyClouds.C4Sharp.StaticView.Animations*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_Animations" data-uid="StacyClouds.C4Sharp.StaticView.Animations">
+  Animations
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Contains the ordered animation steps configured for this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;animations&quot;, EmitDefaultValue = false)]
+public IList&lt;Animation&gt; Animations { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="StacyClouds.C4Sharp.Animation.html">Animation</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_Add_" data-uid="StacyClouds.C4Sharp.StaticView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_Add_StacyClouds_C4Sharp_Person_" data-uid="StacyClouds.C4Sharp.StaticView.Add(StacyClouds.C4Sharp.Person)">
+  Add(Person)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given Person to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(Person person)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>person</code> <a class="xref" href="StacyClouds.C4Sharp.Person.html">Person</a></dt>
+    <dd><p>The person to add.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_Add_" data-uid="StacyClouds.C4Sharp.StaticView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_Add_StacyClouds_C4Sharp_Relationship_" data-uid="StacyClouds.C4Sharp.StaticView.Add(StacyClouds.C4Sharp.Relationship)">
+  Add(Relationship)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a specific relationship to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelationshipView Add(Relationship relationship)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relationship</code> <a class="xref" href="StacyClouds.C4Sharp.Relationship.html">Relationship</a></dt>
+    <dd><p>the Relationship to be added</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.RelationshipView.html">RelationshipView</a></dt>
+    <dd><p>a RelationshipView object representing the relationship added</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_Add_" data-uid="StacyClouds.C4Sharp.StaticView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_Add_StacyClouds_C4Sharp_SoftwareSystem_" data-uid="StacyClouds.C4Sharp.StaticView.Add(StacyClouds.C4Sharp.SoftwareSystem)">
+  Add(SoftwareSystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the given SoftwareSystem to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Add(SoftwareSystem softwareSystem)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>The software system to add.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_AddAllElements_" data-uid="StacyClouds.C4Sharp.StaticView.AddAllElements*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_AddAllElements" data-uid="StacyClouds.C4Sharp.StaticView.AddAllElements">
+  AddAllElements()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds every element type permitted by the concrete static view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void AddAllElements()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_AddAllPeople_" data-uid="StacyClouds.C4Sharp.StaticView.AddAllPeople*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_AddAllPeople" data-uid="StacyClouds.C4Sharp.StaticView.AddAllPeople">
+  AddAllPeople()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds all people in the model to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddAllPeople()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_AddAllSoftwareSystems_" data-uid="StacyClouds.C4Sharp.StaticView.AddAllSoftwareSystems*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_AddAllSoftwareSystems" data-uid="StacyClouds.C4Sharp.StaticView.AddAllSoftwareSystems">
+  AddAllSoftwareSystems()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds all software systems in the model to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddAllSoftwareSystems()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_AddAnimation_" data-uid="StacyClouds.C4Sharp.StaticView.AddAnimation*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_AddAnimation_StacyClouds_C4Sharp_Element___" data-uid="StacyClouds.C4Sharp.StaticView.AddAnimation(StacyClouds.C4Sharp.Element[])">
+  AddAnimation(params Element[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an animation step that reveals the supplied elements and the relationships to previously revealed elements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddAnimation(params Element[] elements)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>elements</code> <a class="xref" href="StacyClouds.C4Sharp.Element.html">Element</a>[]</dt>
+    <dd><p>The elements to reveal in the new animation step.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when no elements are supplied or none exist in the view.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_AddDefaultElements_" data-uid="StacyClouds.C4Sharp.StaticView.AddDefaultElements*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_AddDefaultElements" data-uid="StacyClouds.C4Sharp.StaticView.AddDefaultElements">
+  AddDefaultElements()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the default set of elements to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void AddDefaultElements()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_AddNearestNeighbours_" data-uid="StacyClouds.C4Sharp.StaticView.AddNearestNeighbours*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_AddNearestNeighbours_StacyClouds_C4Sharp_Element_" data-uid="StacyClouds.C4Sharp.StaticView.AddNearestNeighbours(StacyClouds.C4Sharp.Element)">
+  AddNearestNeighbours(Element)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the permitted elements that are directly connected to the supplied element.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void AddNearestNeighbours(Element element)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="StacyClouds.C4Sharp.Element.html">Element</a></dt>
+    <dd><p>The element whose neighbourhood should be included.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_AddNearestNeighbours_" data-uid="StacyClouds.C4Sharp.StaticView.AddNearestNeighbours*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_AddNearestNeighbours_StacyClouds_C4Sharp_Element_System_Type_" data-uid="StacyClouds.C4Sharp.StaticView.AddNearestNeighbours(StacyClouds.C4Sharp.Element,System.Type)">
+  AddNearestNeighbours(Element, Type)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void AddNearestNeighbours(Element element, Type typeOfElement)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>element</code> <a class="xref" href="StacyClouds.C4Sharp.Element.html">Element</a></dt>
+    <dd></dd>
+    <dt><code>typeOfElement</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_Remove_" data-uid="StacyClouds.C4Sharp.StaticView.Remove*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_Remove_StacyClouds_C4Sharp_Person_" data-uid="StacyClouds.C4Sharp.StaticView.Remove(StacyClouds.C4Sharp.Person)">
+  Remove(Person)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes the given Person from this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(Person person)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>person</code> <a class="xref" href="StacyClouds.C4Sharp.Person.html">Person</a></dt>
+    <dd><p>The person to remove.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_StaticView_Remove_" data-uid="StacyClouds.C4Sharp.StaticView.Remove*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_StaticView_Remove_StacyClouds_C4Sharp_SoftwareSystem_" data-uid="StacyClouds.C4Sharp.StaticView.Remove(StacyClouds.C4Sharp.SoftwareSystem)">
+  Remove(SoftwareSystem)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes the given SoftwareSystem from this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(SoftwareSystem softwareSystem)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>The software system to remove.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

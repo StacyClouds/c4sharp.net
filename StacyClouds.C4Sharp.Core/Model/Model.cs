@@ -12,14 +12,22 @@ namespace StacyClouds.C4Sharp
     [DataContract]
     public sealed class Model
     {
-
+        /// <summary>
+        /// Controls whether additional implied relationships are created when static structure relationships are added.
+        /// </summary>
         public IImpliedRelationshipsStrategy ImpliedRelationshipsStrategy = new DefaultImpliedRelationshipsStrategy();
 
+        /// <summary>
+        /// The enterprise boundary associated with this model, when one is defined.
+        /// </summary>
         [DataMember(Name = "enterprise", EmitDefaultValue = false)]
         public Enterprise Enterprise { get; set; }
 
         private HashSet<Person> _people;
 
+        /// <summary>
+        /// The people defined in the model.
+        /// </summary>
         [DataMember(Name = "people", EmitDefaultValue = false)]
         public ISet<Person> People
         {
@@ -36,6 +44,9 @@ namespace StacyClouds.C4Sharp
 
         private HashSet<SoftwareSystem> _softwareSystems;
 
+        /// <summary>
+        /// The software systems defined in the model.
+        /// </summary>
         [DataMember(Name = "softwareSystems", EmitDefaultValue = false)]
         public ISet<SoftwareSystem> SoftwareSystems
         {
@@ -52,6 +63,9 @@ namespace StacyClouds.C4Sharp
 
         private HashSet<DeploymentNode> _deploymentNodes;
 
+        /// <summary>
+        /// The top-level deployment nodes defined in the model.
+        /// </summary>
         [DataMember(Name = "deploymentNodes", EmitDefaultValue = false)]
         public ISet<DeploymentNode> DeploymentNodes
         {
@@ -69,6 +83,9 @@ namespace StacyClouds.C4Sharp
         private readonly Dictionary<string, Element> _elementsById = new Dictionary<string, Element>();
         private readonly Dictionary<string, Relationship> _relationshipsById = new Dictionary<string, Relationship>();
 
+        /// <summary>
+        /// All relationships currently registered in the model.
+        /// </summary>
         public ICollection<Relationship> Relationships
         {
             get
@@ -77,8 +94,14 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Generates unique string identifiers for elements and relationships added to the model.
+        /// </summary>
         public IdGenerator IdGenerator = new SequentialIntegerIdGeneratorStrategy();
 
+        /// <summary>
+        /// Initializes an empty model for deserialization and workspace construction.
+        /// </summary>
         internal Model()
         {
             _people = new HashSet<Person>();
@@ -90,7 +113,7 @@ namespace StacyClouds.C4Sharp
         /// Creates a software system (location is unspecified) and adds it to the model
         /// (unless one exists with the same name already).
         /// </summary>
-        /// <param name="Name">The name of the software system</param>
+        /// <param name="name">The name of the software system.</param>
         /// <returns>the SoftwareSystem instance created and added to the model (or null)</returns>
         public SoftwareSystem AddSoftwareSystem(string name)
         {
@@ -101,8 +124,8 @@ namespace StacyClouds.C4Sharp
         /// Creates a software system (location is unspecified) and adds it to the model
         /// (unless one exists with the same name already).
         /// </summary>
-        /// <param name="Name">The name of the software system</param>
-        /// <param name="Description">A short description of the software syste.</param>
+        /// <param name="name">The name of the software system.</param>
+        /// <param name="description">A short description of the software system.</param>
         /// <returns>the SoftwareSystem instance created and added to the model (or null)</returns>
         public SoftwareSystem AddSoftwareSystem(string name, string description)
         {
@@ -115,7 +138,7 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="location">The location of the software system (e.g. internal, external, etc)</param>
         /// <param name="name">The name of the software system</param>
-        /// <param name="description">A short description of the software syste.</param>
+        /// <param name="description">A short description of the software system.</param>
         /// <returns>the SoftwareSystem instance created and added to the model (or null)</returns>
         public SoftwareSystem AddSoftwareSystem(Location location, string name, string description)
         {
@@ -191,6 +214,14 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Creates a container inside the specified software system.
+        /// </summary>
+        /// <param name="parent">The software system that will own the container.</param>
+        /// <param name="name">The container name.</param>
+        /// <param name="description">A short description of the container responsibilities.</param>
+        /// <param name="technology">The implementation technology.</param>
+        /// <returns>The created container, or <see langword="null"/> when a container with the same name already exists.</returns>
         internal Container AddContainer(SoftwareSystem parent, string name, string description, string technology)
         {
             if (parent.GetContainerWithName(name) == null)
@@ -213,6 +244,14 @@ namespace StacyClouds.C4Sharp
             }
         }
         
+        /// <summary>
+        /// Creates a deployment instance for a software system and replicates matching relationships.
+        /// </summary>
+        /// <param name="deploymentNode">The deployment node that will own the instance.</param>
+        /// <param name="softwareSystem">The software system being deployed.</param>
+        /// <param name="deploymentGroup">The deployment group used to scope replicated relationships.</param>
+        /// <returns>The created software system instance.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="softwareSystem"/> is <see langword="null"/>.</exception>
         internal SoftwareSystemInstance AddSoftwareSystemInstance(DeploymentNode deploymentNode, SoftwareSystem softwareSystem, string deploymentGroup)
         {
             if (softwareSystem == null) {
@@ -232,6 +271,14 @@ namespace StacyClouds.C4Sharp
             return softwareSystemInstance;
         }
 
+        /// <summary>
+        /// Creates a deployment instance for a container and replicates matching relationships.
+        /// </summary>
+        /// <param name="deploymentNode">The deployment node that will own the instance.</param>
+        /// <param name="container">The container being deployed.</param>
+        /// <param name="deploymentGroup">The deployment group used to scope replicated relationships.</param>
+        /// <returns>The created container instance.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="container"/> is <see langword="null"/>.</exception>
         internal ContainerInstance AddContainerInstance(DeploymentNode deploymentNode, Container container, string deploymentGroup)
         {
             if (container == null) {
@@ -283,6 +330,16 @@ namespace StacyClouds.C4Sharp
             }
         }
     
+        /// <summary>
+        /// Creates a component inside the specified container.
+        /// </summary>
+        /// <param name="parent">The container that will own the component.</param>
+        /// <param name="name">The component name.</param>
+        /// <param name="type">The optional fully qualified implementation type name.</param>
+        /// <param name="description">A short description of the component responsibilities.</param>
+        /// <param name="technology">The implementation technology.</param>
+        /// <returns>The created component.</returns>
+        /// <exception cref="ArgumentException">Thrown when a component with the same name already exists in the container.</exception>
         internal Component AddComponent(Container parent, string name, string type, string description, string technology)
         {
             if (parent.GetComponentWithName(name) == null)
@@ -310,34 +367,104 @@ namespace StacyClouds.C4Sharp
             throw new ArgumentException("A container named '" + name + "' already exists for this software system.");
         }
 
+        /// <summary>
+        /// Adds a top-level deployment node in the default deployment environment.
+        /// </summary>
+        /// <param name="name">The deployment node name.</param>
+        /// <param name="description">A short description of the deployment node.</param>
+        /// <param name="technology">The technology or product represented by the deployment node.</param>
+        /// <returns>The created deployment node.</returns>
         public DeploymentNode AddDeploymentNode(string name, string description, string technology) {
             return AddDeploymentNode(DeploymentElement.DefaultDeploymentEnvironment, name, description, technology);
         }
 
+        /// <summary>
+        /// Adds a top-level deployment node in the default deployment environment.
+        /// </summary>
+        /// <param name="name">The deployment node name.</param>
+        /// <returns>The created deployment node.</returns>
         public DeploymentNode AddDeploymentNode(string name) {
             return AddDeploymentNode(DeploymentElement.DefaultDeploymentEnvironment, name, null, null);
         }
 
+        /// <summary>
+        /// Adds a top-level deployment node in the specified deployment environment.
+        /// </summary>
+        /// <param name="environment">The deployment environment name.</param>
+        /// <param name="name">The deployment node name.</param>
+        /// <param name="description">A short description of the deployment node.</param>
+        /// <param name="technology">The technology or product represented by the deployment node.</param>
+        /// <returns>The created deployment node.</returns>
         public DeploymentNode AddDeploymentNode(string environment, string name, string description, string technology) {
             return AddDeploymentNode(environment, name, description, technology, 1);
         }
 
+        /// <summary>
+        /// Adds a top-level deployment node with an explicit instance count in the default environment.
+        /// </summary>
+        /// <param name="name">The deployment node name.</param>
+        /// <param name="description">A short description of the deployment node.</param>
+        /// <param name="technology">The technology or product represented by the deployment node.</param>
+        /// <param name="instances">The number of identical deployment node instances.</param>
+        /// <returns>The created deployment node.</returns>
         public DeploymentNode AddDeploymentNode(string name, string description, string technology, int instances) {
             return AddDeploymentNode(DeploymentElement.DefaultDeploymentEnvironment, name, description, technology, instances);
         }
 
+        /// <summary>
+        /// Adds a top-level deployment node with an explicit instance count in the specified environment.
+        /// </summary>
+        /// <param name="environment">The deployment environment name.</param>
+        /// <param name="name">The deployment node name.</param>
+        /// <param name="description">A short description of the deployment node.</param>
+        /// <param name="technology">The technology or product represented by the deployment node.</param>
+        /// <param name="instances">The number of identical deployment node instances.</param>
+        /// <returns>The created deployment node.</returns>
         public DeploymentNode AddDeploymentNode(string environment, string name, string description, string technology, int instances) {
             return AddDeploymentNode(environment, name, description, technology, instances, null);
         }
 
+        /// <summary>
+        /// Adds a top-level deployment node with custom properties in the default environment.
+        /// </summary>
+        /// <param name="name">The deployment node name.</param>
+        /// <param name="description">A short description of the deployment node.</param>
+        /// <param name="technology">The technology or product represented by the deployment node.</param>
+        /// <param name="instances">The number of identical deployment node instances.</param>
+        /// <param name="properties">Custom name-value properties for the deployment node.</param>
+        /// <returns>The created deployment node.</returns>
         public DeploymentNode AddDeploymentNode(string name, string description, string technology, int instances, Dictionary<string,string> properties) {
             return AddDeploymentNode(DeploymentElement.DefaultDeploymentEnvironment, name, description, technology, instances, properties);
         }
 
+        /// <summary>
+        /// Adds a top-level deployment node with custom properties in the specified environment.
+        /// </summary>
+        /// <param name="environment">The deployment environment name.</param>
+        /// <param name="name">The deployment node name.</param>
+        /// <param name="description">A short description of the deployment node.</param>
+        /// <param name="technology">The technology or product represented by the deployment node.</param>
+        /// <param name="instances">The number of identical deployment node instances.</param>
+        /// <param name="properties">Custom name-value properties for the deployment node.</param>
+        /// <returns>The created deployment node.</returns>
         public DeploymentNode AddDeploymentNode(string environment, string name, string description, string technology, int instances, Dictionary<string,string> properties) {
             return AddDeploymentNode(null, environment, name, description, technology, instances, properties);
         }
 
+        /// <summary>
+        /// Creates a deployment node either at the top level or as a child of another deployment node.
+        /// </summary>
+        /// <param name="parent">The parent deployment node, or <see langword="null"/> for a top-level node.</param>
+        /// <param name="environment">The deployment environment name.</param>
+        /// <param name="name">The deployment node name.</param>
+        /// <param name="description">A short description of the deployment node.</param>
+        /// <param name="technology">The technology or product represented by the deployment node.</param>
+        /// <param name="instances">The number of identical deployment node instances.</param>
+        /// <param name="properties">Custom name-value properties for the deployment node.</param>
+        /// <returns>The created deployment node.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="name"/> is blank or when a deployment or infrastructure node with the same name already exists at the target level.
+        /// </exception>
         internal DeploymentNode AddDeploymentNode(DeploymentNode parent, string environment, string name, string description, string technology, int instances, Dictionary<string,string> properties) {
             if (name == null || name.Trim().Length == 0) {
                 throw new ArgumentException("A name must be specified.");
@@ -371,6 +498,18 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Creates an infrastructure node under the specified deployment node.
+        /// </summary>
+        /// <param name="parent">The deployment node that will own the infrastructure node.</param>
+        /// <param name="name">The infrastructure node name.</param>
+        /// <param name="description">A short description of the infrastructure node.</param>
+        /// <param name="technology">The technology or product represented by the infrastructure node.</param>
+        /// <param name="properties">Custom name-value properties for the infrastructure node.</param>
+        /// <returns>The created infrastructure node.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="name"/> is blank or when a deployment or infrastructure node with the same name already exists under the parent.
+        /// </exception>
         internal InfrastructureNode AddInfrastructureNode(DeploymentNode parent, string name, string description, string technology, Dictionary<string,string> properties) {
             if (name == null || name.Trim().Length == 0) {
                 throw new ArgumentException("A name must be specified.");
@@ -410,21 +549,66 @@ namespace StacyClouds.C4Sharp
             return _deploymentNodes.FirstOrDefault(dn => dn.Environment.Equals(environment) && dn.Name.Equals(name));
         }
 
+        /// <summary>
+        /// Creates a relationship between two elements without explicitly specifying an interaction style.
+        /// </summary>
+        /// <param name="source">The source element.</param>
+        /// <param name="destination">The destination element.</param>
+        /// <param name="description">The relationship description.</param>
+        /// <param name="technology">The technology used by the relationship.</param>
+        /// <returns>The created relationship, or <see langword="null"/> when an equivalent relationship already exists.</returns>
         internal Relationship AddRelationship(Element source, Element destination, string description, string technology)
         {
             return AddRelationship(source, destination, description, technology, null);
         }
-        
+
+        /// <summary>
+        /// Creates a relationship between two elements.
+        /// </summary>
+        /// <param name="source">The source element.</param>
+        /// <param name="destination">The destination element.</param>
+        /// <param name="description">The relationship description.</param>
+        /// <param name="technology">The technology used by the relationship.</param>
+        /// <param name="interactionStyle">The interaction style, if specified.</param>
+        /// <returns>The created relationship, or <see langword="null"/> when an equivalent relationship already exists.</returns>
         internal Relationship AddRelationship(Element source, Element destination, string description, string technology, InteractionStyle? interactionStyle)
         {
             return AddRelationship(source, destination, description, technology, interactionStyle, new string[0], true);
         }
 
+        /// <summary>
+        /// Creates a relationship between two elements with custom tags.
+        /// </summary>
+        /// <param name="source">The source element.</param>
+        /// <param name="destination">The destination element.</param>
+        /// <param name="description">The relationship description.</param>
+        /// <param name="technology">The technology used by the relationship.</param>
+        /// <param name="interactionStyle">The interaction style, if specified.</param>
+        /// <param name="tags">Additional tags to apply.</param>
+        /// <returns>The created relationship, or <see langword="null"/> when an equivalent relationship already exists.</returns>
         internal Relationship AddRelationship(Element source, Element destination, string description, string technology, InteractionStyle? interactionStyle, string[] tags)
         {
             return AddRelationship(source, destination, description, technology, interactionStyle, tags, true);
         }
 
+        /// <summary>
+        /// Creates a relationship between two elements and optionally triggers implied-relationship generation.
+        /// </summary>
+        /// <param name="source">The source element.</param>
+        /// <param name="destination">The destination element.</param>
+        /// <param name="description">The relationship description.</param>
+        /// <param name="technology">The technology used by the relationship.</param>
+        /// <param name="interactionStyle">The interaction style, if specified.</param>
+        /// <param name="tags">Additional tags to apply.</param>
+        /// <param name="createImpliedRelationships"><see langword="true"/> to run the configured implied-relationship strategy.</param>
+        /// <returns>The created relationship, or <see langword="null"/> when an equivalent relationship already exists.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="destination"/> is <see langword="null"/> or when the relationship would connect a parent and child element.
+        /// </exception>
+        /// <remarks>
+        /// Implied relationships are only created for static structure elements and are delegated to
+        /// <see cref="ImpliedRelationshipsStrategy"/>.
+        /// </remarks>
         internal Relationship AddRelationship(Element source, Element destination, string description, string technology, InteractionStyle? interactionStyle, string[] tags, bool createImpliedRelationships) {
             
             if (destination == null)
@@ -499,6 +683,12 @@ namespace StacyClouds.C4Sharp
             IdGenerator.Found(relationship.Id);
         }
 
+        /// <summary>
+        /// Updates the identifier associated with an existing relationship and refreshes internal lookups.
+        /// </summary>
+        /// <param name="relationship">The relationship whose ID should change.</param>
+        /// <param name="newId">The new identifier value.</param>
+        /// <exception cref="ArgumentException">Thrown when the relationship is null or when <paramref name="newId"/> is blank.</exception>
         internal void UpdateRelationshipId(Relationship relationship, string newId)
         {
             if (relationship == null)
@@ -549,6 +739,7 @@ namespace StacyClouds.C4Sharp
         /// <summary>
         /// Gets the SoftwareSystem instance with the specified name.
         /// </summary>
+        /// <param name="name">The software system name to search for.</param>
         /// <returns>A SoftwareSystem instance, or null if one doesn't exist.</returns>
         public SoftwareSystem GetSoftwareSystemWithName(string name)
         {
@@ -563,6 +754,11 @@ namespace StacyClouds.C4Sharp
             return null;
         }
 
+        /// <summary>
+        /// Gets the software system with the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier of the software system to find.</param>
+        /// <returns>The matching software system, or <see langword="null"/> if one does not exist.</returns>
         public SoftwareSystem GetSoftwareSystemWithId(string id)
         {
             foreach (SoftwareSystem softwareSystem in _softwareSystems)
@@ -579,6 +775,7 @@ namespace StacyClouds.C4Sharp
         /// <summary>
         /// Gets the Person instance with the specified name.
         /// </summary>
+        /// <param name="name">The person name to search for.</param>
         /// <returns>A Person instance, or null if one doesn't exist.</returns>
         public Person GetPersonWithName(string name)
         {
@@ -600,6 +797,12 @@ namespace StacyClouds.C4Sharp
             IdGenerator.Found(element.Id);
         }
 
+        /// <summary>
+        /// Updates the identifier associated with an existing element and refreshes internal lookups.
+        /// </summary>
+        /// <param name="element">The element whose ID should change.</param>
+        /// <param name="newId">The new identifier value.</param>
+        /// <exception cref="ArgumentException">Thrown when the element is null or when <paramref name="newId"/> is blank.</exception>
         internal void UpdateElementId(Element element, string newId)
         {
             if (element == null)
@@ -622,11 +825,19 @@ namespace StacyClouds.C4Sharp
             IdGenerator.Found(newId);
         }
 
+        /// <summary>
+        /// Determines whether the model already contains the specified element instance.
+        /// </summary>
+        /// <param name="element">The element to look for.</param>
+        /// <returns><see langword="true"/> when the element is registered in the model; otherwise, <see langword="false"/>.</returns>
         public bool Contains(Element element)
         {
             return _elementsById.Values.Contains(element);
         }
 
+        /// <summary>
+        /// Rebuilds internal lookup structures after a model has been deserialized.
+        /// </summary>
         internal void Hydrate()
         {
             
@@ -697,6 +908,11 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Gets an element by identifier.
+        /// </summary>
+        /// <param name="id">The element identifier.</param>
+        /// <returns>The matching element.</returns>
         public Element GetElement(string id)
         {
             return _elementsById[id];
@@ -717,11 +933,20 @@ namespace StacyClouds.C4Sharp
             return _elementsById.Values.FirstOrDefault(x => x.CanonicalName == canonicalName);
         }
 
+        /// <summary>
+        /// Returns all elements currently registered in the model.
+        /// </summary>
+        /// <returns>An enumeration of model elements.</returns>
         public IEnumerable<Element> GetElements()
         {
             return _elementsById.Values;
         }
 
+        /// <summary>
+        /// Gets a relationship by identifier.
+        /// </summary>
+        /// <param name="id">The relationship identifier.</param>
+        /// <returns>The matching relationship.</returns>
         public Relationship GetRelationship(string id)
         {
             return _relationshipsById[id];

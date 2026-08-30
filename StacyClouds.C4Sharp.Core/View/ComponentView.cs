@@ -1,15 +1,18 @@
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace StacyClouds.C4Sharp
 {
 
     /// <summary>
-    /// A system context view.
+    /// A component view that shows components inside a container and their direct neighbours.
     /// </summary>
     [DataContract]
     public sealed class ComponentView : StaticView
     {
 
+        /// <summary>
+        /// Returns the default name shown for this component view.
+        /// </summary>
         public override string Name
         {
             get
@@ -18,6 +21,9 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// References the container whose components are in scope for this view.
+        /// </summary>
         public Container Container { get; set; }
 
         private string containerId;
@@ -49,10 +55,19 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "externalContainerBoundariesVisible", EmitDefaultValue = false)]
         public bool? ExternalContainerBoundariesVisible { get; set; }
 
+        /// <summary>
+        /// Initializes a component view during deserialization.
+        /// </summary>
         internal ComponentView() : base()
         {
         }
 
+        /// <summary>
+        /// Creates a component view for the supplied container.
+        /// </summary>
+        /// <param name="container">The container in scope.</param>
+        /// <param name="key">The unique view key.</param>
+        /// <param name="description">The view description.</param>
         internal ComponentView(Container container, string key, string description) : base(container.SoftwareSystem,key,  description)
         {
             this.Container = container;
@@ -97,6 +112,9 @@ namespace StacyClouds.C4Sharp
             throw new ElementNotPermittedInViewException("Only people, software systems, containers, and components can be added to a component view.");
         }
 
+        /// <summary>
+        /// Adds all people, software systems, containers, and components permitted by this view.
+        /// </summary>
         public override void AddAllElements()
         {
             AddAllSoftwareSystems();
@@ -105,6 +123,9 @@ namespace StacyClouds.C4Sharp
             AddAllComponents();
         }
 
+        /// <summary>
+        /// Adds every container in the scoped software system except the container already in scope.
+        /// </summary>
         public void AddAllContainers()
         {
             foreach (Container container in SoftwareSystem.Containers)
@@ -120,16 +141,27 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Adds a container to the component view.
+        /// </summary>
+        /// <param name="container">The container to add.</param>
         public void Add(Container container)
         {
             AddElement(container, true);
         }
 
+        /// <summary>
+        /// Removes a container from the component view.
+        /// </summary>
+        /// <param name="container">The container to remove.</param>
         public void Remove(Container container)
         {
             RemoveElement(container);
         }
 
+        /// <summary>
+        /// Adds every component defined inside the scoped container.
+        /// </summary>
         public void AddAllComponents()
         {
             foreach (Component component in Container.Components)
@@ -138,6 +170,10 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Adds a component to the view.
+        /// </summary>
+        /// <param name="component">The component to add.</param>
         public void Add(Component component)
         {
             if (component != null)
@@ -146,6 +182,10 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Removes a component from the view.
+        /// </summary>
+        /// <param name="component">The component to remove.</param>
         public void Remove(Component component)
         {
             RemoveElement(component);

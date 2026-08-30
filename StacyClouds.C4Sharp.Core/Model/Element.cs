@@ -54,10 +54,16 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// The model that contains this element.
+        /// </summary>
         public Model Model { get; set; }
 
         private HashSet<Relationship> _relationships;
 
+        /// <summary>
+        /// The outgoing relationships owned by this element.
+        /// </summary>
         [DataMember(Name = "relationships", EmitDefaultValue = false)]
         public ISet<Relationship> Relationships
         {
@@ -72,20 +78,38 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Gets the canonical name that uniquely identifies this element within the model.
+        /// </summary>
         public abstract string CanonicalName { get; }
 
+        /// <summary>
+        /// Gets or sets the parent element in the model hierarchy.
+        /// </summary>
         public abstract Element Parent { get; set; }
 
+        /// <summary>
+        /// Initializes an element for deserialization.
+        /// </summary>
         internal Element()
         {
             _relationships = new HashSet<Relationship>();
         }
 
+        /// <summary>
+        /// Registers an outgoing relationship with this element.
+        /// </summary>
+        /// <param name="relationship">The relationship to register.</param>
         internal void AddRelationship(Relationship relationship)
         {
             _relationships.Add(relationship);
         }
 
+        /// <summary>
+        /// Determines whether this element already owns the specified outgoing relationship.
+        /// </summary>
+        /// <param name="relationship">The relationship to look for.</param>
+        /// <returns><see langword="true"/> when the relationship is already attached to this element; otherwise, <see langword="false"/>.</returns>
         public bool Has(Relationship relationship)
         {
             return _relationships.Contains(relationship);
@@ -198,17 +222,30 @@ namespace StacyClouds.C4Sharp
             return null;
         }
 
-
+        /// <summary>
+        /// Returns a readable representation containing the element ID, name, and description.
+        /// </summary>
+        /// <returns>A string representation of this element.</returns>
         public override string ToString()
         {
             return "{" + Id + " | " + Name + " | " + Description + "}";
         }
 
+        /// <summary>
+        /// Compares this element with another object by canonical name.
+        /// </summary>
+        /// <param name="obj">The object to compare with.</param>
+        /// <returns><see langword="true"/> when <paramref name="obj"/> is an equivalent <see cref="Element"/>; otherwise, <see langword="false"/>.</returns>
         public override bool Equals(object obj)
         {
             return Equals(obj as Element);
         }
 
+        /// <summary>
+        /// Compares this element with another element by canonical name.
+        /// </summary>
+        /// <param name="element">The element to compare with.</param>
+        /// <returns><see langword="true"/> when both elements have the same canonical name; otherwise, <see langword="false"/>.</returns>
         public bool Equals(Element element)
         {
             if (element == null)

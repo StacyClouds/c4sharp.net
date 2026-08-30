@@ -9,6 +9,14 @@ namespace StacyClouds.C4Sharp
     /// </summary>
     public class CreateImpliedRelationshipsUnlessAnyRelationshipExistsStrategy : AbstractImpliedRelationshipsStrategy
     {
+        /// <summary>
+        /// Creates implied relationships while avoiding duplicates between the same source and destination.
+        /// </summary>
+        /// <param name="relationship">The explicit relationship that triggered implied relationship generation.</param>
+        /// <remarks>
+        /// This strategy walks up both parent hierarchies and stops only when any outgoing
+        /// relationship already exists between the candidate elements.
+        /// </remarks>
         public override void CreateImpliedRelationships(Relationship relationship)
         {
             Element source = relationship.Source;

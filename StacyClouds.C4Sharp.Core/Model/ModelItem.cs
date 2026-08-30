@@ -7,6 +7,9 @@ using System.Text;
 namespace StacyClouds.C4Sharp
 {
 
+    /// <summary>
+    /// Provides common metadata shared by elements and relationships in the model.
+    /// </summary>
     [DataContract]
     public abstract class ModelItem
     {
@@ -19,6 +22,10 @@ namespace StacyClouds.C4Sharp
 
         private List<string> _tags = new List<string>();
 
+        /// <summary>
+        /// Returns the full tag list, including required built-in tags and user-specified tags.
+        /// </summary>
+        /// <returns>The complete set of tags as individual values.</returns>
         public IEnumerable<string> GetAllTags()
         {
             if (String.IsNullOrWhiteSpace(Tags))
@@ -26,6 +33,10 @@ namespace StacyClouds.C4Sharp
             return Tags.Split(new [] { "," }, StringSplitOptions.RemoveEmptyEntries);
         }
         
+        /// <summary>
+        /// Returns the full tag list as a set without duplicates.
+        /// </summary>
+        /// <returns>A set containing required and user-specified tags.</returns>
         public ISet<string> GetTagsAsSet()
         {
             ISet<string> setOfTags = new HashSet<string>(GetRequiredTags());
@@ -37,7 +48,9 @@ namespace StacyClouds.C4Sharp
             return setOfTags;
         }
 
-
+        /// <summary>
+        /// The comma-separated tag list stored with this model item.
+        /// </summary>
         [DataMember(Name = "tags", EmitDefaultValue = false)]
         public string Tags
         {
@@ -75,10 +88,17 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Initializes a model item for deserialization.
+        /// </summary>
         internal ModelItem()
         {
         }
 
+        /// <summary>
+        /// Adds one or more user-defined tags to this model item.
+        /// </summary>
+        /// <param name="tags">The tags to add.</param>
         public void AddTags(params string[] tags)
         {
             if (tags == null)
@@ -99,6 +119,10 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Removes a user-defined tag from this model item.
+        /// </summary>
+        /// <param name="tag">The tag to remove.</param>
         public virtual void RemoveTag(string tag)
         {
             if (tag != null)
@@ -107,6 +131,10 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Returns the built-in tags that must always be present for this model item.
+        /// </summary>
+        /// <returns>The required tags.</returns>
         public abstract List<string> GetRequiredTags();
 
         private Dictionary<string, string> _properties = new Dictionary<string, string>();
@@ -140,7 +168,9 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="name">the name of the property</param>
         /// <param name="value">the value of the property</param>
-        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="name"/> or <paramref name="value"/> is null, empty, or whitespace.
+        /// </exception>
         public void AddProperty(string name, string value)
         {
             if (String.IsNullOrWhiteSpace(name)) {
@@ -177,8 +207,11 @@ namespace StacyClouds.C4Sharp
         /// Adds a perspective to this model item.
         /// </summary>
         /// <param name="name">the name of the perspective (e.g. "Security", must be unique)</param>
-        /// <param name="description"></param>
-        /// <returns>a Perspective object</returns>
+        /// <param name="description">The narrative associated with the perspective.</param>
+        /// <returns>The created <see cref="Perspective"/>.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the name or description is blank, or when a perspective with the same name already exists.
+        /// </exception>
         public Perspective AddPerspective(string name, string description)
         {
             if (string.IsNullOrWhiteSpace(name))

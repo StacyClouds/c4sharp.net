@@ -5,6 +5,9 @@ using System.IO;
 namespace StacyClouds.C4Sharp.Documentation
 {
     
+    /// <summary>
+    /// Resolves documentation markup formats from file extensions.
+    /// </summary>
     internal class FormatFinder
     {
         
@@ -18,6 +21,12 @@ namespace StacyClouds.C4Sharp.Documentation
             ".asciidoc", ".adoc", ".asc"
         };
 
+        /// <summary>
+        /// Infers the documentation format from a file extension.
+        /// </summary>
+        /// <param name="file">The file whose extension should be examined.</param>
+        /// <returns>The detected format, defaulting to <see cref="Format.Markdown"/> when the extension is unknown.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="file"/> is <c>null</c>.</exception>
         internal static Format FindFormat(FileSystemInfo file) {
             if (file == null) {
                 throw new ArgumentException("A file must be specified.");

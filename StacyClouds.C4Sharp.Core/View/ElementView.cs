@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 
 namespace StacyClouds.C4Sharp
@@ -11,6 +11,9 @@ namespace StacyClouds.C4Sharp
     public sealed class ElementView : IEquatable<ElementView>
     {
 
+        /// <summary>
+        /// References the model element represented by this view node.
+        /// </summary>
         public Element Element { get; set; }
 
         private string id;
@@ -49,20 +52,37 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name="y", EmitDefaultValue=true)]
         public int Y { get; set; }
   
+        /// <summary>
+        /// Initializes an element view during deserialization.
+        /// </summary>
         internal ElementView()
         {
         }
 
+        /// <summary>
+        /// Creates an element view for the supplied model element.
+        /// </summary>
+        /// <param name="element">The model element to wrap.</param>
         internal ElementView(Element element)
         {
             this.Element = element;
         }
 
+        /// <summary>
+        /// Determines whether another object represents the same element view.
+        /// </summary>
+        /// <param name="obj">The object to compare.</param>
+        /// <returns><see langword="true"/> when the object is an equivalent <see cref="ElementView"/>; otherwise, <see langword="false"/>.</returns>
         public override bool Equals(object obj)
         {
             return this.Equals(obj as ElementView);
         }
 
+        /// <summary>
+        /// Determines whether another element view represents the same element ID.
+        /// </summary>
+        /// <param name="elementView">The element view to compare.</param>
+        /// <returns><see langword="true"/> when both views refer to the same element ID; otherwise, <see langword="false"/>.</returns>
         public bool Equals(ElementView elementView)
         {
             if (elementView == null)
@@ -77,11 +97,19 @@ namespace StacyClouds.C4Sharp
             return this.Id == elementView.Id;
         }
 
+        /// <summary>
+        /// Returns a hash code based on the element identifier.
+        /// </summary>
+        /// <returns>A hash code for this element view.</returns>
         public override int GetHashCode()
         {
             return this.Id.GetHashCode();
         }
 
+        /// <summary>
+        /// Returns the wrapped element text when available, otherwise the serialized identifier.
+        /// </summary>
+        /// <returns>A human-readable representation of the element view.</returns>
         public override string ToString()
         {
             if (this.Element != null) {
@@ -93,6 +121,10 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Copies the stored X and Y coordinates from another element view.
+        /// </summary>
+        /// <param name="source">The source element view that provides layout coordinates.</param>
         internal void CopyLayoutInformationFrom(ElementView source)
         {
             if (source != null)

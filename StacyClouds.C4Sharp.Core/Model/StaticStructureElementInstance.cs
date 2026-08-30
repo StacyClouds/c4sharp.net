@@ -15,12 +15,21 @@ namespace StacyClouds.C4Sharp
         private const int DefaultHealthCheckIntervalInSeconds = 60;
         private const long DefaultHealthCheckTimeoutInMilliseconds = 0;
 
+        /// <summary>
+        /// The deployment group used to decide which instances have replicated relationships.
+        /// </summary>
         [DataMember(Name = "deploymentGroup", EmitDefaultValue = false)]
         public string DeploymentGroup { get; internal set; }
-        
+
+        /// <summary>
+        /// The one-based instance number for the underlying static element within the deployment environment.
+        /// </summary>
         [DataMember(Name = "instanceId", EmitDefaultValue = false)]
         public int InstanceId { get; internal set; }
 
+        /// <summary>
+        /// The name of the underlying static structure element.
+        /// </summary>
         public override string Name
         {
             get
@@ -52,16 +61,31 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Initializes a static structure element instance for deserialization.
+        /// </summary>
         internal StaticStructureElementInstance() {
         }
 
+        /// <summary>
+        /// Returns the static structure element represented by this deployment instance.
+        /// </summary>
+        /// <returns>The underlying static structure element.</returns>
         public abstract StaticStructureElement getElement();
 
+        /// <summary>
+        /// Returns the required tags for this instance type.
+        /// </summary>
+        /// <returns>An empty list because instance-specific required tags are supplied by derived types.</returns>
         public override List<string> GetRequiredTags()
         {
             return new List<string>();
         }
 
+        /// <summary>
+        /// Prevents removal of tags inherited from the underlying static structure element.
+        /// </summary>
+        /// <param name="tag">The tag to remove.</param>
         public override void RemoveTag(string tag)
         {
             // do nothing ... tags cannot be removed from element instances (they should reflect the software system/container they are based upon)
@@ -73,6 +97,9 @@ namespace StacyClouds.C4Sharp
         /// <param name="name">The name of the health check.</param>
         /// <param name="url">The URL of the health check.</param>
         /// <returns>A HttpHealthCheck instance.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the name or URL is blank, or when the URL is not valid.
+        /// </exception>
         public HttpHealthCheck AddHealthCheck(string name, string url)
         {
             return AddHealthCheck(name, url, DefaultHealthCheckIntervalInSeconds, DefaultHealthCheckTimeoutInMilliseconds);
@@ -86,6 +113,9 @@ namespace StacyClouds.C4Sharp
         /// <param name="interval">The polling interval, in seconds.</param>
         /// <param name="timeout">The timeout, in milliseconds.</param>
         /// <returns>A HttpHealthCheck instance.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the name or URL is invalid, or when <paramref name="interval"/> or <paramref name="timeout"/> is negative.
+        /// </exception>
         public HttpHealthCheck AddHealthCheck(string name, string url, int interval, long timeout)
         {
             if (name == null || name.Trim().Length == 0)

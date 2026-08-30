@@ -5,6 +5,9 @@ using StacyClouds.C4Sharp.Config;
 namespace StacyClouds.C4Sharp
 {
 
+    /// <summary>
+    /// Provides the shared metadata and configuration carried by all workspace representations.
+    /// </summary>
     [DataContract]
     public abstract class AbstractWorkspace
     {
@@ -64,11 +67,22 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "thumbnail", EmitDefaultValue = false)]
         public string Thumbnail { get; set; }
 
+        /// <summary>
+        /// Defines workspace-level access control and collaboration settings.
+        /// </summary>
         [DataMember(Name = "configuration", EmitDefaultValue = false)]
         public WorkspaceConfiguration Configuration { get; set; }
 
+        /// <summary>
+        /// Initializes a workspace shell for serializers and derived types.
+        /// </summary>
         public AbstractWorkspace() { }
 
+        /// <summary>
+        /// Initializes shared workspace metadata and an empty configuration.
+        /// </summary>
+        /// <param name="name">The workspace name.</param>
+        /// <param name="description">A short description of the workspace.</param>
         public AbstractWorkspace(string name, string description)
         {
             this.Name = name;
@@ -77,6 +91,9 @@ namespace StacyClouds.C4Sharp
             this.Configuration = new WorkspaceConfiguration();
         }
 
+        /// <summary>
+        /// Removes the workspace configuration from this instance.
+        /// </summary>
         public void ClearConfiguration()
         {
             Configuration = null;

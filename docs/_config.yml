@@ -6,6 +6,7 @@ baseurl: ""
 show_downloads: false
 markdown: kramdown
 
+
 defaults:
   - scope:
       path: ""

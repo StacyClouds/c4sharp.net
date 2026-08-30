@@ -31,11 +31,17 @@ namespace StacyClouds.C4Sharp
             set { _parent = value as DeploymentNode; }
         }
             
+        /// <summary>
+        /// The technology or product represented by this deployment node.
+        /// </summary>
         [DataMember(Name = "technology", EmitDefaultValue = false)]
         public string Technology { get; set; }
 
         private int _instances = 1;
 
+        /// <summary>
+        /// The number of identical instances represented by this deployment node.
+        /// </summary>
         [DataMember(Name = "instances", EmitDefaultValue = false)]
         public int Instances
         {
@@ -131,6 +137,9 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Initializes a deployment node for deserialization.
+        /// </summary>
         internal DeploymentNode()
         {
             Instances = 1;
@@ -141,6 +150,10 @@ namespace StacyClouds.C4Sharp
             Environment = DefaultDeploymentEnvironment;
         }
 
+        /// <summary>
+        /// Returns the tags that are always applied to deployment nodes.
+        /// </summary>
+        /// <returns>The required deployment node tags.</returns>
         public override List<string> GetRequiredTags()
         {
             return new List<string>
@@ -150,6 +163,9 @@ namespace StacyClouds.C4Sharp
             };
         }
 
+        /// <summary>
+        /// Gets the canonical name for this deployment node.
+        /// </summary>
         public override string CanonicalName
         {
             get
@@ -163,6 +179,7 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="softwareSystem">the SoftwareSystem to add an instance of</param>
         /// <returns>a SoftwareSystemInstance object</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="softwareSystem"/> is <see langword="null"/>.</exception>
         public SoftwareSystemInstance Add(SoftwareSystem softwareSystem)
         {
             return Add(softwareSystem, DefaultDeploymentGroup);
@@ -174,6 +191,7 @@ namespace StacyClouds.C4Sharp
         /// <param name="softwareSystem">the SoftwareSystem to add an instance of</param>
         /// <param name="deploymentGroup">the deployment group</param>
         /// <returns>a SoftwareSystemInstance object</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="softwareSystem"/> is <see langword="null"/>.</exception>
         public SoftwareSystemInstance Add(SoftwareSystem softwareSystem, string deploymentGroup)
         {
             if (softwareSystem == null)
@@ -192,6 +210,7 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="container">the Container to add an instance of</param>
         /// <returns>a ContainerInstance object</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="container"/> is <see langword="null"/>.</exception>
         public ContainerInstance Add(Container container)
         {
             return Add(container, DefaultDeploymentGroup);
@@ -203,6 +222,7 @@ namespace StacyClouds.C4Sharp
         /// <param name="container">the Container to add an instance of</param>
         /// <param name="deploymentGroup">the deployment group</param>
         /// <returns>a ContainerInstance object</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="container"/> is <see langword="null"/>.</exception>
         public ContainerInstance Add(Container container, string deploymentGroup)
         {
             if (container == null)
@@ -220,7 +240,7 @@ namespace StacyClouds.C4Sharp
         /// Adds a child deployment node.
         /// </summary>
         /// <param name="name">the name of the deployment node</param>
-        /// <returns></returns>
+        /// <returns>The created child deployment node.</returns>
         public DeploymentNode AddDeploymentNode(string name) {
             return AddDeploymentNode(name, null, null);
         }
@@ -231,7 +251,7 @@ namespace StacyClouds.C4Sharp
         /// <param name="name">the name of the deployment node</param>
         /// <param name="description">a short description</param>
         /// <param name="technology">the technology</param>
-        /// <returns></returns>
+        /// <returns>The created child deployment node.</returns>
         public DeploymentNode AddDeploymentNode(string name, string description, string technology) {
             return AddDeploymentNode(name, description, technology, 1);
         }
@@ -243,7 +263,7 @@ namespace StacyClouds.C4Sharp
         /// <param name="description">a short description</param>
         /// <param name="technology">the technology</param>
         /// <param name="instances">the number of  instances</param>
-        /// <returns></returns>
+        /// <returns>The created child deployment node.</returns>
         public DeploymentNode AddDeploymentNode(string name, string description, string technology, int instances) {
             return AddDeploymentNode(name, description, technology, instances, null);
         }
@@ -256,7 +276,10 @@ namespace StacyClouds.C4Sharp
         /// <param name="technology">the technology</param>
         /// <param name="instances">the number of  instances</param>
         /// <param name="properties">a Dictionary (string,string) describing name=value properties</param>
-        /// <returns></returns>
+        /// <returns>The created child deployment node.</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="name"/> is blank or when a deployment or infrastructure node with the same name already exists.
+        /// </exception>
         public DeploymentNode AddDeploymentNode(string name, string description, string technology, int instances, Dictionary<string,string> properties) {
             DeploymentNode deploymentNode = Model.AddDeploymentNode(this, this.Environment, name, description, technology, instances, properties);
             if (deploymentNode != null) {
@@ -271,6 +294,7 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="name">the name of the deployment node</param>
         /// <returns>the DeploymentNode instance with the specified name (or null if it doesn't exist)</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="name"/> is null or empty.</exception>
         public DeploymentNode GetDeploymentNodeWithName(string name)
         {
             if (String.IsNullOrEmpty(name))
@@ -286,6 +310,7 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="name">the name of the infrastructure node</param>
         /// <returns>the InfrastructureNode instance with the specified name (or null if it doesn't exist)</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="name"/> is null or empty.</exception>
         public InfrastructureNode GetInfrastructureNodeWithName(string name)
         {
             if (String.IsNullOrEmpty(name))
@@ -326,6 +351,9 @@ namespace StacyClouds.C4Sharp
         /// <param name="technology">the technology</param>
         /// <param name="properties">a Dictionary (string,string) describing name=value properties</param>
         /// <returns>an InfrastructureNode object</returns>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="name"/> is blank or when a deployment or infrastructure node with the same name already exists.
+        /// </exception>
         public InfrastructureNode AddInfrastructureNode(string name, string description, string technology, Dictionary<string, string> properties)
         {
             InfrastructureNode infrastructureNode = Model.AddInfrastructureNode(this, name, description, technology, properties);
@@ -342,6 +370,7 @@ namespace StacyClouds.C4Sharp
         /// <param name="description">a short description of the relationship</param>
         /// <param name="technology">the technology</param>
         /// <returns>a Relationship object</returns>
+        /// <remarks>Deployment node relationships are created directly and do not use implied-relationship strategies.</remarks>
         public Relationship Uses(DeploymentNode destination, string description, string technology)
         {
             return Model.AddRelationship(this, destination, description, technology);

@@ -1,11 +1,22 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace StacyClouds.C4Sharp.Dsl
 {
+    /// <summary>
+    /// Imports simplified DSL-shaped workspace definitions into the core workspace model.
+    /// </summary>
     public static class DslWorkspaceImporter
     {
+        /// <summary>
+        /// Builds a workspace from a DSL-shaped source model and view definition.
+        /// </summary>
+        /// <param name="source">The DSL workspace definition to import.</param>
+        /// <param name="options">Optional import settings that influence model creation.</param>
+        /// <returns>A hydrated workspace built from the DSL source.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="source"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException">Thrown when referenced elements cannot be resolved during import.</exception>
         public static Workspace Import(DslWorkspace source, DslImportOptions options = null)
         {
             if (source == null)

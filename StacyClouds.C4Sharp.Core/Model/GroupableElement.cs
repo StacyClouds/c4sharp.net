@@ -3,7 +3,9 @@ using System.Runtime.Serialization;
 
 namespace StacyClouds.C4Sharp
 {
-    
+    /// <summary>
+    /// Extends an element with optional grouping metadata used by views and renderers.
+    /// </summary>
     public abstract class GroupableElement : Element
     {
 

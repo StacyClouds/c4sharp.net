@@ -23,6 +23,10 @@ namespace StacyClouds.C4Sharp.Api
 
         private string _url;
 
+        /// <summary>
+        /// Specifies the base URL of the Structurizr API instance to communicate with.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the assigned value is null, empty, or whitespace.</exception>
         public string Url
         {
             get { return _url; }
@@ -46,6 +50,10 @@ namespace StacyClouds.C4Sharp.Api
 
         private string _apiKey;
 
+        /// <summary>
+        /// Supplies the workspace API key used for authenticated requests.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the assigned value is null, empty, or whitespace.</exception>
         public string ApiKey
         {
             get { return _apiKey; }
@@ -62,6 +70,10 @@ namespace StacyClouds.C4Sharp.Api
 
         private string _apiSecret;
 
+        /// <summary>
+        /// Supplies the workspace API secret used for request signing.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the assigned value is null, empty, or whitespace.</exception>
         public string ApiSecret
         {
             get { return _apiSecret; }
@@ -84,8 +96,14 @@ namespace StacyClouds.C4Sharp.Api
         /// </summary>
         public IdGenerator IdGenerator;
         
+        /// <summary>
+        /// Encrypts outgoing workspaces and decrypts incoming ones when client-side encryption is enabled.
+        /// </summary>
         public EncryptionStrategy EncryptionStrategy { get; set; }
 
+        /// <summary>
+        /// Controls whether remote layout and view configuration should be merged before uploads.
+        /// </summary>
         public bool MergeFromRemote { get; set; }
 
         /// <summary>
@@ -320,6 +338,10 @@ namespace StacyClouds.C4Sharp.Api
             }
         }
 
+        /// <summary>
+        /// Creates the <see cref="HttpClient"/> instance used for API calls.
+        /// </summary>
+        /// <returns>A new HTTP client.</returns>
         protected virtual HttpClient createHttpClient()
         {
             return new HttpClient();
