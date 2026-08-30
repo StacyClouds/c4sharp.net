@@ -12,9 +12,14 @@ namespace StacyClouds.C4Sharp
     [DataContract]
     public sealed class Component : StaticStructureElement, IEquatable<Component>
     {
-        
+        /// <summary>
+        /// The container that owns this component.
+        /// </summary>
         public override Element Parent { get; set; }
 
+        /// <summary>
+        /// The container that this component belongs to.
+        /// </summary>
         public Container Container
         {
             get
@@ -54,11 +59,17 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Initializes a component for deserialization.
+        /// </summary>
         internal Component()
         {
             _codeElements = new HashSet<CodeElement>();
         }
 
+        /// <summary>
+        /// Gets the canonical name for this component.
+        /// </summary>
         public override string CanonicalName
         {
             get
@@ -67,6 +78,10 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Returns the tags that are always applied to components.
+        /// </summary>
+        /// <returns>The required component tags.</returns>
         public override List<string> GetRequiredTags()
         {
             return new List<string>
@@ -77,7 +92,7 @@ namespace StacyClouds.C4Sharp
         }
 
         /// <summary>
-        /// Gets the type of this component (e.g. a fully qualified interface/class name).
+        /// Gets or sets the primary implementation type for this component.
         /// </summary>
         public string Type
         {
@@ -99,6 +114,11 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Adds a supporting implementation type to this component.
+        /// </summary>
+        /// <param name="type">The fully qualified type name to associate with the component.</param>
+        /// <returns>The created supporting <see cref="CodeElement"/>.</returns>
         public CodeElement AddSupportingType(string type)
         {
             CodeElement codeElement = new CodeElement(type);
@@ -108,6 +128,11 @@ namespace StacyClouds.C4Sharp
             return codeElement;
         }
 
+        /// <summary>
+        /// Compares this component with another component by canonical identity.
+        /// </summary>
+        /// <param name="component">The component to compare with.</param>
+        /// <returns><see langword="true"/> when both components represent the same model element; otherwise, <see langword="false"/>.</returns>
         public bool Equals(Component component)
         {
             return this.Equals(component as Element);

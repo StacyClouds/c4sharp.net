@@ -1,0 +1,49 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": ".",
+          "files": [
+            "StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj",
+            "StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj",
+            "StacyClouds.C4Sharp.Renderer/StacyClouds.C4Sharp.Renderer.csproj",
+            "StacyClouds.C4Sharp.Editor/StacyClouds.C4Sharp.Editor.csproj"
+          ]
+        }
+      ],
+      "dest": "_api_metadata",
+      "includePrivateMembers": false,
+      "filter": "docfx-filter.yml"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "_api_metadata/**.yml",
+          "_api_metadata/toc.yml"
+        ]
+      },
+      {
+        "files": [
+          "docs/api-toc.yml"
+        ]
+      }
+    ],
+    "resource": [],
+    "output": "docs/api",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "C4Sharp.NET",
+      "_appTitle": "C4Sharp.NET API Reference",
+      "_enableSearch": true,
+      "_appLogoPath": "",
+      "_disableAffix": false
+    }
+  }
+}

@@ -1,11 +1,11 @@
 ## 1. Setup
 
-- [ ] 1.1 Enable `<GenerateDocumentationFile>true</GenerateDocumentationFile>` in `StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj`.
-- [ ] 1.2 Enable `<GenerateDocumentationFile>true</GenerateDocumentationFile>` in `StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj`.
-- [ ] 1.3 Enable `<GenerateDocumentationFile>true</GenerateDocumentationFile>` in `StacyClouds.C4Sharp.Renderer/StacyClouds.C4Sharp.Renderer.csproj`.
-- [ ] 1.4 Enable `<GenerateDocumentationFile>true</GenerateDocumentationFile>` in `StacyClouds.C4Sharp.Editor/StacyClouds.C4Sharp.Editor.csproj`.
-- [ ] 1.5 Add `docfx/` to `.gitignore` to exclude the DocFX working directory from source control.
-- [ ] 1.6 Install DocFX as a .NET tool and add it to `dotnet-tools.json` (or document the required version in `CONTRIBUTING.md`).
+- [x] 1.1 Enable `<GenerateDocumentationFile>true</GenerateDocumentationFile>` in `StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj`.
+- [x] 1.2 Enable `<GenerateDocumentationFile>true</GenerateDocumentationFile>` in `StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj`.
+- [x] 1.3 Enable `<GenerateDocumentationFile>true</GenerateDocumentationFile>` in `StacyClouds.C4Sharp.Renderer/StacyClouds.C4Sharp.Renderer.csproj`.
+- [x] 1.4 Enable `<GenerateDocumentationFile>true</GenerateDocumentationFile>` in `StacyClouds.C4Sharp.Editor/StacyClouds.C4Sharp.Editor.csproj`.
+- [x] 1.5 Add `docfx/` to `.gitignore` to exclude the DocFX working directory from source control.
+- [x] 1.6 Install DocFX as a .NET tool and add it to `dotnet-tools.json` (or document the required version in `CONTRIBUTING.md`).
 
 ## 2. XML Doc Coverage — Core
 
@@ -41,16 +41,16 @@
 
 ## 6. API Reference Generation
 
-- [ ] 6.1 Create a `docfx.json` configuration at the repository root (or `docs/docfx.json`) referencing all four library projects, configuring output to `docs/api/`, and setting `includePrivateMembers: false` and visibility to public-only.
+- [x] 6.1 Create a `docfx.json` configuration at the repository root (or `docs/docfx.json`) referencing all four library projects, configuring output to `docs/api/`, and setting `includePrivateMembers: false` and visibility to public-only.
 - [ ] 6.2 Run DocFX to generate the API reference Markdown/HTML output into `docs/api/`.
 - [ ] 6.3 Validate that the generated output renders correctly in the Jekyll site structure (check links and layout).
-- [ ] 6.4 Add or update the `nav` section in `docs/_config.yml` (or add a navigation link in `docs/index.md`) pointing to the new API reference.
+- [x] 6.4 Add or update the `nav` section in `docs/_config.yml` (or add a navigation link in `docs/index.md`) pointing to the new API reference.
 
 ## 7. Docs Site Update
 
-- [ ] 7.1 Add an `api-reference.md` (or `docs/api/index.md`) entry page that introduces the API reference section and links to each package's generated index.
-- [ ] 7.2 Update `docs/index.md` to include a link to the API reference in the "Next steps" or navigation area.
-- [ ] 7.3 Review and update `CONTRIBUTING.md` to document how to regenerate the API reference after code changes.
+- [x] 7.1 Add an `api-reference.md` (or `docs/api/index.md`) entry page that introduces the API reference section and links to each package's generated index.
+- [x] 7.2 Update `docs/index.md` to include a link to the API reference in the "Next steps" or navigation area.
+- [x] 7.3 Review and update `CONTRIBUTING.md` to document how to regenerate the API reference after code changes.
 
 ## 8. Build validation
 
@@ -60,7 +60,7 @@
 
 ## 9. Release flow automation
 
-- [ ] 9.1 Create or update the release GitHub Actions workflow (`.github/workflows/`) to include a doc-regeneration step: restore tools, build the solution, run DocFX to regenerate `docs/api/`.
-- [ ] 9.2 Add a step in the release workflow that creates a versioned release document (e.g., `docs/api/release-notes-<version>.md` or updates `docs/api/index.md` with the release version) from the tag or release metadata.
-- [ ] 9.3 Add a step that commits the regenerated `docs/api/` output back to the repository (or pushes it to the `gh-pages` branch, depending on the current Pages setup) so GitHub Pages redeploys automatically.
+- [x] 9.1 Create or update the release GitHub Actions workflow (`.github/workflows/`) to include a doc-regeneration step: restore tools, build the solution, run DocFX to regenerate `docs/api/`.
+- [x] 9.2 Add a step in the release workflow that creates a versioned release document (e.g., `docs/api/release-notes-<version>.md` or updates `docs/api/index.md` with the release version) from the tag or release metadata.
+- [x] 9.3 Add a step that commits the regenerated `docs/api/` output back to the repository (or pushes it to the `gh-pages` branch, depending on the current Pages setup) so GitHub Pages redeploys automatically.
 - [ ] 9.4 Validate the release workflow on a test tag to confirm that the docs are regenerated, committed, and the Pages site updates correctly.

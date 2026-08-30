@@ -2,17 +2,22 @@
 {
 
     /// <summary>
-    /// Allows the sort order of views to be customized as follows:
-    ///
-    /// - Default: Views are grouped by the software system they are associated with, and then sorted by type (System Landscape, System Context, Container, Component, Dynamic and Deployment) within these groups.
-    /// - Type: Views are sorted by type (System Landscape, System Context, Container, Component, Dynamic and Deployment).
-    /// - Key: Views are sorted by the view key (alphabetical, ascending).
+    /// Controls how a view set orders views when presented to consumers.
     /// </summary>
     public enum ViewSortOrder
     {
         
+        /// <summary>
+        /// Groups views by software system and then by view type.
+        /// </summary>
         Default,
+        /// <summary>
+        /// Sorts views primarily by view type.
+        /// </summary>
         Type,
+        /// <summary>
+        /// Sorts views alphabetically by key.
+        /// </summary>
         Key
         
     }

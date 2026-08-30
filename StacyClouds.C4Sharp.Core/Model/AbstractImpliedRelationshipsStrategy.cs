@@ -1,9 +1,23 @@
 namespace StacyClouds.C4Sharp
 {
-    
+	/// <summary>
+	/// Provides shared guard logic for implied-relationship strategies.
+	/// </summary>
+	/// <remarks>
+	/// Implied relationships are never created between the same element or between
+	/// parent and child elements in the static structure hierarchy.
+	/// </remarks>
     public abstract class AbstractImpliedRelationshipsStrategy : IImpliedRelationshipsStrategy
     {
-        
+		/// <summary>
+		/// Determines whether an implied relationship can be created between the supplied elements.
+		/// </summary>
+		/// <param name="source">The candidate source element.</param>
+		/// <param name="destination">The candidate destination element.</param>
+		/// <returns>
+		/// <see langword="true"/> when the elements are distinct and are not in a parent-child relationship;
+		/// otherwise, <see langword="false"/>.
+		/// </returns>
         protected bool ImpliedRelationshipIsAllowed(Element source, Element destination)
         {
             if (source.Equals(destination))

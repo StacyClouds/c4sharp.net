@@ -2,8 +2,7 @@ namespace StacyClouds.C4Sharp
 {
     
     /// <summary>
-    ///  Defines the interface for strategies to create implied relationships in the model,
-    /// after a relationship has been created.
+    /// Defines the contract for strategies that create implied relationships after an explicit relationship is added.
     /// </summary>
     public interface IImpliedRelationshipsStrategy
     {

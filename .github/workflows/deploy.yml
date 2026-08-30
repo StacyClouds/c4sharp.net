@@ -52,11 +52,62 @@ jobs:
             10.0.x
             11.0.x
 
+      - name: Restore local tools
+        run: dotnet tool restore
+
       - name: Restore packages
         run: dotnet restore StacyClouds.C4Sharp.CI.slnf
 
       - name: Build packages
         run: dotnet build StacyClouds.C4Sharp.CI.slnf --no-restore -c Release
+
+      - name: Regenerate API reference
+        run: |
+          dotnet docfx metadata docfx.json
+          dotnet docfx build docfx.json
+
+      - name: Write versioned release notes page
+        env:
+          PACKAGE_VERSION: ${{ env.PACKAGE_VERSION }}
+        run: |
+          set -euo pipefail
+          RELEASE_DATE=$(date -u +"%Y-%m-%d")
+          NOTES_FILE="docs/api/release-notes-${PACKAGE_VERSION}.md"
+          cat > "$NOTES_FILE" <<EOF
+          ---
+          title: Release ${PACKAGE_VERSION}
+          ---
+
+          # C4Sharp.NET ${PACKAGE_VERSION} — Release Notes
+
+          Released: ${RELEASE_DATE}
+
+          ## Package versions
+
+          All packages in this release are published at version \`${PACKAGE_VERSION}\`:
+
+          - [StacyClouds.C4Sharp.Core ${PACKAGE_VERSION}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Core/${PACKAGE_VERSION})
+          - [StacyClouds.C4Sharp.Client ${PACKAGE_VERSION}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Client/${PACKAGE_VERSION})
+          - [StacyClouds.C4Sharp.Renderer ${PACKAGE_VERSION}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Renderer/${PACKAGE_VERSION})
+          - [StacyClouds.C4Sharp.Editor ${PACKAGE_VERSION}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Editor/${PACKAGE_VERSION})
+
+          ## API reference
+
+          Browse the [API reference](index.html) for the full public API at this version.
+          EOF
+
+      - name: Commit and push API reference
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/api/
+          if git diff --cached --quiet; then
+            echo "No API reference changes to commit."
+          else
+            git commit -m "docs: regenerate API reference for v${{ env.PACKAGE_VERSION }}"
+            git push origin main
+          fi
 
       - name: Pack NuGet packages
         run: |

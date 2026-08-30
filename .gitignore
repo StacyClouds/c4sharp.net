@@ -243,3 +243,5 @@ _Pvt_Extensions
 Structurizr.Examples/*.json
 
 **/.DS_Store
+# DocFX working directory
+docfx/

@@ -20,19 +20,19 @@ namespace StacyClouds.C4Sharp
         public CodeElementRole Role { get; internal set; }
 
         /// <summary>
-        /// The name of the code element ... typically the simple class/interface name.
+        /// The simple type name of the code element.
         /// </summary>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public readonly string Name;
 
         /// <summary>
-        /// The name of the code element ... typically the simple class/interface name.
+        /// The fully qualified type name of the code element.
         /// </summary>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public readonly string Type;
 
         /// <summary>
-        /// The fully qualified type of the code element.
+        /// A short description of the code element's responsibility.
         /// </summary>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
@@ -92,6 +92,9 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "size", EmitDefaultValue = true)]
         public long Size { get; set; }
 
+        /// <summary>
+        /// Initializes a code element for JSON deserialization.
+        /// </summary>
         [JsonConstructor]
         internal CodeElement()
         {
@@ -123,16 +126,30 @@ namespace StacyClouds.C4Sharp
             Language = "C#";
         }
 
+        /// <summary>
+        /// Compares this code element with another object.
+        /// </summary>
+        /// <param name="obj">The object to compare with.</param>
+        /// <returns><see langword="true"/> when <paramref name="obj"/> is a matching <see cref="CodeElement"/>; otherwise, <see langword="false"/>.</returns>
         public override bool Equals(object obj)
         {
             return Equals(obj as CodeElement);
         }
 
+        /// <summary>
+        /// Compares this code element with another code element by fully qualified type name.
+        /// </summary>
+        /// <param name="other">The code element to compare with.</param>
+        /// <returns><see langword="true"/> when both code elements represent the same type; otherwise, <see langword="false"/>.</returns>
         public bool Equals(CodeElement other)
         {
             return other != null && other.Type.Equals(Type);
         }
 
+        /// <summary>
+        /// Returns a hash code derived from the fully qualified type name.
+        /// </summary>
+        /// <returns>A hash code for the current code element.</returns>
         public override int GetHashCode()
         {
             return Type.GetHashCode();
