@@ -7,6 +7,9 @@ using System.Text;
 
 namespace StacyClouds.C4Sharp.Encryption
 {
+    /// <summary>
+    /// Encrypts workspace JSON using AES/CBC with PBKDF2-derived keys.
+    /// </summary>
     [DataContract]
     public class AesEncryptionStrategy : EncryptionStrategy
     {
@@ -14,6 +17,9 @@ namespace StacyClouds.C4Sharp.Encryption
         private const int InitializationVectorSizeInBytes = 16;
         private static readonly HashAlgorithmName LegacyPbkdf2HashAlgorithm = HashAlgorithmName.SHA1;
 
+        /// <summary>
+        /// Identifies this strategy as AES-based encryption.
+        /// </summary>
         public override string Type
         {
             get
@@ -22,22 +28,47 @@ namespace StacyClouds.C4Sharp.Encryption
             }
         }
 
+        /// <summary>
+        /// The AES key size in bits.
+        /// </summary>
         [DataMember(Name = "keySize", EmitDefaultValue = false)]
         public int KeySize { get; private set; }
 
+        /// <summary>
+        /// The PBKDF2 iteration count used to derive the encryption key.
+        /// </summary>
         [DataMember(Name = "iterationCount", EmitDefaultValue = false)]
         public int IterationCount { get; private set; }
 
+        /// <summary>
+        /// The hexadecimal salt used during key derivation.
+        /// </summary>
         [DataMember(Name = "salt", EmitDefaultValue = false)]
         public string Salt { get; private set; }
 
+        /// <summary>
+        /// The hexadecimal initialization vector used during encryption.
+        /// </summary>
         [DataMember(Name = "iv", EmitDefaultValue = false)]
         public string Iv { get; private set; }
 
+        /// <summary>
+        /// Initializes an empty AES strategy for serializers.
+        /// </summary>
         public AesEncryptionStrategy() { }
 
+        /// <summary>
+        /// Creates an AES strategy with default key derivation settings.
+        /// </summary>
+        /// <param name="passphrase">The passphrase used to derive the encryption key.</param>
         public AesEncryptionStrategy(string passphrase) : this(128, 1000, passphrase) { }
 
+        /// <summary>
+        /// Creates an AES strategy with generated salt and IV values.
+        /// </summary>
+        /// <param name="keySize">The AES key size in bits.</param>
+        /// <param name="iterationCount">The PBKDF2 iteration count.</param>
+        /// <param name="passphrase">The passphrase used to derive the encryption key.</param>
         public AesEncryptionStrategy(int keySize, int iterationCount, string passphrase) : base(passphrase)
         {
             KeySize = keySize;
@@ -62,6 +93,14 @@ namespace StacyClouds.C4Sharp.Encryption
             }
         }
 
+        /// <summary>
+        /// Creates an AES strategy from persisted encryption parameters.
+        /// </summary>
+        /// <param name="keySize">The AES key size in bits.</param>
+        /// <param name="iterationCount">The PBKDF2 iteration count.</param>
+        /// <param name="salt">The hexadecimal salt.</param>
+        /// <param name="iv">The hexadecimal initialization vector.</param>
+        /// <param name="passphrase">The passphrase used to derive the encryption key.</param>
         public AesEncryptionStrategy(int keySize, int iterationCount, string salt, string iv, string passphrase) : base(passphrase)
         {
             this.KeySize = keySize;
@@ -70,6 +109,11 @@ namespace StacyClouds.C4Sharp.Encryption
             this.Iv = iv;
         }
 
+        /// <summary>
+        /// Decrypts ciphertext previously produced by this strategy.
+        /// </summary>
+        /// <param name="ciphertext">The Base64-encoded ciphertext.</param>
+        /// <returns>The decrypted plaintext.</returns>
         public override string Decrypt(string ciphertext)
         {
             string plaintext;
@@ -100,6 +144,11 @@ namespace StacyClouds.C4Sharp.Encryption
             return plaintext;
         }
 
+        /// <summary>
+        /// Encrypts plaintext using the configured AES parameters.
+        /// </summary>
+        /// <param name="plaintext">The plaintext to encrypt.</param>
+        /// <returns>The Base64-encoded ciphertext.</returns>
         public override string Encrypt(string plaintext)
         {
             string ciphertext = null;

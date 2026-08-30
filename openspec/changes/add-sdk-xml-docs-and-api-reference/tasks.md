@@ -9,41 +9,41 @@
 
 ## 2. XML Doc Coverage — Core
 
-- [ ] 2.1 Enumerate all public types and members in `StacyClouds.C4Sharp.Core` that are missing `<summary>` comments (`dotnet build -warnaserror:CS1591`).
-- [ ] 2.2 Add XML doc comments to all public types: model elements (`Person`, `SoftwareSystem`, `Container`, `Component`, `DeploymentNode`, etc.), view types, configuration, styles, and DSL types.
-- [ ] 2.3 Add XML doc comments to all public members: constructors, properties, methods, extension methods, enums, and constants.
-- [ ] 2.4 Add `<param>`, `<returns>`, and `<exception>` tags to all public non-void methods with parameters.
-- [ ] 2.5 Add `<remarks>` where behaviour is non-obvious (e.g., implied-relationship strategy effects, identifier generation rules).
-- [ ] 2.6 Add `<summary>` to meaningful `internal` helpers in Core that AI assistants or maintainers would benefit from understanding.
-- [ ] 2.7 Build Core and confirm zero CS1591 warnings.
+- [x] 2.1 Enumerate all public types and members in `StacyClouds.C4Sharp.Core` that are missing `<summary>` comments (`dotnet build -warnaserror:CS1591`).
+- [x] 2.2 Add XML doc comments to all public types: model elements (`Person`, `SoftwareSystem`, `Container`, `Component`, `DeploymentNode`, etc.), view types, configuration, styles, and DSL types.
+- [x] 2.3 Add XML doc comments to all public members: constructors, properties, methods, extension methods, enums, and constants.
+- [x] 2.4 Add `<param>`, `<returns>`, and `<exception>` tags to all public non-void methods with parameters.
+- [x] 2.5 Add `<remarks>` where behaviour is non-obvious (e.g., implied-relationship strategy effects, identifier generation rules).
+- [x] 2.6 Add `<summary>` to meaningful `internal` helpers in Core that AI assistants or maintainers would benefit from understanding.
+- [x] 2.7 Build Core and confirm zero CS1591 warnings.
 
 ## 3. XML Doc Coverage — Client
 
-- [ ] 3.1 Enumerate all public types and members in `StacyClouds.C4Sharp.Client` that are missing `<summary>` comments.
-- [ ] 3.2 Add XML doc comments to all public types and members (API client, encryption, serialisation, I/O helpers).
-- [ ] 3.3 Add `<param>`, `<returns>`, and `<exception>` tags to all public non-void methods with parameters.
-- [ ] 3.4 Add `<summary>` to meaningful `internal` helpers in Client.
-- [ ] 3.5 Build Client and confirm zero CS1591 warnings.
+- [x] 3.1 Enumerate all public types and members in `StacyClouds.C4Sharp.Client` that are missing `<summary>` comments.
+- [x] 3.2 Add XML doc comments to all public types and members (API client, encryption, serialisation, I/O helpers).
+- [x] 3.3 Add `<param>`, `<returns>`, and `<exception>` tags to all public non-void methods with parameters.
+- [x] 3.4 Add `<summary>` to meaningful `internal` helpers in Client.
+- [x] 3.5 Build Client and confirm zero CS1591 warnings.
 
 ## 4. XML Doc Coverage — Renderer
 
-- [ ] 4.1 Enumerate all public types and members in `StacyClouds.C4Sharp.Renderer` that are missing `<summary>` comments.
-- [ ] 4.2 Add XML doc comments to all public types and members.
-- [ ] 4.3 Add `<param>`, `<returns>`, and `<exception>` tags to all public non-void methods with parameters.
-- [ ] 4.4 Build Renderer and confirm zero CS1591 warnings.
+- [x] 4.1 Enumerate all public types and members in `StacyClouds.C4Sharp.Renderer` that are missing `<summary>` comments.
+- [x] 4.2 Add XML doc comments to all public types and members.
+- [x] 4.3 Add `<param>`, `<returns>`, and `<exception>` tags to all public non-void methods with parameters.
+- [x] 4.4 Build Renderer and confirm zero CS1591 warnings.
 
 ## 5. XML Doc Coverage — Editor
 
-- [ ] 5.1 Enumerate all public types and members in `StacyClouds.C4Sharp.Editor` that are missing `<summary>` comments.
-- [ ] 5.2 Add XML doc comments to all public types and members.
-- [ ] 5.3 Add `<param>`, `<returns>`, and `<exception>` tags to all public non-void methods with parameters.
-- [ ] 5.4 Build Editor and confirm zero CS1591 warnings.
+- [x] 5.1 Enumerate all public types and members in `StacyClouds.C4Sharp.Editor` that are missing `<summary>` comments.
+- [x] 5.2 Add XML doc comments to all public types and members.
+- [x] 5.3 Add `<param>`, `<returns>`, and `<exception>` tags to all public non-void methods with parameters.
+- [x] 5.4 Build Editor and confirm zero CS1591 warnings.
 
 ## 6. API Reference Generation
 
 - [x] 6.1 Create a `docfx.json` configuration at the repository root (or `docs/docfx.json`) referencing all four library projects, configuring output to `docs/api/`, and setting `includePrivateMembers: false` and visibility to public-only.
-- [ ] 6.2 Run DocFX to generate the API reference Markdown/HTML output into `docs/api/`.
-- [ ] 6.3 Validate that the generated output renders correctly in the Jekyll site structure (check links and layout).
+- [x] 6.2 Run DocFX to generate the API reference Markdown/HTML output into `docs/api/`.
+- [x] 6.3 Validate that the generated output renders correctly in the Jekyll site structure (check links and layout).
 - [x] 6.4 Add or update the `nav` section in `docs/_config.yml` (or add a navigation link in `docs/index.md`) pointing to the new API reference.
 
 ## 7. Docs Site Update
@@ -54,8 +54,8 @@
 
 ## 8. Build validation
 
-- [ ] 8.1 Run `dotnet build StacyClouds.C4Sharp.slnx` and confirm no new errors or warnings.
-- [ ] 8.2 Run `dotnet test StacyClouds.C4Sharp.slnx` and confirm all tests pass.
+- [x] 8.1 Run `dotnet build StacyClouds.C4Sharp.slnx` and confirm no new errors or warnings.
+- [x] 8.2 Run `dotnet test StacyClouds.C4Sharp.slnx` and confirm all tests pass.
 - [ ] 8.3 Run `dotnet build StacyClouds.C4Sharp.slnx -warnaserror:CS1591` and confirm zero missing-doc warnings across all packages.
 
 ## 9. Release flow automation

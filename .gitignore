@@ -245,3 +245,6 @@ Structurizr.Examples/*.json
 **/.DS_Store
 # DocFX working directory
 docfx/
+
+# DocFX intermediate YAML metadata (not committed; HTML output in docs/api/ is committed)
+/api/

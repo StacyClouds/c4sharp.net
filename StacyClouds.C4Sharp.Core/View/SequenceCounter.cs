@@ -1,7 +1,7 @@
 ﻿namespace StacyClouds.C4Sharp
 {
 
-   /// <summary>
+    /// <summary>
     /// Maintains the numeric state used to build dynamic view sequence labels.
     /// </summary>
     internal class SequenceCounter

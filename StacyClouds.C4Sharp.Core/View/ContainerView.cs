@@ -1,4 +1,4 @@
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace StacyClouds.C4Sharp
 {
@@ -10,6 +10,9 @@ namespace StacyClouds.C4Sharp
     public sealed class ContainerView : StaticView
     {
 
+        /// <summary>
+        /// Returns the default name shown for this container view.
+        /// </summary>
         public override string Name
         {
             get
@@ -24,10 +27,19 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "externalSoftwareSystemBoundariesVisible", EmitDefaultValue = false)]
         public bool? ExternalSoftwareSystemBoundariesVisible { get; set; }
 
+        /// <summary>
+        /// Initializes a container view during deserialization.
+        /// </summary>
         internal ContainerView() : base()
         {
         }
 
+        /// <summary>
+        /// Creates a container view for the supplied software system.
+        /// </summary>
+        /// <param name="softwareSystem">The software system in scope.</param>
+        /// <param name="key">The unique view key.</param>
+        /// <param name="description">The view description.</param>
         internal ContainerView(SoftwareSystem softwareSystem, string key, string description) : base(softwareSystem, key, description)
         {
         }
@@ -69,6 +81,9 @@ namespace StacyClouds.C4Sharp
             AddAllContainers();
         }
 
+        /// <summary>
+        /// Adds every container that belongs to the scoped software system.
+        /// </summary>
         public void AddAllContainers()
         {
             foreach (Container container in SoftwareSystem.Containers)
@@ -77,11 +92,19 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Adds a container to the view.
+        /// </summary>
+        /// <param name="container">The container to add.</param>
         public void Add(Container container)
         {
             AddElement(container, true);
         }
 
+        /// <summary>
+        /// Removes a container from the view.
+        /// </summary>
+        /// <param name="container">The container to remove.</param>
         public void Remove(Container container)
         {
             RemoveElement(container);

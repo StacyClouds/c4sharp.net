@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,8 +13,14 @@ namespace StacyClouds.C4Sharp
     public sealed class DynamicView : View
     {
 
+        /// <summary>
+        /// Stores the model whose static elements participate in this dynamic view.
+        /// </summary>
         public override Model Model { get; set; }
 
+        /// <summary>
+        /// Returns the relationships ordered by their dynamic sequence label.
+        /// </summary>
         public override ISet<RelationshipView> Relationships
         {
             get
@@ -63,6 +69,9 @@ namespace StacyClouds.C4Sharp
             return x.Order.CompareTo(y.Order); 
         }
 
+        /// <summary>
+        /// Returns the default name shown for this dynamic view.
+        /// </summary>
         public override string Name
         {
             get
@@ -78,12 +87,15 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// References the element that defines the scope of the view, when the view is scoped.
+        /// </summary>
         public Element Element { get; set; }
 
         private string _elementId;
 
         /// <summary>
-        /// The ID of the container this view is associated with.
+        /// Stores the ID of the scoped element for serialization.
         /// </summary>
         [DataMember(Name="elementId", EmitDefaultValue=false)]
         public string ElementId {
@@ -98,22 +110,43 @@ namespace StacyClouds.C4Sharp
 
         private readonly SequenceNumber _sequenceNumber = new SequenceNumber();
 
+        /// <summary>
+        /// Initializes a dynamic view during deserialization.
+        /// </summary>
         internal DynamicView()
         {
         }
 
+        /// <summary>
+        /// Creates an unscoped dynamic view over the supplied model.
+        /// </summary>
+        /// <param name="model">The model to visualize.</param>
+        /// <param name="key">The unique view key.</param>
+        /// <param name="description">The view description.</param>
         internal DynamicView(Model model, string key, string description) : base(null, key, description)
         {
             Model = model;
             Element = null;
         }
 
+        /// <summary>
+        /// Creates a software-system-scoped dynamic view.
+        /// </summary>
+        /// <param name="softwareSystem">The software system in scope.</param>
+        /// <param name="key">The unique view key.</param>
+        /// <param name="description">The view description.</param>
         internal DynamicView(SoftwareSystem softwareSystem, string key, string description) : base(softwareSystem, key, description)
         {
             Model = softwareSystem.Model;
             Element = softwareSystem;
         }
 
+        /// <summary>
+        /// Creates a container-scoped dynamic view.
+        /// </summary>
+        /// <param name="container">The container in scope.</param>
+        /// <param name="key">The unique view key.</param>
+        /// <param name="description">The view description.</param>
         internal DynamicView(Container container, string key, string description) : base(container.SoftwareSystem, key, description)
         {
             Model = container.Model;
@@ -201,16 +234,38 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Adds the first matching relationship between the supplied source and destination.
+        /// </summary>
+        /// <param name="source">The source element.</param>
+        /// <param name="destination">The destination element.</param>
+        /// <returns>The created relationship view.</returns>
         public RelationshipView Add(StaticStructureElement source, StaticStructureElement destination)
         {
             return Add(source, "", destination);
         }
 
+        /// <summary>
+        /// Adds a relationship between the supplied elements with an overridden description.
+        /// </summary>
+        /// <param name="source">The source element.</param>
+        /// <param name="description">The description shown for the interaction.</param>
+        /// <param name="destination">The destination element.</param>
+        /// <returns>The created relationship view.</returns>
         public RelationshipView Add(StaticStructureElement source, string description, StaticStructureElement destination)
         {
             return Add(source, description, "", destination);
         }
 
+        /// <summary>
+        /// Adds a relationship between the supplied elements, selecting a matching model relationship by description and optional technology.
+        /// </summary>
+        /// <param name="source">The source element.</param>
+        /// <param name="description">The description shown for the interaction.</param>
+        /// <param name="technology">The technology used to disambiguate matching relationships.</param>
+        /// <param name="destination">The destination element.</param>
+        /// <returns>The created relationship view.</returns>
+        /// <exception cref="ArgumentException">Thrown when a source or destination is missing, or when no matching relationship exists.</exception>
         public RelationshipView Add(StaticStructureElement source, string description, string technology, StaticStructureElement destination)
         {
             if (source == null) {
@@ -280,6 +335,7 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="relationship">the Relationship to add</param>
         /// <returns>a RelationshipView</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="relationship"/> is <see langword="null"/>.</exception>
         public RelationshipView Add(Relationship relationship)
          {
             return Add(relationship, "");
@@ -291,7 +347,7 @@ namespace StacyClouds.C4Sharp
         /// <param name="relationship">the Relationship to add</param>
         /// <param name="description">the overidden description</param>
         /// <returns>a RelationshipView</returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="relationship"/> is <see langword="null"/>.</exception>
         public RelationshipView Add(Relationship relationship, string description)
         {
             if (relationship == null)
@@ -308,6 +364,14 @@ namespace StacyClouds.C4Sharp
             return AddRelationship(relationship, description, _sequenceNumber.GetNext(), false);
         }
         
+        /// <summary>
+        /// Adds a relationship and augments it with dynamic-view sequence metadata.
+        /// </summary>
+        /// <param name="relationship">The model relationship to add.</param>
+        /// <param name="description">The description shown for the interaction.</param>
+        /// <param name="order">The sequence number assigned to the interaction.</param>
+        /// <param name="response">Whether the interaction is a response message.</param>
+        /// <returns>The created relationship view, or <see langword="null"/> when the endpoints are not present in the view.</returns>
         internal RelationshipView AddRelationship(Relationship relationship, string description, string order, bool response)
         {
             RelationshipView relationshipView = AddRelationship(relationship);
@@ -321,16 +385,26 @@ namespace StacyClouds.C4Sharp
             return relationshipView;
         }
         
+        /// <summary>
+        /// Starts a nested parallel numbering branch for subsequent interactions.
+        /// </summary>
         public void StartParallelSequence()
         {
             _sequenceNumber.StartParallelSequence();
         }
 
+        /// <summary>
+        /// Ends the current parallel numbering branch without carrying the number back to the parent sequence.
+        /// </summary>
         public void EndParallelSequence()
         {
             EndParallelSequence(false);
         }
 
+        /// <summary>
+        /// Ends the current parallel numbering branch.
+        /// </summary>
+        /// <param name="endAllParallelSequencesAndContinueNumbering">When <see langword="true"/>, continues numbering from the completed parallel branch.</param>
         public void EndParallelSequence(bool endAllParallelSequencesAndContinueNumbering)
         {
             _sequenceNumber.EndParallelSequence(endAllParallelSequencesAndContinueNumbering);

@@ -13,27 +13,24 @@
           ]
         }
       ],
-      "dest": "_api_metadata",
+      "dest": "api",
       "includePrivateMembers": false,
-      "filter": "docfx-filter.yml"
+      "properties": {
+        "TargetFramework": "net10.0"
+      }
     }
   ],
   "build": {
     "content": [
       {
         "files": [
-          "_api_metadata/**.yml",
-          "_api_metadata/toc.yml"
-        ]
-      },
-      {
-        "files": [
-          "docs/api-toc.yml"
+          "api/**.yml",
+          "api/toc.yml"
         ]
       }
     ],
     "resource": [],
-    "output": "docs/api",
+    "output": "docs",
     "template": [
       "default",
       "modern"
@@ -42,7 +39,6 @@
       "_appName": "C4Sharp.NET",
       "_appTitle": "C4Sharp.NET API Reference",
       "_enableSearch": true,
-      "_appLogoPath": "",
       "_disableAffix": false
     }
   }

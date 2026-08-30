@@ -1,20 +1,33 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace StacyClouds.C4Sharp.Dsl
 {
+    /// <summary>
+    /// Generates stable, slug-based identifiers for elements and relationships imported from DSL-shaped data.
+    /// </summary>
     public sealed class DslIdGenerator : IdGenerator
     {
         private readonly HashSet<string> _seenIds = new HashSet<string>();
         private readonly Dictionary<string, int> _generatedCounts = new Dictionary<string, int>();
 
+        /// <summary>
+        /// Generates a unique identifier for an element.
+        /// </summary>
+        /// <param name="element">The element that needs an identifier.</param>
+        /// <returns>A unique, slug-based identifier.</returns>
         public string GenerateId(Element element)
         {
             return GenerateUniqueId(Slugify(element?.CanonicalName ?? element?.Name ?? "element"));
         }
 
+        /// <summary>
+        /// Generates a unique identifier for a relationship.
+        /// </summary>
+        /// <param name="relationship">The relationship that needs an identifier.</param>
+        /// <returns>A unique, slug-based identifier.</returns>
         public string GenerateId(Relationship relationship)
         {
             string baseId = string.Join("-",
@@ -33,6 +46,10 @@ namespace StacyClouds.C4Sharp.Dsl
             return GenerateUniqueId(Slugify(baseId));
         }
 
+        /// <summary>
+        /// Registers an explicit identifier so future generated identifiers do not collide with it.
+        /// </summary>
+        /// <param name="id">The identifier that should be treated as already in use.</param>
         public void Found(string id)
         {
             if (!string.IsNullOrWhiteSpace(id))

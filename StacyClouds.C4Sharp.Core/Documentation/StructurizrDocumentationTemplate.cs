@@ -30,6 +30,10 @@ namespace StacyClouds.C4Sharp.Documentation
     public class StructurizrDocumentationTemplate : DocumentationTemplate
     {
 
+        /// <summary>
+        /// Creates the Structurizr guidebook template helper for a workspace.
+        /// </summary>
+        /// <param name="workspace">The workspace whose documentation will be populated.</param>
         public StructurizrDocumentationTemplate(Workspace workspace) : base(workspace)
         {
         }

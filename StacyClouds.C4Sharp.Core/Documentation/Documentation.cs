@@ -16,17 +16,32 @@ namespace StacyClouds.C4Sharp.Documentation
     public sealed class Documentation
     {
 
+        /// <summary>
+        /// Points to the model that documentation sections and decisions reference.
+        /// </summary>
         public Model Model { get; set; }
 
+        /// <summary>
+        /// Stores the ordered documentation sections attached to the workspace and its elements.
+        /// </summary>
         [DataMember(Name = "sections", EmitDefaultValue = false)]
         public ISet<Section> Sections { get; internal set; }
 
+        /// <summary>
+        /// Stores the architecture decisions attached to the workspace and its elements.
+        /// </summary>
         [DataMember(Name = "decisions", EmitDefaultValue = false)]
         public ISet<Decision> Decisions { get; internal set; }
 
+        /// <summary>
+        /// Stores images that can be referenced from documentation content.
+        /// </summary>
         [DataMember(Name = "images", EmitDefaultValue = false)]
         public ISet<Image> Images { get; internal set; }
 
+        /// <summary>
+        /// Initializes empty documentation collections for serializers and new instances.
+        /// </summary>
         [JsonConstructor]
         internal Documentation()
         {
@@ -35,6 +50,11 @@ namespace StacyClouds.C4Sharp.Documentation
             Images = new HashSet<Image>();
         }
 
+        /// <summary>
+        /// Creates documentation bound to a specific model.
+        /// </summary>
+        /// <param name="model">The model that owns any documented elements.</param>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="model"/> is <c>null</c>.</exception>
         public Documentation(Model model) : this()
         {
             if (model == null)
@@ -45,6 +65,9 @@ namespace StacyClouds.C4Sharp.Documentation
             Model = model;
         }
 
+        /// <summary>
+        /// Resolves stored element identifiers back to model element references.
+        /// </summary>
         public void Hydrate()
         {
             foreach (Section section in Sections)
@@ -64,6 +87,15 @@ namespace StacyClouds.C4Sharp.Documentation
             }
         }
 
+        /// <summary>
+        /// Creates a new documentation section for the workspace or a specific element.
+        /// </summary>
+        /// <param name="element">The owning element, or <c>null</c> for a workspace-level section.</param>
+        /// <param name="title">The section title.</param>
+        /// <param name="format">The format of <paramref name="content"/>.</param>
+        /// <param name="content">The section body.</param>
+        /// <returns>The section that was added.</returns>
+        /// <exception cref="ArgumentException">Thrown when the element is not in the model, when required values are missing, or when the scoped title already exists.</exception>
         internal Section AddSection(Element element, string title, Format format, string content)
         {
             if (element != null && !Model.Contains(element))
@@ -129,11 +161,34 @@ namespace StacyClouds.C4Sharp.Documentation
             }
         }
 
+        /// <summary>
+        /// Adds a workspace-level architecture decision.
+        /// </summary>
+        /// <param name="id">The unique decision identifier.</param>
+        /// <param name="date">The date associated with the decision.</param>
+        /// <param name="title">The decision title.</param>
+        /// <param name="status">The decision status.</param>
+        /// <param name="format">The format of <paramref name="content"/>.</param>
+        /// <param name="content">The decision body.</param>
+        /// <returns>The decision that was added.</returns>
+        /// <exception cref="ArgumentException">Thrown when required values are missing or when the identifier already exists at workspace scope.</exception>
         public Decision AddDecision(string id, DateTime date, string title, DecisionStatus status, Format format, string content)
         {
             return AddDecision(null, id, date, title, status, format, content);
         }
 
+        /// <summary>
+        /// Adds an architecture decision scoped to a software system.
+        /// </summary>
+        /// <param name="softwareSystem">The software system that owns the decision.</param>
+        /// <param name="id">The unique decision identifier within the software system.</param>
+        /// <param name="date">The date associated with the decision.</param>
+        /// <param name="title">The decision title.</param>
+        /// <param name="status">The decision status.</param>
+        /// <param name="format">The format of <paramref name="content"/>.</param>
+        /// <param name="content">The decision body.</param>
+        /// <returns>The decision that was added.</returns>
+        /// <exception cref="ArgumentException">Thrown when required values are missing or when the identifier already exists for the software system.</exception>
         public Decision AddDecision(SoftwareSystem softwareSystem, string id, DateTime date, string title, DecisionStatus status, Format format, string content)
         {
             CheckIdIsSpecified(id);
@@ -195,11 +250,19 @@ namespace StacyClouds.C4Sharp.Documentation
             return Sections.Count+1;
         }
 
+        /// <summary>
+        /// Adds an image asset to the documentation collection.
+        /// </summary>
+        /// <param name="image">The image to store.</param>
         internal void Add(Image image)
         {
             Images.Add(image);
         }
         
+        /// <summary>
+        /// Indicates whether the documentation has any sections or images.
+        /// </summary>
+        /// <returns><c>true</c> when no sections and no images are present; otherwise, <c>false</c>.</returns>
         public bool IsEmpty()
         {
             return Sections.Count == 0 && Images.Count == 0;

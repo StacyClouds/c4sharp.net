@@ -6,6 +6,9 @@ using StacyClouds.C4Sharp.IO.Json;
 namespace StacyClouds.C4Sharp
 {
 
+    /// <summary>
+    /// Provides convenience helpers for loading, saving, and printing workspace JSON.
+    /// </summary>
     public class WorkspaceUtils
     {
 
@@ -32,6 +35,7 @@ namespace StacyClouds.C4Sharp
         /// <summary>
         /// Saves a workspace to a JSON definition as a file.
         /// </summary>
+        /// <param name="workspace">the Workspace object to save</param>
         /// <param name="file">a FileInfo object representing the location of the file to write the JSON definition</param>
         public static void SaveWorkspaceToJson(Workspace workspace, FileInfo file)
         {

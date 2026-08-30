@@ -5,12 +5,18 @@ using System.Runtime.Serialization;
 namespace StacyClouds.C4Sharp
 {
 
+    /// <summary>
+    /// Serves as the base type for views that render a static structural slice of the model.
+    /// </summary>
     [DataContract]
     public abstract class StaticView : View
     {
 
         private IList<Animation> _animations = new List<Animation>();
 
+        /// <summary>
+        /// Contains the ordered animation steps configured for this view.
+        /// </summary>
         [DataMember(Name = "animations", EmitDefaultValue = false)]
         public IList<Animation> Animations
         {
@@ -19,14 +25,26 @@ namespace StacyClouds.C4Sharp
             internal set { _animations = new List<Animation>(value); }
         }
 
+        /// <summary>
+        /// Initializes a static view during deserialization.
+        /// </summary>
         internal StaticView() : base()
         {
         }
 
+        /// <summary>
+        /// Creates a static view for the supplied software system scope.
+        /// </summary>
+        /// <param name="softwareSystem">The scoped software system, or <see langword="null"/> for unscoped views.</param>
+        /// <param name="key">The unique view key.</param>
+        /// <param name="description">The view description.</param>
         internal StaticView(SoftwareSystem softwareSystem, string key, string description) : base(softwareSystem, key, description)
         {
         }
 
+        /// <summary>
+        /// Adds every element type permitted by the concrete static view.
+        /// </summary>
         public abstract void AddAllElements();
 
         /// <summary>
@@ -50,6 +68,7 @@ namespace StacyClouds.C4Sharp
         /// <summary>
         /// Adds the given SoftwareSystem to this view.
         /// </summary>
+        /// <param name="softwareSystem">The software system to add.</param>
         public virtual void Add(SoftwareSystem softwareSystem)
         {
             AddElement(softwareSystem, true);
@@ -58,7 +77,7 @@ namespace StacyClouds.C4Sharp
         /// <summary>
         /// Removes the given SoftwareSystem from this view.
         /// </summary>
-        /// <param name="softwareSystem"></param>
+        /// <param name="softwareSystem">The software system to remove.</param>
         public void Remove(SoftwareSystem softwareSystem)
         {
             RemoveElement(softwareSystem);
@@ -78,6 +97,7 @@ namespace StacyClouds.C4Sharp
         /// <summary>
         /// Adds the given Person to this view.
         /// </summary>
+        /// <param name="person">The person to add.</param>
         public void Add(Person person)
         {
             AddElement(person, true);
@@ -86,7 +106,7 @@ namespace StacyClouds.C4Sharp
         /// <summary>
         /// Removes the given Person from this view.
         /// </summary>
-        /// <param name="person"></param>
+        /// <param name="person">The person to remove.</param>
         public void Remove(Person person)
         {
             RemoveElement(person);
@@ -97,6 +117,10 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         public abstract void AddDefaultElements();
 
+        /// <summary>
+        /// Adds the permitted elements that are directly connected to the supplied element.
+        /// </summary>
+        /// <param name="element">The element whose neighbourhood should be included.</param>
         public abstract void AddNearestNeighbours(Element element);
 
         protected void AddNearestNeighbours(Element element, Type typeOfElement)
@@ -144,6 +168,11 @@ namespace StacyClouds.C4Sharp
             }
         }
         
+        /// <summary>
+        /// Adds an animation step that reveals the supplied elements and the relationships to previously revealed elements.
+        /// </summary>
+        /// <param name="elements">The elements to reveal in the new animation step.</param>
+        /// <exception cref="ArgumentException">Thrown when no elements are supplied or none exist in the view.</exception>
         public void AddAnimation(params Element[] elements)
         {
             if (elements == null || elements.Length == 0)

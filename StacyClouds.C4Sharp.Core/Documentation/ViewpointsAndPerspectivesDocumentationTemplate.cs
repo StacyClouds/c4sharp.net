@@ -24,6 +24,10 @@ namespace StacyClouds.C4Sharp.Documentation
     public class ViewpointsAndPerspectivesDocumentation : DocumentationTemplate
     {
         
+        /// <summary>
+        /// Creates the viewpoints and perspectives template helper for a workspace.
+        /// </summary>
+        /// <param name="workspace">The workspace whose documentation will be populated.</param>
         public ViewpointsAndPerspectivesDocumentation(Workspace workspace) : base(workspace)
         {
         }

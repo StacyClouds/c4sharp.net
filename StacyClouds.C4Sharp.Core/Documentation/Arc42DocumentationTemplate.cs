@@ -25,6 +25,10 @@ namespace StacyClouds.C4Sharp.Documentation
     public class Arc42DocumentationTemplate : DocumentationTemplate
     {
         
+        /// <summary>
+        /// Creates the arc42 template helper for a workspace.
+        /// </summary>
+        /// <param name="workspace">The workspace whose documentation will be populated.</param>
         public Arc42DocumentationTemplate(Workspace workspace) : base(workspace)
         {
         }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 
 namespace StacyClouds.C4Sharp
@@ -28,6 +28,7 @@ namespace StacyClouds.C4Sharp
         /// <summary>
         /// The colour of the line, as a HTML RGB hex string (e.g. #123456)
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the value is not a valid hexadecimal color code.</exception>
         [DataMember(Name = "color", EmitDefaultValue = false)]
         public string Color
         { 
@@ -129,10 +130,17 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Initializes a relationship style during deserialization.
+        /// </summary>
         internal RelationshipStyle()
         {
         }
 
+        /// <summary>
+        /// Creates a relationship style for the supplied tag.
+        /// </summary>
+        /// <param name="tag">The tag this style applies to.</param>
         public RelationshipStyle(string tag)
         {
             this.Tag = tag;
