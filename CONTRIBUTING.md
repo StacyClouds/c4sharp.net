@@ -141,6 +141,21 @@ Feature suggestions are welcome! Please create an issue with:
 - First line should be 50 characters or less
 - Add details in the body if needed
 
+### Versioning and Release Impact
+
+Publish versions are generated automatically by the deploy workflow as:
+`<major>.<minor>.<run_number>`.
+
+To control **major** and **minor** values, use Conventional Commit prefixes:
+
+- **Patch-level change (default contribution path):** `fix:`, `perf:`, `refactor:`
+- **Minor release:** `feat:`
+- **Major release:** add `!` after the type/scope (for example `feat!:` or
+  `refactor(core)!:`) or include a `BREAKING CHANGE:` footer in the commit body
+
+If you do not use one of these commit formats, your change may not produce the
+expected major/minor release line in publish runs.
+
 Example:
 ```
 Add support for custom color schemes (#123)
@@ -160,6 +175,14 @@ Add support for custom color schemes (#123)
 6. Address review feedback promptly
 7. Squash commits if requested
 8. Maintainers will merge when approved
+
+### What reviewers need from contributors
+
+- A clear problem statement in the PR description
+- Why the change is needed and what behavior it changes
+- Test evidence (commands and results)
+- Notes about compatibility, migration, or breaking changes when relevant
+- Linked issues/discussions for context
 
 ## Development Workflow
 
