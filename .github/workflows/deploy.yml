@@ -26,6 +26,23 @@ jobs:
         id: gitversion
         uses: gittools/actions/gitversion/execute@v3
 
+      - name: Determine package version
+        env:
+          GITVERSION_MAJOR: ${{ steps.gitversion.outputs.major }}
+          GITVERSION_MINOR: ${{ steps.gitversion.outputs.minor }}
+          GITVERSION_PATCH: ${{ steps.gitversion.outputs.patch }}
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          set -euo pipefail
+          if [ -z "${GITVERSION_PATCH:-}" ]; then
+            echo "GitVersion patch output is empty. Check that the GitVersion step completed successfully and exposed outputs."
+            exit 1
+          fi
+          PACKAGE_PATCH=$((GITVERSION_PATCH + GITHUB_RUN_NUMBER))
+          PACKAGE_VERSION="${GITVERSION_MAJOR}.${GITVERSION_MINOR}.${PACKAGE_PATCH}"
+          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
+          echo "Publishing package version: $PACKAGE_VERSION"
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -43,10 +60,10 @@ jobs:
 
       - name: Pack NuGet packages
         run: |
-          dotnet pack StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj --no-build --no-restore -c Release -p:Version=${{ steps.gitversion.outputs.semVer }}
-          dotnet pack StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj --no-build --no-restore -c Release -p:Version=${{ steps.gitversion.outputs.semVer }}
-          dotnet pack StacyClouds.C4Sharp.Renderer/StacyClouds.C4Sharp.Renderer.csproj --no-build --no-restore -c Release -p:Version=${{ steps.gitversion.outputs.semVer }}
-          dotnet pack StacyClouds.C4Sharp.Editor/StacyClouds.C4Sharp.Editor.csproj --no-build --no-restore -c Release -p:Version=${{ steps.gitversion.outputs.semVer }}
+          dotnet pack StacyClouds.C4Sharp.Core/StacyClouds.C4Sharp.Core.csproj --no-build --no-restore -c Release -p:Version=${{ env.PACKAGE_VERSION }} -o ./artifacts/nuget
+          dotnet pack StacyClouds.C4Sharp.Client/StacyClouds.C4Sharp.Client.csproj --no-build --no-restore -c Release -p:Version=${{ env.PACKAGE_VERSION }} -o ./artifacts/nuget
+          dotnet pack StacyClouds.C4Sharp.Renderer/StacyClouds.C4Sharp.Renderer.csproj --no-build --no-restore -c Release -p:Version=${{ env.PACKAGE_VERSION }} -o ./artifacts/nuget
+          dotnet pack StacyClouds.C4Sharp.Editor/StacyClouds.C4Sharp.Editor.csproj --no-build --no-restore -c Release -p:Version=${{ env.PACKAGE_VERSION }} -o ./artifacts/nuget
 
       - name: NuGet login (OIDC)
         id: nuget-login
@@ -56,19 +73,7 @@ jobs:
 
       - name: Publish to NuGet
         run: |
-          dotnet nuget push StacyClouds.C4Sharp.Core/bin/Release/*.nupkg \
-            --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} \
-            --source https://api.nuget.org/v3/index.json \
-            --skip-duplicate
-          dotnet nuget push StacyClouds.C4Sharp.Client/bin/Release/*.nupkg \
-            --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} \
-            --source https://api.nuget.org/v3/index.json \
-            --skip-duplicate
-          dotnet nuget push StacyClouds.C4Sharp.Renderer/bin/Release/*.nupkg \
-            --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} \
-            --source https://api.nuget.org/v3/index.json \
-            --skip-duplicate
-          dotnet nuget push StacyClouds.C4Sharp.Editor/bin/Release/*.nupkg \
+          dotnet nuget push ./artifacts/nuget/*.nupkg \
             --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate
