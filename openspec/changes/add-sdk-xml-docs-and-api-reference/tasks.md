@@ -41,7 +41,7 @@
 
 ## 6. API Reference Generation
 
-- [ ] 6.1 Create a `docfx.json` configuration at the repository root (or `docs/docfx.json`) referencing all four library projects and pointing output to `docs/api/`.
+- [ ] 6.1 Create a `docfx.json` configuration at the repository root (or `docs/docfx.json`) referencing all four library projects, configuring output to `docs/api/`, and setting `includePrivateMembers: false` and visibility to public-only.
 - [ ] 6.2 Run DocFX to generate the API reference Markdown/HTML output into `docs/api/`.
 - [ ] 6.3 Validate that the generated output renders correctly in the Jekyll site structure (check links and layout).
 - [ ] 6.4 Add or update the `nav` section in `docs/_config.yml` (or add a navigation link in `docs/index.md`) pointing to the new API reference.
@@ -57,3 +57,10 @@
 - [ ] 8.1 Run `dotnet build StacyClouds.C4Sharp.slnx` and confirm no new errors or warnings.
 - [ ] 8.2 Run `dotnet test StacyClouds.C4Sharp.slnx` and confirm all tests pass.
 - [ ] 8.3 Run `dotnet build StacyClouds.C4Sharp.slnx -warnaserror:CS1591` and confirm zero missing-doc warnings across all packages.
+
+## 9. Release flow automation
+
+- [ ] 9.1 Create or update the release GitHub Actions workflow (`.github/workflows/`) to include a doc-regeneration step: restore tools, build the solution, run DocFX to regenerate `docs/api/`.
+- [ ] 9.2 Add a step in the release workflow that creates a versioned release document (e.g., `docs/api/release-notes-<version>.md` or updates `docs/api/index.md` with the release version) from the tag or release metadata.
+- [ ] 9.3 Add a step that commits the regenerated `docs/api/` output back to the repository (or pushes it to the `gh-pages` branch, depending on the current Pages setup) so GitHub Pages redeploys automatically.
+- [ ] 9.4 Validate the release workflow on a test tag to confirm that the docs are regenerated, committed, and the Pages site updates correctly.
