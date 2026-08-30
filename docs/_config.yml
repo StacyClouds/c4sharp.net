@@ -1,7 +1,13 @@
 theme: jekyll-theme-cayman
 title: C4Sharp.NET
 description: C4 architecture modeling packages for .NET
-url: https://stacyclouds.github.io
-baseurl: /c4sharp.net
+url: https://c4sharp.com
+baseurl: ""
 show_downloads: false
 markdown: kramdown
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
