@@ -144,9 +144,10 @@ Feature suggestions are welcome! Please create an issue with:
 ### Versioning and Release Impact
 
 Publish versions are generated automatically by the deploy workflow as:
-`<major>.<minor>.<run_number>`.
+`<major>.<minor>.<GITVERSION_PATCH + run_number>`.
 
-To control **major** and **minor** values, use Conventional Commit prefixes:
+To control **major**, **minor**, and the base **patch** value, use Conventional
+Commit prefixes:
 
 - **Patch-level change (default contribution path):** `fix:`, `perf:`, `refactor:`
 - **Minor release:** `feat:`

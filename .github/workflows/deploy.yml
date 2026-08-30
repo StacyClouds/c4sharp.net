@@ -27,8 +27,19 @@ jobs:
         uses: gittools/actions/gitversion/execute@v3
 
       - name: Determine package version
+        env:
+          GITVERSION_MAJOR: ${{ steps.gitversion.outputs.major }}
+          GITVERSION_MINOR: ${{ steps.gitversion.outputs.minor }}
+          GITVERSION_PATCH: ${{ steps.gitversion.outputs.patch }}
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
         run: |
-          PACKAGE_VERSION="${{ steps.gitversion.outputs.major }}.${{ steps.gitversion.outputs.minor }}.${{ github.run_number }}"
+          set -euo pipefail
+          if [ -z "${GITVERSION_PATCH:-}" ]; then
+            echo "GitVersion patch output is empty. Check that the GitVersion step completed successfully and exposed outputs."
+            exit 1
+          fi
+          PACKAGE_PATCH=$((GITVERSION_PATCH + GITHUB_RUN_NUMBER))
+          PACKAGE_VERSION="${GITVERSION_MAJOR}.${GITVERSION_MINOR}.${PACKAGE_PATCH}"
           echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
           echo "Publishing package version: $PACKAGE_VERSION"
 
