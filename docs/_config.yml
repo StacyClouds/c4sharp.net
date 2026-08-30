@@ -5,3 +5,9 @@ url: https://stacyclouds.github.io
 baseurl: /c4sharp.net
 show_downloads: false
 markdown: kramdown
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
