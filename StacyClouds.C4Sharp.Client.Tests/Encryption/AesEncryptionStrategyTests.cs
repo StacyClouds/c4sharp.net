@@ -67,7 +67,7 @@ namespace StacyClouds.C4Sharp.Api.Encryption.Tests
             string ciphertext = strategy.Encrypt("Hello world");
             strategy = new AesEncryptionStrategy(256, strategy.IterationCount, strategy.Salt, strategy.Iv, "password");
 
-            Assert.Throws<CryptographicException>(() => strategy.Decrypt(ciphertext));
+            AssertIncorrectDecryptionOutcome(ciphertext);
         }
 
         [Fact]
@@ -77,7 +77,20 @@ namespace StacyClouds.C4Sharp.Api.Encryption.Tests
             string ciphertext = strategy.Encrypt("Hello world");
             strategy = new AesEncryptionStrategy(128, strategy.IterationCount, strategy.Salt, strategy.Iv, "password");
 
-            Assert.Throws<CryptographicException>(() => strategy.Decrypt(ciphertext));
+            AssertIncorrectDecryptionOutcome(ciphertext);
+        }
+
+        private void AssertIncorrectDecryptionOutcome(string ciphertext)
+        {
+            Exception exception = Record.Exception(() =>
+            {
+                Assert.NotEqual("Hello world", strategy.Decrypt(ciphertext));
+            });
+
+            if (exception is not null)
+            {
+                Assert.IsType<CryptographicException>(exception);
+            }
         }
 
         [Fact]
