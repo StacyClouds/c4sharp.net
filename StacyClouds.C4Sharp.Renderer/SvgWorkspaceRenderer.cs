@@ -185,6 +185,10 @@ namespace StacyClouds.C4Sharp.Renderer
 			List<ElementView> scoped = scopedElements.ToList();
 			if (scoped.Count == 0) return null;
 
+			Dictionary<string, int> elementIndexes = elements
+				.Select((element, index) => new { element.Id, index })
+				.ToDictionary(entry => entry.Id, entry => entry.index, StringComparer.Ordinal);
+
 			const int horizontalPadding = 30;
 			const int topPadding = 30;
 			const int bottomPadding = 60;
@@ -194,7 +198,7 @@ namespace StacyClouds.C4Sharp.Renderer
 			int maxY = int.MinValue;
 			foreach (ElementView element in scoped)
 			{
-				int index = elements.IndexOf(element);
+				int index = elementIndexes[element.Id];
 				int x = X(element, index);
 				int y = Y(element, index);
 				minX = Math.Min(minX, x - 75 - horizontalPadding);
