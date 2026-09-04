@@ -27,6 +27,11 @@ File.WriteAllText("system-context.svg", diagrams["system-context"]);
 
 This overload does not mutate `workspace`. It uses persisted element coordinates and relationship vertices when they exist, and falls back to a deterministic in-memory layout when they do not.
 
+Container-view SVGs draw a lower-left-labeled boundary around the viewed
+software system's visible containers. Component-view SVGs do the same for the
+viewed container's visible components. People, software systems, and other
+containers or components keep their own placement outside that scope boundary.
+
 ## Reuse layout from an earlier workspace
 
 ```csharp

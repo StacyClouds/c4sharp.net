@@ -61,11 +61,13 @@ namespace StacyClouds.C4Sharp.Renderer
 		{
 			List<ElementView> elements = view.Elements.Where(element => IsIncluded(element, filtered)).OrderBy(element => element.Id, StringComparer.Ordinal).ToList();
 			Dictionary<string, ElementView> positioned = elements.ToDictionary(element => element.Id);
-			(int minX, int minY, int width, int height) = GetBounds(view, elements);
+			ScopeBoundary scopeBoundary = GetScopeBoundary(view, elements);
+			(int minX, int minY, int width, int height) = GetBounds(view, elements, scopeBoundary);
 			StringBuilder svg = new StringBuilder();
 			svg.Append("<svg xmlns=\"http://www.w3.org/2000/svg\" data-c4-view-key=\"").Append(Escape(key)).Append("\" width=\"").Append(width).Append("\" height=\"").Append(height).Append("\" viewBox=\"").Append(minX).Append(' ').Append(minY).Append(' ').Append(width).Append(' ').Append(height).Append("\">");
 			svg.Append("<defs><marker id=\"arrow\" markerWidth=\"10\" markerHeight=\"10\" refX=\"9\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L0,6 L9,3 z\" fill=\"#707070\" /></marker></defs>");
 			svg.Append("<text x=\"20\" y=\"30\" font-family=\"Arial\" font-size=\"20\">").Append(Escape(string.IsNullOrEmpty(view.Title) ? key : view.Title)).Append("</text>");
+			AppendScopeBoundary(svg, scopeBoundary);
 
 			foreach (RelationshipView relationshipView in view.Relationships.Where(relationship => relationship.Relationship != null && positioned.ContainsKey(relationship.Relationship.Source.Id) && positioned.ContainsKey(relationship.Relationship.Destination.Id)))
 			{
@@ -160,7 +162,73 @@ namespace StacyClouds.C4Sharp.Renderer
 			return element.X == 0 && element.Y == 0 ? 100 + (index / 3) * 180 : element.Y;
 		}
 
-		private static (int MinX, int MinY, int Width, int Height) GetBounds(View view, List<ElementView> elements)
+		private static ScopeBoundary GetScopeBoundary(View view, List<ElementView> elements)
+		{
+			IEnumerable<ElementView> scopedElements;
+			string label;
+			string type;
+			string id;
+			if (view is ContainerView containerView)
+			{
+				scopedElements = elements.Where(element => element.Element is Container container && container.SoftwareSystem == containerView.SoftwareSystem);
+				label = containerView.SoftwareSystem.Name;
+				type = "Software System";
+				id = containerView.SoftwareSystem.Id;
+			}
+			else if (view is ComponentView componentView)
+			{
+				scopedElements = elements.Where(element => element.Element is Component component && component.Container == componentView.Container);
+				label = componentView.Container.Name;
+				type = "Container";
+				id = componentView.Container.Id;
+			}
+			else
+			{
+				return null;
+			}
+
+			List<ElementView> scoped = scopedElements.ToList();
+			if (scoped.Count == 0) return null;
+
+			Dictionary<string, int> elementIndexes = elements
+				.Select((element, index) => new { element.Id, index })
+				.ToDictionary(entry => entry.Id, entry => entry.index, StringComparer.Ordinal);
+
+			const int horizontalPadding = 30;
+			const int topPadding = 30;
+			const int bottomPadding = 60;
+			int minX = int.MaxValue;
+			int minY = int.MaxValue;
+			int maxX = int.MinValue;
+			int maxY = int.MinValue;
+			foreach (ElementView element in scoped)
+			{
+				int index = elementIndexes[element.Id];
+				int x = X(element, index);
+				int y = Y(element, index);
+				minX = Math.Min(minX, x - 75 - horizontalPadding);
+				minY = Math.Min(minY, y - 35 - topPadding);
+				maxX = Math.Max(maxX, x + 75 + horizontalPadding);
+				maxY = Math.Max(maxY, y + 35 + bottomPadding);
+			}
+			int boundaryLabelWidth = Math.Max(
+				EstimateTextWidth(label, 14),
+				EstimateTextWidth("[" + type + "]", 12));
+			maxX = Math.Max(maxX, minX + 15 + boundaryLabelWidth + 15);
+			return new ScopeBoundary(minX, minY, maxX - minX, maxY - minY, label, type, id);
+		}
+
+		private static void AppendScopeBoundary(StringBuilder svg, ScopeBoundary scopeBoundary)
+		{
+			if (scopeBoundary == null) return;
+			svg.Append("<g data-c4-scope-boundary=\"").Append(Escape(scopeBoundary.Type)).Append("\" data-c4-scope-boundary-id=\"").Append(Escape(scopeBoundary.Id)).Append("\">");
+			svg.Append("<rect x=\"").Append(scopeBoundary.X).Append("\" y=\"").Append(scopeBoundary.Y).Append("\" width=\"").Append(scopeBoundary.Width).Append("\" height=\"").Append(scopeBoundary.Height).Append("\" fill=\"none\" stroke=\"#707070\" />");
+			svg.Append("<text x=\"").Append(scopeBoundary.X + 15).Append("\" y=\"").Append(scopeBoundary.Y + scopeBoundary.Height - 28).Append("\" font-family=\"Arial\" font-size=\"14\">").Append(Escape(scopeBoundary.Label)).Append("</text>");
+			svg.Append("<text x=\"").Append(scopeBoundary.X + 15).Append("\" y=\"").Append(scopeBoundary.Y + scopeBoundary.Height - 12).Append("\" font-family=\"Arial\" font-size=\"12\">[").Append(Escape(scopeBoundary.Type)).Append("]</text>");
+			svg.Append("</g>");
+		}
+
+		private static (int MinX, int MinY, int Width, int Height) GetBounds(View view, List<ElementView> elements, ScopeBoundary scopeBoundary)
 		{
 			int minX = 0;
 			int minY = 0;
@@ -182,7 +250,36 @@ namespace StacyClouds.C4Sharp.Renderer
 				maxX = Math.Max(maxX, vertex.X.Value + 100);
 				maxY = Math.Max(maxY, vertex.Y.Value + 100);
 			}
+			if (scopeBoundary != null)
+			{
+				minX = Math.Min(minX, scopeBoundary.X);
+				minY = Math.Min(minY, scopeBoundary.Y);
+				maxX = Math.Max(maxX, scopeBoundary.X + scopeBoundary.Width);
+				maxY = Math.Max(maxY, scopeBoundary.Y + scopeBoundary.Height);
+			}
 			return (minX, minY, maxX - minX, maxY - minY);
+		}
+
+		private sealed class ScopeBoundary
+		{
+			public ScopeBoundary(int x, int y, int width, int height, string label, string type, string id)
+			{
+				X = x;
+				Y = y;
+				Width = width;
+				Height = height;
+				Label = label;
+				Type = type;
+				Id = id;
+			}
+
+			public int X { get; }
+			public int Y { get; }
+			public int Width { get; }
+			public int Height { get; }
+			public string Label { get; }
+			public string Type { get; }
+			public string Id { get; }
 		}
 
 		private static (int X, int Y) PointOnPolyline(List<(int X, int Y)> points, int position)
@@ -238,6 +335,11 @@ namespace StacyClouds.C4Sharp.Renderer
 			List<string> boundedLines = lines.Take(maximumLines).ToList();
 			boundedLines[maximumLines - 1] = boundedLines[maximumLines - 1].Substring(0, maximumLineLength - 1) + "…";
 			return boundedLines;
+		}
+
+		private static int EstimateTextWidth(string text, int fontSize)
+		{
+			return (int)Math.Ceiling((text ?? string.Empty).Length * fontSize * 0.6d);
 		}
 
 		private static string Escape(string value)
