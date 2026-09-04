@@ -484,6 +484,24 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
         }
 
         [Fact]
+        public void Render_ExpandsScopeBoundaryForLongLabelsNearTheRightEdge()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem scopedSystem = workspace.Model.AddSoftwareSystem("Payments and Billing Platform for Enterprise Operations", "Description");
+            Container api = scopedSystem.AddContainer("API", "Description", "ASP.NET");
+            ContainerView view = workspace.Views.CreateContainerView(scopedSystem, "containers", "Containers");
+            view.Add(api);
+            view.GetElementView(api).X = 1300;
+            view.GetElementView(api).Y = 300;
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["containers"];
+
+            svg.ShouldContain("<svg xmlns=\"http://www.w3.org/2000/svg\" data-c4-view-key=\"containers\" width=\"1687\" height=\"600\" viewBox=\"0 0 1687 600\">");
+            svg.ShouldContain("<rect x=\"1195\" y=\"235\" width=\"492\" height=\"160\" fill=\"none\"");
+            svg.ShouldContain("x=\"1210\" y=\"367\" font-family=\"Arial\" font-size=\"14\">Payments and Billing Platform for Enterprise Operations");
+        }
+
+        [Fact]
         public void Render_SuppressesScopeBoundariesWhenFilteredViewsHideAllScopedElements()
         {
             Workspace workspace = new Workspace("Test", "Description");

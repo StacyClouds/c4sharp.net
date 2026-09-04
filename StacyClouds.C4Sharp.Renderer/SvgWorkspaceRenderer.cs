@@ -211,6 +211,10 @@ namespace StacyClouds.C4Sharp.Renderer
 				maxX = Math.Max(maxX, x + 75 + horizontalPadding);
 				maxY = Math.Max(maxY, y + 35 + bottomPadding);
 			}
+			int boundaryLabelWidth = Math.Max(
+				EstimateTextWidth(label, 14),
+				EstimateTextWidth("[" + type + "]", 12));
+			maxX = Math.Max(maxX, minX + 15 + boundaryLabelWidth + 15);
 			return new ScopeBoundary(minX, minY, maxX - minX, maxY - minY, label, type, id);
 		}
 
@@ -331,6 +335,11 @@ namespace StacyClouds.C4Sharp.Renderer
 			List<string> boundedLines = lines.Take(maximumLines).ToList();
 			boundedLines[maximumLines - 1] = boundedLines[maximumLines - 1].Substring(0, maximumLineLength - 1) + "…";
 			return boundedLines;
+		}
+
+		private static int EstimateTextWidth(string text, int fontSize)
+		{
+			return (int)Math.Ceiling((text ?? string.Empty).Length * fontSize * 0.6d);
 		}
 
 		private static string Escape(string value)
