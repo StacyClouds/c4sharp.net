@@ -1,8 +1,11 @@
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 
 namespace StacyClouds.C4Sharp
 {
+    /// <summary>
+    /// Describes an explicit view size in pixels.
+    /// </summary>
     [DataContract]
     public class Dimensions
     {
@@ -10,8 +13,9 @@ namespace StacyClouds.C4Sharp
         private int _width;
         
         /// <summary>
-        /// The width (pixels).
+        /// Specifies the rendered width, in pixels.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the value is negative.</exception>
         [DataMember(Name = "width", EmitDefaultValue = false)]
         public int Width
         {
@@ -31,8 +35,9 @@ namespace StacyClouds.C4Sharp
         private int _height;
         
         /// <summary>
-        /// The height (pixels).
+        /// Specifies the rendered height, in pixels.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the value is negative.</exception>
         [DataMember(Name = "height", EmitDefaultValue = false)]
         public int Height
         {
@@ -49,10 +54,18 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Initializes an empty dimensions object during deserialization.
+        /// </summary>
         internal Dimensions()
         {
         }
 
+        /// <summary>
+        /// Creates a size with the supplied width and height.
+        /// </summary>
+        /// <param name="width">The width in pixels.</param>
+        /// <param name="height">The height in pixels.</param>
         public Dimensions(int width, int height)
         {
             Width = width;

@@ -13,10 +13,16 @@ namespace StacyClouds.C4Sharp
     public sealed class DeploymentView : View
     {
 
+        /// <summary>
+        /// Stores the model whose deployment elements participate in this view.
+        /// </summary>
         public override Model Model { get; set; }
 
         private IList<Animation> _animations = new List<Animation>();
 
+        /// <summary>
+        /// Contains the ordered animation steps configured for this deployment view.
+        /// </summary>
         [DataMember(Name = "animations", EmitDefaultValue = false)]
         public IList<Animation> Animations
         {
@@ -36,12 +42,24 @@ namespace StacyClouds.C4Sharp
             Environment = DeploymentElement.DefaultDeploymentEnvironment;
         }
 
+        /// <summary>
+        /// Creates an unscoped deployment view for the supplied model.
+        /// </summary>
+        /// <param name="model">The model to visualize.</param>
+        /// <param name="key">The unique view key.</param>
+        /// <param name="description">The view description.</param>
         internal DeploymentView(Model model, string key, string description) : base(null, key, description)
         {
             Model = model;
             Environment = DeploymentElement.DefaultDeploymentEnvironment;
         }
 
+        /// <summary>
+        /// Creates a deployment view scoped to the supplied software system.
+        /// </summary>
+        /// <param name="softwareSystem">The software system in scope.</param>
+        /// <param name="key">The unique view key.</param>
+        /// <param name="description">The view description.</param>
         internal DeploymentView(SoftwareSystem softwareSystem, string key, string description) : base(softwareSystem,
             key, description)
         {
@@ -124,6 +142,7 @@ namespace StacyClouds.C4Sharp
         /// Adds a deployment node to this view.
         /// </summary>
         /// <param name="deploymentNode">the DeploymentNode to add</param>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="deploymentNode"/> is <see langword="null"/>.</exception>
         public void Add(DeploymentNode deploymentNode)
         {
             Add(deploymentNode, true);
@@ -133,6 +152,8 @@ namespace StacyClouds.C4Sharp
         /// Adds a deployment node to this view.
         /// </summary>
         /// <param name="deploymentNode">the DeploymentNode to add</param>
+        /// <param name="addRelationships">Whether related relationships should be added while walking the deployment tree.</param>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="deploymentNode"/> is <see langword="null"/>.</exception>
         public void Add(DeploymentNode deploymentNode, bool addRelationships)
         {
             if (deploymentNode == null)
@@ -305,6 +326,7 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="relationship">the Relationship to be added</param>
         /// <returns>a RelationshipView object representing the relationship added</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="relationship"/> is <see langword="null"/>.</exception>
         public RelationshipView Add(Relationship relationship)
         {
             return AddRelationship(relationship);
@@ -315,6 +337,7 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="elementInstances">the software system/container instances that should be shown in the animation step</param>
         /// <param name="infrastructureNodes">the infrastructure nodes that should be shown in the animation step</param>
+        /// <exception cref="ArgumentException">Thrown when both parameter arrays are empty or <see langword="null"/>.</exception>
         public void AddAnimation(StaticStructureElementInstance[] elementInstances, InfrastructureNode[] infrastructureNodes)
         {
             if ((elementInstances == null || elementInstances.Length == 0) && (infrastructureNodes == null || infrastructureNodes.Length == 0))
@@ -339,6 +362,7 @@ namespace StacyClouds.C4Sharp
         /// Adds an animation step, with the specified infrastructure nodes.
         /// </summary>
         /// <param name="infrastructureNodes">the infrastructure nodes that should be shown in the animation step</param>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="infrastructureNodes"/> is empty or <see langword="null"/>.</exception>
         public void AddAnimation(params InfrastructureNode[] infrastructureNodes)
         {
             if (infrastructureNodes == null || infrastructureNodes.Length == 0)
@@ -353,6 +377,7 @@ namespace StacyClouds.C4Sharp
         /// Adds an animation step, with the specified container instances.
         /// </summary>
         /// <param name="elementInstances">the software system/container instances that should be shown in the animation step</param>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="elementInstances"/> is empty or <see langword="null"/>.</exception>
         public void AddAnimation(params StaticStructureElementInstance[] elementInstances)
         {
             if (elementInstances == null || elementInstances.Length == 0)
@@ -446,6 +471,9 @@ namespace StacyClouds.C4Sharp
             return null;
         }
 
+        /// <summary>
+        /// Returns the default name shown for this deployment view.
+        /// </summary>
         public override string Name
         {
             get

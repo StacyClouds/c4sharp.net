@@ -26,13 +26,23 @@ namespace StacyClouds.C4Sharp
             set { _parent = value as DeploymentNode; }
         }
             
+        /// <summary>
+        /// The technology or product used to provide this infrastructure capability.
+        /// </summary>
         [DataMember(Name = "technology", EmitDefaultValue = false)]
         public string Technology { get; set; }
 
+        /// <summary>
+        /// Initializes an infrastructure node for deserialization.
+        /// </summary>
         internal InfrastructureNode()
         {
         }
 
+        /// <summary>
+        /// Returns the tags that are always applied to infrastructure nodes.
+        /// </summary>
+        /// <returns>The required infrastructure node tags.</returns>
         public override List<string> GetRequiredTags()
         {
             return new List<string>
@@ -42,6 +52,9 @@ namespace StacyClouds.C4Sharp
             };
         }
 
+        /// <summary>
+        /// Gets the canonical name for this infrastructure node.
+        /// </summary>
         public override string CanonicalName
         {
             get

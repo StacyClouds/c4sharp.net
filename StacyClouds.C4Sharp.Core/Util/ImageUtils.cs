@@ -6,9 +6,18 @@ using System.Text;
 
 namespace StacyClouds.C4Sharp.Util
 {
+    /// <summary>
+    /// Provides helpers for reading supported documentation image files.
+    /// </summary>
     public class ImageUtils
     {
 
+        /// <summary>
+        /// Resolves the MIME type for a supported image file.
+        /// </summary>
+        /// <param name="file">The image file to inspect.</param>
+        /// <returns>The MIME type for the image.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="file"/> is missing, is a directory, does not exist, or is not a supported image type.</exception>
         public static string GetContentType(FileInfo file)
         {
             if (file == null)
@@ -40,6 +49,12 @@ namespace StacyClouds.C4Sharp.Util
             }
         }
 
+        /// <summary>
+        /// Reads a supported image file and returns its Base64-encoded bytes.
+        /// </summary>
+        /// <param name="file">The image file to read.</param>
+        /// <returns>The Base64-encoded image content.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="file"/> is missing, invalid, or unsupported.</exception>
         public static string GetImageAsBase64(FileInfo file)
         {
             String contentType = GetContentType(file); // this does the file checks
@@ -47,6 +62,12 @@ namespace StacyClouds.C4Sharp.Util
             return Convert.ToBase64String(imageArray);
         }
 
+        /// <summary>
+        /// Reads a supported image file and returns it as a data URI.
+        /// </summary>
+        /// <param name="file">The image file to read.</param>
+        /// <returns>A data URI that embeds the image content.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="file"/> is missing, invalid, or unsupported.</exception>
         public static string GetImageAsDataUri(FileInfo file)
         {
             String contentType = GetContentType(file);

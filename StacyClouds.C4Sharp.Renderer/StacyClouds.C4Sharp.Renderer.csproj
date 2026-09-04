@@ -10,6 +10,8 @@
     <PackageProjectUrl>https://c4sharp.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/StacyClouds/c4sharp.net</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\StacyClouds.C4Sharp.Core\StacyClouds.C4Sharp.Core.csproj" />

@@ -55,10 +55,20 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "timeout", EmitDefaultValue = true)]
         public long Timeout { get; internal set; }
 
+        /// <summary>
+        /// Initializes a health check for deserialization.
+        /// </summary>
         internal HttpHealthCheck()
         {
         }
 
+        /// <summary>
+        /// Initializes a health check with the supplied endpoint settings.
+        /// </summary>
+        /// <param name="name">The health check name.</param>
+        /// <param name="url">The health check endpoint.</param>
+        /// <param name="interval">The polling interval in seconds.</param>
+        /// <param name="timeout">The timeout in milliseconds.</param>
         internal HttpHealthCheck(string name, string url, int interval, long timeout)
         {
             this.Name = name;
@@ -72,6 +82,9 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="name">The name of the header.</param>
         /// <param name="value">The header value.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="name"/> is null or empty, or when <paramref name="value"/> is null.
+        /// </exception>
         public void AddHeader(string name, string value)
         {
             if (name == null || name.Trim().Length == 0)
@@ -87,6 +100,11 @@ namespace StacyClouds.C4Sharp
             _headers.Add(name, value);
         }
 
+        /// <summary>
+        /// Compares this health check with another by URL.
+        /// </summary>
+        /// <param name="other">The health check to compare with.</param>
+        /// <returns><see langword="true"/> when both health checks target the same URL; otherwise, <see langword="false"/>.</returns>
         public bool Equals(HttpHealthCheck other)
         {
             if (ReferenceEquals(null, other)) return false;
@@ -94,6 +112,11 @@ namespace StacyClouds.C4Sharp
             return string.Equals(Url, other.Url);
         }
 
+        /// <summary>
+        /// Compares this instance with another object.
+        /// </summary>
+        /// <param name="obj">The object to compare with.</param>
+        /// <returns><see langword="true"/> when <paramref name="obj"/> is a matching <see cref="HttpHealthCheck"/>; otherwise, <see langword="false"/>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -101,6 +124,10 @@ namespace StacyClouds.C4Sharp
             return obj is HttpHealthCheck && Equals((HttpHealthCheck) obj);
         }
 
+        /// <summary>
+        /// Returns a hash code derived from the health check URL.
+        /// </summary>
+        /// <returns>A hash code for the current health check.</returns>
         public override int GetHashCode()
         {
             if (Url != null)

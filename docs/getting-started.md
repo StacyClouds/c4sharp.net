@@ -1,85 +1,67 @@
-# Getting started
+---
+title: Core package guide
+---
 
-Here is a quick overview of how to get started with Structurizr for .NET so that you can create a software architecture model as code. You can find the code at [GettingStarted.cs](https://github.com/structurizr/dotnet/blob/master/Structurizr.Examples/GettingStarted.cs) and the live example workspace at [https://structurizr.com/share/25441](https://structurizr.com/share/25441).
+# Core package guide
 
-For more examples, please see [Structurizr.Examples](https://github.com/structurizr/dotnet/tree/master/Structurizr.Examples).
+Install `StacyClouds.C4Sharp.Core` when you want to create or modify workspaces in .NET code.
 
-## 1. Dependencies
-
-The "Structurizr for .NET" assemblies are available on NuGet as follows:
-
-Name                    | Description
----------------------   | ---------------------------------------------------------------------------------------------------------------------------
-Structurizr.Core        | The basic library that can used to create software architecture models.
-Structurizr.Client		| The API client for publishing models on the Structurizr cloud service and on-premises installation.
-
-To install Structurizr.Client, use the following command in the NuGet Package Manager Console:
-
-```powershell
-Install-Package Structurizr.Client
+```bash
+dotnet add package StacyClouds.C4Sharp.Core
 ```
 
-## 2. Create a model
+## Namespace
 
-The first step is to create a workspace in which the software architecture model will reside.
+```csharp
+using StacyClouds.C4Sharp;
+```
 
-```c#
-Workspace workspace = new Workspace("Getting Started", "This is a model of my software system.");
+## Create a workspace
+
+A workspace contains the model, views, and related configuration.
+
+```csharp
+Workspace workspace = new Workspace("Getting Started", "A simple architecture workspace.");
 Model model = workspace.Model;
 ```
 
-Now let's add some elements to the model to describe a user using a software system.
+## Add model elements
 
-```c#
-Person user = model.AddPerson("User", "A user of my software system.");
-SoftwareSystem softwareSystem = model.AddSoftwareSystem("Software System", "My software system.");
+Add people, software systems, containers, and components through the model graph.
+
+```csharp
+Person user = model.AddPerson("User", "Uses the system.");
+SoftwareSystem softwareSystem = model.AddSoftwareSystem("Software System", "Provides the core capability.");
 user.Uses(softwareSystem, "Uses");
 ```
 
-## 3. Create some views
+## Create views
 
-With the model created, we need to create some views with which to visualise it.
+Create a view from the workspace view set, then add the elements you want to render.
 
-```c#
-ViewSet viewSet = workspace.Views;
-SystemContextView contextView = viewSet.CreateSystemContextView(softwareSystem, "SystemContext", "An example of a System Context diagram.");
-contextView.AddAllSoftwareSystems();
-contextView.AddAllPeople();
+```csharp
+SystemContextView view = workspace.Views.CreateSystemContextView(
+    softwareSystem,
+    "system-context",
+    "A simple system context view.");
+view.AddAllPeople();
+view.AddAllSoftwareSystems();
 ```
 
-## 4. Add some colour
+## Apply styles
 
-Elements and relationships can be styled by specifying colours, sizes and shapes.
+Styles live under `workspace.Views.Configuration.Styles`.
 
-```c#
-Styles styles = viewSet.Configuration.Styles;
+```csharp
+Styles styles = workspace.Views.Configuration.Styles;
 styles.Add(new ElementStyle(Tags.SoftwareSystem) { Background = "#1168bd", Color = "#ffffff" });
 styles.Add(new ElementStyle(Tags.Person) { Background = "#08427b", Color = "#ffffff", Shape = Shape.Person });
 ```
 
-## 5. Upload to Structurizr
+## Next steps
 
-Structurizr provides a web API to get and put workspaces.
+- Add `StacyClouds.C4Sharp.Client` to publish or download workspaces.
+- Add `StacyClouds.C4Sharp.Renderer` to generate SVG output locally.
+- Add `StacyClouds.C4Sharp.Editor` to edit rendered layouts in a Blazor host.
 
-```c#
-StructurizrClient structurizrClient = new StructurizrClient("key", "secret");
-structurizrClient.PutWorkspace(25441, workspace);
-```
-
-> In order to upload your model to Structurizr using the web API, you'll need to [sign up for free](https://structurizr.com/signup) to get your own API key and secret. See [Workspaces](https://structurizr.com/help/workspaces) for information about finding your workspace ID, API key and secret.
-
-## 6. Open the workspace in Structurizr
-
-Once you've run your program to create and upload the workspace, you can now sign in to your Structurizr account, and open the workspace from [your dashboard](https://structurizr.com/dashboard). The result should be a diagram like this:
-
-![Getting Started with Structurizr for .NET](images/getting-started-1.png)
-
-By default, Structurizr does not auto-layout your diagram elements. The diagram layout can be modified by dragging the elements around the diagram canvas in the diagram editor, and the layout saved using the "Save workspace" button. See [Structurizr - Help - Diagram editor](https://structurizr.com/help/diagram-editor) for more information. 
-
-![Getting Started with Structurizr for .NET](images/getting-started-2.png)
-
-A diagram key is automatically generated based upon the styles in the model. Click the "i" button on the toolbar (or press the 'i' key) to display the diagram key.
-
-![A diagram key](images/getting-started-diagram-key.png)
-
-When you upload a new version of the same workspace, the Structurizr client will try to retain the diagram layout information. See [API client](api-client.md) for more details.
+For C4 notation guidance, use the official [C4 Model website](https://c4model.com).

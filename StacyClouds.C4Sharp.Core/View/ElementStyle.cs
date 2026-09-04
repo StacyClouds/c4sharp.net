@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 using StacyClouds.C4Sharp.Util;
 
@@ -33,8 +33,9 @@ namespace StacyClouds.C4Sharp
         private string _background;
 
         /// <summary>
-        /// The background colour of the element, as a HTML RGB hex string (e.g.
+        /// Defines the background color of the element as a six-digit hexadecimal value such as <c>#1168bd</c>.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the value is not a valid hexadecimal color code.</exception>
         [DataMember(Name = "background", EmitDefaultValue = false)]
         public string Background
         {
@@ -59,8 +60,9 @@ namespace StacyClouds.C4Sharp
         private string _stroke;
 
         /// <summary>
-        /// The stroke colour of the element, as a HTML RGB hex string (e.g.
+        /// Defines the stroke color of the element as a six-digit hexadecimal value such as <c>#ffffff</c>.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the value is not a valid hexadecimal color code.</exception>
         [DataMember(Name = "stroke", EmitDefaultValue = false)]
         public string Stroke
         {
@@ -85,8 +87,9 @@ namespace StacyClouds.C4Sharp
         private string _color;
 
         /// <summary>
-        /// The foreground (text) colour of the element, as a HTML RGB hex string (e.g.
+        /// Defines the foreground text color as a six-digit hexadecimal value such as <c>#000000</c>.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the value is not a valid hexadecimal color code.</exception>
         [DataMember(Name = "color", EmitDefaultValue = false)]
         public string Color
         {
@@ -123,6 +126,10 @@ namespace StacyClouds.C4Sharp
 
         private string _icon;
 
+        /// <summary>
+        /// Specifies an icon URL or data URI rendered with the element.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the value is not a URL or image data URI.</exception>
         [DataMember(Name = "icon", EmitDefaultValue = false)]
         public string Icon
         {
@@ -188,10 +195,17 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public bool? Description { get; set; }
 
+        /// <summary>
+        /// Initializes an element style during deserialization.
+        /// </summary>
         internal ElementStyle()
         {
         }
 
+        /// <summary>
+        /// Creates an element style for the supplied tag.
+        /// </summary>
+        /// <param name="tag">The tag this style applies to.</param>
         public ElementStyle(string tag)
         {
             this.Tag = tag;

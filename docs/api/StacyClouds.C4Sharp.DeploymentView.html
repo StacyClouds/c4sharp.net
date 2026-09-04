@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DeploymentView | C4Sharp.NET API Reference </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DeploymentView | C4Sharp.NET API Reference ">
+      
+      <meta name="description" content="A deployment view, used to show the mapping of container instances to deployment nodes.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="C4Sharp.NET">
+            C4Sharp.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="StacyClouds.C4Sharp.DeploymentView">
+
+
+
+  <h1 id="StacyClouds_C4Sharp_DeploymentView" data-uid="StacyClouds.C4Sharp.DeploymentView" class="text-break">
+Class DeploymentView  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="StacyClouds.html">StacyClouds</a>.<a class="xref" href="StacyClouds.C4Sharp.html">C4Sharp</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>StacyClouds.C4Sharp.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A deployment view, used to show the mapping of container instances to deployment nodes.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class DeploymentView : View</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="StacyClouds.C4Sharp.View.html">View</a></div>
+      <div><span class="xref">DeploymentView</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_LayoutMergeStrategy">View.LayoutMergeStrategy</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Key">View.Key</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_SoftwareSystem">View.SoftwareSystem</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_SoftwareSystemId">View.SoftwareSystemId</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Description">View.Description</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Title">View.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_PaperSize">View.PaperSize</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Dimensions">View.Dimensions</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Elements">View.Elements</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Relationships">View.Relationships</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_GetElementView_StacyClouds_C4Sharp_Element_">View.GetElementView(Element)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_GetRelationshipView_StacyClouds_C4Sharp_Relationship_">View.GetRelationshipView(Relationship)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Remove_StacyClouds_C4Sharp_Relationship_">View.Remove(Relationship)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_CopyLayoutInformationFrom_StacyClouds_C4Sharp_View_">View.CopyLayoutInformationFrom(View)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_AutomaticLayout">View.AutomaticLayout</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_EnableAutomaticLayout">View.EnableAutomaticLayout()</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_EnableAutomaticLayout_StacyClouds_C4Sharp_RankDirection_System_Int32_System_Int32_System_Int32_System_Boolean_">View.EnableAutomaticLayout(RankDirection, int, int, int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_DisableAutomaticLayout">View.DisableAutomaticLayout()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Animations_" data-uid="StacyClouds.C4Sharp.DeploymentView.Animations*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Animations" data-uid="StacyClouds.C4Sharp.DeploymentView.Animations">
+  Animations
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Contains the ordered animation steps configured for this deployment view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;animations&quot;, EmitDefaultValue = false)]
+public IList&lt;Animation&gt; Animations { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="StacyClouds.C4Sharp.Animation.html">Animation</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Environment_" data-uid="StacyClouds.C4Sharp.DeploymentView.Environment*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Environment" data-uid="StacyClouds.C4Sharp.DeploymentView.Environment">
+  Environment
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The name of the environment that this deployment view is for (e.g. &quot;Development&quot;, &quot;Live&quot;, etc).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;environment&quot;, EmitDefaultValue = false)]
+public string Environment { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Model_" data-uid="StacyClouds.C4Sharp.DeploymentView.Model*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Model" data-uid="StacyClouds.C4Sharp.DeploymentView.Model">
+  Model
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Stores the model whose deployment elements participate in this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Model Model { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Model.html">Model</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Name_" data-uid="StacyClouds.C4Sharp.DeploymentView.Name*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Name" data-uid="StacyClouds.C4Sharp.DeploymentView.Name">
+  Name
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the default name shown for this deployment view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Name { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Add_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Add_StacyClouds_C4Sharp_ContainerInstance_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add(StacyClouds.C4Sharp.ContainerInstance)">
+  Add(ContainerInstance)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a container instance (and its parent deployment nodes) to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(ContainerInstance containerInstance)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>containerInstance</code> <a class="xref" href="StacyClouds.C4Sharp.ContainerInstance.html">ContainerInstance</a></dt>
+    <dd><p>the ContainerInstance to add</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Add_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Add_StacyClouds_C4Sharp_DeploymentNode_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add(StacyClouds.C4Sharp.DeploymentNode)">
+  Add(DeploymentNode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a deployment node to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(DeploymentNode deploymentNode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>deploymentNode</code> <a class="xref" href="StacyClouds.C4Sharp.DeploymentNode.html">DeploymentNode</a></dt>
+    <dd><p>the DeploymentNode to add</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">deploymentNode</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Add_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Add_StacyClouds_C4Sharp_DeploymentNode_System_Boolean_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add(StacyClouds.C4Sharp.DeploymentNode,System.Boolean)">
+  Add(DeploymentNode, bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a deployment node to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(DeploymentNode deploymentNode, bool addRelationships)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>deploymentNode</code> <a class="xref" href="StacyClouds.C4Sharp.DeploymentNode.html">DeploymentNode</a></dt>
+    <dd><p>the DeploymentNode to add</p>
+</dd>
+    <dt><code>addRelationships</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether related relationships should be added while walking the deployment tree.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">deploymentNode</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Add_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Add_StacyClouds_C4Sharp_InfrastructureNode_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add(StacyClouds.C4Sharp.InfrastructureNode)">
+  Add(InfrastructureNode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an infrastructure node (and its parent deployment nodes) to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(InfrastructureNode infrastructureNode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>infrastructureNode</code> <a class="xref" href="StacyClouds.C4Sharp.InfrastructureNode.html">InfrastructureNode</a></dt>
+    <dd><p>the InfrastructureNode to add</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Add_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Add_StacyClouds_C4Sharp_Relationship_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add(StacyClouds.C4Sharp.Relationship)">
+  Add(Relationship)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a specific relationship to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelationshipView Add(Relationship relationship)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relationship</code> <a class="xref" href="StacyClouds.C4Sharp.Relationship.html">Relationship</a></dt>
+    <dd><p>the Relationship to be added</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.RelationshipView.html">RelationshipView</a></dt>
+    <dd><p>a RelationshipView object representing the relationship added</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">relationship</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Add_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Add_StacyClouds_C4Sharp_SoftwareSystemInstance_" data-uid="StacyClouds.C4Sharp.DeploymentView.Add(StacyClouds.C4Sharp.SoftwareSystemInstance)">
+  Add(SoftwareSystemInstance)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a software system instance (and its parent deployment nodes) to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(SoftwareSystemInstance softwareSystemInstance)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystemInstance</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystemInstance.html">SoftwareSystemInstance</a></dt>
+    <dd><p>the SoftwareSystemInstance to add</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_AddAllDeploymentNodes_" data-uid="StacyClouds.C4Sharp.DeploymentView.AddAllDeploymentNodes*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_AddAllDeploymentNodes" data-uid="StacyClouds.C4Sharp.DeploymentView.AddAllDeploymentNodes">
+  AddAllDeploymentNodes()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds all of the top-level deployment nodes to this view, for the same deployment environment (if set).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddAllDeploymentNodes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_AddAnimation_" data-uid="StacyClouds.C4Sharp.DeploymentView.AddAnimation*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_AddAnimation_StacyClouds_C4Sharp_InfrastructureNode___" data-uid="StacyClouds.C4Sharp.DeploymentView.AddAnimation(StacyClouds.C4Sharp.InfrastructureNode[])">
+  AddAnimation(params InfrastructureNode[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an animation step, with the specified infrastructure nodes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddAnimation(params InfrastructureNode[] infrastructureNodes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>infrastructureNodes</code> <a class="xref" href="StacyClouds.C4Sharp.InfrastructureNode.html">InfrastructureNode</a>[]</dt>
+    <dd><p>the infrastructure nodes that should be shown in the animation step</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">infrastructureNodes</code> is empty or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_AddAnimation_" data-uid="StacyClouds.C4Sharp.DeploymentView.AddAnimation*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_AddAnimation_StacyClouds_C4Sharp_StaticStructureElementInstance___" data-uid="StacyClouds.C4Sharp.DeploymentView.AddAnimation(StacyClouds.C4Sharp.StaticStructureElementInstance[])">
+  AddAnimation(params StaticStructureElementInstance[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an animation step, with the specified container instances.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddAnimation(params StaticStructureElementInstance[] elementInstances)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>elementInstances</code> <a class="xref" href="StacyClouds.C4Sharp.StaticStructureElementInstance.html">StaticStructureElementInstance</a>[]</dt>
+    <dd><p>the software system/container instances that should be shown in the animation step</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">elementInstances</code> is empty or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_AddAnimation_" data-uid="StacyClouds.C4Sharp.DeploymentView.AddAnimation*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_AddAnimation_StacyClouds_C4Sharp_StaticStructureElementInstance___StacyClouds_C4Sharp_InfrastructureNode___" data-uid="StacyClouds.C4Sharp.DeploymentView.AddAnimation(StacyClouds.C4Sharp.StaticStructureElementInstance[],StacyClouds.C4Sharp.InfrastructureNode[])">
+  AddAnimation(StaticStructureElementInstance[], InfrastructureNode[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an animation step, with the specified container instances and infrastructure nodes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddAnimation(StaticStructureElementInstance[] elementInstances, InfrastructureNode[] infrastructureNodes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>elementInstances</code> <a class="xref" href="StacyClouds.C4Sharp.StaticStructureElementInstance.html">StaticStructureElementInstance</a>[]</dt>
+    <dd><p>the software system/container instances that should be shown in the animation step</p>
+</dd>
+    <dt><code>infrastructureNodes</code> <a class="xref" href="StacyClouds.C4Sharp.InfrastructureNode.html">InfrastructureNode</a>[]</dt>
+    <dd><p>the infrastructure nodes that should be shown in the animation step</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when both parameter arrays are empty or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_AddDefaultElements_" data-uid="StacyClouds.C4Sharp.DeploymentView.AddDefaultElements*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_AddDefaultElements" data-uid="StacyClouds.C4Sharp.DeploymentView.AddDefaultElements">
+  AddDefaultElements()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the default set of elements to this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddDefaultElements()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_CheckElementCanBeAdded_" data-uid="StacyClouds.C4Sharp.DeploymentView.CheckElementCanBeAdded*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_CheckElementCanBeAdded_StacyClouds_C4Sharp_Element_" data-uid="StacyClouds.C4Sharp.DeploymentView.CheckElementCanBeAdded(StacyClouds.C4Sharp.Element)">
+  CheckElementCanBeAdded(Element)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void CheckElementCanBeAdded(Element elementToBeAdded)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>elementToBeAdded</code> <a class="xref" href="StacyClouds.C4Sharp.Element.html">Element</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Remove_" data-uid="StacyClouds.C4Sharp.DeploymentView.Remove*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Remove_StacyClouds_C4Sharp_ContainerInstance_" data-uid="StacyClouds.C4Sharp.DeploymentView.Remove(StacyClouds.C4Sharp.ContainerInstance)">
+  Remove(ContainerInstance)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes a container instance from this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(ContainerInstance containerInstance)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>containerInstance</code> <a class="xref" href="StacyClouds.C4Sharp.ContainerInstance.html">ContainerInstance</a></dt>
+    <dd><p>the ContainerInstance to remove</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Remove_" data-uid="StacyClouds.C4Sharp.DeploymentView.Remove*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Remove_StacyClouds_C4Sharp_DeploymentNode_" data-uid="StacyClouds.C4Sharp.DeploymentView.Remove(StacyClouds.C4Sharp.DeploymentNode)">
+  Remove(DeploymentNode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes a deployment node from this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(DeploymentNode deploymentNode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>deploymentNode</code> <a class="xref" href="StacyClouds.C4Sharp.DeploymentNode.html">DeploymentNode</a></dt>
+    <dd><p>the DeploymentNode to remove</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Remove_" data-uid="StacyClouds.C4Sharp.DeploymentView.Remove*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Remove_StacyClouds_C4Sharp_InfrastructureNode_" data-uid="StacyClouds.C4Sharp.DeploymentView.Remove(StacyClouds.C4Sharp.InfrastructureNode)">
+  Remove(InfrastructureNode)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes an infrastructure node from this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(InfrastructureNode infrastructureNode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>infrastructureNode</code> <a class="xref" href="StacyClouds.C4Sharp.InfrastructureNode.html">InfrastructureNode</a></dt>
+    <dd><p>the InfrastructureNode to remove</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DeploymentView_Remove_" data-uid="StacyClouds.C4Sharp.DeploymentView.Remove*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DeploymentView_Remove_StacyClouds_C4Sharp_SoftwareSystemInstance_" data-uid="StacyClouds.C4Sharp.DeploymentView.Remove(StacyClouds.C4Sharp.SoftwareSystemInstance)">
+  Remove(SoftwareSystemInstance)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes a software system instance from this view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(SoftwareSystemInstance softwareSystemInstance)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystemInstance</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystemInstance.html">SoftwareSystemInstance</a></dt>
+    <dd><p>the SoftwareSystemInstance to remove</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

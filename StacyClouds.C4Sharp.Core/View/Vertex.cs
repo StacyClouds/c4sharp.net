@@ -1,19 +1,27 @@
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace StacyClouds.C4Sharp
 {
 
     /// <summary>
-    /// The X, Y coordinate of a bend in a line.
+    /// Represents the X and Y coordinate of a bend in a relationship line.
     /// </summary>
     [DataContract]
     public sealed class Vertex
     {
 
+        /// <summary>
+        /// Creates an empty vertex.
+        /// </summary>
         public Vertex()
         {
         }
 
+        /// <summary>
+        /// Creates a vertex at the supplied coordinates.
+        /// </summary>
+        /// <param name="x">The horizontal position.</param>
+        /// <param name="y">The vertical position.</param>
         public Vertex(int x, int y)
         {
             X = x;

@@ -1,4 +1,4 @@
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace StacyClouds.C4Sharp
 {
@@ -10,6 +10,9 @@ namespace StacyClouds.C4Sharp
     public sealed class SystemContextView : StaticView
     {
 
+        /// <summary>
+        /// Returns the default name shown for this system context view.
+        /// </summary>
         public override string Name
         {
             get
@@ -24,10 +27,19 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "enterpriseBoundaryVisible", EmitDefaultValue = false)]
         public bool? EnterpriseBoundaryVisible { get; set; }
 
+        /// <summary>
+        /// Initializes a system context view during deserialization.
+        /// </summary>
         internal SystemContextView() : base()
         {
         }
 
+        /// <summary>
+        /// Creates a system context view for the supplied software system.
+        /// </summary>
+        /// <param name="softwareSystem">The software system in scope.</param>
+        /// <param name="key">The unique view key.</param>
+        /// <param name="description">The view description.</param>
         internal SystemContextView(SoftwareSystem softwareSystem, string key, string description) : base(softwareSystem, key, description)
         {
             AddElement(softwareSystem, true);

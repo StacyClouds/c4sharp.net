@@ -1,23 +1,30 @@
+---
+title: Client-side encryption
+---
+
 # Client-side encryption
 
-> Note: this page describes a feature that is not available to use with Structurizr's Free Plan.
+`StacyClouds.C4Sharp.Client` can encrypt a workspace before upload so the encrypted payload is stored remotely and the passphrase remains with the client.
 
-The JSON representation of your workspace is stored on the Structurizr servers using AES encryption with a 128-bit key, a random salt and a server-side passphrase. For additional peace of mind, you can choose to encrypt your workspace with your own passphrase on the client before uploading it to Structurizr. In order to view a client-side encrypted workspace, you will be asked to enter your passphrase when you open the workspace in your web browser. The passphrase is then used to decrypt the workspace in your web browser - at no point does the passphrase leave your computer.
+> Note: client-side encryption depends on support from the target Structurizr-compatible service.
 
-To use client-side encryption, simply create an instance of ```AesEncryptionStrategy``` and associate it with your ```StructurizrClient``` instance. For example:
+## Namespaces
 
-```c#
-StructurizrClient structurizrClient = new StructurizrClient("key", "secret");
-structurizrClient.EncryptionStrategy = new AesEncryptionStrategy("password");
-structurizrClient.PutWorkspace(1234, workspace);
+```csharp
+using StacyClouds.C4Sharp.Api;
+using StacyClouds.C4Sharp.Encryption;
 ```
 
-The default key size is 128 bits and the default iteration count is 1000. An alternative constructor for <code>AesEncryptionStrategy</code> takes the following parameters:
+## Enable encryption
 
-- The key size (number of bits; e.g. 128, 192 or 256).
-- The iteration count (used when generating keys).
-- The passphrase.
+```csharp
+StructurizrClient client = new StructurizrClient("key", "secret");
+client.EncryptionStrategy = new AesEncryptionStrategy("password");
+client.PutWorkspace(1234, workspace);
+```
 
-In addition, a random salt and initialization vector are generated automatically for you, using .NET's ```RandomNumberGenerator``` class.
+## Advanced configuration
 
-See [ClientSideEncryption.cs](https://github.com/structurizr/dotnet/blob/master/Structurizr.Examples/ClientSideEncryption.cs) for a full example, and [https://structurizr.com/share/41](https://structurizr.com/share/41) to access the workspace.
+`AesEncryptionStrategy` defaults to a 128-bit key size and 1000 iterations. Use the overload that accepts key size, iteration count, and passphrase when you need to control those values explicitly.
+
+See `StacyClouds.C4Sharp.Examples/ClientSideEncryption.cs` for a complete example.

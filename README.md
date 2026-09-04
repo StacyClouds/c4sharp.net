@@ -1,50 +1,19 @@
 # C4Sharp.NET
 
-C4Sharp.NET is a .NET library for creating C4 architecture models and diagrams. This library is a modernized fork of [Structurizr for .NET](https://github.com/structurizr/dotnet), updated to support .NET 8, 9, 10, and 11, with ongoing maintenance and improvements by [Stacy Cashmore](https://github.com/StacyCash).
+C4Sharp.NET is a multi-targeted .NET library for building architecture workspaces in code, publishing them to Structurizr-compatible services, rendering diagrams to SVG, and adding interactive editing to Blazor applications.
 
-## What is C4?
+For C4 model background and notation guidance, use the official [C4 Model website](https://c4model.com).
 
-The [C4 model](https://c4model.com) is a lean graphical notation technique for modeling the architecture of software systems. It consists of a hierarchical set of software architecture diagrams for context, containers, components, and code.
+## Package overview
 
-## Features
-
-- ✅ Supports .NET 8, 9, 10, and 11
-- ✅ Create software architecture models using C# code
-- ✅ Export models to JSON for visualization
-- ✅ Compatible with Structurizr cloud service and on-premises installations
-- ✅ Supports all C4 diagram types (Context, Container, Component, Dynamic, Deployment)
-- ✅ Comprehensive styling and theming support
-
-> **Note:** For simple use cases, the [Structurizr DSL](https://docs.structurizr.com/dsl) may be more convenient. Use C4Sharp.NET when you need to generate architecture models programmatically from .NET code.
-> A structured DSL foundation import boundary is also available for workspace/model/view inputs via `StacyClouds.C4Sharp.Dsl`.
-
-## A quick example
-
-As an example, the following C# code can be used to create a software architecture model that describes a user using a software system.
-
-```c#
-Workspace workspace = new Workspace("Getting Started", "This is a model of my software system.");
-Model model = workspace.Model;
-
-Person user = model.AddPerson("User", "A user of my software system.");
-SoftwareSystem softwareSystem = model.AddSoftwareSystem("Software System", "My software system.");
-user.Uses(softwareSystem, "Uses");
-
-ViewSet viewSet = workspace.Views;
-SystemContextView contextView = viewSet.CreateSystemContextView(softwareSystem, "SystemContext", "An example of a System Context diagram.");
-contextView.AddAllSoftwareSystems();
-contextView.AddAllPeople();
-
-Styles styles = viewSet.Configuration.Styles;
-styles.Add(new ElementStyle(Tags.SoftwareSystem) { Background = "#1168bd", Color = "#ffffff" });
-styles.Add(new ElementStyle(Tags.Person) { Background = "#08427b", Color = "#ffffff", Shape = Shape.Person });
-```
-
-The view can then be exported to be visualized using the Structurizr cloud service or an on-premises installation.
+| Package | Purpose | Start here when you need to... |
+|---|---|---|
+| `StacyClouds.C4Sharp.Core` | Workspace, model, view, and styling APIs | Define people, software systems, containers, components, and views in .NET code |
+| `StacyClouds.C4Sharp.Client` | Structurizr-compatible API client | Read or publish workspaces, preserve layout, and use optional client-side encryption |
+| `StacyClouds.C4Sharp.Renderer` | SVG renderer | Generate standalone SVG diagrams from workspace views |
+| `StacyClouds.C4Sharp.Editor` | Interactive Blazor editor components | Embed a browser-based layout editor for rendered workspace views |
 
 ## Installation
-
-Install via NuGet Package Manager:
 
 ```bash
 dotnet add package StacyClouds.C4Sharp.Core
@@ -53,46 +22,47 @@ dotnet add package StacyClouds.C4Sharp.Renderer
 dotnet add package StacyClouds.C4Sharp.Editor
 ```
 
-Or via the NuGet Package Manager Console:
+Install only the packages your application needs. `Core` is the foundation package. `Client` and `Renderer` build on `Core`, and `Editor` builds on `Renderer`.
 
-```powershell
-Install-Package StacyClouds.C4Sharp.Core
-Install-Package StacyClouds.C4Sharp.Client
-Install-Package StacyClouds.C4Sharp.Renderer
-Install-Package StacyClouds.C4Sharp.Editor
+## Quick example
+
+```csharp
+using StacyClouds.C4Sharp;
+
+Workspace workspace = new Workspace("Getting Started", "A simple architecture workspace.");
+Model model = workspace.Model;
+
+Person user = model.AddPerson("User", "Uses the system.");
+SoftwareSystem softwareSystem = model.AddSoftwareSystem("Software System", "Provides the core capability.");
+user.Uses(softwareSystem, "Uses");
+
+SystemContextView view = workspace.Views.CreateSystemContextView(
+    softwareSystem,
+    "system-context",
+    "A simple system context view.");
+view.AddAllPeople();
+view.AddAllSoftwareSystems();
+
+Styles styles = workspace.Views.Configuration.Styles;
+styles.Add(new ElementStyle(Tags.SoftwareSystem) { Background = "#1168bd", Color = "#ffffff" });
+styles.Add(new ElementStyle(Tags.Person) { Background = "#08427b", Color = "#ffffff", Shape = Shape.Person });
 ```
 
-## Links
+## Documentation
 
-- 📦 [NuGet Packages](https://www.nuget.org/profiles/StacyClouds)
-- 📖 [Documentation](docs/)
-- 👩‍💻 [NuGet packages for developers](docs/nuget.md)
-- 📐 [C4 DSL Gap Analysis](docs/C4-DSL-GAP-ANALYSIS.md)
-- 🖼️ [SVG rendering](docs/svg-rendering.md)
-- 🐛 [Issues](https://github.com/StacyClouds/c4sharp.net/issues)
-- 🌐 [C4 Model](https://c4model.com)
-- 🔗 [Structurizr](https://structurizr.com)
+- [Package map](docs/nuget.md)
+- [Core package guide](docs/getting-started.md)
+- [Client package guide](docs/api-client.md)
+- [Renderer package guide](docs/svg-rendering.md)
+- [Editor package guide](docs/razor-svg-editor.md)
+- [Client-side encryption](docs/client-side-encryption.md)
 
 ## Table of contents
 
-* Introduction
-    * [Getting started](docs/getting-started.md)
-    * [NuGet packages for developers](docs/nuget.md)
-    * [Binaries](docs/binaries.md)
-    * [API Client](docs/api-client.md)
-    * [FAQ](docs/faq.md)
- * Model
-	* [Implied relationships](docs/implied-relationships.md)
-* Views
-    * [System Context diagram](docs/system-context-diagram.md)
-    * [Container diagram](docs/container-diagram.md)
-    * [Component diagram](docs/component-diagram.md)
-    * [Dynamic diagram](docs/dynamic-diagram.md)
-    * [Deployment diagram](docs/deployment-diagram.md)
-    * [System Landscape diagram](docs/system-landscape-diagram.md)
-    * [Styling elements](docs/styling-elements.md)
-    * [Styling relationships](docs/styling-relationships.md)
-    * [Filtered views](docs/filtered-views.md)
-* Other
-    * [Client-side encryption](docs/client-side-encryption.md)
-* [changelog](docs/changelog.md)
+- [NuGet packages for developers](docs/nuget.md)
+- [Using `StacyClouds.C4Sharp.Core`](docs/getting-started.md)
+- [Using `StacyClouds.C4Sharp.Client`](docs/api-client.md)
+- [Using `StacyClouds.C4Sharp.Renderer`](docs/svg-rendering.md)
+- [Using `StacyClouds.C4Sharp.Editor`](docs/razor-svg-editor.md)
+- [Using client-side encryption](docs/client-side-encryption.md)
+- [C4 Model reference](https://c4model.com)

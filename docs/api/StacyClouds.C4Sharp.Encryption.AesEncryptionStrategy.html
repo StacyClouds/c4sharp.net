@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AesEncryptionStrategy | C4Sharp.NET API Reference </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AesEncryptionStrategy | C4Sharp.NET API Reference ">
+      
+      <meta name="description" content="Encrypts workspace JSON using AES/CBC with PBKDF2-derived keys.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="C4Sharp.NET">
+            C4Sharp.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy">
+
+
+
+  <h1 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy" class="text-break">
+Class AesEncryptionStrategy  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="StacyClouds.html">StacyClouds</a>.<a class="xref" href="StacyClouds.C4Sharp.html">C4Sharp</a>.<a class="xref" href="StacyClouds.C4Sharp.Encryption.html">Encryption</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>StacyClouds.C4Sharp.Client.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Encrypts workspace JSON using AES/CBC with PBKDF2-derived keys.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataContract]
+public class AesEncryptionStrategy : EncryptionStrategy</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="StacyClouds.C4Sharp.Encryption.EncryptionStrategy.html">EncryptionStrategy</a></div>
+      <div><span class="xref">AesEncryptionStrategy</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Encryption.EncryptionStrategy.html#StacyClouds_C4Sharp_Encryption_EncryptionStrategy_Passphrase">EncryptionStrategy.Passphrase</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Encryption.EncryptionStrategy.html#StacyClouds_C4Sharp_Encryption_EncryptionStrategy_Location">EncryptionStrategy.Location</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy__ctor_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.#ctor*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy__ctor" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.#ctor">
+  AesEncryptionStrategy()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes an empty AES strategy for serializers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AesEncryptionStrategy()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy__ctor_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.#ctor*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy__ctor_System_Int32_System_Int32_System_String_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.#ctor(System.Int32,System.Int32,System.String)">
+  AesEncryptionStrategy(int, int, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates an AES strategy with generated salt and IV values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AesEncryptionStrategy(int keySize, int iterationCount, string passphrase)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>keySize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The AES key size in bits.</p>
+</dd>
+    <dt><code>iterationCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The PBKDF2 iteration count.</p>
+</dd>
+    <dt><code>passphrase</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The passphrase used to derive the encryption key.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy__ctor_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.#ctor*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy__ctor_System_Int32_System_Int32_System_String_System_String_System_String_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.#ctor(System.Int32,System.Int32,System.String,System.String,System.String)">
+  AesEncryptionStrategy(int, int, string, string, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates an AES strategy from persisted encryption parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AesEncryptionStrategy(int keySize, int iterationCount, string salt, string iv, string passphrase)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>keySize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The AES key size in bits.</p>
+</dd>
+    <dt><code>iterationCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The PBKDF2 iteration count.</p>
+</dd>
+    <dt><code>salt</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The hexadecimal salt.</p>
+</dd>
+    <dt><code>iv</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The hexadecimal initialization vector.</p>
+</dd>
+    <dt><code>passphrase</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The passphrase used to derive the encryption key.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy__ctor_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.#ctor*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy__ctor_System_String_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.#ctor(System.String)">
+  AesEncryptionStrategy(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates an AES strategy with default key derivation settings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AesEncryptionStrategy(string passphrase)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>passphrase</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The passphrase used to derive the encryption key.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_IterationCount_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.IterationCount*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_IterationCount" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.IterationCount">
+  IterationCount
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The PBKDF2 iteration count used to derive the encryption key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;iterationCount&quot;, EmitDefaultValue = false)]
+public int IterationCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_Iv_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.Iv*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_Iv" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.Iv">
+  Iv
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The hexadecimal initialization vector used during encryption.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;iv&quot;, EmitDefaultValue = false)]
+public string Iv { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_KeySize_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.KeySize*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_KeySize" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.KeySize">
+  KeySize
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The AES key size in bits.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;keySize&quot;, EmitDefaultValue = false)]
+public int KeySize { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_Salt_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.Salt*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_Salt" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.Salt">
+  Salt
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>The hexadecimal salt used during key derivation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;salt&quot;, EmitDefaultValue = false)]
+public string Salt { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_Type_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.Type*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_Type" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.Type">
+  Type
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Identifies this strategy as AES-based encryption.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Type { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_Decrypt_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.Decrypt*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_Decrypt_System_String_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.Decrypt(System.String)">
+  Decrypt(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Decrypts ciphertext previously produced by this strategy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Decrypt(string ciphertext)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ciphertext</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The Base64-encoded ciphertext.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The decrypted plaintext.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_Encrypt_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.Encrypt*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Encryption_AesEncryptionStrategy_Encrypt_System_String_" data-uid="StacyClouds.C4Sharp.Encryption.AesEncryptionStrategy.Encrypt(System.String)">
+  Encrypt(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Encrypts plaintext using the configured AES parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Encrypt(string plaintext)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>plaintext</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The plaintext to encrypt.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The Base64-encoded ciphertext.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

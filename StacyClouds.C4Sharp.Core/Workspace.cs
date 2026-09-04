@@ -1,4 +1,4 @@
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using StacyClouds.C4Sharp.Documentation;
 
 namespace StacyClouds.C4Sharp
@@ -32,10 +32,10 @@ namespace StacyClouds.C4Sharp
         public Documentation.Documentation Documentation { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Workspace" />class.
+        /// Initializes a new instance of the <see cref="Workspace"/> class.
         /// </summary>
-        /// <param name="Name">The name of the workspace..</param>
-        /// <param name="Description">A short description of the workspace..</param>
+        /// <param name="name">The workspace name.</param>
+        /// <param name="description">A short description of the workspace.</param>
         public Workspace(string name, string description) : base(name, description)
         {
             this.Model = new Model();
@@ -43,6 +43,9 @@ namespace StacyClouds.C4Sharp
             this.Documentation = new Documentation.Documentation(Model);
         }
 
+        /// <summary>
+        /// Reconnects the model, views, and documentation after deserialization.
+        /// </summary>
         public void Hydrate()
         {
             this.Views.Model = Model;

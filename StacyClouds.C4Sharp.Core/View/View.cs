@@ -6,10 +6,16 @@ using System.Runtime.Serialization;
 namespace StacyClouds.C4Sharp
 {
 
+    /// <summary>
+    /// Defines the shared metadata, elements, and relationships for a rendered architecture view.
+    /// </summary>
     [DataContract]
     public abstract class View
     {
 
+        /// <summary>
+        /// Selects the strategy used when copying layout information from another view instance.
+        /// </summary>
         public LayoutMergeStrategy LayoutMergeStrategy = new DefaultLayoutMergeStrategy();
         
         /// <summary>
@@ -18,6 +24,9 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "key", EmitDefaultValue = false)]
         public string Key { get; set; }
 
+        /// <summary>
+        /// References the software system that defines the scope of this view when applicable.
+        /// </summary>
         public SoftwareSystem SoftwareSystem { get; set; }
 
         private string softwareSystemId;
@@ -43,9 +52,15 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Describes the purpose of the view.
+        /// </summary>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
+        /// <summary>
+        /// Provides the generated name displayed for this view type.
+        /// </summary>
         public abstract string Name { get; }
 
         /// <summary>
@@ -54,6 +69,10 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "title", EmitDefaultValue = false)]
         public string Title { get; set; }
 
+        /// <summary>
+        /// Resolves the model that owns the elements displayed by this view.
+        /// </summary>
+        /// <remarks>The default setter intentionally ignores assigned values because most view types derive the model from their scope.</remarks>
         public virtual Model Model
         {
             get
@@ -117,12 +136,22 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Initializes the backing collections used by a view during construction or deserialization.
+        /// </summary>
         internal View()
         {
             _elements = new HashSet<ElementView>();
             _relationships = new HashSet<RelationshipView>();
         }
 
+        /// <summary>
+        /// Creates a view scoped to the supplied software system.
+        /// </summary>
+        /// <param name="softwareSystem">The software system in scope, or <see langword="null"/> for unscoped views.</param>
+        /// <param name="key">The unique identifier for the view.</param>
+        /// <param name="description">The description associated with the view.</param>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is blank.</exception>
         internal View(SoftwareSystem softwareSystem, string key, string description) : this()
         {
             this.SoftwareSystem = softwareSystem;
@@ -196,6 +225,11 @@ namespace StacyClouds.C4Sharp
             return null;
         }
 
+        /// <summary>
+        /// Determines whether the supplied element already has an element view in this view.
+        /// </summary>
+        /// <param name="element">The element to look for.</param>
+        /// <returns><see langword="true"/> when the element is present; otherwise, <see langword="false"/>.</returns>
         internal bool IsElementInView(Element element)
         {
             return _elements.Count(ev => ev.Element.Equals(element)) > 0;
@@ -205,7 +239,8 @@ namespace StacyClouds.C4Sharp
         /// Gets the element view for the given element.
         /// </summary>
         /// <param name="element">the Element to find the ElementView for</param>
-        /// <returns>an ElementView object, or null if the element doesn't exist in the view</returns>
+        /// <returns>The matching <see cref="ElementView"/>.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the element is not present in the view.</exception>
         public ElementView GetElementView(Element element)
         {
             return Elements.First(ev => ev.Id.Equals(element.Id));
@@ -215,7 +250,8 @@ namespace StacyClouds.C4Sharp
         /// Gets the relationship view for the given relationship.
         /// </summary>
         /// <param name="relationship">the Relationship to find the RelationshipView for</param>
-        /// <returns>a RelationshipView object, or null if the relationship doesn't exist in the view</returns>
+        /// <returns>The matching <see cref="RelationshipView"/>.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the relationship is not present in the view.</exception>
         public RelationshipView GetRelationshipView(Relationship relationship)
         {
             return Relationships.First(ev => ev.Id.Equals(relationship.Id));
@@ -252,6 +288,10 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Removes the supplied relationship from the view when it is present.
+        /// </summary>
+        /// <param name="relationship">The relationship to remove.</param>
         public void Remove(Relationship relationship)
         {
             if (relationship != null)
@@ -271,6 +311,9 @@ namespace StacyClouds.C4Sharp
             LayoutMergeStrategy.CopyLayoutInformation(source, this);
         }
 
+        /// <summary>
+        /// Stores the automatic layout settings currently applied to the view.
+        /// </summary>
         [DataMember(Name = "automaticLayout", EmitDefaultValue = false)]
         public AutomaticLayout AutomaticLayout { get; internal set; }
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;
@@ -24,6 +24,11 @@ namespace StacyClouds.C4Sharp.Renderer
 			return Render(workspace);
 		}
 
+		/// <summary>
+		/// Renders each supported view in a workspace as a standalone SVG document.
+		/// </summary>
+		/// <param name="workspace">The workspace whose views should be rendered.</param>
+		/// <returns>A dictionary of SVG documents keyed by view key.</returns>
 		public IReadOnlyDictionary<string, string> Render(Workspace workspace)
 		{
 			if (workspace == null) throw new ArgumentNullException(nameof(workspace));

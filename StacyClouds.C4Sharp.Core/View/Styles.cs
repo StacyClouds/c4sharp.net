@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -50,12 +50,20 @@ namespace StacyClouds.C4Sharp
             }
         }
   
+        /// <summary>
+        /// Initializes the style collections used by a view configuration.
+        /// </summary>
         internal Styles()
         {
             _elements = new List<ElementStyle>();
             _relationships = new List<RelationshipStyle>();
         }
 
+        /// <summary>
+        /// Adds an element style when no style for the same tag exists yet.
+        /// </summary>
+        /// <param name="elementStyle">The element style to add.</param>
+        /// <exception cref="ArgumentException">Thrown when another element style already uses the same tag.</exception>
         public void Add(ElementStyle elementStyle)
         {
             if (elementStyle != null)
@@ -69,6 +77,11 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Adds a relationship style when no style for the same tag exists yet.
+        /// </summary>
+        /// <param name="relationshipStyle">The relationship style to add.</param>
+        /// <exception cref="ArgumentException">Thrown when another relationship style already uses the same tag.</exception>
         public void Add(RelationshipStyle relationshipStyle)
         {
             if (relationshipStyle != null)

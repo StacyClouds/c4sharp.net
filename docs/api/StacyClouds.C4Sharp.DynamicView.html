@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DynamicView | C4Sharp.NET API Reference </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DynamicView | C4Sharp.NET API Reference ">
+      
+      <meta name="description" content="A dynamic view, used to describe behaviour between static elements at runtime.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="C4Sharp.NET">
+            C4Sharp.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="StacyClouds.C4Sharp.DynamicView">
+
+
+
+  <h1 id="StacyClouds_C4Sharp_DynamicView" data-uid="StacyClouds.C4Sharp.DynamicView" class="text-break">
+Class DynamicView  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="StacyClouds.html">StacyClouds</a>.<a class="xref" href="StacyClouds.C4Sharp.html">C4Sharp</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>StacyClouds.C4Sharp.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A dynamic view, used to describe behaviour between static elements at runtime.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataContract]
+public sealed class DynamicView : View</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="StacyClouds.C4Sharp.View.html">View</a></div>
+      <div><span class="xref">DynamicView</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_LayoutMergeStrategy">View.LayoutMergeStrategy</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Key">View.Key</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_SoftwareSystem">View.SoftwareSystem</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_SoftwareSystemId">View.SoftwareSystemId</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Description">View.Description</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Title">View.Title</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_PaperSize">View.PaperSize</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Dimensions">View.Dimensions</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Elements">View.Elements</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_GetElementView_StacyClouds_C4Sharp_Element_">View.GetElementView(Element)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_GetRelationshipView_StacyClouds_C4Sharp_Relationship_">View.GetRelationshipView(Relationship)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_Remove_StacyClouds_C4Sharp_Relationship_">View.Remove(Relationship)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_CopyLayoutInformationFrom_StacyClouds_C4Sharp_View_">View.CopyLayoutInformationFrom(View)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_AutomaticLayout">View.AutomaticLayout</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_EnableAutomaticLayout">View.EnableAutomaticLayout()</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_EnableAutomaticLayout_StacyClouds_C4Sharp_RankDirection_System_Int32_System_Int32_System_Int32_System_Boolean_">View.EnableAutomaticLayout(RankDirection, int, int, int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.View.html#StacyClouds_C4Sharp_View_DisableAutomaticLayout">View.DisableAutomaticLayout()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_Element_" data-uid="StacyClouds.C4Sharp.DynamicView.Element*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_Element" data-uid="StacyClouds.C4Sharp.DynamicView.Element">
+  Element
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>References the element that defines the scope of the view, when the view is scoped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Element Element { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Element.html">Element</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_ElementId_" data-uid="StacyClouds.C4Sharp.DynamicView.ElementId*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_ElementId" data-uid="StacyClouds.C4Sharp.DynamicView.ElementId">
+  ElementId
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Stores the ID of the scoped element for serialization.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember(Name = &quot;elementId&quot;, EmitDefaultValue = false)]
+public string ElementId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_Model_" data-uid="StacyClouds.C4Sharp.DynamicView.Model*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_Model" data-uid="StacyClouds.C4Sharp.DynamicView.Model">
+  Model
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Stores the model whose static elements participate in this dynamic view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Model Model { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Model.html">Model</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_Name_" data-uid="StacyClouds.C4Sharp.DynamicView.Name*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_Name" data-uid="StacyClouds.C4Sharp.DynamicView.Name">
+  Name
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the default name shown for this dynamic view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Name { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_Relationships_" data-uid="StacyClouds.C4Sharp.DynamicView.Relationships*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_Relationships" data-uid="StacyClouds.C4Sharp.DynamicView.Relationships">
+  Relationships
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the relationships ordered by their dynamic sequence label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override ISet&lt;RelationshipView&gt; Relationships { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1">ISet</a>&lt;<a class="xref" href="StacyClouds.C4Sharp.RelationshipView.html">RelationshipView</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_Add_" data-uid="StacyClouds.C4Sharp.DynamicView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_Add_StacyClouds_C4Sharp_Relationship_" data-uid="StacyClouds.C4Sharp.DynamicView.Add(StacyClouds.C4Sharp.Relationship)">
+  Add(Relationship)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a specific relationship to this dynamic view, with the original description.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelationshipView Add(Relationship relationship)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relationship</code> <a class="xref" href="StacyClouds.C4Sharp.Relationship.html">Relationship</a></dt>
+    <dd><p>the Relationship to add</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.RelationshipView.html">RelationshipView</a></dt>
+    <dd><p>a RelationshipView</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">relationship</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_Add_" data-uid="StacyClouds.C4Sharp.DynamicView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_Add_StacyClouds_C4Sharp_Relationship_System_String_" data-uid="StacyClouds.C4Sharp.DynamicView.Add(StacyClouds.C4Sharp.Relationship,System.String)">
+  Add(Relationship, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a specific relationship to this dynamic view, with an overidden description.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelationshipView Add(Relationship relationship, string description)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>relationship</code> <a class="xref" href="StacyClouds.C4Sharp.Relationship.html">Relationship</a></dt>
+    <dd><p>the Relationship to add</p>
+</dd>
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>the overidden description</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.RelationshipView.html">RelationshipView</a></dt>
+    <dd><p>a RelationshipView</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">relationship</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_Add_" data-uid="StacyClouds.C4Sharp.DynamicView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_Add_StacyClouds_C4Sharp_StaticStructureElement_StacyClouds_C4Sharp_StaticStructureElement_" data-uid="StacyClouds.C4Sharp.DynamicView.Add(StacyClouds.C4Sharp.StaticStructureElement,StacyClouds.C4Sharp.StaticStructureElement)">
+  Add(StaticStructureElement, StaticStructureElement)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the first matching relationship between the supplied source and destination.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelationshipView Add(StaticStructureElement source, StaticStructureElement destination)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="StacyClouds.C4Sharp.StaticStructureElement.html">StaticStructureElement</a></dt>
+    <dd><p>The source element.</p>
+</dd>
+    <dt><code>destination</code> <a class="xref" href="StacyClouds.C4Sharp.StaticStructureElement.html">StaticStructureElement</a></dt>
+    <dd><p>The destination element.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.RelationshipView.html">RelationshipView</a></dt>
+    <dd><p>The created relationship view.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_Add_" data-uid="StacyClouds.C4Sharp.DynamicView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_Add_StacyClouds_C4Sharp_StaticStructureElement_System_String_StacyClouds_C4Sharp_StaticStructureElement_" data-uid="StacyClouds.C4Sharp.DynamicView.Add(StacyClouds.C4Sharp.StaticStructureElement,System.String,StacyClouds.C4Sharp.StaticStructureElement)">
+  Add(StaticStructureElement, string, StaticStructureElement)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a relationship between the supplied elements with an overridden description.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelationshipView Add(StaticStructureElement source, string description, StaticStructureElement destination)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="StacyClouds.C4Sharp.StaticStructureElement.html">StaticStructureElement</a></dt>
+    <dd><p>The source element.</p>
+</dd>
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The description shown for the interaction.</p>
+</dd>
+    <dt><code>destination</code> <a class="xref" href="StacyClouds.C4Sharp.StaticStructureElement.html">StaticStructureElement</a></dt>
+    <dd><p>The destination element.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.RelationshipView.html">RelationshipView</a></dt>
+    <dd><p>The created relationship view.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_Add_" data-uid="StacyClouds.C4Sharp.DynamicView.Add*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_Add_StacyClouds_C4Sharp_StaticStructureElement_System_String_System_String_StacyClouds_C4Sharp_StaticStructureElement_" data-uid="StacyClouds.C4Sharp.DynamicView.Add(StacyClouds.C4Sharp.StaticStructureElement,System.String,System.String,StacyClouds.C4Sharp.StaticStructureElement)">
+  Add(StaticStructureElement, string, string, StaticStructureElement)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a relationship between the supplied elements, selecting a matching model relationship by description and optional technology.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RelationshipView Add(StaticStructureElement source, string description, string technology, StaticStructureElement destination)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="StacyClouds.C4Sharp.StaticStructureElement.html">StaticStructureElement</a></dt>
+    <dd><p>The source element.</p>
+</dd>
+    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The description shown for the interaction.</p>
+</dd>
+    <dt><code>technology</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The technology used to disambiguate matching relationships.</p>
+</dd>
+    <dt><code>destination</code> <a class="xref" href="StacyClouds.C4Sharp.StaticStructureElement.html">StaticStructureElement</a></dt>
+    <dd><p>The destination element.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.RelationshipView.html">RelationshipView</a></dt>
+    <dd><p>The created relationship view.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when a source or destination is missing, or when no matching relationship exists.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_CheckElementCanBeAdded_" data-uid="StacyClouds.C4Sharp.DynamicView.CheckElementCanBeAdded*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_CheckElementCanBeAdded_StacyClouds_C4Sharp_Element_" data-uid="StacyClouds.C4Sharp.DynamicView.CheckElementCanBeAdded(StacyClouds.C4Sharp.Element)">
+  CheckElementCanBeAdded(Element)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void CheckElementCanBeAdded(Element elementToBeAdded)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>elementToBeAdded</code> <a class="xref" href="StacyClouds.C4Sharp.Element.html">Element</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_EndParallelSequence_" data-uid="StacyClouds.C4Sharp.DynamicView.EndParallelSequence*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_EndParallelSequence" data-uid="StacyClouds.C4Sharp.DynamicView.EndParallelSequence">
+  EndParallelSequence()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ends the current parallel numbering branch without carrying the number back to the parent sequence.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EndParallelSequence()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_EndParallelSequence_" data-uid="StacyClouds.C4Sharp.DynamicView.EndParallelSequence*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_EndParallelSequence_System_Boolean_" data-uid="StacyClouds.C4Sharp.DynamicView.EndParallelSequence(System.Boolean)">
+  EndParallelSequence(bool)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ends the current parallel numbering branch.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EndParallelSequence(bool endAllParallelSequencesAndContinueNumbering)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>endAllParallelSequencesAndContinueNumbering</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>When <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, continues numbering from the completed parallel branch.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_DynamicView_StartParallelSequence_" data-uid="StacyClouds.C4Sharp.DynamicView.StartParallelSequence*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_DynamicView_StartParallelSequence" data-uid="StacyClouds.C4Sharp.DynamicView.StartParallelSequence">
+  StartParallelSequence()
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Starts a nested parallel numbering branch for subsequent interactions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StartParallelSequence()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

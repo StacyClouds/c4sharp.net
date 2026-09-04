@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -13,6 +13,9 @@ namespace StacyClouds.C4Sharp
     public sealed class ViewSet
     {
 
+        /// <summary>
+        /// References the model that owns every view in the set.
+        /// </summary>
         public Model Model { get; set; }
 
         /// <summary>
@@ -169,6 +172,9 @@ namespace StacyClouds.C4Sharp
         [DataMember(Name = "configuration", EmitDefaultValue = false)]
         public ViewConfiguration Configuration { get; internal set; }
 
+        /// <summary>
+        /// Initializes empty view collections and a default configuration.
+        /// </summary>
         internal ViewSet()
         {
             _systemLandscapeViews = new HashSet<SystemLandscapeView>();
@@ -182,11 +188,22 @@ namespace StacyClouds.C4Sharp
             Configuration = new ViewConfiguration();
         }
 
+        /// <summary>
+        /// Creates a view set for the supplied model.
+        /// </summary>
+        /// <param name="model">The model that owns the views.</param>
         internal ViewSet(Model model) : this()
         {
             Model = model;
         }
 
+        /// <summary>
+        /// Creates a system landscape view for the current model.
+        /// </summary>
+        /// <param name="key">The unique key for the view.</param>
+        /// <param name="description">The view description.</param>
+        /// <returns>The created <see cref="SystemLandscapeView"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is already used by another view.</exception>
         public SystemLandscapeView CreateSystemLandscapeView(string key, string description)
         {
             AssertThatTheViewKeyIsUnique(key);
@@ -196,6 +213,14 @@ namespace StacyClouds.C4Sharp
             return view;
         }
 
+        /// <summary>
+        /// Creates a system context view for the supplied software system.
+        /// </summary>
+        /// <param name="softwareSystem">The software system in scope.</param>
+        /// <param name="key">The unique key for the view.</param>
+        /// <param name="description">The view description.</param>
+        /// <returns>The created <see cref="SystemContextView"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is already used by another view.</exception>
         public SystemContextView CreateSystemContextView(SoftwareSystem softwareSystem, string key, string description)
         {
             AssertThatTheViewKeyIsUnique(key);
@@ -206,6 +231,14 @@ namespace StacyClouds.C4Sharp
             return view;
         }
 
+        /// <summary>
+        /// Creates a container view for the supplied software system.
+        /// </summary>
+        /// <param name="softwareSystem">The software system in scope.</param>
+        /// <param name="key">The unique key for the view.</param>
+        /// <param name="description">The view description.</param>
+        /// <returns>The created <see cref="ContainerView"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is already used by another view.</exception>
         public ContainerView CreateContainerView(SoftwareSystem softwareSystem, string key, string description)
         {
             AssertThatTheViewKeyIsUnique(key);
@@ -216,6 +249,14 @@ namespace StacyClouds.C4Sharp
             return view;
         }
 
+        /// <summary>
+        /// Creates a component view for the supplied container.
+        /// </summary>
+        /// <param name="container">The container in scope.</param>
+        /// <param name="key">The unique key for the view.</param>
+        /// <param name="description">The view description.</param>
+        /// <returns>The created <see cref="ComponentView"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is already used by another view.</exception>
         public ComponentView CreateComponentView(Container container, string key, string description)
         {
             AssertThatTheViewKeyIsUnique(key);
@@ -226,6 +267,13 @@ namespace StacyClouds.C4Sharp
             return view;
         }
 
+        /// <summary>
+        /// Creates an unscoped dynamic view.
+        /// </summary>
+        /// <param name="key">The unique key for the view.</param>
+        /// <param name="description">The view description.</param>
+        /// <returns>The created <see cref="DynamicView"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is already used by another view.</exception>
         public DynamicView CreateDynamicView(string key, string description)
         {
             AssertThatTheViewKeyIsUnique(key);
@@ -235,6 +283,14 @@ namespace StacyClouds.C4Sharp
             return view;
         }
 
+        /// <summary>
+        /// Creates a software-system-scoped dynamic view.
+        /// </summary>
+        /// <param name="softwareSystem">The software system in scope.</param>
+        /// <param name="key">The unique key for the view.</param>
+        /// <param name="description">The view description.</param>
+        /// <returns>The created <see cref="DynamicView"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="softwareSystem"/> is <see langword="null"/> or <paramref name="key"/> is already used by another view.</exception>
         public DynamicView CreateDynamicView(SoftwareSystem softwareSystem, string key, string description)
         {
             AssertThatTheSoftwareSystemIsNotNull(softwareSystem);
@@ -245,6 +301,14 @@ namespace StacyClouds.C4Sharp
             return view;
         }
 
+        /// <summary>
+        /// Creates a container-scoped dynamic view.
+        /// </summary>
+        /// <param name="container">The container in scope.</param>
+        /// <param name="key">The unique key for the view.</param>
+        /// <param name="description">The view description.</param>
+        /// <returns>The created <see cref="DynamicView"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="container"/> is <see langword="null"/> or <paramref name="key"/> is already used by another view.</exception>
         public DynamicView CreateDynamicView(Container container, string key, string description)
         {
             AssertThatTheContainerIsNotNull(container);
@@ -258,7 +322,10 @@ namespace StacyClouds.C4Sharp
         /// <summary>
         /// Creates a deployment view.
         /// </summary>
-        /// <returns>a DeploymentView object</returns>
+        /// <param name="key">The unique key for the view.</param>
+        /// <param name="description">The view description.</param>
+        /// <returns>The created <see cref="DeploymentView"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is already used by another view.</exception>
         public DeploymentView CreateDeploymentView(String key, String description) {
             AssertThatTheViewKeyIsUnique(key);
 
@@ -274,6 +341,7 @@ namespace StacyClouds.C4Sharp
         /// <param name="key">the key for the deployment view (must be unique)</param>
         /// <param name="description">a description of the  view</param>
         /// <returns>a DeploymentView object</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="softwareSystem"/> is <see langword="null"/> or <paramref name="key"/> is already used by another view.</exception>
         public DeploymentView CreateDeploymentView(SoftwareSystem softwareSystem, String key, String description) {
             AssertThatTheSoftwareSystemIsNotNull(softwareSystem);
             AssertThatTheViewKeyIsUnique(key);
@@ -292,7 +360,8 @@ namespace StacyClouds.C4Sharp
         /// <param name="description">a description of the filtered view</param>
         /// <param name="mode">whether to Include or Exclude elements/relationships based upon their tag</param>
         /// <param name="tags">the tags to include or exclude</param>
-        /// <returns></returns>
+        /// <returns>The created <see cref="FilteredView"/>.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is already used by another view.</exception>
         public FilteredView CreateFilteredView(StaticView view, string key, string description, FilterMode mode, params string[] tags)
         {
             AssertThatTheViewKeyIsUnique(key);
@@ -327,6 +396,9 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Reconnects deserialized views to the current model graph.
+        /// </summary>
         public void Hydrate()
         {
             foreach (SystemLandscapeView view in _systemLandscapeViews)
@@ -388,6 +460,10 @@ namespace StacyClouds.C4Sharp
             }
         }
 
+        /// <summary>
+        /// Copies layout information from matching views in another view set.
+        /// </summary>
+        /// <param name="source">The source view set that provides layout information.</param>
         public void CopyLayoutInformationFrom(ViewSet source)
         {
             foreach (SystemLandscapeView sourceView in source.SystemLandscapeViews)
@@ -476,8 +552,11 @@ namespace StacyClouds.C4Sharp
         }
 
         /// <summary>
-        /// Finds the view with the specified key, or null if the view does not exist.
+        /// Finds the non-filtered view with the specified key.
         /// </summary>
+        /// <param name="key">The view key to locate.</param>
+        /// <returns>The matching view, or <see langword="null"/> when no view uses that key.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is <see langword="null"/>.</exception>
         public View GetViewWithKey(string key)
         {
             if (key == null)
@@ -536,6 +615,12 @@ namespace StacyClouds.C4Sharp
             return null;
         }
 
+        /// <summary>
+        /// Finds the filtered view with the specified key.
+        /// </summary>
+        /// <param name="key">The view key to locate.</param>
+        /// <returns>The matching filtered view, or <see langword="null"/> when no filtered view uses that key.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is <see langword="null"/>.</exception>
         public FilteredView GetFilteredViewWithKey(string key)
         {
             if (key == null)

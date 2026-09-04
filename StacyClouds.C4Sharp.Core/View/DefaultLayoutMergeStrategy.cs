@@ -94,7 +94,7 @@ namespace StacyClouds.C4Sharp
         /// </summary>
         /// <param name="viewWithLayoutInformation">the view to search</param>
         /// <param name="elementWithoutLayoutInformation">the Element to find</param>
-        /// <returns></returns>
+        /// <returns>The matching <see cref="ElementView"/>, or <see langword="null"/> when no suitable element can be matched.</returns>
         protected ElementView findElementView(View viewWithLayoutInformation, Element elementWithoutLayoutInformation)
         {
             // see if we can find an element with the same canonical name in the source view

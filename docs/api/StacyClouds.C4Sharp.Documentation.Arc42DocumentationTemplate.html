@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Arc42DocumentationTemplate | C4Sharp.NET API Reference </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Arc42DocumentationTemplate | C4Sharp.NET API Reference ">
+      
+      <meta name="description" content="An implementation of the arc42 documentation template (http://arc42.org) consisting of the following sections:  Introduction and Goals (1) Constraints (2) Context and Scope (2) Solution Strategy (3) Building Block View (3) Runtime View (3) Deployment View (3) Crosscutting Concepts (3) Architectural Decisions (3) Quality Requirements (2) Risks and Technical Debt (4) Glossary (5)  The number in parentheses () represents the grouping, which is simply used to colour code section navigation buttons when rendered.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="C4Sharp.NET">
+            C4Sharp.NET
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate">
+
+
+
+  <h1 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate" class="text-break">
+Class Arc42DocumentationTemplate  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="StacyClouds.html">StacyClouds</a>.<a class="xref" href="StacyClouds.C4Sharp.html">C4Sharp</a>.<a class="xref" href="StacyClouds.C4Sharp.Documentation.html">Documentation</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>StacyClouds.C4Sharp.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>An implementation of the arc42 documentation template (<a href="http://arc42.org">http://arc42.org</a>)
+consisting of the following sections:</p>
+<ul>
+<li>Introduction and Goals (1)</li>
+<li>Constraints (2)</li>
+<li>Context and Scope (2)</li>
+<li>Solution Strategy (3)</li>
+<li>Building Block View (3)</li>
+<li>Runtime View (3)</li>
+<li>Deployment View (3)</li>
+<li>Crosscutting Concepts (3)</li>
+<li>Architectural Decisions (3)</li>
+<li>Quality Requirements (2)</li>
+<li>Risks and Technical Debt (4)</li>
+<li>Glossary (5)</li>
+</ul>
+<p>The number in parentheses () represents the grouping, which is simply used to colour code
+section navigation buttons when rendered.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Arc42DocumentationTemplate : DocumentationTemplate</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="StacyClouds.C4Sharp.Documentation.DocumentationTemplate.html">DocumentationTemplate</a></div>
+      <div><span class="xref">Arc42DocumentationTemplate</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Documentation.DocumentationTemplate.html#StacyClouds_C4Sharp_Documentation_DocumentationTemplate_AddSection_System_String_System_IO_FileInfo___">DocumentationTemplate.AddSection(string, params FileInfo[])</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Documentation.DocumentationTemplate.html#StacyClouds_C4Sharp_Documentation_DocumentationTemplate_AddSection_System_String_StacyClouds_C4Sharp_Documentation_Format_System_String_">DocumentationTemplate.AddSection(string, Format, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Documentation.DocumentationTemplate.html#StacyClouds_C4Sharp_Documentation_DocumentationTemplate_AddSection_StacyClouds_C4Sharp_SoftwareSystem_System_String_System_IO_FileSystemInfo___">DocumentationTemplate.AddSection(SoftwareSystem, string, params FileSystemInfo[])</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Documentation.DocumentationTemplate.html#StacyClouds_C4Sharp_Documentation_DocumentationTemplate_AddSection_StacyClouds_C4Sharp_SoftwareSystem_System_String_StacyClouds_C4Sharp_Documentation_Format_System_String_">DocumentationTemplate.AddSection(SoftwareSystem, string, Format, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Documentation.DocumentationTemplate.html#StacyClouds_C4Sharp_Documentation_DocumentationTemplate_AddSection_StacyClouds_C4Sharp_Container_System_String_System_IO_FileSystemInfo___">DocumentationTemplate.AddSection(Container, string, params FileSystemInfo[])</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Documentation.DocumentationTemplate.html#StacyClouds_C4Sharp_Documentation_DocumentationTemplate_AddSection_StacyClouds_C4Sharp_Container_System_String_StacyClouds_C4Sharp_Documentation_Format_System_String_">DocumentationTemplate.AddSection(Container, string, Format, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Documentation.DocumentationTemplate.html#StacyClouds_C4Sharp_Documentation_DocumentationTemplate_AddSection_StacyClouds_C4Sharp_Component_System_String_System_IO_FileSystemInfo___">DocumentationTemplate.AddSection(Component, string, params FileSystemInfo[])</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Documentation.DocumentationTemplate.html#StacyClouds_C4Sharp_Documentation_DocumentationTemplate_AddSection_StacyClouds_C4Sharp_Component_System_String_StacyClouds_C4Sharp_Documentation_Format_System_String_">DocumentationTemplate.AddSection(Component, string, Format, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Documentation.DocumentationTemplate.html#StacyClouds_C4Sharp_Documentation_DocumentationTemplate_AddImages_System_IO_DirectoryInfo_">DocumentationTemplate.AddImages(DirectoryInfo)</a>
+    </div>
+    <div>
+      <a class="xref" href="StacyClouds.C4Sharp.Documentation.DocumentationTemplate.html#StacyClouds_C4Sharp_Documentation_DocumentationTemplate_AddImage_System_IO_FileInfo_">DocumentationTemplate.AddImage(FileInfo)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate__ctor_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.#ctor*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate__ctor_StacyClouds_C4Sharp_Workspace_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.#ctor(StacyClouds.C4Sharp.Workspace)">
+  Arc42DocumentationTemplate(Workspace)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates the arc42 template helper for a workspace.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Arc42DocumentationTemplate(Workspace workspace)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>workspace</code> <a class="xref" href="StacyClouds.C4Sharp.Workspace.html">Workspace</a></dt>
+    <dd><p>The workspace whose documentation will be populated.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddArchitecturalDecisionsSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddArchitecturalDecisionsSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddArchitecturalDecisionsSection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddArchitecturalDecisionsSection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddArchitecturalDecisionsSection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an &quot;Architectural Decisions&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddArchitecturalDecisionsSection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddArchitecturalDecisionsSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddArchitecturalDecisionsSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddArchitecturalDecisionsSection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddArchitecturalDecisionsSection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddArchitecturalDecisionsSection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an &quot;Architectural Decisions&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddArchitecturalDecisionsSection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddBuildingBlockViewSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddBuildingBlockViewSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddBuildingBlockViewSection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddBuildingBlockViewSection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddBuildingBlockViewSection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Building Block View&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddBuildingBlockViewSection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddBuildingBlockViewSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddBuildingBlockViewSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddBuildingBlockViewSection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddBuildingBlockViewSection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddBuildingBlockViewSection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Building Block View&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddBuildingBlockViewSection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddConstraintsSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddConstraintsSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddConstraintsSection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddConstraintsSection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddConstraintsSection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Constraints&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddConstraintsSection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddConstraintsSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddConstraintsSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddConstraintsSection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddConstraintsSection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddConstraintsSection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Constraints&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddConstraintsSection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddContextAndScopeSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddContextAndScopeSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddContextAndScopeSection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddContextAndScopeSection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddContextAndScopeSection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Context and Scope&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddContextAndScopeSection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddContextAndScopeSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddContextAndScopeSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddContextAndScopeSection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddContextAndScopeSection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddContextAndScopeSection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Context and Scope&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddContextAndScopeSection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddCrosscuttingConceptsSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddCrosscuttingConceptsSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddCrosscuttingConceptsSection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddCrosscuttingConceptsSection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddCrosscuttingConceptsSection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Crosscutting Concepts&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddCrosscuttingConceptsSection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddCrosscuttingConceptsSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddCrosscuttingConceptsSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddCrosscuttingConceptsSection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddCrosscuttingConceptsSection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddCrosscuttingConceptsSection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Crosscutting Concepts&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddCrosscuttingConceptsSection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddDeploymentViewSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddDeploymentViewSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddDeploymentViewSection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddDeploymentViewSection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddDeploymentViewSection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Deployment View&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddDeploymentViewSection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddDeploymentViewSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddDeploymentViewSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddDeploymentViewSection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddDeploymentViewSection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddDeploymentViewSection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Deployment View&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddDeploymentViewSection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddGlossarySection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddGlossarySection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddGlossarySection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddGlossarySection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddGlossarySection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Glossary&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddGlossarySection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddGlossarySection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddGlossarySection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddGlossarySection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddGlossarySection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddGlossarySection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Glossary&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddGlossarySection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddIntroductionAndGoalsSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddIntroductionAndGoalsSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddIntroductionAndGoalsSection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddIntroductionAndGoalsSection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddIntroductionAndGoalsSection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an &quot;Introduction and Goals&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddIntroductionAndGoalsSection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddIntroductionAndGoalsSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddIntroductionAndGoalsSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddIntroductionAndGoalsSection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddIntroductionAndGoalsSection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddIntroductionAndGoalsSection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an &quot;Introduction and Goals&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddIntroductionAndGoalsSection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddQualityRequirementsSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddQualityRequirementsSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddQualityRequirementsSection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddQualityRequirementsSection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddQualityRequirementsSection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Quality Requirements&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddQualityRequirementsSection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddQualityRequirementsSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddQualityRequirementsSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddQualityRequirementsSection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddQualityRequirementsSection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddQualityRequirementsSection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Quality Requirements&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddQualityRequirementsSection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddRisksAndTechnicalDebtSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddRisksAndTechnicalDebtSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddRisksAndTechnicalDebtSection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddRisksAndTechnicalDebtSection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddRisksAndTechnicalDebtSection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Risks and Technical Debt&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddRisksAndTechnicalDebtSection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddRisksAndTechnicalDebtSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddRisksAndTechnicalDebtSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddRisksAndTechnicalDebtSection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddRisksAndTechnicalDebtSection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddRisksAndTechnicalDebtSection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Risks and Technical Debt&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddRisksAndTechnicalDebtSection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddRuntimeViewSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddRuntimeViewSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddRuntimeViewSection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddRuntimeViewSection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddRuntimeViewSection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Runtime View&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddRuntimeViewSection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddRuntimeViewSection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddRuntimeViewSection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddRuntimeViewSection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddRuntimeViewSection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddRuntimeViewSection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Runtime View&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddRuntimeViewSection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddSolutionStrategySection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddSolutionStrategySection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddSolutionStrategySection_StacyClouds_C4Sharp_SoftwareSystem_StacyClouds_C4Sharp_Documentation_Format_System_String_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddSolutionStrategySection(StacyClouds.C4Sharp.SoftwareSystem,StacyClouds.C4Sharp.Documentation.Format,System.String)">
+  AddSolutionStrategySection(SoftwareSystem, Format, string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Solution Strategy&quot; section relating to a SoftwareSystem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddSolutionStrategySection(SoftwareSystem softwareSystem, Format format, string content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="StacyClouds.C4Sharp.Documentation.Format.html">Format</a></dt>
+    <dd><p>the format of the documentation content</p>
+</dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>a string containing the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddSolutionStrategySection_" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddSolutionStrategySection*"></a>
+
+  <h3 id="StacyClouds_C4Sharp_Documentation_Arc42DocumentationTemplate_AddSolutionStrategySection_StacyClouds_C4Sharp_SoftwareSystem_System_IO_FileSystemInfo___" data-uid="StacyClouds.C4Sharp.Documentation.Arc42DocumentationTemplate.AddSolutionStrategySection(StacyClouds.C4Sharp.SoftwareSystem,System.IO.FileSystemInfo[])">
+  AddSolutionStrategySection(SoftwareSystem, params FileSystemInfo[])
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a &quot;Solution Strategy&quot; section relating to a SoftwareSystem from a file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Section AddSolutionStrategySection(SoftwareSystem softwareSystem, params FileSystemInfo[] files)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>softwareSystem</code> <a class="xref" href="StacyClouds.C4Sharp.SoftwareSystem.html">SoftwareSystem</a></dt>
+    <dd><p>the SoftwareSystem the documentation relates to</p>
+</dd>
+    <dt><code>files</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filesysteminfo">FileSystemInfo</a>[]</dt>
+    <dd><p>one or more FileSystemInfo objects that point to the documentation content</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="StacyClouds.C4Sharp.Documentation.Section.html">Section</a></dt>
+    <dd><p>a documentation Section</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
