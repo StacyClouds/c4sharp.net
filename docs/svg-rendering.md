@@ -12,6 +12,11 @@ This overload does not mutate `workspace`. The renderer uses persisted element
 coordinates and relationship connector vertices. When a new view has no
 layout, it uses a deterministic in-memory grid without changing the workspace.
 
+Container-view SVGs draw a lower-left-labeled boundary around the viewed
+software system's visible containers. Component-view SVGs do the same for the
+viewed container's visible components. People, software systems, and other
+containers or components keep their own placement outside that scope boundary.
+
 To reuse saved layout from an earlier workspace version, render the updated
 successor against its predecessor:
 

@@ -406,6 +406,124 @@ namespace StacyClouds.C4Sharp.Renderer.Tests
         }
 
         [Fact]
+        public void Render_ContainerViewDrawsASoftwareSystemBoundaryAroundVisibleScopedContainers()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem scopedSystem = workspace.Model.AddSoftwareSystem("Payments & Billing", "Description");
+            Container api = scopedSystem.AddContainer("API", "Description", "ASP.NET");
+            Container database = scopedSystem.AddContainer("Database", "Description", "SQL");
+            SoftwareSystem externalSystem = workspace.Model.AddSoftwareSystem("External", "Description");
+            Container externalContainer = externalSystem.AddContainer("External container", "Description", "HTTP");
+            Person person = workspace.Model.AddPerson("Customer", "Description");
+            ContainerView view = workspace.Views.CreateContainerView(scopedSystem, "containers", "Containers");
+            view.Add(api);
+            view.Add(database);
+            view.Add(externalContainer);
+            view.Add(externalSystem);
+            view.Add(person);
+            view.GetElementView(api).X = 300;
+            view.GetElementView(api).Y = 300;
+            view.GetElementView(database).X = 700;
+            view.GetElementView(database).Y = 450;
+            view.GetElementView(externalContainer).X = 1100;
+            view.GetElementView(externalContainer).Y = 700;
+            view.GetElementView(externalSystem).X = 1100;
+            view.GetElementView(externalSystem).Y = 200;
+            view.GetElementView(person).X = 100;
+            view.GetElementView(person).Y = 700;
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["containers"];
+
+            svg.Split(new[] { "data-c4-scope-boundary=" }, StringSplitOptions.None).Length.ShouldBe(2);
+            svg.ShouldContain("data-c4-scope-boundary=\"Software System\"");
+            svg.ShouldContain("data-c4-scope-boundary-id=\"" + scopedSystem.Id + "\"");
+            svg.ShouldContain("<rect x=\"195\" y=\"235\" width=\"610\" height=\"310\" fill=\"none\"");
+            svg.ShouldContain("x=\"210\" y=\"517\" font-family=\"Arial\" font-size=\"14\">Payments &amp; Billing");
+            svg.ShouldContain("x=\"210\" y=\"533\" font-family=\"Arial\" font-size=\"12\">[Software System]");
+            svg.IndexOf("data-c4-scope-boundary=").ShouldBeLessThan(svg.IndexOf("data-c4-element-id=\"" + api.Id + "\""));
+            svg.ShouldNotContain("<rect x=\"195\" y=\"235\" width=\"1010\"");
+        }
+
+        [Fact]
+        public void Render_ComponentViewDrawsAContainerBoundaryAroundVisibleScopedComponents()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem system = workspace.Model.AddSoftwareSystem("System", "Description");
+            Container scopedContainer = system.AddContainer("Web & API", "Description", "ASP.NET");
+            Component controller = scopedContainer.AddComponent("Controller", "Description", "C#");
+            Component service = scopedContainer.AddComponent("Service", "Description", "C#");
+            Container externalContainer = system.AddContainer("Worker", "Description", "Worker");
+            Component externalComponent = externalContainer.AddComponent("Worker component", "Description", "C#");
+            Person person = workspace.Model.AddPerson("Operator", "Description");
+            ComponentView view = workspace.Views.CreateComponentView(scopedContainer, "components", "Components");
+            view.Add(controller);
+            view.Add(service);
+            view.Add(externalContainer);
+            view.Add(externalComponent);
+            view.Add(person);
+            view.GetElementView(controller).X = 300;
+            view.GetElementView(controller).Y = 300;
+            view.GetElementView(service).X = 700;
+            view.GetElementView(service).Y = 450;
+            view.GetElementView(externalContainer).X = 1100;
+            view.GetElementView(externalContainer).Y = 200;
+            view.GetElementView(externalComponent).X = 1100;
+            view.GetElementView(externalComponent).Y = 700;
+            view.GetElementView(person).X = 100;
+            view.GetElementView(person).Y = 700;
+
+            string svg = new SvgWorkspaceRenderer().Render(workspace)["components"];
+
+            svg.Split(new[] { "data-c4-scope-boundary=" }, StringSplitOptions.None).Length.ShouldBe(2);
+            svg.ShouldContain("data-c4-scope-boundary=\"Container\"");
+            svg.ShouldContain("data-c4-scope-boundary-id=\"" + scopedContainer.Id + "\"");
+            svg.ShouldContain("Web &amp; API");
+            svg.ShouldContain("[Container]");
+            svg.ShouldContain("<rect x=\"195\" y=\"235\" width=\"610\" height=\"310\" fill=\"none\"");
+            svg.IndexOf("data-c4-scope-boundary=").ShouldBeLessThan(svg.IndexOf("data-c4-element-id=\"" + controller.Id + "\""));
+        }
+
+        [Fact]
+        public void Render_SuppressesScopeBoundariesWhenFilteredViewsHideAllScopedElements()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem system = workspace.Model.AddSoftwareSystem("System", "Description");
+            Container container = system.AddContainer("Container", "Description", "Technology");
+            container.AddTags("Scoped");
+            Component component = container.AddComponent("Component", "Description", "C#");
+            component.AddTags("Scoped");
+            ContainerView containerView = workspace.Views.CreateContainerView(system, "containers", "Containers");
+            containerView.Add(container);
+            ComponentView componentView = workspace.Views.CreateComponentView(container, "components", "Components");
+            componentView.Add(component);
+            workspace.Views.CreateFilteredView(containerView, "filtered-containers", "Filtered containers", FilterMode.Exclude, "Scoped");
+            workspace.Views.CreateFilteredView(componentView, "filtered-components", "Filtered components", FilterMode.Exclude, "Scoped");
+
+            IReadOnlyDictionary<string, string> diagrams = new SvgWorkspaceRenderer().Render(workspace);
+
+            diagrams["filtered-containers"].ShouldNotContain("data-c4-scope-boundary=");
+            diagrams["filtered-components"].ShouldNotContain("data-c4-scope-boundary=");
+        }
+
+        [Fact]
+        public void Render_LeavesUnscopedViewTypesFreeOfScopeBoundaryMarkup()
+        {
+            Workspace workspace = new Workspace("Test", "Description");
+            SoftwareSystem system = workspace.Model.AddSoftwareSystem("System", "Description");
+            workspace.Views.CreateSystemLandscapeView("landscape", "Landscape");
+            workspace.Views.CreateSystemContextView(system, "context", "Context");
+            workspace.Views.CreateDynamicView("dynamic", "Dynamic");
+            workspace.Views.CreateDeploymentView("deployment", "Deployment");
+
+            IReadOnlyDictionary<string, string> diagrams = new SvgWorkspaceRenderer().Render(workspace);
+
+            diagrams["landscape"].ShouldNotContain("data-c4-scope-boundary=");
+            diagrams["context"].ShouldNotContain("data-c4-scope-boundary=");
+            diagrams["dynamic"].ShouldNotContain("data-c4-scope-boundary=");
+            diagrams["deployment"].ShouldNotContain("data-c4-scope-boundary=");
+        }
+
+        [Fact]
         public void SvgRenderingExample_ProducesTheDocumentedWorkspaceSvg()
         {
             IReadOnlyDictionary<string, string> diagrams = StacyClouds.C4Sharp.Examples.SvgRenderingExample.CreateSvgDocuments();
