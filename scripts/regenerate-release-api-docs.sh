@@ -60,7 +60,7 @@ main() {
 	dotnet tool restore
 	dotnet restore StacyClouds.C4Sharp.slnx -p:TargetFramework="${DOCFX_TARGET_FRAMEWORK}"
 	dotnet build StacyClouds.C4Sharp.slnx --no-restore -c Release -p:TargetFramework="${DOCFX_TARGET_FRAMEWORK}"
-	dotnet docfx metadata docfx.json
+	dotnet docfx metadata docfx.json --property "TargetFramework=${DOCFX_TARGET_FRAMEWORK}" --noRestore
 	dotnet docfx build docfx.json
 
 	NOTES_FILE="docs/api/release-notes-${PACKAGE_VERSION}.md"
