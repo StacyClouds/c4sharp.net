@@ -32,7 +32,7 @@ After each NuGet release, regenerate this API reference manually:
 scripts/regenerate-release-api-docs.sh <package-version>
 ```
 
-That command restores tools, rebuilds the solution for DocFX, regenerates `docs/api/`, and writes the versioned release notes page.
+That command restores tools, rebuilds the solution for DocFX, regenerates `docs/api/`, and writes the versioned release notes page. Override `DOCFX_TARGET_FRAMEWORK` if you need a target other than the default `net10.0`.
 
 To regenerate step by step:
 

@@ -6,6 +6,7 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT=$(cd "${SCRIPT_DIR}/.." && pwd)
 
 PACKAGE_VERSION="${1:-${PACKAGE_VERSION:-}}"
+DOCFX_TARGET_FRAMEWORK="${DOCFX_TARGET_FRAMEWORK:-net10.0}"
 
 if [[ -z "${PACKAGE_VERSION}" ]]; then
 	echo "Usage: scripts/regenerate-release-api-docs.sh <package-version>" >&2
@@ -21,8 +22,8 @@ fi
 cd "${REPO_ROOT}"
 
 dotnet tool restore
-dotnet restore StacyClouds.C4Sharp.slnx -p:TargetFramework=net10.0
-dotnet build StacyClouds.C4Sharp.slnx --no-restore -c Release -p:TargetFramework=net10.0
+dotnet restore StacyClouds.C4Sharp.slnx -p:TargetFramework="${DOCFX_TARGET_FRAMEWORK}"
+dotnet build StacyClouds.C4Sharp.slnx --no-restore -c Release -p:TargetFramework="${DOCFX_TARGET_FRAMEWORK}"
 dotnet docfx metadata docfx.json
 dotnet docfx build docfx.json
 
@@ -52,4 +53,4 @@ All packages in this release are published at version \`${PACKAGE_VERSION}\`:
 Browse the [API reference](index.html) for the full public API at this version.
 EOF
 
-echo "Regenerated docs/api/ and wrote ${NOTES_FILE}"
+echo "Regenerated docs/api/ for ${DOCFX_TARGET_FRAMEWORK} and wrote ${NOTES_FILE}"
