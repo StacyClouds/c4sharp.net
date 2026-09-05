@@ -8,49 +8,67 @@ REPO_ROOT=$(cd "${SCRIPT_DIR}/.." && pwd)
 PACKAGE_VERSION="${1:-${PACKAGE_VERSION:-}}"
 DOCFX_TARGET_FRAMEWORK="${DOCFX_TARGET_FRAMEWORK:-net10.0}"
 
-if [[ -z "${PACKAGE_VERSION}" ]]; then
-	echo "Usage: scripts/regenerate-release-api-docs.sh <package-version>" >&2
-	echo "Example: scripts/regenerate-release-api-docs.sh 0.9.7" >&2
-	exit 1
-fi
+validate_package_version() {
+	local package_version="$1"
 
-if [[ ! "${PACKAGE_VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.][0-9A-Za-z.-]+)?$ ]]; then
-	echo "Invalid package version: ${PACKAGE_VERSION}" >&2
-	exit 1
-fi
+	if [[ ! "${package_version}" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.][0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$ ]]; then
+		echo "Invalid package version: ${package_version}" >&2
+		return 1
+	fi
+}
 
-cd "${REPO_ROOT}"
+write_release_notes() {
+	local package_version="$1"
+	local notes_file="$2"
+	local release_date="${3:-$(date -u +"%Y-%m-%d")}"
 
-dotnet tool restore
-dotnet restore StacyClouds.C4Sharp.slnx -p:TargetFramework="${DOCFX_TARGET_FRAMEWORK}"
-dotnet build StacyClouds.C4Sharp.slnx --no-restore -c Release -p:TargetFramework="${DOCFX_TARGET_FRAMEWORK}"
-dotnet docfx metadata docfx.json
-dotnet docfx build docfx.json
-
-RELEASE_DATE=$(date -u +"%Y-%m-%d")
-NOTES_FILE="docs/api/release-notes-${PACKAGE_VERSION}.md"
-
-cat > "${NOTES_FILE}" <<EOF
+	cat > "${notes_file}" <<EOF
 ---
-title: Release ${PACKAGE_VERSION}
+title: Release ${package_version}
 ---
 
-# C4Sharp.NET ${PACKAGE_VERSION} — Release Notes
+# C4Sharp.NET ${package_version} — Release Notes
 
-Released: ${RELEASE_DATE}
+Released: ${release_date}
 
 ## Package versions
 
-All packages in this release are published at version \`${PACKAGE_VERSION}\`:
+All packages in this release are published at version \`${package_version}\`:
 
-- [StacyClouds.C4Sharp.Core ${PACKAGE_VERSION}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Core/${PACKAGE_VERSION})
-- [StacyClouds.C4Sharp.Client ${PACKAGE_VERSION}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Client/${PACKAGE_VERSION})
-- [StacyClouds.C4Sharp.Renderer ${PACKAGE_VERSION}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Renderer/${PACKAGE_VERSION})
-- [StacyClouds.C4Sharp.Editor ${PACKAGE_VERSION}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Editor/${PACKAGE_VERSION})
+- [StacyClouds.C4Sharp.Core ${package_version}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Core/${package_version})
+- [StacyClouds.C4Sharp.Client ${package_version}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Client/${package_version})
+- [StacyClouds.C4Sharp.Renderer ${package_version}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Renderer/${package_version})
+- [StacyClouds.C4Sharp.Editor ${package_version}](https://www.nuget.org/packages/StacyClouds.C4Sharp.Editor/${package_version})
 
 ## API reference
 
 Browse the [API reference](index.html) for the full public API at this version.
 EOF
+}
 
-echo "Regenerated docs/api/ for ${DOCFX_TARGET_FRAMEWORK} and wrote ${NOTES_FILE}"
+main() {
+	if [[ -z "${PACKAGE_VERSION}" ]]; then
+		echo "Usage: scripts/regenerate-release-api-docs.sh <package-version>" >&2
+		echo "Example: scripts/regenerate-release-api-docs.sh 0.9.7" >&2
+		exit 1
+	fi
+
+	validate_package_version "${PACKAGE_VERSION}"
+
+	cd "${REPO_ROOT}"
+
+	dotnet tool restore
+	dotnet restore StacyClouds.C4Sharp.slnx -p:TargetFramework="${DOCFX_TARGET_FRAMEWORK}"
+	dotnet build StacyClouds.C4Sharp.slnx --no-restore -c Release -p:TargetFramework="${DOCFX_TARGET_FRAMEWORK}"
+	dotnet docfx metadata docfx.json
+	dotnet docfx build docfx.json
+
+	NOTES_FILE="docs/api/release-notes-${PACKAGE_VERSION}.md"
+	write_release_notes "${PACKAGE_VERSION}" "${NOTES_FILE}"
+
+	echo "Regenerated docs/api/ for ${DOCFX_TARGET_FRAMEWORK} and wrote ${NOTES_FILE}"
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+	main "$@"
+fi
