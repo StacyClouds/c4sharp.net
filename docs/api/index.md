@@ -26,14 +26,15 @@ generated from XML documentation comments in the source code.
 
 ## How this reference is generated
 
-The API reference is regenerated automatically during each release:
+After each NuGet release, regenerate this API reference manually:
 
-1. The release workflow builds the solution with `GenerateDocumentationFile` enabled.
-2. DocFX extracts metadata from the project source (`dotnet docfx metadata`).
-3. DocFX builds the HTML pages (`dotnet docfx build`) into `docs/api/`.
-4. The output is committed back to the repository and GitHub Pages redeploys.
+```bash
+scripts/regenerate-release-api-docs.sh <package-version>
+```
 
-To regenerate locally:
+That command restores tools, rebuilds the solution for DocFX, regenerates `docs/api/`, and writes the versioned release notes page.
+
+To regenerate step by step:
 
 ```bash
 dotnet tool restore
