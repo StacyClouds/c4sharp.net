@@ -20,6 +20,15 @@ namespace StacyClouds.C4Sharp.Core.Tests.Documentation
 		}
 
 		[Fact]
+		public void Main_ShowsUsage_WhenPackageVersionIsMissing()
+		{
+			ProcessResult result = RunBash($"'{GetScriptPath()}'");
+
+			Assert.NotEqual(0, result.ExitCode);
+			Assert.Contains("Usage: scripts/regenerate-release-api-docs.sh <package-version>", result.StandardError);
+		}
+
+		[Fact]
 		public void ValidatePackageVersion_RejectsInvalidVersion()
 		{
 			ProcessResult result = RunBash($"source '{GetScriptPath()}'; validate_package_version 'release-1.2.3'");
